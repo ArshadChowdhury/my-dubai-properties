@@ -1,26 +1,24 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
-import { getApiData } from "@/components/previous-components/Home/apiFunctions";
-import { useStateValue } from "@/components/previous-components/Home/shared/StateProvider";
+import { getApiData } from "@/components/previous-components/services/apiFunctions";
+import { useStateValue } from "@/components/previous-components/states/StateProvider";
 
-// import SignUpForm from "@/components/previous-components/Home/SignUpForm";
-// import PropertyInvestment from "@/components/previous-components/Home/PropertyInvestment";
-import HeroSection from "@/components/previous-components/Home/HeroSection";
-import Navbar from "@/components/previous-components/Home/Navbar";
-// import ArrangeMeeting from "@/components/previous-components/Home/ArrangeMeeting";
-import Filter from "@/components/previous-components/Home/Filter";
-// import LatestProperty from "@/components/previous-components/Home/LatestProperty";
-// import Payment from "@/components/previous-components/Home/Payment";
+import SignUpForm from "@/components/previous-components/pages/HomePage/partials/SignUpForm";
+import PropertyInvestment from "@/components/previous-components/pages/HomePage/partials/PropertyInvestment";
+import HeroSection from "@/components/previous-components/pages/HomePage/partials/HeroSection";
+import Navbar from "@/components/previous-components/Navbar";
+// import ArrangeMeeting from "@/components/previous-components/pages/ArrangeMeeting/ArrangeMeeting";
+import Filter from "@/components/previous-components/pages/HomePage/partials/Filter";
+import LatestProperty from "@/components/previous-components/pages/HomePage/partials/LatestProperty";
+import Payment from "@/components/previous-components/pages/HomePage/partials/Payment";
 import qs from "qs";
-// import Navbar2 from "@/components/previous-components/Home/Navbar2";
-import Footer from "@/components/previous-components/Home/Footer";
-// import VerticalLine from "@/components/previous-components/Home/VerticalLine";
-// import VerticalLine2 from "@/components/previous-components/Home/VerticalLine2";
+import Navbar2 from "@/components/previous-components/Navbar2";
+import Footer from "@/components/previous-components/Footer";
+import VerticalLine from "@/components/previous-components/VerticalLine";
+import VerticalLine2 from "@/components/previous-components/VerticalLine2";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Home = (props) => {
@@ -113,7 +111,7 @@ const Home = (props) => {
               filterOpen ? "flex justify-center items-center" : "hidden"
             }  md:block`}
           >
-            <Filter filterLists={filterData} />
+            {/* <Filter filterLists={filterData} /> */}
           </div>
           {/* <LatestProperty properties={props.properties} />
           <PropertyInvestment />
