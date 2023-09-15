@@ -1,113 +1,132 @@
-import Image from 'next/image'
+"use client";
 
-export default function Home() {
+import React, { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+
+import { getApiData } from "@/components/previous-components/Home/apiFunctions";
+import { useStateValue } from "@/components/previous-components/Home/shared/StateProvider";
+
+// import SignUpForm from "@/components/previous-components/Home/SignUpForm";
+// import PropertyInvestment from "@/components/previous-components/Home/PropertyInvestment";
+import HeroSection from "@/components/previous-components/Home/HeroSection";
+import Navbar from "@/components/previous-components/Home/Navbar";
+// import ArrangeMeeting from "@/components/previous-components/Home/ArrangeMeeting";
+import Filter from "@/components/previous-components/Home/Filter";
+// import LatestProperty from "@/components/previous-components/Home/LatestProperty";
+// import Payment from "@/components/previous-components/Home/Payment";
+import qs from "qs";
+// import Navbar2 from "@/components/previous-components/Home/Navbar2";
+import Footer from "@/components/previous-components/Home/Footer";
+// import VerticalLine from "@/components/previous-components/Home/VerticalLine";
+// import VerticalLine2 from "@/components/previous-components/Home/VerticalLine2";
+import { motion, AnimatePresence } from "framer-motion";
+
+const Home = (props) => {
+  // const [{ lang }] = useStateValue();
+  // const [{ filterValues, filterOpen }, dispatch] = useStateValue();
+  const [params, setParams] = useState({});
+  const [subsPopUp, setSubsPopUp] = useState(true);
+
+  const lang = "en";
+  const filterOpen = true;
+
+  const handleScroll = () => {
+    if (filterOpen) {
+      dispatch({ type: "setFilterOpen", item: false });
+    }
+  };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     dispatch({ type: "setFilterValues", item: false });
+  //   };
+  // }, []);
+
+  const query = "";
+
+  const getFilterList = () => {
+    return getApiData(lang, "data/filter-list", params);
+  };
+
+  const changeQuery = (query) => {
+    dispatch({ type: "setQuery", item: query });
+  };
+
+  const {
+    isLoading: isLoadingFilterList,
+    data: filterListData,
+    isError: isErrorFilterList,
+    error: filterListError,
+  } = useQuery({
+    queryKey: ["data/filter-list", lang],
+    queryFn: getFilterList,
+  });
+
+  // const getAllHomeContent = () => {
+  //   return getApiData(lang, "get-home", query);
+  // };
+
+  const getAllHomeContent = () => {
+    const apiUrl = `get-home?${query}`;
+    return getApiData(lang, apiUrl);
+  };
+
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeContentData,
+    isError: isErrorHomeContent,
+    error: homeContentError,
+  } = useQuery({
+    queryKey: ["get-home", lang, query],
+    queryFn: getAllHomeContent,
+  });
+
+  if (isLoadingHomeContent) {
+    return "Loading...Please wait...";
+  }
+
+  if (isErrorHomeContent) {
+    return error.message;
+  }
+  const sliders = homeContentData?.data?.sliders;
+  const filterData = filterListData?.data;
+
+  console.log(`Home is runing...`);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      {/* <VerticalLine2 /> */}
+      <div>
+        <Navbar
+          className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
+          type="inline"
         />
+        <section className="bg-[#000F1D] relative">
+          <HeroSection sliders={sliders} />
+          <div
+            className={` ${
+              filterOpen ? "flex justify-center items-center" : "hidden"
+            }  md:block`}
+          >
+            <Filter filterLists={filterData} />
+          </div>
+          {/* <LatestProperty properties={props.properties} />
+          <PropertyInvestment />
+          <Payment />
+          <SignUpForm popup={true} /> */}
+        </section>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="-mt-6 relative bg-[#000f1d]">
+        {/* <Footer home={true} /> */}
       </div>
-    </main>
-  )
-}
+    </>
+  );
+};
+
+export default Home;
