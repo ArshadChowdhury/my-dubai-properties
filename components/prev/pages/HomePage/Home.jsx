@@ -18,6 +18,7 @@ import Navbar from "../../Navbar";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import { useStateValue } from "@/states/StateProvider";
+import { instance } from "../../services/apiFunctions";
 
 const Home = (props) => {
   const [{ lang }] = useStateValue();
@@ -42,52 +43,63 @@ const Home = (props) => {
 
   const query = "";
 
-  const getFilterList = () => {
-    return getApiData(lang, "data/filter-list", params);
+  const getFilterData = async () => {
+    const data = await instance
+      .get("/en/data/filter-list", {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
   };
 
   const changeQuery = (query) => {
     dispatch({ type: "setQuery", item: query });
   };
 
-  const {
-    isLoading: isLoadingFilterList,
-    data: filterListData,
-    isError: isErrorFilterList,
-    error: filterListError,
-  } = useQuery(["data/filter-list", lang], getFilterList);
+  // const {
+  //   isLoading: isLoadingFilterList,
+  //   data: filterListData,
+  //   isError: isErrorFilterList,
+  //   error: filterListError,
+  // } = useQuery(["data/filter-list", lang], getFilterList);
 
-  // const getAllHomeContent = () => {
-  //   return getApiData(lang, "get-home", query);
-  // };
+  // // const getAllHomeContent = () => {
+  // //   return getApiData(lang, "get-home", query);
+  // // };
 
-  const getAllHomeContent = () => {
-    const apiUrl = `get-home?${query}`;
-    return getApiData(lang, apiUrl);
-  };
+  // // const getAllHomeContent = () => {
+  // //   const apiUrl = `get-home?${query}`;
+  // //   return getApiData(lang, apiUrl);
+  // // };
 
-  const {
-    isLoading: isLoadingHomeContent,
-    data: homeContentData,
-    isError: isErrorHomeContent,
-    error: homeContentError,
-  } = useQuery(["get-home", lang, query], getAllHomeContent);
+  const { isLoading, data, isError, error } = useQuery({
+    queryKey: ["filter-list", lang],
+    queryFn: getFilterData,
+  });
 
-  if (isLoadingHomeContent) {
-    return "Loading...Please wait...";
+  if (isLoading) {
+    return (
+      <div className="w-[100vw] h-[100vh] flex justify-center items-center text-bold bg-brand text-white text-4xl">
+        Loading...Please wait...
+      </div>
+    );
   }
 
-  if (isErrorHomeContent) {
-    return error?.message;
+  if (isError) {
+    return error.message;
   }
-  const sliders = homeContentData?.data?.sliders;
-  const filterData = filterListData?.data;
+
+  console.log(data);
+
+  // const sliders = homeContentData?.data?.sliders;
+  // const filterData = filterListData?.data;
 
   console.log(`Home is runing...`);
 
   return (
     <>
-      <VerticalLine2 />
+      <h1>Hey</h1>
+      {/* <VerticalLine2 />
       <div>
         <Navbar
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
@@ -111,7 +123,7 @@ const Home = (props) => {
 
       <div className="-mt-6 relative bg-[#000f1d]">
         <Footer home={true} />
-      </div>
+      </div> */}
     </>
   );
 };

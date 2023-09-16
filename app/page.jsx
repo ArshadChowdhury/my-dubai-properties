@@ -3,18 +3,24 @@
 import Home from "@/components/prev/pages/HomePage/Home";
 import { getApiData } from "@/services/apiFunctions";
 import { useQuery } from "react-query";
+import { instance } from "@/components/prev/services/apiFunctions";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const [propertiesData, setPropertiesData] = useState(null);
   const lang = "en";
 
-  const getAllProperties = () => {
-    return getApiData(lang, "properties");
+  const getAllProperties = async () => {
+    const data = await instance.get("/en/properties", {
+      timeout: 5000,
+    });
+    return setPropertiesData(data.data.data.properties);
   };
 
-  const { isLoading, data, isError, error } = useQuery(
-    ["property-list", lang],
-    getAllProperties
-  );
+  const { isLoading, data, isError, error } = useQuery({
+    queryKey: ["property-list", lang],
+    queryFn: getAllProperties,
+  });
 
   if (isLoading) {
     return (
@@ -27,6 +33,6 @@ export default function HomePage() {
   if (isError) {
     return error.message;
   }
-  const allProperties = data.data.properties.data;
-  return <Home properties={allProperties} />;
+
+  return <Home properties={propertiesData} />;
 }

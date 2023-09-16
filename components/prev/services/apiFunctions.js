@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const apiUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
+
+export const instance = axios.create();
 
 // function to get data from api using axios
-export const getApiData = (lang, url, query) => {
+export const getApiData = (lang, query) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/${lang}/${url}/?${query}`)
+      .get(`${apiUrl}/${lang}/?${query}`)
       .then((response) => {
         resolve(response.data);
       })
