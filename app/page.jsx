@@ -1,20 +1,21 @@
 "use client";
 
-import Home from "@/components/prev/pages/HomePage/Home";
+// import Home from "@/components/prev/pages/HomePage/Home";
 import { getApiData } from "@/services/apiFunctions";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
-import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
-  const [propertiesData, setPropertiesData] = useState(null);
   const lang = "en";
 
   const getAllProperties = async () => {
-    const data = await instance.get("/en/properties", {
-      timeout: 5000,
-    });
-    return setPropertiesData(data.data.data.properties);
+    const data = await instance
+      .get("/en/properties", {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data.properties);
+    return data;
   };
 
   const { isLoading, data, isError, error } = useQuery({
@@ -24,7 +25,7 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="w-[100vw] h-[100vh] flex justify-center items-center text-bold bg-brand text-white text-4xl">
+      <div className="w-screen h-screen flex justify-center items-center text-bold bg-brand text-white text-4xl">
         Loading...Please wait...
       </div>
     );
@@ -34,5 +35,11 @@ export default function HomePage() {
     return error.message;
   }
 
-  return <Home properties={propertiesData} />;
+  return (
+    <>
+      <Navbar />
+      <h1>Hey</h1>
+      {/* <Home properties={propertiesData} /> */}
+    </>
+  );
 }
