@@ -4,7 +4,7 @@ import HomeHeading from "@/components/prev/HomeHeading";
 import GridItem from "../../GridView/partials/GridItem";
 
 import { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { gsap } from "gsap";
 import BtnElore2 from "@/components/prev/BtnElore2";

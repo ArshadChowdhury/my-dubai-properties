@@ -5,10 +5,11 @@ import LatestPropertyDown from "./LatestPropertyDown";
 import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 
 const LatestProperty = (props) => {
+  const { properties } = props;
   const offPlanProperties = [];
   const readyProperties = [];
   {
-    props.properties.map((property) =>
+    properties?.data?.map((property) =>
       property.developmentType.name === "READY"
         ? readyProperties.push(property)
         : offPlanProperties.push(property)

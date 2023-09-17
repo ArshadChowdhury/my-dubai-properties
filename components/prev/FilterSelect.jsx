@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useStateValue } from "../states/StateProvider.jsx";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useLocation } from "react-router-dom";
 
 const FilterSelect = (props) => {

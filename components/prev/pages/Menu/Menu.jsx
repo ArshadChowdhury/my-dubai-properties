@@ -7,6 +7,8 @@ import { useStateValue } from "../../states/StateProvider";
 import Dropdown from "./partials/Dropdown";
 
 import backsapce from "../../assets/images/global/backspace-outline.png";
+import Image from "next/image";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Menu = (props) => {
@@ -165,7 +167,7 @@ const Menu = (props) => {
         onClick={closeDropdown}
         className="absolute top-5 right-5 md:hidden"
       >
-        <img src={backsapce} alt="backspace" />
+        <Image src={backsapce} alt="backspace" />
       </span>
       <Dropdown isMobileView={props.mobileView} />
     </div>

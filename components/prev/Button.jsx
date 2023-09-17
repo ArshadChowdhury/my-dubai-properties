@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
 
 const Button = (props) => {
   const navigate = useNavigate();
   return (
-    <Link to={props.to} onClick={() => navigate(props.navigate)}>
+    <Link href={props.to}>
       <button
         className={`${
           props.btnClass && "!border-[#283646]"

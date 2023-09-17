@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const BtnSearch2 = (props) => {
@@ -42,7 +43,7 @@ const BtnSearch2 = (props) => {
       >
         <span className="z-50 text-shadow">{props.btnText}</span>
         <div className="w-[22px] ">
-          <img src={props.btnImage} alt="btn image" className="" />
+          <Image src={props.btnImage} alt="btn image" className="" />
         </div>
       </div>
       <div className="z-0 absolute w-8 h-8 bg-[#bea04e] border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>

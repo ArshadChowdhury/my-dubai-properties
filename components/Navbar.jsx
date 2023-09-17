@@ -7,52 +7,15 @@ import Skeleton from "./prev/Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
 import calender from "@/public/images/global/calendar-outline.svg";
 import { useQuery } from "@tanstack/react-query";
-import { useStateValue } from "@/states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import { instance } from "./prev/services/apiFunctions";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 
 const Navbar = (props) => {
-  // const [{ lang }, dispatch] = useStateValue();
+  const { filterListData } = props;
+  const [{ lang }, dispatch] = useStateValue();
   const [dropDown, setDropDown] = useState(false);
   const [navPoint, setNavPoint] = useState(false);
-
-  const lang = "en";
-
-  const getAllProperty = async () => {
-    const data = await instance
-      .get("/en/properties", {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data.properties);
-    return data;
-  };
-
-  const getAllFilter = async () => {
-    const data = await instance
-      .get("/en/data/filter-list", {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data);
-    return data;
-  };
-
-  const { isLoading, data, isError, error } = useQuery({
-    queryKey: ["all-property"],
-    queryFn: getAllProperty,
-  });
-
-  const { data: filterData } = useQuery({
-    queryKey: ["filter-data"],
-    queryFn: getAllFilter,
-  });
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
@@ -71,7 +34,7 @@ const Navbar = (props) => {
     dispatch({ type: "setDropdownOpen", item: dropDown });
   };
 
-  const langList = filterData?.langList;
+  const langList = filterListData?.langList;
 
   //Nav animation logic
   const animation = document.querySelector(".animation");
@@ -125,7 +88,7 @@ const Navbar = (props) => {
 
   return (
     <section className={props.className}>
-      <Skeleton className="py-6 justify-between items-center px-5">
+      <Skeleton className="justify-between items-center px-5">
         <div className="flex items-center z-50">
           <div
             className="flex flex-wrap mr-5 w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative group"
@@ -240,7 +203,6 @@ const Navbar = (props) => {
               <option value={lang} className="rounded-2xl bg-[#F1BF3F] hidden">
                 {lang}
               </option>
-              {console.log(langList)}
               {langList?.map((lang) => (
                 <option
                   value={lang.value}

@@ -10,7 +10,7 @@ import camera from "./prev/assets/images/global/camera-sharp.png";
 import offer from "./prev/assets/images/global/pricetag-outline.png";
 import { getApiData } from "./prev/services/apiFunctions";
 import { useQuery } from "@tanstack/react-query";
-import { useStateValue } from "@/states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import FilterSelect from "./FilterSelect";
 import { useQuery } from "react-query";
 import { getApiData } from "../services/apiFunctions";
-import { useStateValue } from "../states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
 
 import { useLocation } from "react-router-dom";
@@ -43,7 +43,8 @@ const FilterSearch3 = (props) => {
       <div className="w-full lg:w-auto gap-[20px] md:flex items-center my-2 md:my-0">
         <div
           className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ "padding-left": "25px" }}>
+          style={{ "padding-left": "25px" }}
+        >
           <FilterSelectMob
             searchBy="Development Type"
             selectBy={filterList?.developmentTypes}
@@ -51,7 +52,8 @@ const FilterSearch3 = (props) => {
         </div>
         <div
           className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ "padding-left": "25px" }}>
+          style={{ "padding-left": "25px" }}
+        >
           <FilterSelectMob
             searchBy="Developer Type"
             selectBy={filterList?.developers}
@@ -59,7 +61,8 @@ const FilterSearch3 = (props) => {
         </div>
         <div
           className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ "padding-left": "25px" }}>
+          style={{ "padding-left": "25px" }}
+        >
           <FilterSelectMob
             searchBy="Property Areas"
             selectBy={filterList?.propertyAreas}
@@ -69,13 +72,15 @@ const FilterSearch3 = (props) => {
         <div className="hidden md:visible -top-[192px] md:relative md:top-0 md:flex z-100">
           <span
             className="hover:scale-125 transition duration-300 cursor-pointer"
-            onClick={() => switchViewType("list")}>
+            onClick={() => switchViewType("list")}
+          >
             <svg
               width="35"
               height="35"
               viewBox="0 0 35 35"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M0 2C0 0.89543 0.895431 0 2 0H32.8099C33.986 0 34.9082 1.00984 34.8017 2.18107L31.9835 33.1811C31.8899 34.2112 31.0262 35 29.9918 35H2C0.895431 35 0 34.1046 0 33V2Z"
                 fill={viewType === "list" ? "#DFBF68" : "#373F48"}
@@ -124,13 +129,15 @@ const FilterSearch3 = (props) => {
           </span>
           <span
             className="hover:scale-125 transition duration-300 cursor-pointer"
-            onClick={() => switchViewType("grid")}>
+            onClick={() => switchViewType("grid")}
+          >
             <svg
               width="35"
               height="35"
               viewBox="0 0 35 35"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M3.3199 1.80099C3.42214 0.778589 4.28247 0 5.30998 0H33C34.1046 0 35 0.895431 35 2V33C35 34.1046 34.1046 35 33 35H2.20998C1.02673 35 0.102164 33.9784 0.219901 32.801L3.3199 1.80099Z"
                 fill={viewType === "grid" ? "#DFBF68" : "#373F48"}
@@ -146,7 +153,8 @@ const FilterSearch3 = (props) => {
                   y1="17"
                   x2="35"
                   y2="17"
-                  gradientUnits="userSpaceOnUse">
+                  gradientUnits="userSpaceOnUse"
+                >
                   <stop
                     stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
                   />

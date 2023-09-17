@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ListItem from "./partials/ListItem";
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
-import DownArrow from "../../components/DownArrow";
+import DownArrow from "../../DownArrow";
 import axios from "axios";
 
 import InfiniteScroll from "react-infinite-scroll-component";

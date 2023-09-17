@@ -1,13 +1,19 @@
 import React from "react";
 
-import HeadingBox from "../../../components/HeadingBox";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HomeHeading from "../../../components/HomeHeading";
+import Navbar from "@/components/Navbar";
+import HeadingBox from "@/components/prev/HeadingBox";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HomeHeading from "@/components/prev/HomeHeading";
+import Footer from "@/components/prev/Footer";
 
 const PrivacyContent = () => {
   return (
     <section>
-      <Skeleton className="px-5">
+      <Navbar
+        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
+        type="inline"
+      />
+      <Skeleton className="mt-14 px-5">
         <div className="mt-5 md:mt-10 w-full">
           <div className="w-full md:w-[25%]">
             <HomeHeading heading="Introduction" />
@@ -58,7 +64,8 @@ const PrivacyContent = () => {
           <div className="w-full md:mt-5 font-montserrat text-white ">
             <p
               className="py-3 text-[13.5px] tracking-[2%] leading-[24px]"
-              style={{ fontWeight: "200" }}>
+              style={{ fontWeight: "200" }}
+            >
               We do not use cookies for tracking purposes. You can choose to
               have your computer warn you each time a cookie is being sent, or
               you can choose to turn off all cookies. You do this through your
@@ -84,7 +91,8 @@ const PrivacyContent = () => {
               </p>
               <p
                 className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] "
-                style={{ fontWeight: "200" }}>
+                style={{ fontWeight: "200" }}
+              >
                 Google’s advertising requirements can be summed up by Google’s
                 Advertising Principles. They are put in place to provide a
                 positive experience for users. <br />
@@ -125,7 +133,8 @@ const PrivacyContent = () => {
               </p>
               <p
                 className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] "
-                style={{ fontWeight: "200" }}>
+                style={{ fontWeight: "200" }}
+              >
                 The CAN-SPAM Act is a law that sets the rules for commercial
                 email, establishes requirements for commercial messages, gives
                 recipients the right to have emails stopped from being sent to
@@ -164,6 +173,7 @@ const PrivacyContent = () => {
           </div>
         </div>
       </Skeleton>
+      <Footer />
     </section>
   );
 };

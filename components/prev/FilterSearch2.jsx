@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import FilterSelect from "./FilterSelect";
-import { useQuery } from "react-query";
-import { getApiData } from "../services/apiFunctions";
-import { useStateValue } from "../states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
 
 import { useLocation } from "react-router-dom";
@@ -13,23 +11,6 @@ const FilterSearch = (props) => {
   const filterRef = useRef();
 
   const beds = [1, 2, 3, 4, 5];
-
-  const getFilterList = () => {
-    return getApiData(lang, "data/filter-list");
-  };
-
-  const { isLoading, data, isError, error } = useQuery(
-    ["filter-list", lang],
-    getFilterList
-  );
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
 
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });

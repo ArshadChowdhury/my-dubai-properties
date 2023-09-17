@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 
 import { gsap } from "gsap";
 
-import mobilePhone from "../../../assets/images/home/Group 334.png";
-import coin from "../../../assets/images/home/Group 336.png";
-import home from "../../../assets/images/home/Group 335.png";
-import bitCoin from "../../../assets/images/home/Cam1.png";
+import mobilePhone from "@/components/prev/assets/images/home/Group 334.png";
+import coin from "@/components/prev/assets/images/home/Group 336.png";
+import home from "@/components/prev/assets/images/home/Group 335.png";
+import bitCoin from "@/components/prev/assets/images/home/Cam1.png";
+import Image from "next/image";
 
 const PaymentCircle = () => {
   const [x, setX] = useState(0);
@@ -65,19 +66,21 @@ const PaymentCircle = () => {
     <div
       className="relative md:pl-28 py-20 md:py-0 flex justify-center items-center"
       style={{ zIndex: "10" }}
-      ref={sectionRef}>
+      ref={sectionRef}
+    >
       <div className="relative h-[300px] w-[300px] md:h-[375px] md:w-[375px] p-5 border border-dashed rounded-full flex justify-center items-center bg-[#000F1D] bg-payment">
-        <img src={mobilePhone} alt="" className="" />
+        <Image src={mobilePhone} alt="" className="" />
         <div
           className="circle h-[80px] w-[80px] md:h-auto md:w-auto"
-          ref={elementRef}>
-          <img src={coin} alt="" />
+          ref={elementRef}
+        >
+          <Image src={coin} alt="" />
         </div>
         <div className="circle circle2 h-[80px] w-[80px] md:h-auto md:w-auto">
-          <img src={bitCoin} alt="" />
+          <Image src={bitCoin} alt="" />
         </div>
         <div className="circle circle3 h-[80px] w-[80px] md:h-auto md:w-auto">
-          <img src={home} alt="" />
+          <Image src={home} alt="" />
         </div>
       </div>
     </div>

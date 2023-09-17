@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import FilterDropdown from "./FilterDropdown";
 import { BsFillCaretDownFill } from "react-icons/bs";
-import { useStateValue } from "./states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 // import filter from "../pages/HomePage/partials/Filter.jsx";
 
 const BtnFilter = (props) => {
@@ -75,44 +75,12 @@ const BtnFilter = (props) => {
     };
   }, []);
 
-  const data = props.selectedValue
-    ? props.selectedValue[1]
-      ? props.selectedValue[1]
-      : props.selectedValue
-    : props.selectedValue || props.selectedValue || inputValue;
-
-  // const resetInputValue = () => {
-  //   setResetData(true);
-  //   setInputValue("");
-  //   setDataShow("");
-  // };
-
   const inputChange = (e) => {
     setInputValue(e.target.value);
-    // setDataShow(false);
-    // setInputData(
-    //   props.selectedValue
-    //     ? props.selectedValue[1]
-    //       ? props.selectedValue[1]
-    //       : props.selectedValue
-    //     : props.selectedValue || props.selectedValue || inputValue
-    // );
   };
 
-  // const resetAll = (e) => {
-  //   setInputValue("");
-  // setDataShow(true);
-  //   setInputData("");
-  // };
-
   return (
-    <div
-      className="flex justify-center items-center font-montserrat filter-btn p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative"
-      style={{
-        height: "46px",
-        width: isMobileView ? "" : "168px",
-      }}
-    >
+    <div className="flex justify-center h-[46px] md:w-[168px] items-center font-montserrat filter-btn p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative">
       <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] left-[-16px] border-r-0 border-t-0"></div>
       <div
         className="flex justify-around hover:text-[#F1BF3F] text-[10px] items-center !h-full !w-full relative px-8 py-4"
@@ -129,7 +97,6 @@ const BtnFilter = (props) => {
             ref={inputRef}
             value={inputValue}
             onChange={inputChange}
-            // onClick={resetAll}
             className="z-10 bg-transparent focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]"
           />
 

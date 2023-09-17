@@ -108,10 +108,10 @@ import iconBuilding from "../../../assets/images/property details page/icon-buil
 import iconLocation from "../../../assets/images/property details page/icon-locate.svg";
 import iconVillas from "../../../assets/images/property details page/icon-villas.svg";
 import iconBed from "../../../assets/images/property details page/icon-bed.svg";
-import ButtonOutline from "../../../components/ButtonOutline";
+import ButtonOutline from "@/components/prev/ButtonOutline";
 import { Link, useNavigate } from "react-router-dom";
-import BtnItem from "../../../components/BtnItem";
-import ButtonOutline2 from "../../../components/ButtonOutline2";
+import BtnItem from "@/components/prev/BtnItem";
+import ButtonOutline2 from "@/components/prev/ButtonOutline2";
 
 const ListItem = (props) => {
   const [isHoveredCard, setIsHoveredCard] = useState(false);

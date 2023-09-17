@@ -4,8 +4,9 @@ import logo from "../previous-components/assets/images/global/logo.png";
 import calender from "../previous-components/assets/images/global/calendar-outline.svg";
 import { useQuery } from "@tanstack/react-query";
 import { getApiData } from "./services/apiFunctions";
-import { useStateValue } from "./states/StateProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { useStateValue } from "@/components/prev/states/StateProvider";
+import Link from "next/link";
+import Image from "next/image";
 
 const Navbar2 = (props) => {
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
@@ -128,8 +129,8 @@ const Navbar2 = (props) => {
               props.type === "home" ? "hidden" : "block"
             }`}
           >
-            <Link to={"/"}>
-              <img src={logo} alt="logo" />
+            <Link href={"/"}>
+              <Image src={logo} alt="logo" />
             </Link>
           </div>
         </div>
@@ -158,13 +159,13 @@ const Navbar2 = (props) => {
             </button>
             <div className="flex items-center nav">
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link to={"/properties/off-plan"}>Off Plan</Link>
+                <Link href={"/properties/off-plan"}>Off Plan</Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link to={"/properties/ready"}>Ready</Link>
+                <Link href={"/properties/ready"}>Ready</Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link to={"/properties"}>All Properties</Link>
+                <Link href={"/properties"}>All Properties</Link>
               </h1>
               {/* <div className="animation start-home"></div> */}
               {/* <div className="line bg-gradient-to-l from-white"></div> */}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const ButtonOutline2 = (props) => {
@@ -12,7 +13,7 @@ const ButtonOutline2 = (props) => {
         {props.btnText}
         {props.btnImage && (
           <div className="w-[25px]">
-            <img src={props.btnImage} alt="btn image" />
+            <Image src={props.btnImage} alt="btn image" />
           </div>
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import moment from "moment-timezone";
 import { useStateValue } from "../../states/StateProvider";
@@ -7,6 +7,7 @@ import NextStep from "./partials/NextStep";
 import ThirdStep from "./partials/ThirdStep";
 import close from "../../assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
+import Image from "next/image";
 
 const ArrangeMeeting = ({ mobileView }) => {
   const [
@@ -152,15 +153,15 @@ const ArrangeMeeting = ({ mobileView }) => {
                   className={`cursor-pointer fixed flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-footer`}
                   style={{ top: "" }}
                 >
-                  <img
+                  <Image
                     src="/src/assets/images/global/footer-logo.png"
                     alt=""
                     className="h-[100px] my-2 pb-2 "
                   />
                   <h1 className="text-xl">Form Submitted!</h1>
                   <p>
-                    We'd like to show you notifictions for the latest news and
-                    updates
+                    We&apos;d like to show you notifictions for the latest news
+                    and updates
                   </p>
                 </motion.div>
               )}
@@ -176,7 +177,7 @@ const ArrangeMeeting = ({ mobileView }) => {
                       closeBtn ? "block" : "hidden"
                     } absolute top-[24px] right-[30px] cursor-pointer z-10`}
                   >
-                    <img src={close} alt="close btn" />
+                    <Image src={close} alt="close btn" />
                   </button>
                 </div>
                 <div className="flex justify-center items-center">

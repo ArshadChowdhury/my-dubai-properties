@@ -6,7 +6,7 @@ import GridItem from "../../GridView/partials/GridItem";
 
 import { useRef, useEffect, useState } from "react";
 import BtnElore2 from "@/components/prev/BtnElore2";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const LatestPropertyTop = (props) => {
   const [isHovered, setIsHovered] = useState(false);

@@ -5,6 +5,7 @@ import offplanImage from "../../../assets/images/home/investment-offplan.png";
 import readyImage from "../../../assets/images/home/investment-ready.png";
 import { useEffect } from "react";
 import { useState } from "react";
+import Image from "next/image";
 
 const PropertyInvestment = () => {
   const handleClick = () => {};
@@ -77,7 +78,7 @@ const PropertyInvestment = () => {
                 off-plan
               </h1>
               <div className="border border-white hover:border-[#DBA318] border-dashed p-7">
-                <img
+                <Image
                   src={offplanImage}
                   alt="off plan image"
                   className="w-32 aspect-square"
@@ -89,7 +90,7 @@ const PropertyInvestment = () => {
                 ready
               </h1>
               <div className="border border-white hover:border-[#DBA318] border-dashed p-7">
-                <img
+                <Image
                   src={readyImage}
                   alt="off plan image"
                   className="w-32 aspect-square"

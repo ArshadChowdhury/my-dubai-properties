@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <main
-            className="min-h-screen bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] overflow-x-clip"
+            className="relative flow-root bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] overflow-x-clip"
             // dir={lang === "ar" ? "rtl" : "ltr"}
           >
             {children}

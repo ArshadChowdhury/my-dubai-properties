@@ -2,8 +2,10 @@
 
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { StateProvider } from "@/states/StateProvider";
-import reducer, { initialState } from "@/states/reducer";
+import { StateProvider } from "@/components/prev/states/StateProvider";
+import reducer, { initialState } from "@/components/prev/states/reducer";
+
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function Providers({ children }) {
   const [queryClient] = React.useState(() => new QueryClient());
@@ -12,7 +14,7 @@ export default function Providers({ children }) {
       <StateProvider initialState={initialState} reducer={reducer}>
         {children}
       </StateProvider>
-      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import FilterSearch from "../../components/FilterSearch";
-import Skeleton from "../../components/Skeleton/Skeleton";
+import FilterSearch from "../../FilterSearch";
+import Skeleton from "../../Skeleton/Skeleton";
 import ListItem from "../ListView/partials/ListItem";
 import GridItem from "./partials/GridItem";
 import { useLocation } from "react-router-dom";
 
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
-import DownArrow from "../../components/DownArrow";
+import DownArrow from "../../DownArrow";
 
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";

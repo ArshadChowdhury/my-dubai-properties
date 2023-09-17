@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 
 import investment from "../../../assets/images/global/menu-photo.png";
 import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
@@ -13,6 +14,7 @@ import { useQuery } from "react-query";
 import { useStateValue } from "../../../states/StateProvider";
 
 import calender from "../../../assets/images/global/calendar-outline.svg";
+import Image from "next/image";
 
 const Dropdown = (props) => {
   const [{ lang, propertyToView }, dispatch] = useStateValue();
@@ -68,7 +70,7 @@ const Dropdown = (props) => {
             <div className="flex flex-col gap-5">
               <div className="flex">
                 <span>
-                  <img src={helpLine} alt="help line image" />
+                  <Image src={helpLine} alt="help line image" />
                 </span>
 
                 <div className="text-white ml-[10.5px]">
@@ -77,17 +79,17 @@ const Dropdown = (props) => {
                   </h2>
                   <ul className="text-[10.5px]">
                     <li className="uppercase leading-[15.3px]">
-                      <Link to="/about">about us</Link>
+                      <Link href="/about">about us</Link>
                     </li>
                     <li className="uppercase leading-[15.3px]">
-                      <Link to="/contact-with-us">Contact us</Link>
+                      <Link href="/contact-with-us">Contact us</Link>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="flex">
                 <span>
-                  <img src={developerIcon} alt="help line image" />
+                  <Image src={developerIcon} alt="help line image" />
                 </span>
 
                 <div className="text-white ml-[10.5px]">
@@ -97,10 +99,7 @@ const Dropdown = (props) => {
                   <ul className="text-[10.5px]">
                     {developers.map((developer) => (
                       <Link
-                        to={`/single-developer-view/${developer._id}`}
-                        onClick={() =>
-                          navigate(`/single-developer-view/${developer._id}`)
-                        }
+                        href={`/single-developer-view/${developer._id}`}
                         key={developer._id}
                       >
                         <li className="uppercase leading-[15.3px]">
@@ -109,7 +108,7 @@ const Dropdown = (props) => {
                       </Link>
                     ))}
                     <Link
-                      to={"/developer-list"}
+                      href={"/developer-list"}
                       className="uppercase leading-[15.3px]"
                     >
                       ALL DEVELOPERS
@@ -129,14 +128,14 @@ const Dropdown = (props) => {
                     PROJECTS
                   </h2>
                   <ul className="text-[10.5px]">
-                    <Link to="/properties/ready">
+                    <Link hrf="/properties/ready">
                       <li className="uppercase leading-[15.3px]">READY</li>
                     </Link>
-                    <Link to="/properties/off-plan">
+                    <Link href="/properties/off-plan">
                       <li className="uppercase leading-[15.3px]">OFF PLAN</li>
                     </Link>
                     <Link
-                      to="/properties"
+                      href="/properties"
                       onClick={() => {
                         switchPropertyToView("all");
                       }}
@@ -146,9 +145,8 @@ const Dropdown = (props) => {
                       </li>
                     </Link>
                     <Link
-                      to="/properties"
+                      href="/properties"
                       onClick={() => {
-                        // navigate("/view-property");
                         switchPropertyToView("all");
                       }}
                     >
@@ -161,7 +159,7 @@ const Dropdown = (props) => {
               </div>
               <div className="flex mb-[22.5px] leading-[22px]">
                 <span>
-                  <img src={offer} alt="help line image" />
+                  <Image src={offer} alt="help line image" />
                 </span>
 
                 <div className="text-white ml-[10.5px]">
@@ -172,7 +170,7 @@ const Dropdown = (props) => {
               </div>
               <div className="flex mb-[22.5px] leading-[22px]">
                 <span>
-                  <img src={camera} alt="help line image" />
+                  <Image src={camera} alt="help line image" />
                 </span>
 
                 <div className="text-white ml-[10.5px]">
@@ -193,7 +191,7 @@ const Dropdown = (props) => {
             onClick={handleArrangeMeeting}
           >
             <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
-              <img src={calender} alt="calender" className="mr-3" />
+              <Image src={calender} alt="calender" className="mr-3" />
               Arrange a Meeting
             </h1>
           </button>
@@ -202,7 +200,7 @@ const Dropdown = (props) => {
 
       {/**right side */}
       <div className="w-full h-full relative hidden md:block">
-        <img src={investment} alt="" className="h-full w-full " />
+        <Image src={investment} alt="" className="h-full w-full " />
         <div className="w-full h-full absolute-center px-10 bg-[#171717] bg-opacity-30 rounded-md flex flex-col justify-center p-5">
           <div className="bg-black bg-opacity-70 ml-10 mr-10 px-10 py-6 rounded-lg">
             <p className="text-[12px] font-medium text-[#D4B970] font-roboto leading-[14px]">

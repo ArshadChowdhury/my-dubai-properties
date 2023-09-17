@@ -10,6 +10,7 @@ import ForwordIcon from "../../../assets/images/global/chevron-forward.png";
 import Zoom from "../../../assets/images/global/Zoom.png";
 import GoogleMeet from "../../../assets/images/global/Google Meet.png";
 import BtnNextStep from "@/components/prev/BtnNextStep";
+import Image from "next/image";
 // import BtnNextStep from "../../../components/BtnNextStep";
 
 const ArrangeMeetingStep1 = ({
@@ -39,7 +40,7 @@ const ArrangeMeetingStep1 = ({
       >
         <div className="flex flex-col justify-center items-center h-full px-3">
           <div className="">
-            <img
+            <Image
               src={mobileView ? calenderMobile : calender}
               alt="calender"
               className="mr-3 bg-center bg-cover"
@@ -78,7 +79,7 @@ const ArrangeMeetingStep1 = ({
                 className={`rounded-l-md flex-1 flex px-5 py-2 bg-white items-center transition-all duration-300 `}
                 onClick={() => showMeetLink("phone")}
               >
-                <img
+                <Image
                   src={talephone}
                   alt="phone icon"
                   className={`${
@@ -91,7 +92,7 @@ const ArrangeMeetingStep1 = ({
               </button>
               <div className="w-[30%] h-full rounded-l-md flex px-5 py-2 justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A]">
                 <span>
-                  <img src={clock} alt="Clock" />
+                  <Image src={clock} alt="Clock" />
                 </span>
                 <span className="text-white uppercase text-[10px]">30 min</span>
               </div>
@@ -108,7 +109,7 @@ const ArrangeMeetingStep1 = ({
                 className={`rounded-l-md bg-white flex-1 flex px-5 py-2 items-center  `}
                 onClick={() => showMeetLink("video")}
               >
-                <img
+                <Image
                   src={videoIcon}
                   alt="phone icon"
                   className={`${
@@ -121,7 +122,7 @@ const ArrangeMeetingStep1 = ({
               </button>
               <div className="w-[30%] h-full rounded-r-md flex px-5 py-2 justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A]">
                 <span>
-                  <img src={clock} alt="Clock" />
+                  <Image src={clock} alt="Clock" />
                 </span>
                 <span className="text-white uppercase text-[10px]">60 min</span>
               </div>
@@ -135,7 +136,7 @@ const ArrangeMeetingStep1 = ({
                   activeBtn === "zoom" ? "border-x border-x-[#dcb558]" : ""
                 }`}
               >
-                <img src={Zoom} alt="" />
+                <Image src={Zoom} alt="" />
               </div>
               <div
                 onClick={() => setActiveBtn("meet")}
@@ -143,7 +144,7 @@ const ArrangeMeetingStep1 = ({
                   activeBtn === "meet" ? "border-x border-x-[#dcb558]" : ""
                 }`}
               >
-                <img src={GoogleMeet} alt="" className="w-full" />
+                <Image src={GoogleMeet} alt="" className="w-full" />
               </div>
             </div>
           )}

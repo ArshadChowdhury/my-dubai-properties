@@ -4,7 +4,7 @@ import logo from "@/public/images/global/logo.png";
 import calender from "@/public/images/global/calendar-outline.svg";
 import { useQuery } from "react-query";
 import { getApiData } from "./services/apiFunctions";
-import { useStateValue } from "./states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import Link from "next/link";
 import Image from "next/image";
 

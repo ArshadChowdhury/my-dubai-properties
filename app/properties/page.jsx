@@ -3,38 +3,37 @@
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
 
-import Home from "@/components/prev/pages/HomePage/Home";
-import { useStateValue } from "@/components/prev/states/StateProvider";
+import ViewProperty from "@/components/prev/pages/ViewProperty/ViewProperty";
+
+const getAllProperties = async () => {
+  const data = await instance
+    .get("/en/properties", {
+      timeout: 5000,
+    })
+    .then((data) => data.data.data.properties);
+  return data;
+};
+
+const getAllFilter = async () => {
+  const data = await instance
+    .get("/en/data/filter-list", {
+      timeout: 5000,
+    })
+    .then((data) => data.data.data);
+  return data;
+};
+
+const getAllHomeContent = async () => {
+  const data = await instance
+    .get("en/get-home", {
+      timeout: 5000,
+    })
+    .then((data) => data.data.data);
+  return data;
+};
 
 export default function HomePage() {
-  const [{ lang }] = useStateValue();
-
-  const getAllProperties = async () => {
-    const data = await instance
-      .get(`/${lang}/properties`, {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data.properties);
-    return data;
-  };
-
-  const getAllFilter = async () => {
-    const data = await instance
-      .get(`/${lang}/data/filter-list`, {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data);
-    return data;
-  };
-
-  const getAllHomeContent = async () => {
-    const data = await instance
-      .get(`/${lang}/get-home`, {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data);
-    return data;
-  };
+  const lang = "en";
 
   const {
     isLoading: isLoadingPropertiesData,
@@ -69,12 +68,12 @@ export default function HomePage() {
     );
   }
 
-  if (isErrorHomeContent) {
-    return isErrorHomeContent.message;
+  if (isError) {
+    return error.message;
   }
 
   return (
-    <Home
+    <ViewProperty
       properties={propertiesData}
       filterListData={filterListData}
       homeData={homeData}

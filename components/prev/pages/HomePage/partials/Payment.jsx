@@ -4,6 +4,7 @@ import PaymentCircle from "./PaymentCircle";
 import BtnPayent from "@/components/prev/BtnPayent";
 import PaymentHeading from "@/components/prev/PaymentHeading";
 import paymentBottom from "../../../assets/images/global/payment-bottom.png";
+import Image from "next/image";
 
 const Payment = () => {
   const [isMobileView, setIsMobileView] = useState(true);
@@ -60,7 +61,7 @@ const Payment = () => {
         <div className="bottom-0 w-full h-[2px] flex justify-center items-center mt-12">
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
           <p className="mx-3">
-            <img src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
+            <Image src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
           </p>
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useStateValue } from "./states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useEffect } from "react";
 
 const FilterDropdown = (props) => {

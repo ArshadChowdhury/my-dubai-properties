@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 import iconBuilding from "../../../assets/images/property details page/icon-building.svg";
@@ -9,8 +9,10 @@ import iconBed from "../../../assets/images/property details page/icon-bed.svg";
 
 import BtnItem from "@/components/prev/BtnItem";
 import BtnItemOutline from "@/components/prev/BtnItemOutline";
+import Image from "next/image";
 
 const GridItem = (props) => {
+  const router = useRouter();
   const [isHoveredCard, setIsHoveredCard] = useState(false);
   const onMouseEnterHandler = () => {
     props.setIsHovered(true);
@@ -22,7 +24,7 @@ const GridItem = (props) => {
     props.setIsHoveredCard(false);
     setIsHoveredCard(false);
   };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -33,28 +35,27 @@ const GridItem = (props) => {
 
   return (
     <div
-      // to={`/properties/${props.id}`}
-
-      className={`link  min-w-[75%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 px-1 py-3 overflow-clip ${
+      onClick={() => router.push(`/properties/${props.id}`)}
+      className={`link min-w-[75%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 px-1 py-3 overflow-clip ${
         isHoveredCard ? "hovered" : ""
       }`}
     >
       <div
-        className={`border border-[#D9D9D9] rounded-lg overflow-clip `}
+        className={`border border-[#D9D9D9] rounded-lg overflow-clip`}
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <img
-          onClick={() => navigate(`/properties/${props.id}`)}
-          width="100%"
-          height="100%"
-          className="cursor-pointer"
+        <Image
+          onClick={() => router.push(`/properties/${props.id}`)}
+          width={700}
+          height={700}
+          className="cursor-pointer w-full h-fit"
           src={props.coverImage[0].path}
           alt="cover"
         />
         <div className="p-5">
           <h1
-            onClick={() => navigate(`/properties/${props.id}`)}
+            onClick={() => router.push(`/properties/${props.id}`)}
             className="font-roboto text-[16px] text-white cursor-pointer w-fit"
           >
             {props.propertyName}
@@ -62,13 +63,13 @@ const GridItem = (props) => {
           <div className="flex flex-wrap w-full">
             <div className="mr-4 text-[11.5px] w-32">
               <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <img src={iconLocation} alt="building" className="mr-1" />
+                <Image src={iconLocation} alt="building" className="mr-1" />
                 {props.areaName}
               </p>
             </div>
             <div className="mr-4 text-[11.5px]">
               <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <img src={iconBuilding} alt="building" className="mr-1" />
+                <Image src={iconBuilding} alt="building" className="mr-1" />
                 {props.developerName}
               </p>
             </div>
@@ -76,13 +77,13 @@ const GridItem = (props) => {
           <div className="flex flex-wrap w-full text-[11.5px]">
             <div className="mr-4 w-32">
               <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <img src={iconVillas} alt="building" className="mr-1" />
+                <Image src={iconVillas} alt="building" className="mr-1" />
                 {props.propertyType}
               </p>
             </div>
             <div className="mr-4">
               <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <img src={iconBed} alt="building" className="mr-1" />
+                <Image src={iconBed} alt="building" className="mr-1" />
                 {props.unitSize}
               </p>
             </div>
@@ -99,11 +100,11 @@ const GridItem = (props) => {
             btnText="Details"
             className="mr-2 basis-1/2"
             to={`/properties/${props.id}`}
-            navigate={`/properties/${props.id}`}
+            // navigate={`/properties/${props.id}`}
           />
           <BtnItemOutline
             to={`/contact-with-us`}
-            navigate={`/contact-with-us`}
+            // navigate={`/contact-with-us`}
             btnText="Enquiry"
             className="ml-2 basis-1/2"
           />

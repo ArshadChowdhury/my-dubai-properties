@@ -87,7 +87,7 @@
 // export default FilterSelectMob;
 
 import React from "react";
-import { useStateValue } from "../states/StateProvider.jsx";
+import { useStateValue } from "./states/StateProvider";
 import { useEffect } from "react";
 
 const FilterSelectMob = (props) => {
@@ -190,7 +190,8 @@ const FilterSelectMob = (props) => {
         "font-size": "14px",
         "font-weight": "100",
       }}
-      className="w-full outline-none filterSelect">
+      className="w-full outline-none filterSelect"
+    >
       <option className="font-roboto text-lg" value={null}>
         {props.searchBy}
       </option>
@@ -198,7 +199,8 @@ const FilterSelectMob = (props) => {
         <option
           className="font-roboto text-lg"
           value={item._id ? item._id : item}
-          key={item._id}>
+          key={item._id}
+        >
           {item.name ? item.name : item.areaName || item}
         </option>
       ))}

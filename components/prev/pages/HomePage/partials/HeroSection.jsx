@@ -4,15 +4,16 @@ import Filter from "./Filter";
 import rightArrow from "../../../assets/images/global/right.png";
 // import Button from "../../../components/Button";
 import filter from "../../../assets/images/global/filter.png";
-import { useStateValue } from "../../../states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
+import Image from "next/image";
 
 const HeroSection = (props) => {
   // const [{ filterValues, filterOpen }, dispatch] = useStateValue();
   const [index, setIndex] = useState(0);
-  const sliders = props.sliders;
+  const sliders = props?.sliders;
 
   useEffect(() => {
-    const lastIndex = sliders.length - 1;
+    const lastIndex = sliders?.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
@@ -27,21 +28,20 @@ const HeroSection = (props) => {
 
   return (
     <section
-      style={{ zIndex: "10" }}
-      className={`relative  w-[100vw] h-[90vh] md: lg:h-screen overflow-hidden flex`}
+      className={`relative w-[100vw] h-[90vh] lg:h-screen overflow-hidden flex z-10`}
     >
-      {sliders.map((slider, idx) => {
+      {sliders?.map((slider, idx) => {
         let position = "nextSlide";
         if (idx === index) {
           position = "activeSlide";
         }
-        if (idx === index - 1 || (index === 0 && idx === sliders.length - 1)) {
+        if (idx === index - 1 || (index === 0 && idx === sliders?.length - 1)) {
           position = "lastSlide";
         }
         return (
           <article
             key={idx}
-            className={`${position}  opacity-0 absolute top-0 left-0  article transition-all duration-500 h-full w-full bg-cover bg-no-repeat flex justify-center items-center flex-shrink-0`}
+            className={`${position} opacity-0 absolute top-0 left-0 article transition-all duration-500 h-full w-full bg-cover bg-no-repeat flex justify-center items-center flex-shrink-0`}
             style={{
               backgroundImage: `url(${slider.image})`,
               backgroundSize: "cover",
@@ -70,7 +70,7 @@ const HeroSection = (props) => {
                   onClick={handleFilterbtn}
                   className="border rounded-md px-6 py-2 font-semibold text-[12px] flex m-auto bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]"
                 >
-                  <img src={filter} alt="filter logo" />
+                  <Image src={filter} alt="filter logo" />
                   <span className="ml-2">Filter</span>
                 </button>
               </div>
@@ -143,7 +143,7 @@ const HeroSection = (props) => {
         onClick={() => setIndex(index + 1)}
       >
         <div className="-rotate-45">
-          <img
+          <Image
             src={rightArrow}
             alt=""
             className="group-hover:ml-3 group-hover:scale-105 transition-all duration-500"
