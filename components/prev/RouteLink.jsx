@@ -1,35 +1,34 @@
 import React from "react";
-import home from "../assets/images/global/home (1).png";
-import arrow from "../assets/images/global/chevron-forward-outline.png";
+import home from "../../components/prev/assets/images/global/home (1).png";
+import arrow from "../../components/prev/assets/images/global/chevron-forward-outline.png";
 import Skeleton from "./Skeleton/Skeleton";
-import { useStateValue } from "../states/StateProvider";
+import { useStateValue } from "./states/StateProvider";
+import Image from "next/image";
 
 const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
+
+  console.log(locationName);
+
   return (
     <section className={`w-full ${marginBottom}`}>
       <div className="relative flex justify-end">
         <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5 ">
           <div className="w-full flex items-center text-[15px] md:text-[9px]">
             <p className="">
-              <img src={home} alt="Home Icon" />
+              <Image src={home} alt="Home Icon" />
             </p>
             <p className=" text-[#ffffff] md:text-[#626262] pl-2 font-semibold md:font-normal">
               Home
             </p>
             <p className="pl-2 text-[15px] md:text-[9px]">
-              <img src={arrow} alt="Arrow icon" />
+              <Image src={arrow} alt="Arrow icon" />
             </p>
             <p className="text-[15px] md:text-[9px] text-[#ffffff] md:text-[#626262] pl-2 capitalize font-semibold md:font-normal">
-              {locationName.map((location, idx) => {
-                if (location === " ") {
-                } else {
-                  return <span key={idx}>{location}</span>;
-                }
-              })}
+              {locationName.substring(1)}
             </p>
           </div>
         </Skeleton>
@@ -38,13 +37,15 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
             className={`hover:scale-125 transition duration-300 cursor-pointer ${
               buttonHide ? "hidden" : ""
             }`}
-            onClick={() => switchViewType("list")}>
+            onClick={() => switchViewType("list")}
+          >
             <svg
               width="35"
               height="35"
               viewBox="0 0 35 35"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M0 2C0 0.89543 0.895431 0 2 0H32.8099C33.986 0 34.9082 1.00984 34.8017 2.18107L31.9835 33.1811C31.8899 34.2112 31.0262 35 29.9918 35H2C0.895431 35 0 34.1046 0 33V2Z"
                 fill={viewType === "list" ? "#DFBF68" : "#373F48"}
@@ -95,13 +96,15 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
             className={`hover:scale-125 transition duration-300 cursor-pointer ${
               buttonHide ? "hidden" : ""
             }`}
-            onClick={() => switchViewType("grid")}>
+            onClick={() => switchViewType("grid")}
+          >
             <svg
               width="35"
               height="35"
               viewBox="0 0 35 35"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M3.3199 1.80099C3.42214 0.778589 4.28247 0 5.30998 0H33C34.1046 0 35 0.895431 35 2V33C35 34.1046 34.1046 35 33 35H2.20998C1.02673 35 0.102164 33.9784 0.219901 32.801L3.3199 1.80099Z"
                 fill="url(#paint0_linear_280_14881)"
@@ -117,7 +120,8 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
                   y1="17"
                   x2="35"
                   y2="17"
-                  gradientUnits="userSpaceOnUse">
+                  gradientUnits="userSpaceOnUse"
+                >
                   <stop
                     stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
                   />

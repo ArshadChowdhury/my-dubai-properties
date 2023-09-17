@@ -24,7 +24,7 @@ const Home = (props) => {
 
   const handleScroll = () => {
     if (filterOpen) {
-      dispatch({ type: "setFilterOpen", item: true });
+      dispatch({ type: "setFilterOpen", item: false });
     }
   };
 
@@ -49,7 +49,6 @@ const Home = (props) => {
 
   return (
     <>
-      <ArrangeMeeting />
       <VerticalLine2 />
       <div>
         <Navbar

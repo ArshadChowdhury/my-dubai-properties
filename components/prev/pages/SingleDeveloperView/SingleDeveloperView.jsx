@@ -4,10 +4,8 @@ import { useLocation, useParams } from "react-router-dom";
 import EmmarProperties from "./partials/Properties";
 import PropertyList from "./partials/PropertyList";
 import TableView from "./partials/TableView";
-import { getApiData } from "../../services/apiFunctions";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "react-query";
-import axios from "axios";
 import FilterSelect from "../../components/FilterSelect";
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
@@ -37,34 +35,9 @@ const SingleDeveloperView = (props) => {
 
   // const location = useLocation();
 
-  useEffect(() => {
-    axios
-      .get("http://52.77.121.171:3008/api/v1/en/data/filter-list")
-      .then((response) => {
-        setFilterList(response.data.data);
-      });
-  }, []);
+  // const developer = data.data;
 
-  const getSingleDeveloper = () => {
-    return getApiData(lang, `developers/${developerId}`);
-  };
-
-  const { isLoading, isError, error, data } = useQuery(
-    ["single-developer", lang, developerId],
-    getSingleDeveloper
-  );
-
-  if (isLoading) {
-    return "Loading... Please Wait...";
-  }
-
-  if (isError) {
-    return error.message;
-  }
-
-  const developer = data.data;
-
-  const locationName = [developer.developer.name];
+  // const locationName = [developer.developer.name];
   return (
     <>
       {isMobileView ? (
@@ -79,12 +52,14 @@ const SingleDeveloperView = (props) => {
         style={{
           marginTop: isMobileView ? "" : "15px",
           marginBottom: isMobileView ? "" : "80px",
-        }}>
+        }}
+      >
         <RouteLink locationName={locationName} buttonHide={"true"} />
         <EmmarProperties developerDetails={developer.developer} />
         <div
           className="sticky  bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2"
-          style={{ "z-index": "20", top: isMobileView ? "-10px" : "88px" }}>
+          style={{ "z-index": "20", top: isMobileView ? "-10px" : "88px" }}
+        >
           {props.mobileView ? (
             <div className="py-4">
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
@@ -93,7 +68,8 @@ const SingleDeveloperView = (props) => {
             <div className="w-full md:grid grid-cols-5">
               <div
                 className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}>
+                style={{ width: "220px" }}
+              >
                 <FilterSelect
                   searchBy="Property Areas"
                   selectBy={filterList?.propertyAreas}
@@ -101,7 +77,8 @@ const SingleDeveloperView = (props) => {
               </div>
               <div
                 className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}>
+                style={{ width: "220px" }}
+              >
                 <FilterSelect
                   searchBy="Property Types"
                   selectBy={filterList?.propertyTypes}
@@ -109,12 +86,14 @@ const SingleDeveloperView = (props) => {
               </div>
               <div
                 className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}>
+                style={{ width: "220px" }}
+              >
                 <FilterSelect searchBy="Beds" selectBy={beds} />
               </div>
               <div
                 className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}>
+                style={{ width: "220px" }}
+              >
                 <FilterSelect
                   searchBy="Completions"
                   selectBy={filterList?.completions}
@@ -127,7 +106,8 @@ const SingleDeveloperView = (props) => {
                   // "border-right": "1px solid #FFD15F",
                   // "border-top": "1px solid #FFD15F",
                   // "border-bottom": "1px solid #FFD15F",
-                }}>
+                }}
+              >
                 <input
                   type="search"
                   name="search developers"

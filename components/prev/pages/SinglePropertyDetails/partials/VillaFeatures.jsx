@@ -1,7 +1,7 @@
-import React from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import FeatureItem from "./FeatureItem";
 import HeadingText from "./HeadingText";
+import Image from "next/image";
 import price from "../../../assets/images/property details page/1918-city-hall-outline.gif";
 import type from "../../../assets/images/property details page/2030-frysztak-town-outline.gif";
 import location from "../../../assets/images/property details page/18-location-pin-outline.gif";
@@ -24,10 +24,10 @@ const VillaFeatures = (props) => {
         <div className="single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px]  md:h-3/5  w-[85%] md:w-[40%]"></div>
         <div className="border-right w-[65%] md:w-[45%] mt-[45px] md:mt-0 md:absolute -left-[4rem] top-[20%] skew-y-6 -skew-x-6 h-[132px] md:h-3/5 flex md:justify-center items-center">
           <div className="md:ml-[5.8rem] h-[132px]  md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
-            <img src={mosqueGif} alt="" />
+            <Image src={mosqueGif} alt="" />
           </div>
           <div className="absolute right-[32px] md:right-0 top-[.9rem] md:top-[2.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
-            <img src={frys} alt="" className="opacity-40" />
+            <Image src={frys} alt="" className="opacity-40" />
           </div>
         </div>
         <div className="w-full flex justify-end pt-16 md:pt-0">

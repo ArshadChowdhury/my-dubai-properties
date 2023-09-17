@@ -1,26 +1,40 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Link from "next/link";
 
 import investment from "../../../assets/images/global/menu-photo.png";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import helpLine from "../../../assets/images/global/help-circle-outline.png";
 import developerIcon from "../../../assets/images/global/construct.png";
 import home from "../../../assets/images/global/home.png";
 import camera from "../../../assets/images/global/camera-sharp.png";
 import offer from "../../../assets/images/global/pricetag-outline.png";
 import { getApiData } from "../../../services/apiFunctions";
-import { useQuery } from "react-query";
-import { useStateValue } from "../../../states/StateProvider";
+import { useQuery } from "@tanstack/react-query";
+import { useStateValue } from "@/components/prev/states/StateProvider";
+import { instance } from "../../../services/apiFunctions";
 
 import calender from "../../../assets/images/global/calendar-outline.svg";
 import Image from "next/image";
 
 const Dropdown = (props) => {
   const [{ lang, propertyToView }, dispatch] = useStateValue();
-  const [isMobileView, setIsMobileView] = useState(true);
-  const navigate = useNavigate();
+  const [isMobileView, setIsMobileView] = useState(false);
 
+  const getAllDeveloperData = async () => {
+    const data = await instance
+      .get(`${lang}/developers`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data.developer.data);
+    return data;
+  };
+
+  const { data: developerData } = useQuery({
+    queryKey: ["developer-data"],
+    queryFn: getAllDeveloperData,
+  });
+
+  console.log(developerData);
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
@@ -32,26 +46,10 @@ const Dropdown = (props) => {
     };
   }, []);
 
-  const getDeveloperList = () => {
-    return getApiData(lang, "developers");
-  };
   const switchPropertyToView = (toView) => {
-    dispatch({ type: "setPropertyToView", item: toView });
+    // dispatch({ type: "setPropertyToView", item: toView });
   };
-
-  const { isLoading, isError, error, data } = useQuery(
-    ["developer-list"],
-    getDeveloperList
-  );
-
-  if (isLoading) {
-    return "Loading... PLease Wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
-  const developers = data.data.developers.data;
+  // const developers = data.data.developers.data;
 
   const handleArrangeMeeting = (e) => {
     dispatch({ type: "setShowModal", item: true });
@@ -97,7 +95,7 @@ const Dropdown = (props) => {
                     DEVELOPERS
                   </h2>
                   <ul className="text-[10.5px]">
-                    {developers.map((developer) => (
+                    {/* {developerData?.map((developer) => (
                       <Link
                         href={`/single-developer-view/${developer._id}`}
                         key={developer._id}
@@ -106,7 +104,7 @@ const Dropdown = (props) => {
                           {developer.name}
                         </li>
                       </Link>
-                    ))}
+                    ))} */}
                     <Link
                       href={"/developer-list"}
                       className="uppercase leading-[15.3px]"
@@ -120,7 +118,7 @@ const Dropdown = (props) => {
             <div>
               <div className="flex mb-[22.5px] leading-[22px]">
                 <span>
-                  <img src={home} alt="help line image" />
+                  <Image src={home} alt="help line image" />
                 </span>
 
                 <div className="text-white ml-[10.5px]">

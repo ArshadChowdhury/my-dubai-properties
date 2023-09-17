@@ -16,7 +16,7 @@ const FilterSearch = (props) => {
     dispatch({ type: "setViewType", item: viewType });
   };
 
-  const filterList = data.data;
+  const filterList = props?.filterListData;
 
   return (
     <section className="relative w-full md:flex justify-between ">

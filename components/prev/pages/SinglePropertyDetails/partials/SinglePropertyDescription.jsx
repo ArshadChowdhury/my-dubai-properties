@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import Button from "../../../components/Button";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import Button from "@/components/prev/Button";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import iconBuilding from "../../../assets/images/property details page/icon-building.png";
 import iconLocationBlack from "../../../assets/images/property details page/icon-locate.png";
 import iconDownload from "../../../assets/images/global/icon-download-outline.svg";
 import iconLocation from "../../../assets/images/property details page/18-location-pin-outline.gif";
 import iconFilm from "../../../assets/images/global/icon-film-outline.svg";
 import RegisterForm from "./RegisterForm";
-import ButtonOutline from "../../../components/ButtonOutline";
+import ButtonOutline from "@/components/prev/ButtonOutline";
 import { useState } from "react";
-import BtnOutline from "../../../components/BtnOutline";
+import BtnOutline from "@/components/prev/BtnOutline";
+import Image from "next/image";
 
 const SinglePropertyDescription = (props) => {
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
@@ -28,11 +29,11 @@ const SinglePropertyDescription = (props) => {
           </h1>
           <div className="flex items-center ml-2">
             <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
-              <img src={iconLocationBlack} alt="Location" className="mr-1" />
+              <Image src={iconLocationBlack} alt="Location" className="mr-1" />
               {propertyDetails.developerType.name}
             </p>
             <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
-              <img src={iconBuilding} alt="building" className="mr-1" />
+              <Image src={iconBuilding} alt="building" className="mr-1" />
               {propertyDetails.propertyArea.areaName}
             </p>
           </div>
@@ -45,7 +46,8 @@ const SinglePropertyDescription = (props) => {
                 fontWeight: "200",
                 fontSize: "14px",
                 marginLeft: "10px",
-              }}>
+              }}
+            >
               {paragraph}
             </p>
           ))}
@@ -54,6 +56,7 @@ const SinglePropertyDescription = (props) => {
             <div className="md:flex justify-evenly">
               <div className="xl:pr-4 pt-3 ">
                 <Button
+                  to="#"
                   btnText="Download Brochure"
                   btnImage={iconDownload}
                   btnClass={btnHoverEffect ? "?bg-none" : ""}
@@ -86,7 +89,10 @@ const SinglePropertyDescription = (props) => {
           </div>
         </div>
         <div className="xl:basis-[24.7%] z-10 mt-10 md:mt-0 px-3 md:px-0 md:mr-3">
-          <RegisterForm propertyName={propertyDetails.propertyName} />
+          <RegisterForm
+            filterListData={props.filterListData}
+            propertyName={propertyDetails.propertyName}
+          />
         </div>
       </SkeletonSingleProperty>
     </section>

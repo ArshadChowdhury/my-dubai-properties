@@ -16,7 +16,7 @@ const Menu = (props) => {
   const [isMobileView, setIsMobileView] = useState(true);
   const menuRef = useRef();
 
-  let location = useLocation();
+  // let location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,7 +31,7 @@ const Menu = (props) => {
 
   useEffect(() => {
     closeDropdown();
-  }, [location.pathname, showModal]);
+  }, [showModal]);
 
   useLayoutEffect(() => {
     let handle = (e) => {
@@ -169,7 +169,7 @@ const Menu = (props) => {
       >
         <Image src={backsapce} alt="backspace" />
       </span>
-      <Dropdown isMobileView={props.mobileView} />
+      {/* <Dropdown isMobileView={props.mobileView} /> */}
     </div>
   );
 };

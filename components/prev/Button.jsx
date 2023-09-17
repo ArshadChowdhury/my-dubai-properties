@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Button = (props) => {
-  const navigate = useNavigate();
   return (
     <Link href={props.to}>
       <button
@@ -17,7 +17,7 @@ const Button = (props) => {
         >
           {props.btnText}
           {props.btnImage && (
-            <img src={props.btnImage} alt="btn image" className="w-[25px]" />
+            <Image src={props.btnImage} alt="btn image" className="w-[25px]" />
           )}
         </div>
       </button>

@@ -8,7 +8,8 @@ import "swiper/css/pagination";
 
 import { EffectCoverflow, Pagination } from "swiper";
 
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
+import Image from "next/image";
 
 const PhotoGallery = (props) => {
   const swiperRef = useRef();
@@ -60,18 +61,16 @@ const PhotoGallery = (props) => {
     <section className="!mt-20 md:mt-0 mb-5">
       {isModalOpen && (
         <div
-          className={`w-full ${
-            isMobile ? "h-screen" : ""
-          } p-10 fixed top-0 z-50 bg-black bg-opacity-70`}>
-          <img
+          className={`w-full flex justify-center items-center fixed -top-32 z-50 py-10 bg-black bg-opacity-70`}
+        >
+          <Image
+            height={850}
+            width={1420}
             src={imgPath}
+            className={`w-11/12 mt-12 md:mt-10 rounded-md ${
+              isMobile ? "mt-28" : ""
+            }`}
             alt=""
-            className={`w-full ${isMobile ? "mt-28" : "mt-10"}`}
-            style={{
-              borderRadius: isMobile ? "20px" : "120px",
-              padding: isMobile ? "10px" : "100px",
-              marginTop: isMobile ? "300px" : "50px",
-            }}
             onClick={() => setIsModalOpen(false)}
           />
         </div>
@@ -101,17 +100,19 @@ const PhotoGallery = (props) => {
         // pagination={true}
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
-        onInit={(swiper) => (swiperRef.current = swiper)}>
+        onInit={(swiper) => (swiperRef.current = swiper)}
+      >
         {gallery.map((image, index) => (
           <SwiperSlide key={`image-${index}`} className="rounded-xl ">
-            <img
+            <Image
+              height={500}
+              width={1000}
               src={image.path}
               alt={image.metaDescription}
               className={`rounded-md cursor-pointer -z-50${
                 isMobile ? "h-[150px]" : ""
               }  `}
               onClick={() => showModal(image.path)}
-              // style={{ height: "200px" }}
             />
           </SwiperSlide>
         ))}
@@ -124,13 +125,15 @@ const PhotoGallery = (props) => {
               setStrokeLeft("#FFD15F");
               setStrokeRight("#B4B4B4");
             }}
-            className="absolute -left-[65px]">
+            className="absolute -left-[65px]"
+          >
             <svg
               width="30"
               height="30"
               viewBox="0 0 30 30"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M14.6121 19.6875L9.96094 15L14.6121 10.3125M10.6072 15H20.0391"
                 stroke={strokeLeft}
@@ -152,14 +155,16 @@ const PhotoGallery = (props) => {
               setStrokeLeft("#B4B4B4");
               setStrokeRight("#FFD15F");
             }}
-            className="absolute -right-[65px]">
+            className="absolute -right-[65px]"
+          >
             <svg
               width="30"
               height="30"
               viewBox="0 0 30 30"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="transform rotate-180">
+              className="transform rotate-180"
+            >
               <path
                 d="M14.6121 19.6875L9.96094 15L14.6121 10.3125M10.6072 15H20.0391"
                 stroke={strokeRight}

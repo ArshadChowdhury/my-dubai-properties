@@ -9,7 +9,6 @@ import RouteLink from "../../components/RouteLink";
 import FilterSearchInput from "./partials/filterSearch";
 import FilterModal from "./partials/filterModal";
 import HeadingBox from "../../components/HeadingBox";
-import axios from "axios";
 import Navbar2 from "../../components/Navbar2";
 import Footer from "../../components/Footer";
 

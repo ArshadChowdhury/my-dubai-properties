@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import { useEffect, useState } from "react";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 import tick from "../../../assets/images/property details page/icon-tick.svg";
 import HeadingText2 from "./HeadingText2";
+import Image from "next/image";
 
 const Highlights = (props) => {
   const highlights = props.highlights.split("#");
@@ -34,7 +35,7 @@ const Highlights = (props) => {
             <ul className="pl-5 md:pl-12 pt-10  w-full single-key-background pr-2">
               {highlights.map((highlight, index) => (
                 <li className="flex mb-6" key={`highlight-${index}`}>
-                  <img
+                  <Image
                     src={tick}
                     alt="tick"
                     className="mr-5 w-[20px] h-[11.43px]"

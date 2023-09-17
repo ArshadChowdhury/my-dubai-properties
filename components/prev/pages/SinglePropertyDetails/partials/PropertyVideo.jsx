@@ -1,5 +1,5 @@
 import React from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 import ReactPlayer from "react-player/youtube";
 import HeadingText2 from "./HeadingText2";

@@ -4,36 +4,37 @@ import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
 
 import ViewProperty from "@/components/prev/pages/ViewProperty/ViewProperty";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
-const getAllProperties = async () => {
-  const data = await instance
-    .get("/en/properties", {
-      timeout: 5000,
-    })
-    .then((data) => data.data.data.properties);
-  return data;
-};
+export default function AllProperties() {
+  const [{ lang }] = useStateValue();
 
-const getAllFilter = async () => {
-  const data = await instance
-    .get("/en/data/filter-list", {
-      timeout: 5000,
-    })
-    .then((data) => data.data.data);
-  return data;
-};
+  const getAllProperties = async () => {
+    const data = await instance
+      .get(`/${lang}/properties`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data.properties);
+    return data;
+  };
 
-const getAllHomeContent = async () => {
-  const data = await instance
-    .get("en/get-home", {
-      timeout: 5000,
-    })
-    .then((data) => data.data.data);
-  return data;
-};
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
+  };
 
-export default function HomePage() {
-  const lang = "en";
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
+  };
 
   const {
     isLoading: isLoadingPropertiesData,
@@ -73,10 +74,12 @@ export default function HomePage() {
   }
 
   return (
-    <ViewProperty
-      properties={propertiesData}
-      filterListData={filterListData}
-      homeData={homeData}
-    />
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
+      <ViewProperty
+        properties={propertiesData}
+        filterListData={filterListData}
+        homeData={homeData}
+      />
+    </section>
   );
 }

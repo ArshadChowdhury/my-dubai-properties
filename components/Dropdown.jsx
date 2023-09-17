@@ -30,25 +30,6 @@ const Dropdown = (props) => {
     };
   }, []);
 
-  const getDeveloperList = () => {
-    return getApiData(lang, "developers");
-  };
-  const switchPropertyToView = (toView) => {
-    dispatch({ type: "setPropertyToView", item: toView });
-  };
-
-  const { isLoading, isError, error, data } = useQuery(
-    ["developer-list"],
-    getDeveloperList
-  );
-
-  if (isLoading) {
-    return "Loading... PLease Wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
   const developers = data.data.developers.data;
 
   const handleArrangeMeeting = (e) => {

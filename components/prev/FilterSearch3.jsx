@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import FilterSelect from "./FilterSelect";
-import { useQuery } from "react-query";
-import { getApiData } from "../services/apiFunctions";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
 
@@ -14,29 +12,11 @@ const FilterSearch3 = (props) => {
 
   const beds = [1, 2, 3, 4, 5];
 
-  const getFilterList = () => {
-    return getApiData(lang, "data/filter-list");
-  };
-
-  const { isLoading, data, isError, error } = useQuery(
-    ["filter-list", lang],
-    getFilterList
-  );
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
-
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
 
   const filterList = data.data;
-  console.log(`Filter list ${filterList}`);
 
   return (
     <section className="relative w-full md:flex justify-between ">

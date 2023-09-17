@@ -4,18 +4,6 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export const instance = axios.create();
 
-// function to get data from api using axios
-export const getApiData = (lang, query) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(`${apiUrl}/${lang}/?${query}`)
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch(reject);
-  });
-};
-
 // function to post data to api using axios
 export const postApiData = async (data) => {
   return new Promise((resolve, reject) => {

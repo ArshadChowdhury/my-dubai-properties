@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { gsap } from "gsap";
 
@@ -62,7 +62,8 @@ const SinglePropertyHeader = (props) => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 100%",
               backgroundPosition: "center",
-            }}></article>
+            }}
+          ></article>
         );
       })}
       {/* <img

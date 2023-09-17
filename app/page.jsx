@@ -74,10 +74,12 @@ export default function HomePage() {
   }
 
   return (
-    <Home
-      properties={propertiesData}
-      filterListData={filterListData}
-      homeData={homeData}
-    />
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
+      <Home
+        properties={propertiesData}
+        filterListData={filterListData}
+        homeData={homeData}
+      />
+    </section>
   );
 }

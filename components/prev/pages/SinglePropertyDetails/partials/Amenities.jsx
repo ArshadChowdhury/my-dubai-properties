@@ -1,8 +1,8 @@
-import React from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 import returnDownForward from "../../../assets/images/property details page/icon-return-down-forward.png";
 import HeadingText2 from "./HeadingText2";
+import Image from "next/image";
 
 const Amenities = (props) => {
   const amenities = props.amenities;
@@ -34,7 +34,7 @@ const Amenities = (props) => {
             <ul className="text-left w-auto">
               {features1.map((item, index) => (
                 <li className={`flex leading-8`} key={`features1-${index}`}>
-                  <img
+                  <Image
                     src={returnDownForward}
                     alt="return-down-forward"
                     className="mr-5 w-[25px] h-[30px]"
@@ -48,7 +48,7 @@ const Amenities = (props) => {
             <ul className="text-left w-auto">
               {features2.map((item, index) => (
                 <li className="flex  leading-8" key={`features2-${index}`}>
-                  <img
+                  <Image
                     src={returnDownForward}
                     alt="return-down-forward"
                     className="mr-5 w-[25px] h-[30px]"

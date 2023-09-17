@@ -112,10 +112,13 @@ import ButtonOutline from "@/components/prev/ButtonOutline";
 import { Link, useNavigate } from "react-router-dom";
 import BtnItem from "@/components/prev/BtnItem";
 import ButtonOutline2 from "@/components/prev/ButtonOutline2";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ListItem = (props) => {
   const [isHoveredCard, setIsHoveredCard] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const router = useRouter();
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -139,7 +142,6 @@ const ListItem = (props) => {
     props.setIsHoveredCard(false);
     setIsHoveredCard(false);
   };
-  const navigate = useNavigate();
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -156,10 +158,10 @@ const ListItem = (props) => {
       >
         <div className="flex flex-wrap border border-[#D9D9D9] rounded-lg overflow-clip p-1">
           <div className="w-[40%] rounded-md overflow-hidden">
-            <img
-              onClick={() => navigate(`/properties/${props.id}`)}
-              width="100%"
-              height="100%"
+            <Image
+              onClick={() => router.push(`/properties/${props.id}`)}
+              width={900}
+              height={500}
               src={props.coverImage[0].path}
               alt="cover"
               className="h-full rounded-l-md cursor-pointer"
@@ -172,7 +174,7 @@ const ListItem = (props) => {
             onMouseLeave={handleMouseLeave}
           >
             <h1
-              onClick={() => navigate(`/properties/${props.id}`)}
+              onClick={() => router.push(`/properties/${props.id}`)}
               className="font-roboto text-[15px] md:text-xl text-white cursor-pointer w-fit"
             >
               {props.propertyName} at {props.developerName}
@@ -181,13 +183,13 @@ const ListItem = (props) => {
               <div className="md:flex">
                 <div className="mr-4">
                   <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
-                    <img src={iconLocation} alt="building" className="mr-1" />
+                    <Image src={iconLocation} alt="building" className="mr-1" />
                     {props.areaName}
                   </p>
                 </div>
                 <div className="mr-4">
                   <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
-                    <img src={iconBuilding} alt="building" className="mr-1" />
+                    <Image src={iconBuilding} alt="building" className="mr-1" />
                     {props.developerName}
                   </p>
                 </div>
@@ -195,13 +197,13 @@ const ListItem = (props) => {
               <div className="md:flex">
                 <div className="mr-4">
                   <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
-                    <img src={iconVillas} alt="building" className="mr-1" />
+                    <Image src={iconVillas} alt="building" className="mr-1" />
                     {props.propertyType}
                   </p>
                 </div>
                 <div className="mr-4">
                   <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
-                    <img src={iconBed} alt="building" className="mr-1" />
+                    <Image src={iconBed} alt="building" className="mr-1" />
                     {props.unitSize}
                   </p>
                 </div>
@@ -218,12 +220,11 @@ const ListItem = (props) => {
                   btnText="Details"
                   className="w-full"
                   to={`/properties/${props.id}`}
-                  navigate={`/properties/${props.id}`}
                 />
               </div>
               <div className="w-full">
                 <ButtonOutline2
-                  link={() => navigate(`/contact-with-us`)}
+                  link={() => router.push(`/contact-with-us`)}
                   btnText="Enquiry"
                 />
               </div>

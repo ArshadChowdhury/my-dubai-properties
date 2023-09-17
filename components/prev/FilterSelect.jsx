@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "next/navigation";
 
 const FilterSelect = (props) => {
   const [{ filterValues }, dispatch] = useStateValue();
   const [selectedValue, setSelectedValue] = useState(props.searchBy || "");
-  const location = useLocation();
-  const queryString = location.search.substring(1);
-  const queryParams = Object.fromEntries(
-    queryString.split("&").map((param) => param.split("="))
-  );
+  // const searchParams = useSearchParams();
+  // const queryString = searchParams.get("search").substring(1);
+  // const queryParams = Object.fromEntries(
+  //   queryString.split("&").map((param) => param.split("="))
+  // );
 
-  const { developers, developmentTypes, propertyAreas } = queryParams;
+  // const { developers, developmentTypes, propertyAreas } = queryParams;
 
   const changed = (e) => {
     if (props.searchBy === "Developer Type") {

@@ -15,13 +15,13 @@ const GridItem = (props) => {
   const router = useRouter();
   const [isHoveredCard, setIsHoveredCard] = useState(false);
   const onMouseEnterHandler = () => {
-    props.setIsHovered(true);
-    props.setIsHoveredCard(true);
+    // props.setIsHovered(true);
+    // setIsHoveredCard(true);
     setIsHoveredCard(true);
   };
   const onMouseLeaveHandler = () => {
-    props.setIsHovered(false);
-    props.setIsHoveredCard(false);
+    // props.setIsHovered(false);
+    // props.setIsHoveredCard(false);
     setIsHoveredCard(false);
   };
   // const navigate = useNavigate();
@@ -35,8 +35,7 @@ const GridItem = (props) => {
 
   return (
     <div
-      onClick={() => router.push(`/properties/${props.id}`)}
-      className={`link min-w-[75%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 px-1 py-3 overflow-clip ${
+      className={`link min-w-[75%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 p-3 overflow-clip ${
         isHoveredCard ? "hovered" : ""
       }`}
     >
@@ -100,11 +99,9 @@ const GridItem = (props) => {
             btnText="Details"
             className="mr-2 basis-1/2"
             to={`/properties/${props.id}`}
-            // navigate={`/properties/${props.id}`}
           />
           <BtnItemOutline
             to={`/contact-with-us`}
-            // navigate={`/contact-with-us`}
             btnText="Enquiry"
             className="ml-2 basis-1/2"
           />

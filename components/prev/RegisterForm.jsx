@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
-import { getApiData } from "../services/apiFunctions";
+// import { getApiData } from "../services/apiFunctions";
 import { useStateValue } from "../states/StateProvider";
 import CountrySelect from "../pages/ContactUs/partials/selectCountry";
 
@@ -21,22 +21,22 @@ const RegisterForm = (props) => {
   const handleCheckbox2Change = () => {
     setIsChecked2(!isChecked2);
   };
-  const getAllProperty = () => {
-    return getApiData(lang, "properties/1");
-  };
+  // const getAllProperty = () => {
+  //   return getApiData(lang, "properties/1");
+  // };
 
-  const { isLoading, data, isError, error } = useQuery(
-    ["all-property"],
-    getAllProperty
-  );
+  // const { isLoading, data, isError, error } = useQuery(
+  //   ["all-property"],
+  //   getAllProperty
+  // );
 
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
+  // if (isLoading) {
+  //   return "Loading data, please wait";
+  // }
 
-  if (isError) {
-    return error.message;
-  }
+  // if (isError) {
+  //   return error.message;
+  // }
 
   const langList = data.data.langList;
   return (
@@ -47,7 +47,8 @@ const RegisterForm = (props) => {
         </h1>
         <p
           className="text-white text-left font-montserrat mt-2"
-          style={{ fontWeight: "300", fontSize: "14px" }}>
+          style={{ fontWeight: "300", fontSize: "14px" }}
+        >
           *All fields are required
         </p>
         <form action="" className="mt-8" onSubmit={handleSubmit((data) => {})}>
@@ -101,7 +102,8 @@ const RegisterForm = (props) => {
           </div>
           <div
             className="flex flex-col justify-start items-start mb-2 text-white font-montserrat"
-            style={{ fontWeight: "300", fontSize: "14px" }}>
+            style={{ fontWeight: "300", fontSize: "14px" }}
+          >
             <label>
               <input
                 type="checkbox"
@@ -126,7 +128,8 @@ const RegisterForm = (props) => {
           </div>
           <button
             type="submit"
-            className="w-full text-white rounded-sm py-2 font-montserrat uppercase bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]">
+            className="w-full text-white rounded-sm py-2 font-montserrat uppercase bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]"
+          >
             ENQUIRE NOW
           </button>
         </form>

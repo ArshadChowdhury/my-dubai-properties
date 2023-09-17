@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
-import Button from "../../../components/Button";
+import Button from "@/components/prev/Button";
 import iconDownload from "../../../assets/images/global/icon-download-outline.svg";
 import HeadingText2 from "./HeadingText2";
-import BtnOutline from "../../../components/BtnOutline";
+import BtnOutline from "@/components/prev/BtnOutline";
 
 const Downloads = () => {
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
@@ -21,6 +21,7 @@ const Downloads = () => {
               btnText="Download Brochure"
               btnImage={iconDownload}
               btnClass={btnHoverEffect ? "?bg-none" : ""}
+              to="#"
             />
           </div>
           <div className="w-full py-3 xl:basis-1/2 ">

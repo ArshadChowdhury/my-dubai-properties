@@ -1,19 +1,20 @@
 import React from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import rightArrow from "../../../assets/images/property details page/chevrons-right.png";
 import ListItem from "../../ListView/partials/ListItem";
+import Image from "next/image";
 
 const SimilarProperties = (props) => {
   return (
     <section className="mb-10 !mt-20 md:mt-5">
       <SkeletonSingleProperty className="flex-col px-5">
         <p className="text-white text-[18px] flex">
-          <img src={rightArrow} alt="" />
+          <Image src={rightArrow} alt="" />
           <span>Similler propertiese</span>
         </p>
         <div className="mb-5 md:pl-2 md:pr-5">
-          {props.listVIew &&
-            props.listVIew.map((property, idx) => {
+          {props?.listView &&
+            props?.listView.map((property, idx) => {
               if (idx < 2) {
                 return (
                   <ListItem

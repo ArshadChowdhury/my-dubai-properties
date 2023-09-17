@@ -1,33 +1,14 @@
 import React from "react";
 import Skeleton from "./Skeleton/Skeleton";
-import logo from "../previous-components/assets/images/global/logo.png";
-import calender from "../previous-components/assets/images/global/calendar-outline.svg";
-import { useQuery } from "@tanstack/react-query";
-import { getApiData } from "./services/apiFunctions";
-import { useStateValue } from "@/components/prev/states/StateProvider";
+import logo from "../../components/prev/assets/images/global/logo.png";
+import calender from "../../components/prev/assets/images/global/calendar-outline.svg";
+import { useStateValue } from "./states/StateProvider";
 import Link from "next/link";
 import Image from "next/image";
 
 const Navbar2 = (props) => {
+  const { filterListData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
-  const navigate = useNavigate();
-
-  const getAllProperty = () => {
-    return getApiData(lang, "properties/1");
-  };
-
-  const { isLoading, data, isError, error } = useQuery(
-    ["all-property"],
-    getAllProperty
-  );
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
@@ -45,7 +26,8 @@ const Navbar2 = (props) => {
     dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
   };
 
-  const langList = data.data.langList;
+  console.log(filterListData);
+  const langList = filterListData?.langList;
 
   //Nav animation logic
   const animation = document.querySelector(".animation");
@@ -153,7 +135,7 @@ const Navbar2 = (props) => {
               onClick={handleArrangeMeeting}
             >
               <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
-                <img src={calender} alt="calender" className="mr-3" />
+                <Image src={calender} alt="calender" className="mr-3" />
                 Arrange a Meeting
               </h1>
             </button>
@@ -193,7 +175,7 @@ const Navbar2 = (props) => {
               <option value={lang} className="rounded-2xl bg-[#F1BF3F] hidden">
                 {lang}
               </option>
-              {langList.map((lang) => (
+              {langList?.map((lang) => (
                 <option
                   value={lang.value}
                   key={lang.value}

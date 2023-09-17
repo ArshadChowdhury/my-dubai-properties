@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 import PaymentCircle from "./PaymentItem";
 
@@ -10,6 +10,7 @@ import Draggable from "gsap/Draggable";
 import upArrow2 from "../../../assets/images/global/upArrow2.png";
 import upArrow from "../../../assets/images/global/upArrow.png";
 import tick from "../../../assets/images/property details page/icon-tick.svg";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
@@ -166,7 +167,7 @@ const PaymentPlan = (props) => {
               </div>
               {paymentPlan.map((item, idx) => {
                 return (
-                  <div className="flex items-center mx-10">
+                  <div key={idx} className="flex items-center mx-10">
                     <div
                       className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                     >
@@ -217,8 +218,8 @@ const PaymentPlan = (props) => {
                   <div className="circle-border">
                     <div className="circle-white">
                       <p className="flex flex-col justify-center items-center">
-                        <img src={upArrow2} alt="" />
-                        <img src={upArrow} alt="" />
+                        <Image src={upArrow2} alt="" />
+                        <Image src={upArrow} alt="" />
                       </p>
                     </div>
                   </div>
@@ -253,7 +254,11 @@ const PaymentPlan = (props) => {
       <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white fixed top-[204px] ml-36">
         {planList.map((plan, index) => (
           <div key={index} className="flex items-center">
-            <img src={tick} alt="tick" className="w-[20px] h-[11.43px] ml-10" />
+            <Image
+              src={tick}
+              alt="tick"
+              className="w-[20px] h-[11.43px] ml-10"
+            />
             <div className="ml-2">
               {plan.title} {plan.description}
             </div>

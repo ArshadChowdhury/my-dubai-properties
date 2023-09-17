@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import FilterSearch2 from "../../../components/FilterSearch2";
-import BtnItem from "../../../components/BtnItem";
-import BtnItemOutline from "../../../components/BtnItemOutline";
+// import FilterSearch2 from "../../../components/FilterSearch2";
+import BtnItem from "@/components/prev/BtnItem";
+import BtnOutline from "@/components/prev/BtnOutline";
+import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import { useStateValue } from "../../../states/StateProvider";
-import FilterSearch3 from "../../../components/FilterSearch3";
+import FilterSearch3 from "@/components/prev/FilterSearch3";
 
 const FilterModalViewProperty = (props) => {
   const [{ filterValuesMob }, dispatch] = useStateValue();
@@ -30,7 +31,7 @@ const FilterModalViewProperty = (props) => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
+  }, [props.isFilterModalOpen]);
 
   const handleReset = () => {
     dispatch({
@@ -59,7 +60,8 @@ const FilterModalViewProperty = (props) => {
   return props.isFilterModalOpen ? (
     <div
       style={{ "z-index": "100" }}
-      className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900">
+      className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900"
+    >
       <div className="w-[75%] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
         <FilterSearch3
           title={

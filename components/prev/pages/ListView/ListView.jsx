@@ -30,74 +30,74 @@ const ListView = (props) => {
   const [{ filterValues }] = useStateValue();
   const dataLength = 6;
 
-  const fetchMore = () => {
-    let pageNumber = 2;
-    return function () {
-      const params = {
-        page: pageNumber,
-        size: dataLength || size,
-        developerId: filterValues.developers || extractIdFromValue(developers),
-        developmentTypeId:
-          filterValues.developmentTypes || extractIdFromValue(developmentTypes),
-        propertyAreaId:
-          filterValues.propertyAreas || extractIdFromValue(propertyAreas),
-        completion: filterValues.completions || extractIdFromValue(completions),
-        propertyTypeId:
-          filterValues.propertyTypes || extractIdFromValue(propertyTypes),
-      };
-      axios
-        .get(`http://52.77.121.171:3008/api/v1/en/properties?${pageNumber}`, {
-          params,
-        })
-        .then((response) => {
-          setFilterData(filterData.concat(response.data.data.properties.data));
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      pageNumber += 1;
-    };
-  };
+  // const fetchMore = () => {
+  //   let pageNumber = 2;
+  //   return function () {
+  //     const params = {
+  //       page: pageNumber,
+  //       size: dataLength || size,
+  //       developerId: filterValues.developers || extractIdFromValue(developers),
+  //       developmentTypeId:
+  //         filterValues.developmentTypes || extractIdFromValue(developmentTypes),
+  //       propertyAreaId:
+  //         filterValues.propertyAreas || extractIdFromValue(propertyAreas),
+  //       completion: filterValues.completions || extractIdFromValue(completions),
+  //       propertyTypeId:
+  //         filterValues.propertyTypes || extractIdFromValue(propertyTypes),
+  //     };
+  //     axios
+  //       .get(`http://52.77.121.171:3008/api/v1/en/properties?${pageNumber}`, {
+  //         params,
+  //       })
+  //       .then((response) => {
+  //         setFilterData(filterData.concat(response.data.data.properties.data));
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //     pageNumber += 1;
+  //   };
+  // };
 
-  const fetchMoreData = fetchMore();
+  // const fetchMoreData = fetchMore();
 
-  useEffect(() => {
-    const params = {
-      page: 1,
-      size: dataLength || size,
-      developerId: filterValues.developers || extractIdFromValue(developers),
-      developmentTypeId:
-        filterValues.developmentTypes || extractIdFromValue(developmentTypes),
-      propertyAreaId:
-        filterValues.propertyAreas || extractIdFromValue(propertyAreas),
-      completion: filterValues.completions || extractIdFromValue(completions),
-      propertyTypeId:
-        filterValues.propertyTypes || extractIdFromValue(propertyTypes),
-    };
-    axios
-      .get("http://52.77.121.171:3008/api/v1/en/properties", { params })
-      .then((response) => {
-        console.log(response);
-        setFilterData(response.data.data.properties.data);
-        setTotalDataCount(response.data.data.properties.count);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [
-    filterValues.developers,
-    filterValues.developmentTypes,
-    filterValues.propertyAreas,
-    filterValues.completions,
-    filterValues.propertyTypes,
-  ]);
+  // useEffect(() => {
+  //   const params = {
+  //     page: 1,
+  //     size: dataLength || size,
+  //     developerId: filterValues.developers || extractIdFromValue(developers),
+  //     developmentTypeId:
+  //       filterValues.developmentTypes || extractIdFromValue(developmentTypes),
+  //     propertyAreaId:
+  //       filterValues.propertyAreas || extractIdFromValue(propertyAreas),
+  //     completion: filterValues.completions || extractIdFromValue(completions),
+  //     propertyTypeId:
+  //       filterValues.propertyTypes || extractIdFromValue(propertyTypes),
+  //   };
+  //   axios
+  //     .get("http://52.77.121.171:3008/api/v1/en/properties", { params })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setFilterData(response.data.data.properties.data);
+  //       setTotalDataCount(response.data.data.properties.count);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, [
+  //   filterValues.developers,
+  //   filterValues.developmentTypes,
+  //   filterValues.propertyAreas,
+  //   filterValues.completions,
+  //   filterValues.propertyTypes,
+  // ]);
 
-  useEffect(() => {
-    if (filterData.length == totalDataCount) {
-      setShowArrow(false);
-      setHasMore(false);
-    }
-  }, [filterData]);
+  // useEffect(() => {
+  //   if (filterData.length == totalDataCount) {
+  //     setShowArrow(false);
+  //     setHasMore(false);
+  //   }
+  // }, [filterData]);
 
   return (
     <>

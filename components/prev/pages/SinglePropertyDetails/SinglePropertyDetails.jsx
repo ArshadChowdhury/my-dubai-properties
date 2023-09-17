@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { getApiData } from "../../services/apiFunctions";
+import { useEffect, useState } from "react";
+
 import Amenities from "./partials/Amenities";
 import Downloads from "./partials/Downloads";
 import Highlights from "./partials/Highlights";
@@ -14,15 +13,14 @@ import VillaFeatures from "./partials/VillaFeatures";
 import { useStateValue } from "../../states/StateProvider";
 import { motion } from "framer-motion";
 import SimilarProperties from "./partials/SimilarProperties";
-import Navbar from "../../components/Navbar";
+import Navbar from "@/components/Navbar";
 
-import { useParams } from "react-router-dom";
-import Navbar2 from "../../components/Navbar2";
-import Footer from "../../components/Footer";
+import Navbar2 from "../../Navbar2";
+import Footer from "../../Footer";
 
 const SinglePropertyDetails = (props) => {
+  const { propertiesData, singleProperty, filterListData } = props;
   const [{ lang }] = useStateValue();
-  const { propertyId } = useParams();
   const [nav, setNav] = useState(true);
   const [isMobileView, setIsMobileView] = useState(true);
 
@@ -55,27 +53,9 @@ const SinglePropertyDetails = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [lang, propertyId]);
+  console.log(propertiesData);
 
-  const getSinglePropertyDetails = () => {
-    return getApiData(lang, `properties/${propertyId}`);
-  };
-
-  const { isLoading, data, isError, error } = useQuery(
-    ["single-property-details", lang, propertyId],
-    getSinglePropertyDetails
-  );
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
-  const singleProperty = data.data.property;
+  const singlePropertyDetails = singleProperty?.property;
 
   return (
     <>
@@ -97,21 +77,24 @@ const SinglePropertyDetails = (props) => {
           />
         )}
 
-        <SinglePropertyHeader header={singleProperty.images} />
+        <SinglePropertyHeader header={singlePropertyDetails.images} />
         <div className="my-2 md:my-8"></div>
-        <SinglePropertyDescription property={singleProperty} />
-        <VillaFeatures villa={singleProperty} />
-        <Highlights highlights={singleProperty.highlights} />
+        <SinglePropertyDescription
+          filterListData={filterListData}
+          property={singlePropertyDetails}
+        />
+        <VillaFeatures villa={singlePropertyDetails} />
+        <Highlights highlights={singlePropertyDetails.highlights} />
         <PaymentPlan
           mobileView={props.mobileView}
-          paymentPlan={singleProperty.paymentPlan}
+          paymentPlan={singlePropertyDetails.paymentPlan}
         />
-        <PhotoGallery images={singleProperty.images} />
-        <PropertyVideo url={singleProperty.videos[0].path} />
-        <Amenities amenities={singleProperty.amenities} />
-        <Nearby nearby={singleProperty.location} />
+        <PhotoGallery images={singlePropertyDetails.images} />
+        {/* <PropertyVideo url={singlePropertyDetails.videos[0].path} /> */}
+        <Amenities amenities={singlePropertyDetails.amenities} />
+        <Nearby nearby={singlePropertyDetails.location} />
         <Downloads />
-        <SimilarProperties listVIew={props.allProperties} />
+        <SimilarProperties listView={propertiesData?.data} />
       </div>
       <Footer footerBg={"footer_background"} />
     </>

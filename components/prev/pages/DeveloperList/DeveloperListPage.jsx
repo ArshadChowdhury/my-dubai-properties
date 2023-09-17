@@ -3,7 +3,7 @@ import DevelopersDescription from "./partials/DevelopersDescription";
 import DeveloperList from "./partials/DeveloperList";
 import DeveloperList2 from "./partials/DeveloperList2";
 import { useQuery } from "react-query";
-import { getApiData } from "../../services/apiFunctions";
+// import { getApiData } from "../../services/apiFunctions";
 import { useStateValue } from "../../states/StateProvider";
 import Navbar from "../../components/Navbar";
 import RouteLink from "../../components/RouteLink";
@@ -23,25 +23,25 @@ const DeveloperListPage = (props) => {
 
   const locationName = currentLocation.split("/");
 
-  const getDeveloperList = () => {
-    return getApiData(lang, "developers");
-  };
+  // const getDeveloperList = () => {
+  //   return getApiData(lang, "developers");
+  // };
 
-  const { isLoading, data, isError, error } = useQuery(
-    ["developer-list", lang],
-    getDeveloperList
-  );
+  // const { isLoading, data, isError, error } = useQuery(
+  //   ["developer-list", lang],
+  //   getDeveloperList
+  // );
 
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
+  // if (isLoading) {
+  //   return "Loading data, please wait";
+  // }
 
-  if (isError) {
-    return error.message;
-  }
+  // if (isError) {
+  //   return error.message;
+  // }
 
-  const developers = data.data.developers.data;
-  const developersDataLength = data.data.developers.count;
+  // const developers = data.data.developers.data;
+  // const developersDataLength = data.data.developers.count;
 
   return (
     <>

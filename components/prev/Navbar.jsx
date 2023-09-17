@@ -3,8 +3,6 @@ import Skeleton from "./Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
 import calender from "@/public/images/global/calendar-outline.svg";
 import { useQuery } from "react-query";
-import { getApiData } from "./services/apiFunctions";
-import { useStateValue } from "@/components/prev/states/StateProvider";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -14,23 +12,6 @@ const Navbar = (props) => {
   const [navPoint, setNavPoint] = useState(false);
 
   const lang = "en";
-
-  const getAllProperty = () => {
-    return getApiData(lang, "properties/1");
-  };
-
-  const { isLoading, data, isError, error } = useQuery(
-    ["all-property"],
-    getAllProperty
-  );
-
-  if (isLoading) {
-    return "Loading data, please wait";
-  }
-
-  if (isError) {
-    return error.message;
-  }
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });

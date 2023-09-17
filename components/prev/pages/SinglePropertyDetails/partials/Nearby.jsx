@@ -1,5 +1,4 @@
-import React from "react";
-import SkeletonSingleProperty from "../../../components/Skeleton/SkeletonSingleProperty";
+import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 // import iconCruise from "../../../assets/images/property details page/icon-cruise.png";
 import NearbyItem from "./NearbyItem";
@@ -32,7 +31,8 @@ const Nearby = (props) => {
                   "md:-mt-20"
                 }
               `}
-              key={`nearbyPlaces-${index}`}>
+              key={`nearbyPlaces-${index}`}
+            >
               <NearbyItem
                 image={
                   index === 0
