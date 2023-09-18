@@ -7,7 +7,7 @@ import Home from "@/components/prev/pages/HomePage/Home";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 export default function HomePage() {
-  const [{ lang }] = useStateValue();
+  const [{ lang, filterValues }] = useStateValue();
 
   const getAllProperties = async () => {
     const data = await instance

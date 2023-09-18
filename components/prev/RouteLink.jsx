@@ -11,8 +11,6 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
     dispatch({ type: "setViewType", item: viewType });
   };
 
-  console.log(locationName);
-
   return (
     <section className={`w-full ${marginBottom}`}>
       <div className="relative flex justify-end">

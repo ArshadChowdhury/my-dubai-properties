@@ -2,6 +2,7 @@ import React from "react";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import filter from "../../../assets/images/global/filter.png";
+import Image from "next/image";
 
 const FilterSearchInput = (props) => {
   return (
@@ -26,7 +27,7 @@ const FilterSearchInput = (props) => {
           data-te-ripple-color="light"
           onClick={() => props.setIsFilterModalOpen(true)}
         >
-          <img src={filter} alt="filter" />
+          <Image src={filter} alt="filter" />
           <span className="ml-2 font-montserrat font-semibold">Filter</span>
         </button>
       </div>

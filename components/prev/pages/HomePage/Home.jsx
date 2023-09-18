@@ -28,8 +28,6 @@ const Home = (props) => {
     }
   };
 
-  console.log(filterOpen, showModal);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 

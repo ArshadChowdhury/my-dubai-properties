@@ -8,26 +8,57 @@ import ListView from "../ListView/ListView";
 import { usePathname } from "next/navigation";
 import RouteLink from "../../RouteLink";
 import FilterSearchInput from "./partials/filterSearch";
+import { useQuery } from "@tanstack/react-query";
 import FilterModal from "./partials/filterModal";
 import HeadingBox from "../../HeadingBox";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
+import { instance } from "../../services/apiFunctions";
 
 const ViewProperty = (props) => {
-  const { properties, filterListData } = props;
+  const { filterListData } = props;
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
-  //   const searchParams = useSearchParams();
-  //   console.log(searchParams.get("search"));
   const readyProperties = [];
   const offPlanProperties = [];
-  const [{ filterValues }, dispatch] = useStateValue();
+  const [{ filterValues, lang }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(true);
-  //   console.log(searchParams);
-  //   const queryString = searchParams.get("search").substring(1);
-  //   const queryParams = Object.fromEntries(
-  //     queryString.split("&").map((param) => param.split("="))
-  //   );
+  // const queryString = searchParams.get("propertyAreas");
+  const searchParams = useSearchParams();
+  const propertyAreaId = searchParams.get("propertyAreas");
+  const developmentTypeId = searchParams.get("developmentTypes");
+  const propertyTypeId = searchParams.get("propertyTypes");
+  const developerId = searchParams.get("developers");
+  const completion = searchParams.get("completions");
+
+  const filterParams = {
+    propertyAreaId: filterValues.propertyAreas || propertyAreaId,
+    developmentTypeId: filterValues.developmentTypes || developmentTypeId,
+    propertyTypeId: filterValues.propertyTypes || propertyTypeId,
+    developerId: filterValues.developers || developerId,
+    completion: filterValues.completions || completion,
+  };
+
+  const getAllProperties = async () => {
+    const data = await instance
+      .get(`/${lang}/properties`, {
+        timeout: 5000,
+        params: filterParams,
+      })
+      .then((data) => data.data.data.properties);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingPropertiesData,
+    data: propertiesData,
+    isError,
+    refetch,
+    error,
+  } = useQuery({
+    queryKey: ["property-list", lang],
+    queryFn: getAllProperties,
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,25 +74,49 @@ const ViewProperty = (props) => {
     };
   }, []);
 
-  {
-    properties?.data?.map((property) =>
-      property.developmentType.name === "READY"
-        ? readyProperties.push(property)
-        : offPlanProperties.push(property)
+  useEffect(() => {
+    refetch();
+  }, [
+    filterValues.developers,
+    filterValues.developmentTypes,
+    filterValues.propertyAreas,
+    filterValues.completions,
+    filterValues.propertyTypes,
+  ]);
+
+  if (isLoadingPropertiesData) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Loading...Please wait...
+      </p>
     );
   }
 
+  // const queryParams = Object.fromEntries(
+  //   queryString.split("&").map((param) => param.split("="))
+  // );
+
+  // {
+  //   properties?.data?.map((property) =>
+  //     property.developmentType.name === "READY"
+  //       ? readyProperties.push(property)
+  //       : offPlanProperties.push(property)
+  //   );
+  // }
+
   //   const locationName = currentLocation.split("/");
-  const productsToShow =
-    props.propertyToView === "ready"
-      ? readyProperties
-      : props.propertyToView == "off-plan"
-      ? offPlanProperties
-      : properties;
+  // const productsToShow =
+  //   props.propertyToView === "ready"
+  //     ? readyProperties
+  //     : props.propertyToView == "off-plan"
+  //     ? offPlanProperties
+  //     : properties;
 
   const handleShowAll = () => {
     setShowAll(true);
   };
+
+  if (isLoadingPropertiesData) return "loading";
 
   return (
     <>
@@ -107,7 +162,7 @@ const ViewProperty = (props) => {
           {viewType === "grid" ? (
             // queryParams={queryParams}
             <GridView
-              properties={properties.data}
+              propertiesData={propertiesData}
               handleShowAll={handleShowAll}
             />
           ) : (

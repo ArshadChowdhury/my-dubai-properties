@@ -1,35 +1,51 @@
 import React, { useEffect, useState } from "react";
+
 import FilterSearch from "../../FilterSearch";
 import Skeleton from "../../Skeleton/Skeleton";
 import ListItem from "../ListView/partials/ListItem";
 import GridItem from "./partials/GridItem";
 import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
 import DownArrow from "../../DownArrow";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useStateValue } from "../../states/StateProvider";
+import { useSearchParams } from "next/navigation";
+import { instance } from "../../services/apiFunctions";
 
 function extractIdFromValue(value) {
   return value ? value.split(",")[0] : null;
 }
 
 const GridView = (props) => {
-  const { properties } = props;
+  const { propertiesData } = props;
   const [filterData, setFilterData] = useState([]);
   const [totalDataCount, setTotalDataCount] = useState(null);
   const [showArrow, setShowArrow] = useState(true);
   const [hasMore, setHasMore] = useState(true);
+  const [{ filterValues, lang }, dispatch] = useStateValue();
 
-  const [{ filterValues }, dispatch] = useStateValue();
+  const searchParams = useSearchParams();
+  const propertyAreaId = searchParams.get("propertyAreas");
+  const developmentTypeId = searchParams.get("developmentTypes");
+  const propertyTypeId = searchParams.get("propertyTypes");
+  const developerId = searchParams.get("developers");
+  const completion = searchParams.get("completions");
+  // const query = {
+  //   propertyAreaId,
+  //   developmentTypeId,
+  //   propertyTypeId,
+  //   developerId,
+  //   completion,
+  // };
+
   const dataLength = 6;
 
-  useEffect(() => {
-    setFilterData(properties);
-
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   setFilterData(properties);
+  // }, [filterValues]);
 
   // const fetchMore = () => {
   //   let pageNumber = 2;
@@ -114,7 +130,7 @@ const GridView = (props) => {
       >
         <div className="mb-20">
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-3 my-3 md:my-10 md:px-1">
-            {filterData.map((property, idx) => (
+            {propertiesData?.data?.map((property, idx) => (
               <GridItem
                 id={idx + 1}
                 key={property.propertyName}

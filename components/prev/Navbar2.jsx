@@ -26,7 +26,6 @@ const Navbar2 = (props) => {
     dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
   };
 
-  console.log(filterListData);
   const langList = filterListData?.langList;
 
   //Nav animation logic

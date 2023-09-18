@@ -37,7 +37,7 @@ const Navbar = (props) => {
   const langList = filterListData?.langList;
 
   //Nav animation logic
-  const animation = document.querySelector(".animation");
+  const animation = document.querySelector(".animation2");
   const navItems = document.querySelectorAll(".nav h1");
 
   let fixedItem = null;
@@ -300,7 +300,7 @@ const Navbar = (props) => {
               </h1>
               {navPoint ? (
                 <div
-                  className="animation2 animation start-home"
+                  className="animation2 animation start-home cursor-pointer"
                   style={{ transition: "1s" }}
                 ></div>
               ) : (

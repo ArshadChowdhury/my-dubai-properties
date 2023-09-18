@@ -54,26 +54,25 @@ const FilterSelect = (props) => {
     const newValue = e.target.value === props.searchBy ? null : e.target.value;
     setSelectedValue(newValue);
   };
-  // useEffect(() => {
-  //   const selectedValueFromProps =
-  //     props.searchBy === "Property Areas"
-  //       ? filterValues?.propertyAreas
-  //       : props.searchBy === "Development Type"
-  //       ? filterValues?.developmentTypes
-  //       : props.searchBy === "Developer Type"
-  //       ? filterValues?.developers
-  //       : null;
+  useEffect(() => {
+    const selectedValueFromProps =
+      props.searchBy === "Property Areas"
+        ? filterValues?.propertyAreas
+        : props.searchBy === "Development Type"
+        ? filterValues?.developmentTypes
+        : props.searchBy === "Developer Type"
+        ? filterValues?.developers
+        : null;
 
-  //   setSelectedValue(selectedValueFromProps);
-  // }, [
-  //   propertyAreas,
-  //   developmentTypes,
-  //   developers,
-  //   props.searchBy,
-  //   selectedValue,
-  // ]);
-
-  console.log(filterValues);
+    setSelectedValue(selectedValueFromProps);
+  }, [
+    filterValues.developers,
+    filterValues.developmentTypes,
+    filterValues.propertyAreas,
+    filterValues.completions,
+    filterValues.propertyTypes,
+    selectedValue,
+  ]);
 
   return (
     <select

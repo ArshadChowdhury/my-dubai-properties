@@ -7,6 +7,7 @@ import GridItem from "../../GridView/partials/GridItem";
 import { useRef, useEffect, useState } from "react";
 import BtnElore2 from "@/components/prev/BtnElore2";
 import Link from "next/link";
+import Image from "next/image";
 
 const LatestPropertyTop = (props) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -117,7 +118,7 @@ const LatestPropertyTop = (props) => {
       <div className="absolute z-0 -right-16 md:right-0 top-[20%] md:top-[12%] w-[450px] h-[300px] md:w-[735px] md:h-[500px] opacity-70 flex justify-end items-center">
         <div className="overlay"></div>
         <div className="">
-          <img
+          <Image
             src={ProptyOffPlan}
             alt=""
             className="opacity-70"
