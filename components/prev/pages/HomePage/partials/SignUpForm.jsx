@@ -3,6 +3,7 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import BtnHexagon from "@/components/prev/BtnHexagon";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 const SignUpForm = (popup) => {
   const [email, setEmail] = useState("");
   const [subsPopUp, setSubsPopUp] = useState(false);
@@ -104,14 +105,15 @@ const SignUpForm = (popup) => {
             className={`cursor-pointer absolute flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-[#000f1d]`}
             style={{ top: "0px", left: "28%" }}
           >
-            <img
+            <Image
               src="/src/assets/images/global/footer-logo.png"
               alt=""
               className="h-[100px] my-2 pb-2 "
             />
             <h1 className="text-xl">Thanks for subscribing us.</h1>
             <p>
-              We'd like to show you notifictions for the latest news and updates
+              We&apos;d like to show you notifictions for the latest news and
+              updates
             </p>
           </motion.div>
         )}

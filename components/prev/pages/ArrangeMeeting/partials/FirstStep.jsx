@@ -24,10 +24,7 @@ const ArrangeMeetingStep1 = ({
   useEffect(() => {
     const isMobileView = window.matchMedia("(max-width: 767px)").matches;
     setMobileView(isMobileView);
-    console.log("mobileView", mobileView);
   }, []);
-
-  console.log("Verctor background:", mobileView);
 
   return (
     <div

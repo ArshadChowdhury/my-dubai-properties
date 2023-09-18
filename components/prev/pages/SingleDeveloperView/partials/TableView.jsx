@@ -9,6 +9,7 @@ import FilterModal from "../../ViewProperty/partials/filterModal";
 
 import { useStateValue } from "../../../states/StateProvider";
 import axios from "axios";
+import Image from "next/image";
 
 const TableView = (props) => {
   const [{ propertyToView, filterValues }] = useStateValue();
@@ -45,9 +46,6 @@ const TableView = (props) => {
     setShowTableView(true);
   };
 
-  console.log("Podps: ", props.mobileView);
-  console.log("Filter data at tableview ", filterData);
-
   return (
     <Skeleton className={"px-5"}>
       <div className="w-full flex flex-col z-10 ">
@@ -70,7 +68,7 @@ const TableView = (props) => {
                     className="w-full px-5 py-1 rounded-md font-roboto font-extralight text-[#DBA318] placeholder:text-[#798A9C] placeholder:font-light placeholder:font-roboto placeholder:text-sm bg-transparent focus-visible:outline-0"
                   />
                   <button className="px-5">
-                    <img src={home} alt="search" className="w-7" />
+                    <Image src={home} alt="search" className="w-7" />
                   </button>
                 </div>
               </div>
@@ -87,32 +85,38 @@ const TableView = (props) => {
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase ">
+                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                    >
                       IMAGE
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase ">
+                      className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
+                    >
                       Title
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase ">
+                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                    >
                       Dubai Area
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase">
+                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                    >
                       Bed
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase">
+                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                    >
                       Type
                     </th>
                     <th
                       scope="col"
-                      className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase">
+                      className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                    >
                       Completion
                     </th>
                   </tr>
@@ -128,11 +132,12 @@ const TableView = (props) => {
 
                     if (idx < showCount && !showTableView) {
                       return (
-                        <tr className="text-white">
+                        <tr key={idx} className="text-white">
                           <td
                             className="text-sm font-medium whitespace-nowrap"
-                            style={{ width: "10%", height: "auto" }}>
-                            <img
+                            style={{ width: "10%", height: "auto" }}
+                          >
+                            <Image
                               src={coverImage[0].path}
                               alt="propertyImage"
                               className="w-full h-full"
@@ -149,12 +154,14 @@ const TableView = (props) => {
                           </td>
                           <td
                             className="pl-6 text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}>
+                            style={{ width: "15%" }}
+                          >
                             {property.propertyType.name}{" "}
                           </td>
                           <td
                             className="pl-6 text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}>
+                            style={{ width: "15%" }}
+                          >
                             {property.completion}{" "}
                           </td>
                         </tr>
@@ -162,11 +169,12 @@ const TableView = (props) => {
                     }
                     if (showTableView) {
                       return (
-                        <tr className="text-white">
+                        <tr key={idx} className="text-white">
                           <td
                             className="text-sm font-medium whitespace-nowrap"
-                            style={{ width: "10%", height: "auto" }}>
-                            <img
+                            style={{ width: "10%", height: "auto" }}
+                          >
+                            <Image
                               src={coverImage[0].path}
                               alt="propertyImage"
                               className="w-full h-full"
@@ -174,27 +182,32 @@ const TableView = (props) => {
                           </td>
                           <td
                             className="text-sm text-white whitespace-nowrap"
-                            style={{ width: "25%" }}>
+                            style={{ width: "25%" }}
+                          >
                             {property.propertyName}{" "}
                           </td>
                           <td
                             className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}>
+                            style={{ width: "15%" }}
+                          >
                             {property.developerType.name}
                           </td>
                           <td
                             className="text-sm whitespace-nowrap"
-                            style={{ width: "20%" }}>
+                            style={{ width: "20%" }}
+                          >
                             {property.unitType.size}{" "}
                           </td>
                           <td
                             className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}>
+                            style={{ width: "15%" }}
+                          >
                             {property.propertyType.name}{" "}
                           </td>
                           <td
                             className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}>
+                            style={{ width: "15%" }}
+                          >
                             {property.completion}{" "}
                           </td>
                         </tr>
@@ -208,8 +221,9 @@ const TableView = (props) => {
               <div
                 // onClick={handleShowButton}
                 onClick={increaseCount}
-                className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5">
-                <img src={downOption} alt="" />
+                className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
+              >
+                <Image src={downOption} alt="" />
                 <span>Show More</span>
               </div>
             )}

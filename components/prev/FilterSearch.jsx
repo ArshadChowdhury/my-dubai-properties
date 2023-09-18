@@ -17,7 +17,6 @@ const FilterSearch = (props) => {
   };
 
   const filterList = data.data;
-  console.log(`Filter list ${filterList}`);
 
   return (
     <section className="relative w-full md:flex justify-between ">

@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+import BtnTime from "@/components/prev/BtnTime";
 
 const SelectTime = ({
   activeButton,
@@ -68,14 +70,14 @@ const SelectTime = ({
         <h3 className="text-white  text-lg">Time Zone</h3>
         <div className="relative w-full px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
           <span className=" cursor-pointer">
-            <img src={world} alt="" />
+            <Image src={world} alt="" />
           </span>
           <p className="text-white text-center py-1 border-0 rounded text-sm">
             {timeZone}
           </p>
 
           <span className=" cursor-pointer" onClick={handleTimezonePopup}>
-            <img src={rightArrow} alt="" />
+            <Image src={rightArrow} alt="" />
           </span>
           {isTimezonePopupOpen && (
             <div className="absolute bottom-full left-0 h-[220px] overflow-y-scroll overflow-x-hidden w-full px-5 bg-[#0A223A] pt-5 text-sm text-white">

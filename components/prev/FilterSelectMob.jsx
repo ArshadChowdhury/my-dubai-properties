@@ -12,9 +12,7 @@
 //     completions: null,
 //     developmentTypes: null,
 //   });
-//   console.log(`Mobile filter: ${filterValuesMob.propertyAreas}`);
-//   console.log(`Mobile filter: ${filterValuesMob.propertyTypes}`);
-//   console.log(`Mobile filter: ${filterValuesMob.beds}`);
+
 //   function changed(e) {
 //     if (props.searchBy === "Developer Type") {
 //       if (e.target.value === "Developer Type") {
@@ -183,12 +181,12 @@ const FilterSelectMob = (props) => {
       onChange={changed}
       style={{
         width: "210px",
-        "padding-top": "6px",
-        "padding-bottom": "8px",
-        "padding-left": "8px",
+        paddingTop: "6px",
+        paddingBottom: "8px",
+        paddingLeft: "8px",
         // color: "#FFFF",
-        "font-size": "14px",
-        "font-weight": "100",
+        fontSize: "14px",
+        fontWeight: "100",
       }}
       className="w-full outline-none filterSelect"
     >

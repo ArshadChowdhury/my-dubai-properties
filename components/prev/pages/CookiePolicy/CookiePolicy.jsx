@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Footer from "../../components/Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
+import Image from "next/image";
 const CookiePolicy = () => {
   const location = useLocation();
   const currentLocation = location.pathname;
@@ -54,14 +55,15 @@ const CookiePolicy = () => {
       </section>
       <div
         className="relative"
-        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}>
+        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}
+      >
         <ContactForm type="top" />
       </div>
       {isMobileView && (
         <div className="absolute w-full h-[2px] flex justify-center items-center">
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
           <p className="mx-3">
-            <img src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
+            <Image src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
           </p>
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
         </div>

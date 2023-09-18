@@ -3,6 +3,7 @@ import RouteLink from "../../../components/RouteLink";
 import Skeleton from "../../../components/Skeleton/Skeleton";
 import HeadingBox from "../../../components/HeadingBox";
 import FilterSelect from "../../../components/FilterSelect";
+import Image from "next/image";
 
 const EmmarProperties = (props) => {
   const developerDetails = props.developerDetails;
@@ -21,8 +22,9 @@ const EmmarProperties = (props) => {
         <div className="pt-5 flex pb-4">
           <div
             className="hidden md:block  rgba-white-10  border border-[#bea04e]  bg-white bg-opacity-20"
-            style={{ width: "500px", height: "125px" }}>
-            <img
+            style={{ width: "500px", height: "125px" }}
+          >
+            <Image
               src={developerDetails.logo}
               alt={developerDetails.name}
               className=""
@@ -31,11 +33,12 @@ const EmmarProperties = (props) => {
           <div className="text-[15px] font-montserrat text-white md:pl-5">
             <p
               className="pt-3 lg:py-3"
-              style={{ "font-weight": "200", "margin-top": "-15px" }}>
+              style={{ "font-weight": "200", "margin-top": "-15px" }}
+            >
               {developerDetails.description}
             </p>
             <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
-              <img
+              <Image
                 className="mb-2"
                 src={developerDetails.logo}
                 alt={developerDetails.name}

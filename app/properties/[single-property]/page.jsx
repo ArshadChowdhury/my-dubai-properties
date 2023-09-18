@@ -50,13 +50,13 @@ export default function SingleProperty() {
   });
 
   const { isLoading: isLoadingFilterList, data: filterListData } = useQuery({
-    queryKey: ["filter-list", lang],
+    queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
 
   const { isLoading: isLoadingPropertiesData, data: propertiesData } = useQuery(
     {
-      queryKey: ["property-list", lang],
+      queryKey: ["property-list"],
       queryFn: getAllProperties,
     }
   );

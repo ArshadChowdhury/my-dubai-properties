@@ -92,12 +92,10 @@ const ArrangeMeeting = ({ mobileView }) => {
         const menuHeight = arrangeRef.current?.offsetHeight;
         const menuOffsetTop = arrangeRef.current?.offsetTop;
         if (distanceFromTop > menuHeight + menuOffsetTop) {
-          console.log("arrangeRef.current", currentArrangeRef.current);
           closeMeeting();
         }
       }
       if (!currentArrangeRef.current?.contains(e.target)) {
-        // console.log("arrangeRef.current", currentArrangeRef.current);
         closeMeeting();
       }
     };

@@ -1,21 +1,26 @@
-import React from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import Navbar from "@/components/Navbar";
 
 const CookieContent = () => {
   return (
     <section>
-      <Skeleton className="mt-4 px-5">
+      <Navbar
+        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
+        type="inline"
+      />
+      <Skeleton className="pt-24 pb-40 px-5">
         <div className="pt-3 text-white font-montserrat">
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What are cookies?
           </p>
           <p
             className="pb-3 text-[10.5px] tracking-[2%] leading-[24px]"
-            style={{ fontWeight: "200" }}>
-            Cookies are small files stored on a user's computer that hold data
-            relating to a specific website. They are placed on the user's
-            computer by that website and accessed each time a user browses it.
-            The cookies used by{" "}
+            style={{ fontWeight: "200" }}
+          >
+            Cookies are small files stored on a user&apos;s computer that hold
+            data relating to a specific website. They are placed on the
+            user&apos;s computer by that website and accessed each time a user
+            browses it. The cookies used by{" "}
             <span className="text-[#FFD15F] tracking-[2%] leading-[24px] font-[600]">
               MY DUBAI PROPERTY
             </span>{" "}
@@ -28,7 +33,8 @@ const CookieContent = () => {
           </p>
           <p
             className="pb-3 text-[10.5px] tracking-[2%] leading-[24px]"
-            style={{ fontWeight: "200" }}>
+            style={{ fontWeight: "200" }}
+          >
             DAMAC places cookies on any browser that visits its sites. They are
             primarily used to collect data in order to help improve our website,
             by seeing which parts of the site are being used, how users are
@@ -40,7 +46,8 @@ const CookieContent = () => {
         </div>
         <div
           className="pt-3 text-white font-montserrat"
-          style={{ fontWeight: "200" }}>
+          style={{ fontWeight: "200" }}
+        >
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What cookies does DAMAC use?
           </p>
@@ -66,12 +73,12 @@ const CookieContent = () => {
           </p>
           <p className="pb-3 text-[10.5px] tracking-[2%] leading-[24px]">
             <strong>DoubleClick cookies</strong> – DAMAC may also use cookies
-            for ad serving through Google's DoubleClick ad server, which places
-            a cookie on your computer when you are browsing the web and you
-            visit a site using DoubleClick advertising (including some Google
-            AdSense advertisements). This cookie is used to serve ads specific
-            to you and your interests (‘interest based targeting’). The ads
-            served will be targeted based on your previous browsing history.
+            for ad serving through Google&apos;s DoubleClick ad server, which
+            places a cookie on your computer when you are browsing the web and
+            you visit a site using DoubleClick advertising (including some
+            Google AdSense advertisements). This cookie is used to serve ads
+            specific to you and your interests (‘interest based targeting’). The
+            ads served will be targeted based on your previous browsing history.
             This cookie uses ‘non-personally identifiable information’ – it does
             not track any personal information about you whatsoever. You can
             opt-out of this ad serving on all sites using this form of

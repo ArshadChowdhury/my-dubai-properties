@@ -20,7 +20,6 @@ import Footer from "../../Footer";
 
 const SinglePropertyDetails = (props) => {
   const { propertiesData, singleProperty, filterListData } = props;
-  const [{ lang }] = useStateValue();
   const [nav, setNav] = useState(true);
   const [isMobileView, setIsMobileView] = useState(true);
 
@@ -60,6 +59,7 @@ const SinglePropertyDetails = (props) => {
       <div className="single_background mb-20">
         {isMobileView ? (
           <Navbar2
+            filterListData={filterListData}
             className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
             type="inline"
           />
@@ -67,9 +67,11 @@ const SinglePropertyDetails = (props) => {
           <Navbar
             className={`absolute top-0 left-0  w-full py-5 z-20`}
             type="inline"
+            filterListData={filterListData}
           />
         ) : (
           <Navbar2
+            filterListData={filterListData}
             className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
             type="inline"
           />

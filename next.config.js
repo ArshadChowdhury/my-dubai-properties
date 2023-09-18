@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["www.offplan-dubai.com", "cloud.offplan-dubai.com"],
+    domains: [
+      "www.offplan-dubai.com",
+      "cloud.offplan-dubai.com",
+      "propertyseeker.s3.me-central-1.amazonaws.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",

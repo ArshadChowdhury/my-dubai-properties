@@ -42,7 +42,7 @@ export default function HomePage() {
     data: homeData,
     isError: isErrorHomeContent,
   } = useQuery({
-    queryKey: ["get-home", lang],
+    queryKey: ["get-home"],
     queryFn: getAllHomeContent,
   });
 

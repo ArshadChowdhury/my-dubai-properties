@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import { gsap } from "gsap";
 import BtnElore2 from "@/components/prev/BtnElore2";
+import Image from "next/image";
 
 const LatestPropertyDown = (props) => {
   const [animationState, setPlay] = useState("paused");
@@ -134,7 +135,7 @@ const LatestPropertyDown = (props) => {
       </div>
       <div className="absolute  left-0 top-[20%] md:top-[0%] w-[450px] h-[300px] md:w-[700px] md:h-[500px] opacity-70 flex items-center -z-10">
         <div>
-          <img
+          <Image
             src={ProptyOffPlan}
             alt=""
             style={{ marginTop: isMobileView ? "" : "155px" }}

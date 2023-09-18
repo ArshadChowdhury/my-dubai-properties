@@ -1,6 +1,5 @@
-import React from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HeadingBox from "../../../components/HeadingBox";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HeadingBox from "@/components/prev/HeadingBox";
 import search from "../../../assets/images/global/icon-search.png";
 
 const DevelopersDescription = () => {
@@ -10,10 +9,11 @@ const DevelopersDescription = () => {
         <p
           className="font-montserrat text-white leading-7 my-5"
           style={{
-            "font-weight": "200",
-            "font-size": "15px",
-            "margin-left": "10px",
-          }}>
+            fontWeight: "200",
+            fontSize: "15px",
+            marginLeft: "10px",
+          }}
+        >
           Dubai has a dynamic real estate market with the major developers
           adding to the scintillating skyline of the city. Some of the major
           players in the market are Emaar, Meraas, Damac, Sobha, to name a few.

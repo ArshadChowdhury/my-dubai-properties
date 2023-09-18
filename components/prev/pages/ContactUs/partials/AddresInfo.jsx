@@ -3,6 +3,7 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import HeadingBox from "@/components/prev/HeadingBox";
 import call from "../../../assets/images/global/call.png";
 import HomeHeading from "@/components/prev/HomeHeading";
+import Image from "next/image";
 
 const infos = [
   {
@@ -44,7 +45,7 @@ const AddresInfo = () => {
                 </p>
                 <p className="flex">
                   <span className="mr-3">
-                    <img src={call} alt="" />
+                    <Image src={call} alt="" />
                   </span>
                   <span className="text-gradient md:!text-white font-bold">
                     {info.phone}

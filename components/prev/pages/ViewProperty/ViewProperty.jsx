@@ -52,7 +52,7 @@ const ViewProperty = (props) => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["property-list", lang],
+    queryKey: ["property-list"],
     queryFn: getAllProperties,
   });
 

@@ -8,6 +8,7 @@ import world from "../../../assets/images/arrang-meeting/globe-outline.png";
 import ForwordIcon from "../../../assets/images/global/chevron-forward.png";
 import BtnTime from "@/components/prev/BtnTime";
 import BtnNextStep from "@/components/prev/BtnNextStep";
+import Image from "next/image";
 
 const NextStep = (props) => {
   const days = ["S", "M", "T", "W", "T", "F", "S"];
@@ -86,7 +87,7 @@ const NextStep = (props) => {
                   className=" cursor-pointer"
                   onClick={() => setToday(today.month(today.month() - 1))}
                 >
-                  <img src={leftArrow} alt="" />
+                  <Image src={leftArrow} alt="" />
                 </span>
 
                 <p className="text-white text-center py-1 border-0 rounded">
@@ -97,7 +98,7 @@ const NextStep = (props) => {
                   className=" cursor-pointer"
                   onClick={() => setToday(today.month(today.month() + 1))}
                 >
-                  <img src={rightArrow} alt="" />
+                  <Image src={rightArrow} alt="" />
                 </span>
               </div>
               <div className=" grid grid-cols-7">
@@ -205,7 +206,7 @@ const NextStep = (props) => {
               <h3 className="text-white  text-lg">Time Zone</h3>
               <div className="relative w-full px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
                 <span className=" cursor-pointer">
-                  <img src={world} alt="" />
+                  <Image src={world} alt="" />
                 </span>
                 <p className="text-white text-center py-1 border-0 rounded text-sm">
                   {props.timeZone}
@@ -215,7 +216,7 @@ const NextStep = (props) => {
                   className=" cursor-pointer"
                   onClick={props.handleTimezonePopup}
                 >
-                  <img src={rightArrow} alt="" />
+                  <Image src={rightArrow} alt="" />
                 </span>
                 {props.isTimezonePopupOpen && (
                   <div className="absolute bottom-full left-0 h-[220px] overflow-y-scroll overflow-x-hidden w-full px-5 bg-[#0A223A] pt-5 text-sm text-white">

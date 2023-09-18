@@ -12,6 +12,7 @@ import FilterSearchInput from "../ViewProperty/partials/filterSearch";
 import FilterModal from "../ViewProperty/partials/filterModal";
 import Navbar2 from "../../components/Navbar2";
 import Footer from "../../components/Footer";
+import Image from "next/image";
 
 const SingleDeveloperView = (props) => {
   const [{ lang }] = useStateValue();
@@ -116,7 +117,7 @@ const SingleDeveloperView = (props) => {
                   className="w-full px-5 py-1 rounded-md font-roboto font-extralight text-[#DBA318] placeholder:text-[#798A9C] placeholder:font-light placeholder:font-roboto placeholder:text-sm bg-transparent focus-visible:outline-0"
                 />
                 <button className="px-5">
-                  <img src={home} alt="search" className="w-7 " />
+                  <Image src={home} alt="search" className="w-7 " />
                 </button>
               </div>
             </div>

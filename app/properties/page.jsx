@@ -20,7 +20,7 @@ export default function AllProperties() {
     return data;
   };
   const { isLoading: isLoadingFilterList, data: filterListData } = useQuery({
-    queryKey: ["filter-list", lang],
+    queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
 
