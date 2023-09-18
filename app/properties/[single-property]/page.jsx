@@ -1,16 +1,14 @@
 "use client";
 
 import SinglePropertyDetails from "@/components/prev/pages/SinglePropertyDetails/SinglePropertyDetails";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
-// import { useStateValue } from "@/components/prev/states/StateProvider";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 export default function SingleProperty() {
   const pathname = usePathname();
-  //   const [{ lang }] = useStateValue();
-  const lang = "en";
-  console.log(pathname);
+  const [{ lang }] = useStateValue();
   const propertiesUrl = pathname.split("/");
   const propertyId = propertiesUrl[propertiesUrl.length - 1];
 

@@ -33,13 +33,7 @@ const Filter = ({ filterLists }) => {
     })
     .filter((queryPart) => queryPart !== null);
 
-  console.log(queryStringArray);
-
   const query = queryStringArray.join("&");
-
-  console.log(query);
-
-  console.log(filterValues);
 
   useEffect(() => {
     const handleResize = () => {

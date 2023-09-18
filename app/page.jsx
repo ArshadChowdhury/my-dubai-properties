@@ -1,13 +1,23 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "@/components/prev/services/apiFunctions";
 
-import Home from "@/components/prev/pages/HomePage/Home";
+import { instance } from "@/components/prev/services/apiFunctions";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
+import Home from "@/components/prev/pages/HomePage/Home";
+
 export default function HomePage() {
-  const [{ lang, filterValues }] = useStateValue();
+  const [{ lang }] = useStateValue();
+
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
+  };
 
   const getAllProperties = async () => {
     const data = await instance
@@ -27,41 +37,30 @@ export default function HomePage() {
     return data;
   };
 
-  const getAllHomeContent = async () => {
-    const data = await instance
-      .get(`/${lang}/get-home`, {
-        timeout: 5000,
-      })
-      .then((data) => data.data.data);
-    return data;
-  };
-
-  const {
-    isLoading: isLoadingPropertiesData,
-    data: propertiesData,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["property-list", lang],
-    queryFn: getAllProperties,
-  });
-
-  const { isLoading: isLoadingFilterList, data: filterListData } = useQuery({
-    queryKey: ["filter-list", lang],
-    queryFn: getAllFilter,
-  });
-
   const {
     isLoading: isLoadingHomeContent,
     data: homeData,
     isError: isErrorHomeContent,
-    error: homeContentError,
   } = useQuery({
     queryKey: ["get-home", lang],
     queryFn: getAllHomeContent,
   });
 
-  if (isLoadingHomeContent) {
+  const {
+    isLoading: isLoadingPropertiesData,
+    data: propertiesData,
+    isError,
+  } = useQuery({
+    queryKey: ["property-list"],
+    queryFn: getAllProperties,
+  });
+
+  const { data: filterListData } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
+
+  if (isLoadingHomeContent || isLoadingPropertiesData) {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -69,8 +68,12 @@ export default function HomePage() {
     );
   }
 
-  if (isErrorHomeContent) {
-    return isErrorHomeContent.message;
+  if (isErrorHomeContent || isError) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
+      </p>
+    );
   }
 
   return (

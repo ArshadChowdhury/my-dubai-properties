@@ -1,9 +1,8 @@
-import React from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HeadingBox from "../../../components/HeadingBox";
-import RegisterForm from "../../../components/RegisterForm";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HeadingBox from "@/components/prev/HeadingBox";
+import RegisterForm from "@/components/prev/RegisterForm";
 import AddresInfo from "./AddresInfo";
-import Footer from "../../../components/Footer";
+import Footer from "@/components/prev/Footer";
 
 const ContactForm = () => {
   return (

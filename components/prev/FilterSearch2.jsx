@@ -32,6 +32,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Development Type"
             selectBy={filterList?.developmentTypes}
+            filterParams={props.filterParams}
           />
         </div>
         <div
@@ -45,6 +46,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Developer Type"
             selectBy={filterList?.developers}
+            filterParams={props.filterParams}
           />
         </div>
         <div
@@ -58,6 +60,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Property Areas"
             selectBy={filterList?.propertyAreas}
+            filterParams={props.filterParams}
           />
         </div>
 

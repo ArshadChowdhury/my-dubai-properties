@@ -10,7 +10,7 @@ import Payment from "./partials/Payment";
 // import qs from "qs";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import { useStateValue } from "@/components/prev/states/StateProvider";

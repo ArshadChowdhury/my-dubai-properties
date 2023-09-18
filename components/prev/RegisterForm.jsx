@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useQuery } from "react-query";
+
 // import { getApiData } from "../services/apiFunctions";
-import { useStateValue } from "../states/StateProvider";
-import CountrySelect from "../pages/ContactUs/partials/selectCountry";
+import { useStateValue } from "./states/StateProvider";
+import CountrySelect from "./pages/ContactUs/partials/selectCountry";
 
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -38,7 +38,7 @@ const RegisterForm = (props) => {
   //   return error.message;
   // }
 
-  const langList = data.data.langList;
+  // const langList = data.data.langList;
   return (
     <div className="w-full md:w-3/4 bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] p-5 border border-[#373F48] rounded-md xl:basis-1/3 text-center flex items-center">
       <div className="w-full">

@@ -1,8 +1,8 @@
 import React from "react";
 
-import HeadingBox from "../../../components/HeadingBox";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HomeHeading from "../../../components/HomeHeading";
+import HeadingBox from "@/components/prev/HeadingBox";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HomeHeading from "@/components/prev/HomeHeading";
 import HeadingText2 from "../../SinglePropertyDetails/partials/HeadingText2";
 
 const Terms = () => {
@@ -16,7 +16,8 @@ const Terms = () => {
 
           <div
             style={{ fontWeight: "200" }}
-            className="md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]">
+            className="md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]"
+          >
             <p className="py-3">
               By clicking on offplan-dubai.com or any of its extensions, by
               visiting the website hosted on offplan-dubai.com, by taking any
@@ -67,7 +68,8 @@ const Terms = () => {
 
           <div
             style={{ fontWeight: "200" }}
-            className="w-full md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]">
+            className="w-full md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]"
+          >
             <p className="py-3">
               All purchases through our site or other transactions for the sale
               of services formed through the Website or as a result of visits

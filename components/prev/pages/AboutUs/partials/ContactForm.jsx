@@ -1,5 +1,5 @@
 import React from "react";
-import BtnHexagon from "../../../components/BtnHexagon";
+import BtnHexagon from "@/components/prev/BtnHexagon";
 import SignUpForm from "../../HomePage/partials/SignUpForm";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -25,7 +25,8 @@ const ContactForm = (props) => {
             <>
               <p
                 style={{ fontWeight: "400" }}
-                className="hidden md:block text-[15px] font-medium font-montserrat tracking-[2%] leading-[24px]">
+                className="hidden md:block text-[15px] font-medium font-montserrat tracking-[2%] leading-[24px]"
+              >
                 For more information on the benefits of buying off-plan property
                 or if you are a developer and would like to feature your latest
                 off-plan projects on this site, give us a call now:
@@ -43,14 +44,16 @@ const ContactForm = (props) => {
             <div className="md:flex w-full pt-3">
               <p
                 style={{ fontWeight: "400" }}
-                className="md:max-w-[309px] text-[12px] font-semibold font-montserrat pb-3 text-center">
+                className="md:max-w-[309px] text-[12px] font-semibold font-montserrat pb-3 text-center"
+              >
                 Sign up for our exclusive updates and information about the
                 newest projects in Dub
               </p>
               <div className="flex-1 flex flex-col md:flex-row justify-center items-center">
                 <form
                   action=""
-                  className="flex flex-col md:flex-row md:justify-between justify-center items-center gap-3">
+                  className="flex flex-col md:flex-row md:justify-between justify-center items-center gap-3"
+                >
                   <input
                     type="email"
                     name="email"

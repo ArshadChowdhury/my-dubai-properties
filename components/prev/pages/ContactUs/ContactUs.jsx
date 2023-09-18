@@ -1,23 +1,19 @@
-import React from "react";
-import RouteLink from "../../components/RouteLink";
-import Skeleton from "../../components/Skeleton/Skeleton";
-import { useLocation } from "react-router-dom";
-import Navbar from "../../components/Navbar";
+import RouteLink from "../../RouteLink";
+import Skeleton from "../../Skeleton/Skeleton";
+import Navbar from "@/components/Navbar";
 import ContactForms from "./partials/ContactForm";
-import RegisterForm from "../../components/RegisterForm";
+import RegisterForm from "../../RegisterForm";
 import ContactForm from "../AboutUs/partials/ContactForm";
-import Navbar2 from "../../components/Navbar2";
+import Navbar2 from "../../Navbar2";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useEffect } from "react";
-import Footer from "../../components/Footer";
+import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
+import Image from "next/image";
 const ContactUs = () => {
-  const location = useLocation();
-  const currentLocation = location.pathname;
-
-  const locationName = currentLocation.split("/");
   const [isMobileView, setIsMobileView] = useState(true);
-
+  const pathname = usePathname();
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
@@ -46,7 +42,7 @@ const ContactUs = () => {
           <div className="about-overlay"></div>
 
           <RouteLink
-            locationName={locationName}
+            locationName={pathname}
             buttonHide={"true"}
             marginBottom="mb-12 md:mb-0"
           />
@@ -55,14 +51,15 @@ const ContactUs = () => {
       </section>
       <div
         className="relative"
-        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}>
+        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}
+      >
         <ContactForm type="top" />
       </div>
       {isMobileView && (
         <div className="absolute w-full h-[2px] flex justify-center items-center">
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
           <p className="mx-3">
-            <img src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
+            <Image src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
           </p>
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
         </div>

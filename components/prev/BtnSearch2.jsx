@@ -23,7 +23,6 @@ const BtnSearch2 = (props) => {
     };
   }, []);
 
-  const onButtonClick = (e) => {};
   return (
     <div
       className="flex justify-center items-center bg-[#bea04e] p-[9px] mb-2 hover:text-[#FFD15F] text-white border-t-2 border-b-2 relative "

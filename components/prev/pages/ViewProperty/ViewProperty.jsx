@@ -19,11 +19,8 @@ const ViewProperty = (props) => {
   const { filterListData } = props;
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
-  const readyProperties = [];
-  const offPlanProperties = [];
   const [{ filterValues, lang }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(true);
-  // const queryString = searchParams.get("propertyAreas");
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
@@ -54,7 +51,6 @@ const ViewProperty = (props) => {
     data: propertiesData,
     isError,
     refetch,
-    error,
   } = useQuery({
     queryKey: ["property-list", lang],
     queryFn: getAllProperties,
@@ -88,6 +84,14 @@ const ViewProperty = (props) => {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
+      </p>
+    );
+  }
+
+  if (isError) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
       </p>
     );
   }
@@ -154,7 +158,10 @@ const ViewProperty = (props) => {
                   setIsFilterModalOpen={props.setIsFilterModalOpen}
                 />
               ) : (
-                <FilterSearch2 filterListData={filterListData} />
+                <FilterSearch2
+                  filterParams={filterParams}
+                  filterListData={filterListData}
+                />
               )}
             </div>
           </div>
@@ -167,7 +174,10 @@ const ViewProperty = (props) => {
             />
           ) : (
             //  queryParams={queryParams}
-            <ListView handleShowAll={handleShowAll} />
+            <ListView
+              propertiesData={propertiesData}
+              handleShowAll={handleShowAll}
+            />
           )}
         </Skeleton>
       </section>

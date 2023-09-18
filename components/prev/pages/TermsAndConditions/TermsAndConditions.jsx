@@ -1,19 +1,19 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
-import RouteLink from "../../components/RouteLink";
-import { useLocation } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import RouteLink from "../../RouteLink";
+import { usePathname } from "next/navigation";
 import Terms from "./partials/Terms";
 import ContactForm from "../AboutUs/partials/ContactForm";
-import Navbar2 from "../../components/Navbar2";
+import Navbar2 from "../../Navbar2";
 import { useState } from "react";
 import { useEffect } from "react";
-import Footer from "../../components/Footer";
+import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
-const TermsAndConditions = () => {
-  const location = useLocation();
-  const currentLocation = location.pathname;
+import Image from "next/image";
 
-  const locationName = currentLocation.split("/");
+const TermsAndConditions = () => {
+  const pathname = usePathname();
+
   const [isMobileView, setIsMobileView] = useState(true);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const TermsAndConditions = () => {
           <div className="about-overlay"></div>
 
           <RouteLink
-            locationName={locationName}
+            locationName={pathname}
             buttonHide={"true"}
             marginBottom="mb-12 md:mb-0"
           />
@@ -53,14 +53,15 @@ const TermsAndConditions = () => {
       </section>
       <div
         className="relative"
-        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}>
+        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}
+      >
         <ContactForm type="top" />
       </div>
       {isMobileView && (
         <div className="absolute w-full h-[2px] flex justify-center items-center">
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
           <p className="mx-3">
-            <img src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
+            <Image src={paymentBottom} alt="ling Symbol" className="w-[15px]" />
           </p>
           <p className="w-1/2 h-full bg-[#FFD15F]"></p>
         </div>

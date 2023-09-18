@@ -3,8 +3,10 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useSearchParams } from "next/navigation";
 
 const FilterSelect = (props) => {
+  const filterParams = props;
+
   const [{ filterValues }, dispatch] = useStateValue();
-  const [selectedValue, setSelectedValue] = useState(props.searchBy || "");
+  const [selectedValue, setSelectedValue] = useState();
   // const searchParams = useSearchParams();
   // const queryString = searchParams.get("search").substring(1);
   // const queryParams = Object.fromEntries(
@@ -57,22 +59,14 @@ const FilterSelect = (props) => {
   useEffect(() => {
     const selectedValueFromProps =
       props.searchBy === "Property Areas"
-        ? filterValues?.propertyAreas
+        ? filterParams.filterParams.propertyAreaId
         : props.searchBy === "Development Type"
-        ? filterValues?.developmentTypes
+        ? filterParams.filterParams.developmentTypeId
         : props.searchBy === "Developer Type"
-        ? filterValues?.developers
+        ? filterParams.filterParams.developerId
         : null;
-
     setSelectedValue(selectedValueFromProps);
-  }, [
-    filterValues.developers,
-    filterValues.developmentTypes,
-    filterValues.propertyAreas,
-    filterValues.completions,
-    filterValues.propertyTypes,
-    selectedValue,
-  ]);
+  }, []);
 
   return (
     <select

@@ -1,8 +1,8 @@
 import React from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HeadingBox from "../../../components/HeadingBox";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HeadingBox from "@/components/prev/HeadingBox";
 import call from "../../../assets/images/global/call.png";
-import HomeHeading from "../../../components/HomeHeading";
+import HomeHeading from "@/components/prev/HomeHeading";
 
 const infos = [
   {
@@ -32,7 +32,10 @@ const AddresInfo = () => {
         <div>
           {infos.map((info, idx) => {
             return (
-              <div className="font-montserrat my-8 text-white flex flex-col justify-center items-center md:items-start md:justify-start px-5 md:px-0">
+              <div
+                key={idx}
+                className="font-montserrat my-8 text-white flex flex-col justify-center items-center md:items-start md:justify-start px-5 md:px-0"
+              >
                 <p className="text-lg font-semibold text-white pb-2">
                   {info.title}
                 </p>

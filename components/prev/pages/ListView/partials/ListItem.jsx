@@ -132,16 +132,16 @@ const ListItem = (props) => {
     background: hovered ? "#001324" : "",
     transition: "background-color 0.3s",
   };
-  const onMouseEnterHandler = () => {
-    props.setIsHovered(true);
-    props.setIsHoveredCard(true);
-    setIsHoveredCard(true);
-  };
-  const onMouseLeaveHandler = () => {
-    props.setIsHovered(false);
-    props.setIsHoveredCard(false);
-    setIsHoveredCard(false);
-  };
+  // const onMouseEnterHandler = () => {
+  //   props.setIsHovered(true);
+  //   props.setIsHoveredCard(true);
+  //   setIsHoveredCard(true);
+  // };
+  // const onMouseLeaveHandler = () => {
+  //   props.setIsHovered(false);
+  //   props.setIsHoveredCard(false);
+  //   setIsHoveredCard(false);
+  // };
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -153,8 +153,8 @@ const ListItem = (props) => {
     <div className={` ${isHoveredCard ? "hovered" : ""}`}>
       <div
         className="px-1 py-3 w-full"
-        onMouseEnter={onMouseEnterHandler}
-        onMouseLeave={onMouseLeaveHandler}
+        // onMouseEnter={onMouseEnterHandler}
+        // onMouseLeave={onMouseLeaveHandler}
       >
         <div className="flex flex-wrap border border-[#D9D9D9] rounded-lg overflow-clip p-1">
           <div className="w-[40%] rounded-md overflow-hidden">
@@ -170,8 +170,8 @@ const ListItem = (props) => {
           <div
             className="w-[60%] p-2 md:p-5"
             style={inlineStyles}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            // onMouseEnter={handleMouseEnter}
+            // onMouseLeave={handleMouseLeave}
           >
             <h1
               onClick={() => router.push(`/properties/${props.id}`)}
@@ -224,7 +224,7 @@ const ListItem = (props) => {
               </div>
               <div className="w-full">
                 <ButtonOutline2
-                  link={() => router.push(`/contact-with-us`)}
+                  link={() => router.push(`/contact-us`)}
                   btnText="Enquiry"
                 />
               </div>

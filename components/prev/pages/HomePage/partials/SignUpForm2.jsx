@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import BtnHexagon from "../../../components/BtnHexagon";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import BtnHexagon from "@/components/prev/BtnHexagon";
 import { useEffect } from "react";
 
 const SignUpForm2 = () => {
@@ -32,7 +32,8 @@ const SignUpForm2 = () => {
       <Skeleton>
         <div
           className="w-full h-full flex flex-col justify-center text-center items-center mt-3 px-3"
-          style={{ marginBottom: isMobileView ? "100px" : "250px" }}>
+          style={{ marginBottom: isMobileView ? "100px" : "250px" }}
+        >
           <h1 className="text-white font-montserrat text-[16px] md:text-[1.375rem] font-light">
             Sign up for our exclusive updates and information about the newest
             projects in Dubai
@@ -40,7 +41,8 @@ const SignUpForm2 = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="px-3 flex md:flex-row flex-col gap-5 justify-between items-center pt-5">
+            className="px-3 flex md:flex-row flex-col gap-5 justify-between items-center pt-5"
+          >
             {/* <div className="before:bg-[#F1BF3F] after:bg-[#F1BF3F] text-white relative p-1 group-hover">
               <div className="flex justify-around hover:text-[#F1BF3F] items-center !w-full !h-full relative btn-signUp px-20 py-2 before:!border-2 after:!border-2 before:!border-white after:!border-white">
                 <input

@@ -1,8 +1,8 @@
 import React from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HeadingBox from "../../../components/HeadingBox";
-import HomeHeading from "../../../components/HomeHeading";
-import Footer from "../../../components/Footer";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HeadingBox from "@/components/prev/HeadingBox";
+import HomeHeading from "@/components/prev/HomeHeading";
+import Footer from "@/components/prev/Footer";
 
 const AboutUsContent = () => {
   return (
@@ -17,9 +17,7 @@ const AboutUsContent = () => {
                 hidden="hidden"
               />
             </div>
-            <div
-              style={{ fontWeight: "200" }}
-              className="md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]">
+            <div className="md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
               <p className="py-3">
                 Property Seekers Properties Dubai is the one-stop portal for
                 your investment opportunity. We are the professional brokers
@@ -55,7 +53,8 @@ const AboutUsContent = () => {
 
             <ul
               style={{ fontWeight: "200", marginLeft: "10px" }}
-              className="list-disc text-[12px] tracking-[2%] text-white pl-[15px] pt-5 leading-[24px] font-montserrat">
+              className="list-disc text-[12px] tracking-[2%] text-white pl-[15px] pt-5 leading-[24px] font-montserrat"
+            >
               <li className="">
                 <span>
                   Official partner of all developers in Dubai. ROI of community

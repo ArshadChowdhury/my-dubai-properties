@@ -12,20 +12,12 @@ function extractIdFromValue(value) {
 }
 
 const ListView = (props) => {
+  const { propertiesData } = props;
   const [filterData, setFilterData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [totalDataCount, setTotalDataCount] = useState(null);
   const [dataLimit, setDataLimit] = useState(null);
   const [showArrow, setShowArrow] = useState(true);
-
-  const {
-    developers,
-    developmentTypes,
-    propertyAreas,
-    completions,
-    propertyTypes,
-    size,
-  } = props?.queryParams;
 
   const [{ filterValues }] = useStateValue();
   const dataLength = 6;
@@ -103,12 +95,12 @@ const ListView = (props) => {
     <>
       <InfiniteScroll
         dataLength={dataLength}
-        next={fetchMoreData}
+        // next={fetchMoreData}
         hasMore={hasMore}
       >
         <div className=" mb-20">
           <div className="w-full flex flex-wrap my-3 md:my-10 px-1">
-            {filterData?.map((property, idx) => (
+            {propertiesData?.data?.map((property, idx) => (
               <ListItem
                 id={idx + 1}
                 key={property.propertyName}

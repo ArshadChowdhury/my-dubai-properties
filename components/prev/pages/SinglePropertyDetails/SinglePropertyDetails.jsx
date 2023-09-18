@@ -53,8 +53,6 @@ const SinglePropertyDetails = (props) => {
     };
   }, []);
 
-  console.log(propertiesData);
-
   const singlePropertyDetails = singleProperty?.property;
 
   return (

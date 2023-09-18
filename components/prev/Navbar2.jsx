@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Skeleton from "./Skeleton/Skeleton";
 import logo from "../../components/prev/assets/images/global/logo.png";
 import calender from "../../components/prev/assets/images/global/calendar-outline.svg";
@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Navbar2 = (props) => {
+  const [dropDown, setDropDown] = useState(true);
   const { filterListData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
 
@@ -23,60 +24,11 @@ const Navbar2 = (props) => {
 
   const handleMenu = (e) => {
     e.preventDefault();
-    dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
+    setDropDown((prev) => !prev);
+    dispatch({ type: "setDropdownOpen", item: dropDown });
   };
 
   const langList = filterListData?.langList;
-
-  //Nav animation logic
-  const animation = document.querySelector(".animation");
-  const navItems = document.querySelectorAll(".nav h1");
-
-  let fixedItem = null;
-
-  function moveAnimation(targetElement) {
-    const targetRect = targetElement.getBoundingClientRect();
-    const navRect = document.querySelector(".nav").getBoundingClientRect();
-    const leftOffset = targetRect.left - navRect.left;
-    const rightOffset = navRect.right - targetRect.right;
-
-    animation.style.left = leftOffset + "px";
-    animation.style.width = targetRect.width + "px";
-    animation.style.opacity = 1;
-  }
-
-  function resetAnimation() {
-    if (fixedItem === null) {
-      animation.style.opacity = 1;
-    }
-  }
-
-  function handleClick(item) {
-    if (fixedItem === item) {
-      fixedItem = null;
-      resetAnimation();
-    } else {
-      fixedItem = item;
-      moveAnimation(item);
-      animation.style.marginLeft = "0rem";
-    }
-  }
-
-  navItems.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      moveAnimation(item);
-    });
-
-    item.addEventListener("mouseleave", () => {
-      if (fixedItem === null) {
-        resetAnimation();
-      }
-    });
-
-    item.addEventListener("click", () => {
-      handleClick(item);
-    });
-  });
 
   return (
     <section className={props.className}>
