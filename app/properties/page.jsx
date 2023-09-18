@@ -11,6 +11,8 @@ import { useSearchParams } from "next/navigation";
 export default function AllProperties() {
   const [{ lang, filterValues }] = useStateValue();
 
+  console.log(filterValues);
+
   const getAllFilter = async () => {
     const data = await instance
       .get(`/${lang}/data/filter-list`, {
@@ -26,7 +28,10 @@ export default function AllProperties() {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <ViewProperty filterListData={filterListData} />
+      <ViewProperty
+        heading={"All Properties"}
+        filterListData={filterListData}
+      />
     </section>
   );
 }

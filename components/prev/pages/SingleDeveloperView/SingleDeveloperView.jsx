@@ -1,27 +1,51 @@
-import React, { useEffect, useState } from "react";
-import RouteLink from "../../components/RouteLink";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import RouteLink from "../../RouteLink";
+import { usePathname, useSearchParams } from "next/navigation";
 import EmmarProperties from "./partials/Properties";
 import PropertyList from "./partials/PropertyList";
 import TableView from "./partials/TableView";
 import { useStateValue } from "../../states/StateProvider";
-import { useQuery } from "react-query";
-import FilterSelect from "../../components/FilterSelect";
+import { useQuery } from "@tanstack/react-query";
+import FilterSelect from "../../FilterSelect";
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
 import FilterModal from "../ViewProperty/partials/filterModal";
-import Navbar2 from "../../components/Navbar2";
-import Footer from "../../components/Footer";
+import Navbar2 from "../../Navbar2";
+import Footer from "../../Footer";
 import Image from "next/image";
+import { instance } from "../../services/apiFunctions";
 
 const SingleDeveloperView = (props) => {
   const [{ lang }] = useStateValue();
   const [{ propertyToView }] = useStateValue();
-  const { developerId } = useParams();
+  const pathname = usePathname();
+  const parts = pathname.split("/");
+  const developerId = parts[parts.length - 1];
   const [filterList, setFilterList] = useState();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const beds = [1, 2, 3, 4, 5];
   const [isMobileView, setIsMobileView] = useState(true);
+
+  const getSingleDeveloperData = async () => {
+    const data = await instance
+      .get(`/${lang}/developers/${developerId}`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingSingleDev,
+    data: singleDevData,
+    isError: isErrorSingleDev,
+  } = useQuery({
+    queryKey: ["get-single-dev", developerId],
+    queryFn: getSingleDeveloperData,
+    enabled: !!developerId,
+  });
+
+  console.log(singleDevData);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,11 +58,25 @@ const SingleDeveloperView = (props) => {
     };
   }, []);
 
-  // const location = useLocation();
-
   // const developer = data.data;
 
   // const locationName = [developer.developer.name];
+
+  if (isLoadingSingleDev) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Loading...Please wait...
+      </p>
+    );
+  }
+
+  if (isErrorSingleDev) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
+      </p>
+    );
+  }
   return (
     <>
       {isMobileView ? (
@@ -55,13 +93,13 @@ const SingleDeveloperView = (props) => {
           marginBottom: isMobileView ? "" : "80px",
         }}
       >
-        <RouteLink locationName={locationName} buttonHide={"true"} />
-        <EmmarProperties developerDetails={developer.developer} />
+        <RouteLink locationName={pathname} buttonHide={"true"} />
+        <EmmarProperties developerDetails={singleDevData} />
         <div
           className="sticky  bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2"
           style={{ "z-index": "20", top: isMobileView ? "-10px" : "88px" }}
         >
-          {props.mobileView ? (
+          {/* {props.mobileView ? (
             <div className="py-4">
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
             </div>
@@ -121,7 +159,7 @@ const SingleDeveloperView = (props) => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div className="">
           <FilterModal
@@ -130,12 +168,12 @@ const SingleDeveloperView = (props) => {
             setIsFilterModalOpen={setIsFilterModalOpen}
           />
         </div>
-        <TableView
+        {/* <TableView
           mobileView={props.mobileView}
           properties={developer.developerProperty.data}
-        />
+        /> */}
 
-        <PropertyList propertyList={developer.developerProperty.data} />
+        {/* <PropertyList propertyList={developer.developerProperty.data} /> */}
       </div>
       <Footer footerBg={"footer_background"} />
     </>

@@ -98,7 +98,7 @@ const Dropdown = (props) => {
                         key={developer._id}
                         className="uppercase leading-[15.3px]"
                       >
-                        <Link href={`/single-developer-view/${developer._id}`}>
+                        <Link href={`/developers/${developer._id}`}>
                           {developer.name}
                         </Link>
                       </li>

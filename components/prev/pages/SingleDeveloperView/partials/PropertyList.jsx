@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import GridView from "../../GridView/GridView";
 
 const PropertyList = (props) => {

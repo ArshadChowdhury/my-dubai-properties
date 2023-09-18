@@ -1,13 +1,11 @@
-import React from "react";
-import RouteLink from "../../../components/RouteLink";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import HeadingBox from "../../../components/HeadingBox";
-import FilterSelect from "../../../components/FilterSelect";
+import RouteLink from "@/components/prev/RouteLink";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import HeadingBox from "@/components/prev/HeadingBox";
+import FilterSelect from "@/components/prev/FilterSelect";
 import Image from "next/image";
 
 const EmmarProperties = (props) => {
-  const developerDetails = props.developerDetails;
-
+  const developerDetails = props?.developerDetails?.developer;
   return (
     <section className="z-10">
       <Skeleton className="mt-5 md:mt-10 px-5">
@@ -20,11 +18,10 @@ const EmmarProperties = (props) => {
         </div>
 
         <div className="pt-5 flex pb-4">
-          <div
-            className="hidden md:block  rgba-white-10  border border-[#bea04e]  bg-white bg-opacity-20"
-            style={{ width: "500px", height: "125px" }}
-          >
+          <div className="hidden md:block rgba-white-10 border border-[#bea04e] bg-white bg-opacity-20">
             <Image
+              height={225}
+              width={500}
               src={developerDetails.logo}
               alt={developerDetails.name}
               className=""
@@ -39,6 +36,8 @@ const EmmarProperties = (props) => {
             </p>
             <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
               <Image
+                height={400}
+                width={400}
                 className="mb-2"
                 src={developerDetails.logo}
                 alt={developerDetails.name}

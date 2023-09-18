@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Skeleton from "../../../components/Skeleton/Skeleton";
-import FilterSelect from "../../../components/FilterSelect";
+import Skeleton from "@/components/prev/Skeleton/Skeleton";
+import FilterSelect from "@/components/prev/FilterSelect";
 import home from "../../../assets/images/global/icon-search.png";
 import downOption from "../../../assets/images/global/Group 360.png";
 import { useState } from "react";

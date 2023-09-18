@@ -78,7 +78,7 @@ const Dropdown = (props) => {
                   <ul className="text-[10.5px]">
                     {developers.map((developer) => (
                       <Link
-                        href={`/single-developer-view/${developer._id}`}
+                        href={`/developers/${developer._id}`}
                         key={developer._id}
                       >
                         <li className="uppercase leading-[15.3px]">

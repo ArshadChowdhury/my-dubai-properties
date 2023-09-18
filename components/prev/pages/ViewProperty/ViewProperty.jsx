@@ -16,7 +16,7 @@ import Footer from "../../Footer";
 import { instance } from "../../services/apiFunctions";
 
 const ViewProperty = (props) => {
-  const { filterListData } = props;
+  const { filterListData, heading } = props;
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
   const [{ filterValues, lang }, dispatch] = useStateValue();
@@ -142,13 +142,7 @@ const ViewProperty = (props) => {
             style={{ top: isMobileView ? "-60px" : "80px" }}
           >
             <HeadingBox
-              heading={
-                props.propertyToView === "ready"
-                  ? "Ready Properties"
-                  : props.propertyToView == "off-plan"
-                  ? "Off Plan Properties"
-                  : "All Properties"
-              }
+              heading={heading}
               className="flex justify-center items-center"
               textPosition="text-center w-full"
             />

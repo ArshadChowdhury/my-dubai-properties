@@ -8,10 +8,7 @@ import BtnItemOutline from "@/components/prev/BtnItemOutline";
 
 const DeveloperListItem = (props) => {
   return (
-    <Link
-      href={`/single-developer-view/${props.id}`}
-      className="w-full md:basis-1/4 "
-    >
+    <Link href={`/developers/${props.id}`} className="w-full md:basis-1/4 ">
       <div className="w-full aspect-square flex flex-col justify-center items-center md:flex-row bg-white bg-opacity-20 relative  after:border-x after:border-[#DBA318] after:absolute after:h-full after:w-full hover:after:h-0 after:transition-all after:duration-500 before:border-y before:border-[#DBA318] before:absolute before:h-full before:w-full hover:before:w-0 before:transition-all before:duration-500 group">
         <Image
           height={400}
@@ -23,12 +20,12 @@ const DeveloperListItem = (props) => {
       </div>
       <div className="flex mt-5">
         <BtnItem
-          to={`/single-developer-view/${props.id}`}
+          to={`/developers/${props.id}`}
           btnText="Project List"
           className="mr-2 basis-1/2 "
         />
         <BtnItemOutline
-          to={`/single-developer-view/${props.id}`}
+          to={`/developers/${props.id}`}
           btnText="Details"
           className="ml-2 basis-1/2"
         />

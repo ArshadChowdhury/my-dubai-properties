@@ -26,6 +26,7 @@ const Menu = (props) => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      dispatch;
     };
   }, []);
 
@@ -91,7 +92,7 @@ const Menu = (props) => {
             // smooth: true,
           },
           {
-            top: "140px",
+            top: "78px",
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",
@@ -154,12 +155,11 @@ const Menu = (props) => {
       style={{
         marginTop: isMobileView ? "" : "-68px",
         display: isDropdownMenuOpen ? "" : "none",
-        zIndex: "100",
       }}
       className={`${
         isDropdownMenuOpen
-          ? " w-[100vw] h-[100vh] md:h-[300px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed  right-0 top-[0px] transition-all"
-          : ""
+          ? "w-[100vw] h-[100vh] z-50 md:h-[330px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-[0px] transition-all"
+          : "z-50"
       } `}
       ref={menuRef}
     >

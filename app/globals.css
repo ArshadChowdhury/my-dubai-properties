@@ -3549,7 +3549,7 @@ video {
 
 .nav .start-home,
 h1:nth-child(1):hover ~ .animation2 {
-  width: 75px;
+  width: 78px;
   left: 3px;
 }
 
@@ -3560,7 +3560,7 @@ h1:nth-child(1):hover ~ .animation2 {
 
 .nav h1:nth-child(3):hover ~ .animation2 {
   width: 135px;
-  left: 200px;
+  left: 198px;
 }
 
 .bg-gradient-custom {

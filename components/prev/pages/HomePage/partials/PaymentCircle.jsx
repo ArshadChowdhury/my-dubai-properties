@@ -64,8 +64,7 @@ const PaymentCircle = () => {
 
   return (
     <div
-      className="relative md:pl-28 py-20 md:py-0 flex justify-center items-center"
-      style={{ zIndex: "10" }}
+      className="relative md:pl-28 py-20 md:py-0 flex justify-center items-center z-10"
       ref={sectionRef}
     >
       <div className="relative h-[300px] w-[300px] md:h-[375px] md:w-[375px] p-5 border border-dashed rounded-full flex justify-center items-center bg-[#000F1D] bg-payment">
