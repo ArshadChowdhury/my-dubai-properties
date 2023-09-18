@@ -169,7 +169,7 @@ const Menu = (props) => {
       >
         <Image src={backsapce} alt="backspace" />
       </span>
-      {/* <Dropdown isMobileView={props.mobileView} /> */}
+      <Dropdown isMobileView={props.mobileView} />
     </div>
   );
 };

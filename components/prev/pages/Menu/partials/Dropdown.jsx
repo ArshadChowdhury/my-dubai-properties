@@ -25,7 +25,7 @@ const Dropdown = (props) => {
       .get(`${lang}/developers`, {
         timeout: 5000,
       })
-      .then((data) => data.data.data.developer.data);
+      .then((data) => data?.data?.data?.developers?.data);
     return data;
   };
 
@@ -34,7 +34,6 @@ const Dropdown = (props) => {
     queryFn: getAllDeveloperData,
   });
 
-  console.log(developerData);
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
@@ -49,7 +48,6 @@ const Dropdown = (props) => {
   const switchPropertyToView = (toView) => {
     // dispatch({ type: "setPropertyToView", item: toView });
   };
-  // const developers = data.data.developers.data;
 
   const handleArrangeMeeting = (e) => {
     dispatch({ type: "setShowModal", item: true });
@@ -95,22 +93,24 @@ const Dropdown = (props) => {
                     DEVELOPERS
                   </h2>
                   <ul className="text-[10.5px]">
-                    {/* {developerData?.map((developer) => (
-                      <Link
-                        href={`/single-developer-view/${developer._id}`}
+                    {developerData?.map((developer) => (
+                      <li
                         key={developer._id}
+                        className="uppercase leading-[15.3px]"
                       >
-                        <li className="uppercase leading-[15.3px]">
+                        <Link href={`/single-developer-view/${developer._id}`}>
                           {developer.name}
-                        </li>
+                        </Link>
+                      </li>
+                    ))}
+                    <li>
+                      <Link
+                        href={"/developer-list"}
+                        className="uppercase leading-[15.3px]"
+                      >
+                        ALL DEVELOPERS
                       </Link>
-                    ))} */}
-                    <Link
-                      href={"/developer-list"}
-                      className="uppercase leading-[15.3px]"
-                    >
-                      ALL DEVELOPERS
-                    </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const Dropdown = (props) => {
                     PROJECTS
                   </h2>
                   <ul className="text-[10.5px]">
-                    <Link hrf="/properties/ready">
+                    <Link href="/properties/ready">
                       <li className="uppercase leading-[15.3px]">READY</li>
                     </Link>
                     <Link href="/properties/off-plan">
