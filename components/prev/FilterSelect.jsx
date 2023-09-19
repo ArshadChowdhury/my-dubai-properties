@@ -1,61 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const FilterSelect = (props) => {
   const filterParams = props;
-
+  const router = useRouter();
   const [{ filterValues }, dispatch] = useStateValue();
   const [selectedValue, setSelectedValue] = useState();
-  // const searchParams = useSearchParams();
-  // const queryString = searchParams.get("search").substring(1);
-  // const queryParams = Object.fromEntries(
-  //   queryString.split("&").map((param) => param.split("="))
-  // );
 
-  // const { developers, developmentTypes, propertyAreas } = queryParams;
-
-  const changed = (e) => {
-    if (props.searchBy === "Developer Type") {
-      if (e.target.value === "Developer Type") {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, developers: false },
-        });
-      } else if (e.target.value) {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, developers: e.target.value },
-        });
-      }
-    } else if (props.searchBy === "Property Areas") {
-      if (e.target.value === "Property Areas") {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, propertyAreas: false },
-        });
-      } else if (e.target.value) {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, propertyAreas: e.target.value },
-        });
-      }
-    } else if (props.searchBy === "Development Type") {
-      if (e.target.value === "Development Type") {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, developmentTypes: false },
-        });
-      } else if (e.target.value) {
-        dispatch({
-          type: "setFilterValues",
-          item: { ...filterValues, developmentTypes: e.target.value },
-        });
-      }
-    }
-    const newValue = e.target.value === props.searchBy ? null : e.target.value;
-    setSelectedValue(newValue);
-  };
   useEffect(() => {
     const selectedValueFromProps =
       props.searchBy === "Property Areas"
@@ -67,6 +19,39 @@ const FilterSelect = (props) => {
         : null;
     setSelectedValue(selectedValueFromProps);
   }, []);
+
+  const changed = (e) => {
+    const newValue = e.target.value === props.searchBy ? null : e.target.value;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (props.searchBy === "Developer Type") {
+      if (e.target.value === "Developer Type") {
+        urlParams.delete("developers");
+      } else if (e.target.value) {
+        urlParams.set("developers", e.target.value);
+      }
+    } else if (props.searchBy === "Property Areas") {
+      if (e.target.value === "Property Areas") {
+        urlParams.delete("propertyAreas");
+      } else if (e.target.value) {
+        urlParams.set("propertyAreas", e.target.value);
+      }
+    } else if (props.searchBy === "Development Type") {
+      if (e.target.value === "Development Type") {
+        urlParams.delete("developmentTypes");
+      } else if (e.target.value) {
+        urlParams.set("developmentTypes", e.target.value);
+      }
+    }
+
+    const updatedQueryString = urlParams.toString();
+    const updatedUrl = updatedQueryString
+      ? `?${updatedQueryString}`
+      : "/properties";
+
+    router.push(updatedUrl);
+    setSelectedValue(newValue);
+  };
 
   return (
     <select

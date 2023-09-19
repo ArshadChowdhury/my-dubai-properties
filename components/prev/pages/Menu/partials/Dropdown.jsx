@@ -180,10 +180,7 @@ const Dropdown = (props) => {
             </div>
           </div>
         </SkeletonSingleProperty>
-        <div
-          className="flex justify-center items-center"
-          style={{ marginTop: "220px" }}
-        >
+        <div className="flex justify-center items-center mt-40">
           <button
             className="md:hidden border-t hex-btn-outline  text-white relative p-2  w-3/4 flex justify-center items-center"
             onClick={handleArrangeMeeting}

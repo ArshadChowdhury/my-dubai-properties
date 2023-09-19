@@ -19,7 +19,7 @@ const ViewProperty = (props) => {
   const { filterListData, heading } = props;
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
-  const [{ filterValues, lang }, dispatch] = useStateValue();
+  const [{ lang }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(true);
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
@@ -29,11 +29,11 @@ const ViewProperty = (props) => {
   const completion = searchParams.get("completions");
 
   const filterParams = {
-    propertyAreaId: filterValues.propertyAreas || propertyAreaId,
-    developmentTypeId: filterValues.developmentTypes || developmentTypeId,
-    propertyTypeId: filterValues.propertyTypes || propertyTypeId,
-    developerId: filterValues.developers || developerId,
-    completion: filterValues.completions || completion,
+    propertyAreaId,
+    developmentTypeId,
+    propertyTypeId,
+    developerId,
+    completion,
   };
 
   const getAllProperties = async () => {
@@ -73,11 +73,11 @@ const ViewProperty = (props) => {
   useEffect(() => {
     refetch();
   }, [
-    filterValues.developers,
-    filterValues.developmentTypes,
-    filterValues.propertyAreas,
-    filterValues.completions,
-    filterValues.propertyTypes,
+    propertyAreaId,
+    developmentTypeId,
+    propertyTypeId,
+    developerId,
+    completion,
   ]);
 
   if (isLoadingPropertiesData) {

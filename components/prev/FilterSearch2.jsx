@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
+  const { filterParams } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 
@@ -32,7 +33,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Development Type"
             selectBy={filterList?.developmentTypes}
-            filterParams={props.filterParams}
+            filterParams={filterParams}
           />
         </div>
         <div
@@ -46,7 +47,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Developer Type"
             selectBy={filterList?.developers}
-            filterParams={props.filterParams}
+            filterParams={filterParams}
           />
         </div>
         <div
@@ -60,7 +61,7 @@ const FilterSearch = (props) => {
           <FilterSelect
             searchBy="Property Areas"
             selectBy={filterList?.propertyAreas}
-            filterParams={props.filterParams}
+            filterParams={filterParams}
           />
         </div>
 
