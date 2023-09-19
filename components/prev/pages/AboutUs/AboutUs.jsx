@@ -6,8 +6,10 @@ import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const AboutUs = () => {
+  const pathname = usePathname();
   return (
     <>
       <div className="md:hidden">

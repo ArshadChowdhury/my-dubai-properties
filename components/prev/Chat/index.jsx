@@ -1,4 +1,3 @@
-import React from "react";
 import chatbot from "@/components/prev/assets/images/global/Chatbot.png";
 import Image from "next/image";
 

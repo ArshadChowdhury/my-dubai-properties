@@ -1,5 +1,6 @@
 import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/prev/Footer";
 
 const CookieContent = () => {
   return (
@@ -8,7 +9,7 @@ const CookieContent = () => {
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
       />
-      <Skeleton className="pt-24 pb-40 px-5">
+      <Skeleton className="pt-24 px-5">
         <div className="pt-3 text-white font-montserrat">
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What are cookies?
@@ -141,6 +142,7 @@ const CookieContent = () => {
           </div>
         </div>
       </Skeleton>
+      <Footer />
     </section>
   );
 };

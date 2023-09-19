@@ -1,4 +1,3 @@
-import React from "react";
 import call from "@/components/prev/assets/images/global/call (1).png";
 import email from "@/components/prev/assets/images/global/mail-outline.png";
 import whatsapp from "@/components/prev/assets/images/global/logo-whatsapp.png";
