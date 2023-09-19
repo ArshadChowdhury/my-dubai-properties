@@ -45,10 +45,7 @@ const RegisterForm = (props) => {
         <h1 className="font-montserrat text-lg leading-6 text-white text-left">
           Register Your Interest
         </h1>
-        <p
-          className="text-white text-left font-montserrat mt-2"
-          style={{ fontWeight: "300", fontSize: "14px" }}
-        >
+        <p className="text-white text-left font-montserrat mt-2 text-sm font-light">
           *All fields are required
         </p>
         <form action="" className="mt-8" onSubmit={handleSubmit((data) => {})}>
@@ -100,10 +97,7 @@ const RegisterForm = (props) => {
               className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
             />
           </div>
-          <div
-            className="flex flex-col justify-start items-start mb-2 text-white font-montserrat"
-            style={{ fontWeight: "300", fontSize: "14px" }}
-          >
+          <div className="flex flex-col justify-start items-start mb-2 text-white font-montserrat text-sm font-light">
             <label>
               <input
                 type="checkbox"

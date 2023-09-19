@@ -223,9 +223,8 @@ const ThirdStep = (props) => {
          */}
         </div>
         <div
-          className="absolute md:top-[90%] top-[70%] w-full flex"
+          className="absolute md:top-[90%] top-[70%] w-full flex left-[41%] md:left-[45%]"
           onClick={props.closePopUp}
-          style={{ left: isMobileView ? "41%" : "45%" }}
         >
           <BtnTime
             onClick={handleInVisible}

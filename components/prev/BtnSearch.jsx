@@ -1,45 +1,13 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 
 const BtnSearch = (props) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  const handleWindowSizeChange = () => {
-    const mobileScreenSize = 768;
-    const currentWindowSize = window.innerWidth;
-
-    if (currentWindowSize <= mobileScreenSize) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    handleWindowSizeChange();
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
   const onButtonClick = (e) => {};
   return (
     <button
-      className="basis-1/3 px-5 text-white text-[10px] relative btn-search my-1 ml-2"
+      className="basis-1/3 px-5 text-white text-[10px] relative btn-search my-1 ml-2 w-[320px] md:w-[180px]"
       onClick={onButtonClick}
-      style={{
-        width: `${isMobile ? "320px" : "180px"}`,
-        // "margin-top": "10px",
-      }}
     >
-      <div
-        className="w-full flex justify-between px-2 items-center font-bold text-[12px] leading-[150%] tracking-[4%]"
-        style={{
-          "padding-top": "4px",
-          "padding-bottom": "4px",
-        }}
-      >
+      <div className="w-full py-4 flex justify-between px-2 items-center font-bold text-[12px] leading-[150%] tracking-[4%]">
         <span className="z-50 text-shadow ">{props.btnText}</span>
         <div className="w-[22px] ">
           <Image src={props.btnImage} alt="btn image" className="" />

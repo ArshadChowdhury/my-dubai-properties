@@ -20,10 +20,10 @@ const FilterSearch = (props) => {
   const filterList = props?.filterListData;
 
   return (
-    <section className="relative w-full md:flex justify-between ">
+    <section className="relative w-full md:flex justify-between">
       <div className="w-full lg:w-auto gap-[5px] md:flex items-center my-2 md:my-0">
         <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
+          className="mt-2 md:mt-0 md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
           style={{
             borderLeft: "2px solid gray",
             borderRight: "2px solid gray",
@@ -37,7 +37,7 @@ const FilterSearch = (props) => {
           />
         </div>
         <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
+          className="mt-2 md:mt-0 md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
           style={{
             borderLeft: "2px solid gray",
             borderRight: "2px solid gray",

@@ -23,10 +23,7 @@ const ContactForm = (props) => {
         <div className="w-full md:w-[75%] grid gap-2 md:gap-5 text-white px-3">
           {props.type === "top" && (
             <>
-              <p
-                style={{ fontWeight: "400" }}
-                className="hidden md:block text-[15px] font-medium font-montserrat tracking-[2%] leading-[24px]"
-              >
+              <p className="hidden md:block text-[15px] font-medium font-montserrat tracking-[2%] leading-[24px]">
                 For more information on the benefits of buying off-plan property
                 or if you are a developer and would like to feature your latest
                 off-plan projects on this site, give us a call now:
@@ -37,15 +34,12 @@ const ContactForm = (props) => {
               <div className="w-full border"></div>
             </>
           )}
-
-          {isMobileView ? (
+          <div className="md:hidden">
             <SignUpForm2 />
-          ) : (
+          </div>
+          <div className="hidden md:block">
             <div className="md:flex w-full pt-3">
-              <p
-                style={{ fontWeight: "400" }}
-                className="md:max-w-[309px] text-[12px] font-semibold font-montserrat pb-3 text-center"
-              >
+              <p className=" md:max-w-[309px] text-[12px] font-semibold font-montserrat pb-3 text-center">
                 Sign up for our exclusive updates and information about the
                 newest projects in Dub
               </p>
@@ -69,7 +63,7 @@ const ContactForm = (props) => {
                 </form>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </section>

@@ -49,10 +49,7 @@ const ContactUs = () => {
           <ContactForms />
         </div>
       </section>
-      <div
-        className="relative"
-        style={{ marginBottom: isMobileView ? "-70px" : "120px" }}
-      >
+      <div className="relative -mb-[70px] md:mb-[120px]">
         <ContactForm type="top" />
       </div>
       {isMobileView && (

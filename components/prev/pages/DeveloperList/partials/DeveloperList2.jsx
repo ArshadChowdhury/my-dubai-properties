@@ -69,20 +69,13 @@ const DeveloperList = (props) => {
 
   return (
     <section className="w-full">
-      <div
-        className="sticky z-10 w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 "
-        style={{ top: isMobileView ? "78px" : "68px" }}
-      ></div>
+      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[78px] md:top-[68px]"></div>
       <InfiniteScroll
         dataLength={4}
         // next={fetchMoreData}
         hasMore={hasMore}
-        style={{ overflow: "hidden" }}
       >
-        <div
-          className="relative grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center"
-          style={{ gap: "50px" }}
-        >
+        <div className="relative grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev.map((developer, index) => (
             <DeveloperListItem
               key={developer._id}

@@ -15,9 +15,6 @@ const Navbar2 = (props) => {
     dispatch({ type: "setLang", item: language });
   };
 
-  const switchPropertyToView = (toView) => {
-    dispatch({ type: "setPropertyToView", item: toView });
-  };
   const handleArrangeMeeting = (e) => {
     dispatch({ type: "setShowModal", item: true });
   };

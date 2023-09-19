@@ -182,10 +182,7 @@ const NextStep = (props) => {
                 {selectDate.year()}
               </p>
 
-              <div
-                className="pt-5 grid grid-cols-2 gap-[6px] h-[150px] overflow-y-scroll scrollbar-thin scrollbar-track-gray-500/10 scrollbar-thumb-[#3374FF]/30"
-                style={{ paddingRight: "20px" }}
-              >
+              <div className="pt-5 pr-5 grid grid-cols-2 gap-[6px] h-[150px] overflow-y-scroll scrollbar-thin scrollbar-track-gray-500/10 scrollbar-thumb-[#3374FF]/30">
                 {btnTimeData.map((item, index) => (
                   <BtnTime
                     key={index}
@@ -202,7 +199,7 @@ const NextStep = (props) => {
                 ))}
               </div>
             </div>
-            <div className="pt-2" style={{ paddingRight: "20px" }}>
+            <div className="pt-2 pr-5">
               <h3 className="text-white  text-lg">Time Zone</h3>
               <div className="relative w-full px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
                 <span className=" cursor-pointer">

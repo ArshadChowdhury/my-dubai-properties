@@ -21,34 +21,22 @@ const FilterSearch = (props) => {
   return (
     <section className="relative w-full md:flex justify-between ">
       <div className="w-full lg:w-auto gap-[20px] md:flex items-center my-2 md:my-0">
-        <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ paddingLeft: "25px" }}
-        >
+        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
             searchBy="Property Areas"
             selectBy={filterList?.propertyAreas}
           />
         </div>
-        <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ paddingLeft: "25px" }}
-        >
+        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
             searchBy="Property Type"
             selectBy={filterList?.propertyTypes}
           />
         </div>
-        <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ paddingLeft: "25px" }}
-        >
+        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob searchBy="Beds" selectBy={beds} />
         </div>
-        <div
-          className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{ paddingLeft: "25px" }}
-        >
+        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
             searchBy="Completions"
             selectBy={filterList?.completions}

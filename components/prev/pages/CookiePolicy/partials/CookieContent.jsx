@@ -13,10 +13,7 @@ const CookieContent = () => {
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What are cookies?
           </p>
-          <p
-            className="pb-3 text-[10.5px] tracking-[2%] leading-[24px]"
-            style={{ fontWeight: "200" }}
-          >
+          <p className="pb-3 text-[10.5px] tracking-[2%] leading-[24px] font-extralight">
             Cookies are small files stored on a user&apos;s computer that hold
             data relating to a specific website. They are placed on the
             user&apos;s computer by that website and accessed each time a user
@@ -31,10 +28,7 @@ const CookieContent = () => {
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             When and why does DAMAC place cookies?
           </p>
-          <p
-            className="pb-3 text-[10.5px] tracking-[2%] leading-[24px]"
-            style={{ fontWeight: "200" }}
-          >
+          <p className="pb-3 text-[10.5px] tracking-[2%] leading-[24px] font-extralight">
             DAMAC places cookies on any browser that visits its sites. They are
             primarily used to collect data in order to help improve our website,
             by seeing which parts of the site are being used, how users are
@@ -44,10 +38,7 @@ const CookieContent = () => {
             computer if you wish.
           </p>
         </div>
-        <div
-          className="pt-3 text-white font-montserrat"
-          style={{ fontWeight: "200" }}
-        >
+        <div className="pt-3 text-white font-montserrat font-extralight">
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What cookies does DAMAC use?
           </p>

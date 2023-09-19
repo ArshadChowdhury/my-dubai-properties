@@ -6,7 +6,7 @@ import { useStateValue } from "./states/StateProvider";
 import Image from "next/image";
 
 const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
-  const [{ lang, viewType, query }, dispatch] = useStateValue();
+  const [{ viewType }, dispatch] = useStateValue();
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
@@ -16,7 +16,7 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
       <div className="relative flex justify-end">
         <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5 ">
           <div className="w-full flex items-center text-[15px] md:text-[9px]">
-            <p className="">
+            <p>
               <Image src={home} alt="Home Icon" />
             </p>
             <p className=" text-[#ffffff] md:text-[#626262] pl-2 font-semibold md:font-normal">

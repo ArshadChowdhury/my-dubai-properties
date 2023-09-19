@@ -59,14 +59,7 @@ const FilterSelect = (props) => {
       id={props.selectBy}
       onChange={changed}
       value={selectedValue}
-      className="outline-none filterSelect"
-      style={{
-        width: "210px",
-        paddingTop: "6px",
-        paddingBottom: "8px",
-        fontSize: "14px",
-        fontWeight: "100",
-      }}
+      className="outline-none filterSelect w-[210px] pt-[6px] pb-2 text-sm font-[100]"
     >
       <option className="font-roboto text-md" value={null}>
         {props.searchBy}

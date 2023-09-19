@@ -124,10 +124,9 @@ const ArrangeMeeting = ({ mobileView }) => {
             </div>
             <div
               ref={arrangeRef}
-              className={`w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] `}
+              className={`w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
                 "background-color": "rgba(0, 0, 0, 0.4)",
-                borderRadius: mobileView ? "" : "0px",
               }}
             >
               {subsPopUp && (
@@ -149,7 +148,6 @@ const ArrangeMeeting = ({ mobileView }) => {
                   }}
                   viewport={{ once: true }}
                   className={`cursor-pointer fixed flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-footer`}
-                  style={{ top: "" }}
                 >
                   <Image
                     src="/src/assets/images/global/footer-logo.png"

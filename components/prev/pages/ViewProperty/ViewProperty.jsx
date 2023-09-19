@@ -84,26 +84,6 @@ const ViewProperty = (props) => {
     );
   }
 
-  // const queryParams = Object.fromEntries(
-  //   queryString.split("&").map((param) => param.split("="))
-  // );
-
-  // {
-  //   properties?.data?.map((property) =>
-  //     property.developmentType.name === "READY"
-  //       ? readyProperties.push(property)
-  //       : offPlanProperties.push(property)
-  //   );
-  // }
-
-  //   const locationName = currentLocation.split("/");
-  // const productsToShow =
-  //   props.propertyToView === "ready"
-  //     ? readyProperties
-  //     : props.propertyToView == "off-plan"
-  //     ? offPlanProperties
-  //     : properties;
-
   const handleShowAll = () => {
     setShowAll(true);
   };
@@ -124,7 +104,7 @@ const ViewProperty = (props) => {
       <section className="min-h-screen w-full mt-0 md:mt-4 bg-payment">
         <RouteLink locationName={pathname} />
         <Skeleton className="w-full mt-4 px-5 sticky mb-8">
-          <div className="w-full -top-[60px] md:top-20 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
+          <div className="w-full -top-[60px] md:top-0 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <HeadingBox
               heading={heading}
               className="flex justify-center items-center"

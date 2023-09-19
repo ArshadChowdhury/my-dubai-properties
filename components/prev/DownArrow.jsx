@@ -2,7 +2,7 @@ import React from "react";
 
 function DownArrow() {
   return (
-    <div className="p-5 -mt-16" style={{ marginBottom: "6.5rem" }}>
+    <div className="p-5 -mt-16 mb-[6.5rem]">
       <p>
         <i className="downArrow1 pulse1"></i>
       </p>

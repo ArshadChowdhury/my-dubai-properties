@@ -4,18 +4,6 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useEffect } from "react";
 
 const FilterDropdown = (props) => {
-  const [isMobileView, setIsMobileView] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
     <div className="absolute z-[100] w-[325px] md:w-[170px] px-3 border-top-white bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[130px] -ml-10 md:-ml-3 mt-[6px]">
       <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">

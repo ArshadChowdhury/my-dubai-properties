@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import investment from "./prev/assets/images/global/investment.png";
@@ -8,8 +7,6 @@ import developerIcon from "./prev/assets/images/global/construct.png";
 import home from "./prev/assets/images/global/home.png";
 import camera from "./prev/assets/images/global/camera-sharp.png";
 import offer from "./prev/assets/images/global/pricetag-outline.png";
-import { getApiData } from "./prev/services/apiFunctions";
-import { useQuery } from "@tanstack/react-query";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 import calender from "./prev/assets/images/global/calendar-outline.svg";
@@ -134,10 +131,7 @@ const Dropdown = (props) => {
             </div>
           </div>
         </SkeletonSingleProperty>
-        <div
-          className="flex justify-center items-center"
-          style={{ marginTop: "220px" }}
-        >
+        <div className="flex justify-center items-center mt-[220px]">
           <button
             className="md:hidden border-t hex-btn-outline  text-white relative p-2  w-3/4 flex justify-center items-center"
             onClick={handleArrangeMeeting}
