@@ -10,7 +10,6 @@ import BtnSearch2 from "@/components/prev/BtnSearch2";
 const Filter = ({ filterLists }) => {
   const [animate, setAnimate] = useState(false);
   const [{ filterValues, filterOpen }] = useStateValue();
-  const [isMobileView, setIsMobileView] = useState(true);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -22,34 +21,19 @@ const Filter = ({ filterLists }) => {
   //   };
   // }, []);
 
-  const queryStringArray = Object.entries(filterValues)
-    .map(([key, value]) => {
-      if (Array.isArray(value) && value.length > 0) {
-        return `${key}=${value[0]}`;
-      } else if (value !== null) {
-        return `${key}=${value}`;
-      }
-      return null;
-    })
-    .filter((queryPart) => queryPart !== null);
-
-  const query = queryStringArray.join("&");
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const query = Object.entries(filterValues)
+    .map(([key, value]) =>
+      Array.isArray(value) && value.length > 0
+        ? `${key}=${value[0]}`
+        : value !== null
+        ? `${key}=${value}`
+        : null
+    )
+    .filter((queryPart) => queryPart !== null)
+    .join("&");
 
   return (
-    <div style={{ marginRight: "90%" }}>
+    <div className="mr-[90%]">
       <div
         className={`${
           filterOpen

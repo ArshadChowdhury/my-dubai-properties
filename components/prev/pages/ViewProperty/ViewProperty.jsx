@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterSearch2 from "../../FilterSearch2";
+import React from "react";
 import { useStateValue } from "../../states/StateProvider";
 import Skeleton from "../../Skeleton/Skeleton";
 import GridView from "../GridView/GridView";
@@ -9,7 +10,6 @@ import { usePathname } from "next/navigation";
 import RouteLink from "../../RouteLink";
 import FilterSearchInput from "./partials/filterSearch";
 import { useQuery } from "@tanstack/react-query";
-import FilterModal from "./partials/filterModal";
 import HeadingBox from "../../HeadingBox";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
@@ -20,7 +20,6 @@ const ViewProperty = (props) => {
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
   const [{ lang }, dispatch] = useStateValue();
-  const [isMobileView, setIsMobileView] = useState(true);
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
@@ -57,21 +56,10 @@ const ViewProperty = (props) => {
   });
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    // dispatch({ type: "setFilterValues", item: queryParams });
-
+    refetch();
     return () => {
-      window.removeEventListener("resize", handleResize);
       dispatch({ type: "setFilterValues", item: false });
     };
-  }, []);
-
-  useEffect(() => {
-    refetch();
   }, [
     propertyAreaId,
     developmentTypeId,
@@ -120,43 +108,40 @@ const ViewProperty = (props) => {
     setShowAll(true);
   };
 
-  if (isLoadingPropertiesData) return "loading";
-
   return (
     <>
-      {isMobileView ? (
+      <div className="md:hidden">
         <Navbar2 className={` w-full py-5 bg-[#000F1D] z-50 `} type="inline" />
-      ) : (
+      </div>
+      <div className="hidden md:block">
         <Navbar2
           filterListData={filterListData}
           className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
           type="inline"
         />
-      )}
+      </div>
 
       <section className="min-h-screen w-full mt-0 md:mt-4 bg-payment">
         <RouteLink locationName={pathname} />
         <Skeleton className="w-full mt-4 px-5 sticky mb-8">
-          <div
-            className="w-full flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]"
-            style={{ top: isMobileView ? "-60px" : "80px" }}
-          >
+          <div className="w-full -top-[60px] md:top-20 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <HeadingBox
               heading={heading}
               className="flex justify-center items-center"
               textPosition="text-center w-full"
             />
             <div className="flex items-center">
-              {isMobileView ? (
+              <div className="md:hidden">
                 <FilterSearchInput
                   setIsFilterModalOpen={props.setIsFilterModalOpen}
                 />
-              ) : (
+              </div>
+              <div className="hidden md:block">
                 <FilterSearch2
                   filterParams={filterParams}
                   filterListData={filterListData}
                 />
-              )}
+              </div>
             </div>
           </div>
 

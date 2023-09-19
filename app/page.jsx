@@ -15,7 +15,7 @@ export default function HomePage() {
       .get(`/${lang}/get-home`, {
         timeout: 5000,
       })
-      .then((data) => data.data.data);
+      .then((data) => data?.data?.data);
     return data;
   };
 
@@ -24,7 +24,7 @@ export default function HomePage() {
       .get(`/${lang}/properties`, {
         timeout: 5000,
       })
-      .then((data) => data.data.data.properties);
+      .then((data) => data?.data?.data?.properties);
     return data;
   };
 
@@ -33,7 +33,7 @@ export default function HomePage() {
       .get(`/${lang}/data/filter-list`, {
         timeout: 5000,
       })
-      .then((data) => data.data.data);
+      .then((data) => data?.data?.data);
     return data;
   };
 
@@ -46,11 +46,7 @@ export default function HomePage() {
     queryFn: getAllHomeContent,
   });
 
-  const {
-    isLoading: isLoadingPropertiesData,
-    data: propertiesData,
-    isError,
-  } = useQuery({
+  const { data: propertiesData } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
   });
@@ -60,7 +56,7 @@ export default function HomePage() {
     queryFn: getAllFilter,
   });
 
-  if (isLoadingHomeContent || isLoadingPropertiesData) {
+  if (isLoadingHomeContent) {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -68,7 +64,7 @@ export default function HomePage() {
     );
   }
 
-  if (isErrorHomeContent || isError) {
+  if (isErrorHomeContent) {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Something Went Wrong...

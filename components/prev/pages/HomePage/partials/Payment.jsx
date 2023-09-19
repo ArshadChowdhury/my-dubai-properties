@@ -25,14 +25,8 @@ const Payment = () => {
         <div className="z-10">
           <BtnPayent title="Our Payment Methods" />
         </div>
-        <div
-          className="w-full md:w-1/2 px-5"
-          style={{ marginTop: isMobileView ? "" : "80px" }}
-        >
-          <p
-            className="text-white text-[16.5px] font-montserrat"
-            style={{ fontWeight: "200", marginTop: "-15px" }}
-          >
+        <div className="w-full md:w-1/2 px-5 md:mt-20">
+          <p className="text-white text-[16.5px] font-montserrat font-extralight -mt-[15px]">
             Figma ipsum component variant main layer. Duplicate ellipse draft
             scrolling move select ipsum link. Font image boolean library invite
             hand create. Ipsum image text bold strikethrough.
@@ -49,13 +43,7 @@ const Payment = () => {
             </div>
           </div>
         </div>
-        <div
-          className="flex justify-center items-center w-full md:w-auto"
-          style={{
-            marginTop: isMobileView ? "" : "60px",
-            marginBottom: isMobileView ? "" : "60px",
-          }}
-        >
+        <div className="flex md:my-[60px] justify-center items-center w-full md:w-auto">
           <PaymentCircle />
         </div>
         <div className="bottom-0 w-full h-[2px] flex justify-center items-center mt-12">

@@ -44,17 +44,13 @@ const HeroSection = (props) => {
             className={`${position} opacity-0 absolute top-0 left-0 article transition-all duration-500 h-full w-full bg-cover bg-no-repeat flex justify-center items-center flex-shrink-0`}
             style={{
               backgroundImage: `url(${slider.image})`,
-              backgroundSize: "cover",
             }}
           >
             <div
               className="absolute top-0 left-0 w-full h-full"
               style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             ></div>
-            <div
-              className="w-[605px] flex flex-col justify-center items-center text-center px-5 md:px-0"
-              style={{ zIndex: 1 }}
-            >
+            <div className="w-[605px] flex flex-col justify-center items-center text-center px-5 md:px-0 z-10">
               <h2 className="font-fuemen text-[#f1bf3f] text-[24px] lg:text-[38px]">
                 {slider.description1}
               </h2>
@@ -74,66 +70,41 @@ const HeroSection = (props) => {
                   <span className="ml-2">Filter</span>
                 </button>
               </div>
-              <div
-                className="inner-shadow"
+              {/* <div
+                className="inner-shadow absolute bottom-0 left-0 w-full h-[5px]"
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "5px", // Adjust this to control the size of the shadow
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
               />
               <div
-                className="inner-shadow"
+                className="inner-shadow absolute bottom-0 left-0 w-full h-[15px]"
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "15px", // Adjust this to control the size of the shadow
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
               />
               <div
-                className="inner-shadow"
+                className="inner-shadow absolute bottom-0 left-0 w-full h-[30px]"
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "30px", // Adjust this to control the size of the shadow
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
               />
               <div
-                className="inner-shadow"
+                className="inner-shadow absolute bottom-0 left-0 w-full h-[50px]"
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "50px", // Adjust this to control the size of the shadow
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
               />
               <div
-                className="inner-shadow"
+                className="inner-shadow absolute bottom-0 left-0 w-full h-[70px]"
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "70px", // Adjust this to control the size of the shadow
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
-              />
+              /> */}
             </div>
           </article>
         );

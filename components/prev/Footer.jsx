@@ -79,10 +79,7 @@ const Footer = ({ footerBg, home }) => {
 
   return (
     <footer className="my-20">
-      <div
-        className="px-3 lg:p-5 flex flex-col items-center relative"
-        style={{ zIndex: "20" }}
-      >
+      <div className="px-3 lg:p-5 flex flex-col items-center relative z-20">
         <Image
           src={footerLogo}
           alt="my dubai logo"

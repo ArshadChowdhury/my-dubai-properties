@@ -92,10 +92,22 @@ const Navbar2 = (props) => {
             </button>
             <div className="flex items-center nav">
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link href={"/properties/off-plan"}>Off Plan</Link>
+                <Link
+                  href={
+                    "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
+                  }
+                >
+                  Off Plan
+                </Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link href={"/properties/ready"}>Ready</Link>
+                <Link
+                  href={
+                    "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+                  }
+                >
+                  Ready
+                </Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
                 <Link href={"/properties"}>All Properties</Link>

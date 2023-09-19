@@ -57,18 +57,12 @@ const LatestPropertyTop = (props) => {
             <HomeHeading heading="Latest Off Plan Properties" />
           </div>
 
-          <div
-            className="w-1/4"
-            style={{ marginRight: isMobileView ? "" : "260px" }}
-          >
+          <div className="w-1/4 md:mr-[260px]">
             <BtnElore2 title="Explore More" />
           </div>
         </div>
 
-        <div
-          className="block  mt-20 md:mt-0 w-full relative overflow-hidden scrollbar-hide"
-          style={{ right: isMobileView ? "" : "290px" }}
-        >
+        <div className="block md:right-[290px] mt-20 md:mt-0 w-full relative overflow-hidden scrollbar-hide">
           <div
             className="d-flex my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2"
             style={{
@@ -100,18 +94,16 @@ const LatestPropertyTop = (props) => {
           </div>
 
           <div
-            className="hidden md:block w-16 h-full absolute top-0 right-0 overlay-property-color "
-            style={{
-              marginRight: isMobileView ? "" : "-5px",
-              width: "100px",
-            }}
+            className="hidden md:block w-16 h-full absolute top-0 right-0 overlay-property-color md:-mr-[5px]"
+            // style={{
+            //   width: "100px",
+            // }}
           ></div>
           <div
-            className="hidden md:block w-16 h-full absolute top-0 right-0 overlay-property-color "
-            style={{
-              marginRight: isMobileView ? "" : "-5px",
-              width: "100px",
-            }}
+            className="hidden md:block w-16 h-full absolute top-0 right-0 overlay-property-color md:-mr-[5px]"
+            // style={{
+            //   width: "100px",
+            // }}
           ></div>
         </div>
       </div>
@@ -121,11 +113,7 @@ const LatestPropertyTop = (props) => {
           <Image
             src={ProptyOffPlan}
             alt=""
-            className="opacity-70"
-            style={{
-              marginLeft: isMobileView ? "" : "100px",
-              marginTop: isMobileView ? "" : "150px",
-            }}
+            className="opacity-70 md:ml-[100px] md:mt-[150px]"
           />
         </div>
       </div>

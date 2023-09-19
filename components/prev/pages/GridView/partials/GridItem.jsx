@@ -15,16 +15,13 @@ const GridItem = (props) => {
   const router = useRouter();
   const [isHoveredCard, setIsHoveredCard] = useState(false);
   const onMouseEnterHandler = () => {
-    // props.setIsHovered(true);
-    // setIsHoveredCard(true);
+    props.setIsHovered && props.setIsHovered(true);
     setIsHoveredCard(true);
   };
   const onMouseLeaveHandler = () => {
-    // props.setIsHovered(false);
-    // props.setIsHoveredCard(false);
+    props.setIsHovered && props.setIsHovered(false);
     setIsHoveredCard(false);
   };
-  // const navigate = useNavigate();
   const [imageLoading, setImageLoading] = useState(true);
   const [pulsing, setPulsing] = useState(true);
 
@@ -101,7 +98,7 @@ const GridItem = (props) => {
             to={`/properties/${props.id}`}
           />
           <BtnItemOutline
-            to={`/contact-with-us`}
+            to={`/contact-us`}
             btnText="Enquiry"
             className="ml-2 basis-1/2"
           />

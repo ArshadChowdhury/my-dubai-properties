@@ -3,12 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+
 import Skeleton from "./prev/Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
-import calender from "@/public/images/global/calendar-outline.svg";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { instance } from "./prev/services/apiFunctions";
-// import Dropdown from "./Dropdown";
 
 const Navbar = (props) => {
   const { filterListData } = props;
@@ -20,9 +18,6 @@ const Navbar = (props) => {
     dispatch({ type: "setLang", item: language });
   };
 
-  const switchPropertyToView = (toView) => {
-    dispatch({ type: "setPropertyToView", item: toView });
-  };
   const handleArrangeMeeting = (e) => {
     dispatch({ type: "setShowModal", item: true });
   };
@@ -34,58 +29,6 @@ const Navbar = (props) => {
   };
 
   const langList = filterListData?.langList;
-
-  //Nav animation logic
-  // const animation = document.querySelector(".animation2");
-  // const navItems = document.querySelectorAll(".nav h1");
-
-  // let fixedItem = null;
-
-  // function moveAnimation(targetElement) {
-  //   const targetRect = targetElement.getBoundingClientRect();
-  //   const navRect = document.querySelector(".nav").getBoundingClientRect();
-  //   const leftOffset = targetRect.left - navRect.left;
-
-  //   const animation = document.querySelector(".animation2");
-  //   if (animation) {
-  //     animation.style.left = leftOffset - 17 + "px";
-  //     animation.style.width = targetRect.width + "px";
-  //     animation.style.opacity = 1;
-  //   }
-  // }
-
-  // function resetAnimation() {
-  //   if (animation !== null) {
-  //     animation.style.opacity = 1;
-  //   }
-  // }
-
-  // function handleClick(item) {
-  //   if (fixedItem === item) {
-  //     fixedItem = null;
-  //     resetAnimation();
-  //   } else {
-  //     fixedItem = item;
-  //     moveAnimation(item);
-  //     animation.style.marginLeft = "0rem";
-  //   }
-  // }
-
-  // navItems.forEach((item) => {
-  //   item.addEventListener("mouseenter", () => {
-  //     moveAnimation(item);
-  //   });
-
-  //   item.addEventListener("mouseleave", () => {
-  //     if (fixedItem === null) {
-  //       resetAnimation();
-  //     }
-  //   });
-
-  //   item.addEventListener("click", () => {
-  //     handleClick(item);
-  //   });
-  // });
 
   return (
     <section className={props.className}>
@@ -143,7 +86,13 @@ const Navbar = (props) => {
               onClick={handleArrangeMeeting}
             >
               <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
-                <Image src={calender} alt="calender" className="mr-3" />
+                <Image
+                  src="/images/global/calendar-outline.svg"
+                  height={30}
+                  width={30}
+                  alt="calender"
+                  className="mr-3"
+                />
                 Arrange a Meeting
               </h1>
             </button>
@@ -155,13 +104,25 @@ const Navbar = (props) => {
                 className="uppercase cursor-pointer font-openSans text-white mx-4"
                 onMouseEnter={() => setNavPoint(true)}
               >
-                <Link href={"/properties/off-plan"}>Off Plan</Link>
+                <Link
+                  href={
+                    "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
+                  }
+                >
+                  Off Plan
+                </Link>
               </h1>
               <h1
                 className="uppercase cursor-pointer font-openSans text-white mx-4"
                 onMouseEnter={() => setNavPoint(true)}
               >
-                <Link href={"/properties/ready"}>Ready</Link>
+                <Link
+                  href={
+                    "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+                  }
+                >
+                  Ready
+                </Link>
               </h1>
               <h1
                 className="uppercase cursor-pointer font-openSans text-white mx-4"
@@ -171,7 +132,7 @@ const Navbar = (props) => {
               </h1>
               {navPoint ? (
                 <div
-                  className="animation2 start-home"
+                  className="animation2 start-home duration-1000"
                   style={{ transition: "1s" }}
                 ></div>
               ) : (

@@ -70,10 +70,7 @@ const LatestPropertyDown = (props) => {
   return (
     <div className="w-full flex flex-row-reverse relative z-20">
       <div className="w-full md:basis-[75%]  md:mt-12">
-        <div
-          className=" px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full  md:pr-[155px]"
-          style={{ marginLeft: isMobileView ? "" : "205px" }}
-        >
+        <div className="md:ml-[205px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full  md:pr-[155px]">
           <div className="mb-12 md:mb-0">
             <HomeHeading heading="Latest Ready Properties" />
           </div>
@@ -82,10 +79,7 @@ const LatestPropertyDown = (props) => {
           </div>
         </div>
 
-        <div
-          className="block my-20 md:my-0 relative overflow-hidden "
-          style={{ left: isMobileView ? "" : "260px" }}
-        >
+        <div className="block my-20 md:my-0 relative overflow-hidden md:left-[260px]">
           <div
             className="l-flex my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2"
             ref={cardBoxRef}
@@ -116,40 +110,36 @@ const LatestPropertyDown = (props) => {
             ))}
           </div>
           <div
-            className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0  overlay-property-color-left-2"
-            style={{
-              marginLeft: isMobileView ? "" : "-100px",
-              marginBottom: isMobileView ? "" : "10px",
-              width: "200px",
-            }}
+            className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0 md:-ml-[100px] md:mb-[10px] overlay-property-color-left-2"
+            // style={{
+            //   marginLeft: isMobileView ? "" : "-100px",
+            //   marginBottom: isMobileView ? "" : "10px",
+            //   width: "200px",
+            // }}
           ></div>
           <div
-            className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0  overlay-property-color-left-2"
-            style={{
-              marginLeft: isMobileView ? "" : "-4px",
-              marginBottom: isMobileView ? "" : "50px",
-              width: "200px",
-            }}
+            className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0 md:-ml-1 md:mb-[50px] overlay-property-color-left-2"
+            // style={{
+            //   marginLeft: isMobileView ? "" : "-4px",
+            //   marginBottom: isMobileView ? "" : "50px",
+            //   width: "200px",
+            // }}
           ></div>
         </div>
       </div>
-      <div className="absolute  left-0 top-[20%] md:top-[0%] w-[450px] h-[300px] md:w-[700px] md:h-[500px] opacity-70 flex items-center -z-10">
+      <div className="absolute left-0 top-[20%] md:top-[0%] w-[450px] h-[300px] md:w-[700px] md:h-[500px] opacity-70 flex items-center -z-10">
         <div>
-          <Image
-            src={ProptyOffPlan}
-            alt=""
-            style={{ marginTop: isMobileView ? "" : "155px" }}
-          />
+          <Image className="md:mt-[155px]" src={ProptyOffPlan} alt="" />
         </div>
       </div>
       <div
-        className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0  overlay-property-color-left"
-        style={{
-          marginLeft: isMobileView ? "" : "200px",
-          marginBottom: isMobileView ? "" : "15px",
-          width: "100px",
-          height: "500px",
-        }}
+        className="hidden md:block w-16 h-[90%] absolute bottom-0 left-0 md:ml-[200px] md:mb-[15px] overlay-property-color-left"
+        // style={{
+        //   marginLeft: isMobileView ? "" : "200px",
+        //   marginBottom: isMobileView ? "" : "15px",
+        //   width: "100px",
+        //   height: "500px",
+        // }}
       ></div>
     </div>
   );

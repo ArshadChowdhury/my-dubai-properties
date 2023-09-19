@@ -3,24 +3,19 @@ import { useEffect } from "react";
 import SignUpForm from "./partials/SignUpForm";
 import PropertyInvestment from "./partials/PropertyInvestment";
 import HeroSection from "./partials/HeroSection";
-import ArrangeMeeting from "../ArrangeMeeting/ArrangeMeeting";
 import Filter from "./partials/Filter";
 import LatestProperty from "./partials/LatestProperty";
 import Payment from "./partials/Payment";
-// import qs from "qs";
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
-// import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const Home = (props) => {
   const { filterListData, homeData, properties } = props;
-  const [{ lang }] = useStateValue();
-  const [{ filterValues, filterOpen, showModal }, dispatch] = useStateValue();
-  const [params, setParams] = useState({});
-  const [subsPopUp, setSubsPopUp] = useState(true);
+  const [{ filterOpen }, dispatch] = useStateValue();
+  // const [params, setParams] = useState({});
+  // const [subsPopUp, setSubsPopUp] = useState(true);
 
   const handleScroll = () => {
     if (filterOpen) {
@@ -35,12 +30,6 @@ const Home = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const query = "";
-
-  // const changeQuery = (query) => {
-  //   dispatch({ type: "setQuery", item: query });
-  // };
 
   const sliders = homeData?.sliders;
   const filterData = filterListData;
@@ -57,9 +46,9 @@ const Home = (props) => {
         <section className="bg-[#000F1D] relative">
           <HeroSection sliders={sliders} />
           <div
-            className={` ${
+            className={`${
               filterOpen ? "flex justify-center items-center" : "hidden"
-            }  md:block`}
+            } md:block`}
           >
             <Filter filterLists={filterData} />
           </div>

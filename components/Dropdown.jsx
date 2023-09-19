@@ -16,19 +16,7 @@ import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";
 
 const Dropdown = (props) => {
-  const [{ lang, propertyToView }, dispatch] = useStateValue();
-  const [isMobileView, setIsMobileView] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [{}, dispatch] = useStateValue();
 
   const developers = data.data.developers.data;
 
@@ -38,12 +26,7 @@ const Dropdown = (props) => {
 
   return (
     <div className="font-extralight text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div
-        style={{ marginTop: isMobileView ? "68px" : "0px" }}
-        className={` w-full h-full ${
-          props.isMobileView ? "" : "dropdown_background"
-        }`}
-      >
+      <div className={`mt-[68px] md:mt-0 md:dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="pl-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">

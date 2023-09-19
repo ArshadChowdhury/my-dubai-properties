@@ -129,7 +129,7 @@ const GridView = (props) => {
         hasMore={hasMore}
       >
         <div className="mb-20">
-          <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-3 my-3 md:my-10 md:px-1">
+          <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
             {propertiesData?.data?.map((property, idx) => (
               <GridItem
                 id={idx + 1}
