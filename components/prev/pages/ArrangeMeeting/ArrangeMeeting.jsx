@@ -118,7 +118,7 @@ const ArrangeMeeting = ({ mobileView }) => {
               <div
                 className="absolute inset-0  bg-opacity-70 z-50"
                 style={{
-                  "background-color": "rgba(0, 0, 0, 0.4)",
+                  backgroundColor: "rgba(0, 0, 0, 0.4)",
                 }}
               ></div>
             </div>
@@ -126,7 +126,7 @@ const ArrangeMeeting = ({ mobileView }) => {
               ref={arrangeRef}
               className={`w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
-                "background-color": "rgba(0, 0, 0, 0.4)",
+                backgroundColor: "rgba(0, 0, 0, 0.4)",
               }}
             >
               {subsPopUp && (

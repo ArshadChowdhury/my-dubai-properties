@@ -1,8 +1,3 @@
-import React, { useState } from "react";
-import { Scrollbars } from "react-custom-scrollbars-2";
-import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useEffect } from "react";
-
 const FilterDropdown = (props) => {
   return (
     <div className="absolute z-[100] w-[325px] md:w-[170px] px-3 border-top-white bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[130px] -ml-10 md:-ml-3 mt-[6px]">

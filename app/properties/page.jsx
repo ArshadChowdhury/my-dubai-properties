@@ -17,7 +17,7 @@ export default function AllProperties() {
       .then((data) => data.data.data);
     return data;
   };
-  const { data: filterListData } = useQuery({
+  const { isLoading, data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -25,6 +25,7 @@ export default function AllProperties() {
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <ViewProperty
+        isLoading={isLoading}
         heading={"All Properties"}
         filterListData={filterListData}
       />

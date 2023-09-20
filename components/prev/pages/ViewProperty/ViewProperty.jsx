@@ -68,7 +68,7 @@ const ViewProperty = (props) => {
     completion,
   ]);
 
-  if (isLoadingPropertiesData) {
+  if (props.isLoading || isLoadingPropertiesData) {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Loading...Please wait...

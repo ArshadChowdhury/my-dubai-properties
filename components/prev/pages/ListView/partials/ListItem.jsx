@@ -130,7 +130,7 @@ const ListItem = (props) => {
 
   const inlineStyles = {
     background: hovered ? "#001324" : "",
-    transition: "background-color 0.3s",
+    transition: "backgroundColor 0.3s",
   };
   // const onMouseEnterHandler = () => {
   //   props.setIsHovered(true);
