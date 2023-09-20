@@ -54,6 +54,7 @@ const ContactForm = (props) => {
                     id="email"
                     placeholder="Email*"
                     className="md:mr-3 border-[0.5px] border-[#BFA04B] px-5 py-2 bg-black bg-opacity-30  placeholder:font-montserrat placeholder:text-white"
+                    required
                   />
                   <div className="bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] ">
                     <button className="px-8 py-2 text-white text-[16.5px] font-montserrat">

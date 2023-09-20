@@ -20,6 +20,7 @@ import { instance } from "../../services/apiFunctions";
 export default function ViewProperty(props) {
   const { heading } = props;
   const pathname = usePathname();
+  const [page, setPage] = useState(1);
   const [{ lang, viewType }, dispatch] = useStateValue();
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
@@ -34,6 +35,20 @@ export default function ViewProperty(props) {
     propertyTypeId,
     developerId,
     completion,
+    page,
+  };
+
+  const fetchMoreData = async () => {
+    setPage((page) => page + 1);
+    const getAllProperties = async () => {
+      const data = await instance
+        .get(`/${lang}/properties`, {
+          timeout: 5000,
+          params: filterParams,
+        })
+        .then((data) => data.data.data.properties);
+      return data;
+    };
   };
 
   const getAllProperties = async () => {
@@ -54,7 +69,7 @@ export default function ViewProperty(props) {
       .then((data) => data.data.data);
     return data;
   };
-  const { data: filterListData } = useQuery({
+  const { isLoading: isLoadingFilterData, data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -81,9 +96,10 @@ export default function ViewProperty(props) {
     developerId,
     completion,
     lang,
+    page,
   ]);
 
-  if (isLoadingPropertiesData) {
+  if (isLoadingPropertiesData || isLoadingFilterData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -137,8 +153,10 @@ export default function ViewProperty(props) {
 
           {viewType === "grid" ? (
             <GridView
+              filterParams={filterParams}
               propertiesData={propertiesData}
               handleShowAll={handleShowAll}
+              fetchMoreData={fetchMoreData}
             />
           ) : (
             <ListView

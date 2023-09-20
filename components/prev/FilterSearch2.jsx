@@ -3,7 +3,6 @@ import FilterSelect from "./FilterSelect";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
 
-import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {

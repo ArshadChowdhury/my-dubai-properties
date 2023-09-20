@@ -12,24 +12,24 @@ const FilterSelect = (props) => {
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
   const developerId = searchParams.get("developers");
-  const allItemsArray = [...props?.selectBy];
+  const allItemsArray = props?.selectBy && [...props?.selectBy];
 
   const getSelectedValue = () => {
-    switch (props.searchBy) {
+    switch (props?.searchBy) {
       case "Property Areas":
-        allItemsArray.unshift({ id: null, areaName: "Property Areas" });
+        allItemsArray?.unshift({ id: null, areaName: "Property Areas" });
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
         );
       case "Development Type":
-        allItemsArray.unshift({ id: null, name: "Development Type" });
+        allItemsArray?.unshift({ id: null, name: "Development Type" });
         return (
           props?.selectBy?.find((item) => item._id === developmentTypeId)
             ?.name || allItemsArray[0].name
         );
       case "Developer Type":
-        allItemsArray.unshift({ id: null, name: "Developer Type" });
+        allItemsArray?.unshift({ id: null, name: "Developer Type" });
         return (
           props?.selectBy?.find((item) => item._id === developerId)?.name ||
           allItemsArray[0].name
