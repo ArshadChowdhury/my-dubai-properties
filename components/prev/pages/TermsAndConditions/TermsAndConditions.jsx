@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import Navbar from "@/components/Navbar";
 import RouteLink from "../../RouteLink";
 import { usePathname } from "next/navigation";
@@ -10,9 +11,11 @@ import { useEffect } from "react";
 import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
+import { useStateValue } from "../../states/StateProvider";
 
 const TermsAndConditions = () => {
   const pathname = usePathname();
+  const [{ lang }] = useStateValue();
 
   const [isMobileView, setIsMobileView] = useState(true);
 
@@ -27,7 +30,7 @@ const TermsAndConditions = () => {
     };
   }, []);
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {isMobileView ? (
         <Navbar2
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
@@ -69,7 +72,7 @@ const TermsAndConditions = () => {
       <div className="mt-28">
         <Footer footerBg={"footer_background"} />
       </div>
-    </>
+    </section>
   );
 };
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterSearch2 from "../../FilterSearch2";
@@ -15,11 +17,10 @@ import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import { instance } from "../../services/apiFunctions";
 
-const ViewProperty = (props) => {
+export default function ViewProperty(props) {
   const { heading } = props;
-  const [{ viewType }] = useStateValue();
   const pathname = usePathname();
-  const [{ lang }, dispatch] = useStateValue();
+  const [{ lang, viewType }, dispatch] = useStateValue();
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
@@ -53,7 +54,7 @@ const ViewProperty = (props) => {
       .then((data) => data.data.data);
     return data;
   };
-  const { isLoading: isLoadingFilterList, data: filterListData } = useQuery({
+  const { data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -79,9 +80,10 @@ const ViewProperty = (props) => {
     propertyTypeId,
     developerId,
     completion,
+    lang,
   ]);
 
-  if (isLoadingFilterList || isLoadingPropertiesData) {
+  if (isLoadingPropertiesData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -102,7 +104,7 @@ const ViewProperty = (props) => {
   };
 
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
         <Navbar2 className={` w-full py-5 bg-[#000F1D] z-50 `} type="inline" />
       </div>
@@ -134,13 +136,11 @@ const ViewProperty = (props) => {
           </div>
 
           {viewType === "grid" ? (
-            // queryParams={queryParams}
             <GridView
               propertiesData={propertiesData}
               handleShowAll={handleShowAll}
             />
           ) : (
-            //  queryParams={queryParams}
             <ListView
               propertiesData={propertiesData}
               handleShowAll={handleShowAll}
@@ -149,8 +149,6 @@ const ViewProperty = (props) => {
         </Skeleton>
       </section>
       <Footer footerBg={"footer_background"} />
-    </>
+    </section>
   );
-};
-
-export default ViewProperty;
+}

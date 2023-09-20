@@ -1,15 +1,5 @@
-"use client";
-
-import React from "react";
 import CookieContent from "@/components/prev/pages/CookiePolicy/partials/CookieContent";
-import { useStateValue } from "@/components/prev/states/StateProvider";
 
-export default function PrivacyPolicy() {
-  const [{ lang }] = useStateValue();
+const PrivacyPolicy = () => <CookieContent />;
 
-  return (
-    <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <CookieContent />
-    </section>
-  );
-}
+export default PrivacyPolicy;

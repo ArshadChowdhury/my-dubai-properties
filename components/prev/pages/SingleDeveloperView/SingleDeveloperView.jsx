@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import RouteLink from "../../RouteLink";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -21,7 +23,6 @@ const SingleDeveloperView = (props) => {
   const pathname = usePathname();
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
-  const [filterList, setFilterList] = useState();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const beds = [1, 2, 3, 4, 5];
   const [isMobileView, setIsMobileView] = useState(true);
@@ -76,7 +77,7 @@ const SingleDeveloperView = (props) => {
     );
   }
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {isMobileView ? (
         <Navbar2 className={`w-full py-5 bg-[#000F1D] z-50 `} type="inline" />
       ) : (
@@ -174,7 +175,7 @@ const SingleDeveloperView = (props) => {
         {/* <PropertyList propertyList={developer.developerProperty.data} /> */}
       </div>
       <Footer footerBg={"footer_background"} />
-    </>
+    </section>
   );
 };
 

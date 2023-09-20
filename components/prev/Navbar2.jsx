@@ -25,7 +25,7 @@ const Navbar2 = (props) => {
     dispatch({ type: "setDropdownOpen", item: dropDown });
   };
 
-  const langList = filterListData?.data?.data?.langList;
+  const langList = filterListData?.langList;
 
   return (
     <section className={props.className}>

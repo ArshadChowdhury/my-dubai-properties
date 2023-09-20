@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 import HeadingText from "./HeadingText";
 import PaymentCircle from "./PaymentItem";
@@ -34,6 +34,11 @@ const PaymentPlan = (props) => {
       description: props.paymentPlan[0].milestone,
     },
   ]);
+  const [mobileView, setMobileView] = useState(false);
+  useEffect(() => {
+    const isMobileView = window.matchMedia("(max-width: 767px)").matches;
+    setMobileView(isMobileView);
+  }, []);
 
   const [panelRef, setPanelRef] = useState(null);
   const paymentPlan = props.paymentPlan.slice(1);
@@ -42,7 +47,7 @@ const PaymentPlan = (props) => {
   const scrollDiv = useRef(null);
 
   const checkHit = () => {
-    if (!props.mobileView) {
+    if (!mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().right;
@@ -103,7 +108,7 @@ const PaymentPlan = (props) => {
   };
 
   useEffect(() => {
-    if (!props.mobileView) {
+    if (!mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().left;
@@ -144,7 +149,7 @@ const PaymentPlan = (props) => {
           />
         </div>
         <div className="w-full relative mt-20">
-          {props.mobileView ? (
+          {mobileView ? (
             <>
               <div className="flex items-center mx-10">
                 <div

@@ -1,3 +1,5 @@
+"use client";
+
 import RouteLink from "../../RouteLink";
 import AboutUsContent from "./partials/AboutContent";
 import ContactForm from "./partials/ContactForm";
@@ -7,11 +9,13 @@ import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useStateValue } from "../../states/StateProvider";
 
 const AboutUs = () => {
   const pathname = usePathname();
+  const [{ lang }] = useStateValue();
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
         <Navbar2
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
@@ -48,7 +52,7 @@ const AboutUs = () => {
       <div className="mt-28">
         <Footer footerBg={"footer_background"} />
       </div>
-    </>
+    </section>
   );
 };
 

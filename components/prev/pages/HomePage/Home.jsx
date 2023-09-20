@@ -1,3 +1,8 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { instance } from "@/components/prev/services/apiFunctions";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useEffect } from "react";
 
 import SignUpForm from "./partials/SignUpForm";
@@ -9,19 +14,61 @@ import Payment from "./partials/Payment";
 import Navbar from "@/components/Navbar";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
-import { useStateValue } from "@/components/prev/states/StateProvider";
 
-const Home = (props) => {
-  const { filterListData, homeData, properties } = props;
-  const [{ filterOpen }, dispatch] = useStateValue();
-  // const [params, setParams] = useState({});
-  // const [subsPopUp, setSubsPopUp] = useState(true);
+const Home = () => {
+  const [{ filterOpen, lang }, dispatch] = useStateValue();
+
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const getAllProperties = async () => {
+    const data = await instance
+      .get(`/${lang}/properties`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data?.properties);
+    return data;
+  };
+
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
 
   const handleScroll = () => {
     if (filterOpen) {
       dispatch({ type: "setFilterOpen", item: false });
     }
   };
+
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
+  const { data: propertiesData, isError: isErrorPropertiesData } = useQuery({
+    queryKey: ["property-list"],
+    queryFn: getAllProperties,
+  });
+
+  const { data: filterListData } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -32,15 +79,30 @@ const Home = (props) => {
     };
   }, []);
 
+  if (isLoadingHomeContent) {
+    return (
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
+        Loading...Please wait...
+      </p>
+    );
+  }
+
+  if (isErrorHomeContent || isErrorPropertiesData) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
+      </p>
+    );
+  }
+
   const sliders = homeData?.sliders;
-  const filterData = filterListData;
 
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <VerticalLine2 />
       <div>
         <Navbar
-          filterListData={filterData}
+          filterListData={filterListData}
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
           type="inline"
         />
@@ -48,12 +110,14 @@ const Home = (props) => {
           <HeroSection sliders={sliders} />
           <div
             className={`${
-              filterOpen ? "flex justify-center items-center" : "hidden"
+              filterOpen
+                ? "flex justify-center items-center"
+                : "hidden md:block"
             }`}
           >
-            <Filter filterLists={filterData} />
+            <Filter filterLists={filterListData} />
           </div>
-          <LatestProperty properties={properties} />
+          <LatestProperty properties={propertiesData} />
           <PropertyInvestment />
           <Payment />
           <SignUpForm popup={true} />
@@ -63,7 +127,7 @@ const Home = (props) => {
       <div className="-mt-6 relative bg-[#000f1d]">
         <Footer home={true} />
       </div>
-    </>
+    </section>
   );
 };
 

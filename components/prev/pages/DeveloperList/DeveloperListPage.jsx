@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
 import DevelopersDescription from "./partials/DevelopersDescription";
-import DeveloperList from "./partials/DeveloperList";
 import DeveloperList2 from "./partials/DeveloperList2";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../../services/apiFunctions";
 import { useStateValue } from "../../states/StateProvider";
-import Navbar from "@/components/Navbar";
 import RouteLink from "../../RouteLink";
 import { usePathname } from "next/navigation";
 import HeadingBox from "../../HeadingBox";
@@ -59,7 +58,7 @@ const DeveloperListPage = (props) => {
   const developersDataLength = developersData?.data?.data?.developers?.count;
 
   return (
-    <>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="relative w-full pt-20 md:pt-28 font-montserrat bg-payment mb-40">
         <Navbar2
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
@@ -91,9 +90,7 @@ const DeveloperListPage = (props) => {
               </div>
             )}
           </div>
-
           <DevelopersDescription />
-
           <DeveloperList2
             developers={developers}
             developersDataLength={developersDataLength}
@@ -101,7 +98,7 @@ const DeveloperListPage = (props) => {
         </Skeleton>
       </div>
       <Footer footerBg={"footer_background"} />
-    </>
+    </section>
   );
 };
 

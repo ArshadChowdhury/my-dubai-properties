@@ -1,14 +1,16 @@
-import React from "react";
+"use client";
 
 import Navbar from "@/components/Navbar";
 import HeadingBox from "@/components/prev/HeadingBox";
 import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import HomeHeading from "@/components/prev/HomeHeading";
 import Footer from "@/components/prev/Footer";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const PrivacyContent = () => {
+  const [{ lang }] = useStateValue();
   return (
-    <section>
+    <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
