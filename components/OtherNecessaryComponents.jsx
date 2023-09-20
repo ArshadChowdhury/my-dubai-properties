@@ -5,12 +5,10 @@ import ArrangeMeeting from "@/components/prev/pages/ArrangeMeeting/ArrangeMeetin
 import FilterModalViewProperty from "@/components/prev/pages/ViewProperty/partials/filterModeViewProperty";
 import BottomMenu from "@/components/prev/BottomMenu";
 import Chat from "@/components/prev/Chat";
-import { useStateValue } from "./prev/states/StateProvider";
 import { useState, useEffect } from "react";
 
 const OtherNecessaryComponents = () => {
   const [mobileView, setMobileView] = useState(false);
-  const [{ lang }] = useStateValue();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   useEffect(() => {
@@ -20,12 +18,9 @@ const OtherNecessaryComponents = () => {
 
   return (
     <>
-      {/* mobileView={mobileView} */}
       <Menu mobileView={mobileView} />
-      {/* mobileView={mobileView} */}
       <ArrangeMeeting mobileView={mobileView} />
       <FilterModalViewProperty
-        // propertyToView={propertyToView}
         isFilterModalOpen={isFilterModalOpen}
         setIsFilterModalOpen={setIsFilterModalOpen}
       />

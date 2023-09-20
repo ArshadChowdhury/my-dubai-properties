@@ -58,7 +58,7 @@ export default function HomePage() {
 
   if (isLoadingHomeContent) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
       </p>
     );

@@ -28,6 +28,7 @@ const Home = (props) => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      dispatch({ type: "setFilterOpen", item: false });
     };
   }, []);
 
@@ -48,7 +49,7 @@ const Home = (props) => {
           <div
             className={`${
               filterOpen ? "flex justify-center items-center" : "hidden"
-            } md:block`}
+            }`}
           >
             <Filter filterLists={filterData} />
           </div>

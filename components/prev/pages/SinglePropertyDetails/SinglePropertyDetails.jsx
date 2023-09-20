@@ -77,22 +77,22 @@ const SinglePropertyDetails = (props) => {
           />
         )}
 
-        <SinglePropertyHeader header={singlePropertyDetails.images} />
+        <SinglePropertyHeader header={singlePropertyDetails?.images} />
         <div className="my-2 md:my-8"></div>
         <SinglePropertyDescription
           filterListData={filterListData}
           property={singlePropertyDetails}
         />
         <VillaFeatures villa={singlePropertyDetails} />
-        <Highlights highlights={singlePropertyDetails.highlights} />
+        <Highlights highlights={singlePropertyDetails?.highlights} />
         <PaymentPlan
           mobileView={props.mobileView}
-          paymentPlan={singlePropertyDetails.paymentPlan}
+          paymentPlan={singlePropertyDetails?.paymentPlan}
         />
-        <PhotoGallery images={singlePropertyDetails.images} />
+        <PhotoGallery images={singlePropertyDetails?.images} />
         {/* <PropertyVideo url={singlePropertyDetails.videos[0].path} /> */}
-        <Amenities amenities={singlePropertyDetails.amenities} />
-        <Nearby nearby={singlePropertyDetails.location} />
+        <Amenities amenities={singlePropertyDetails?.amenities} />
+        <Nearby nearby={singlePropertyDetails?.location} />
         <Downloads />
         <SimilarProperties listView={propertiesData?.data} />
       </div>

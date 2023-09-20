@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
-  const { filterParams } = props;
+  const { filterListData } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 
@@ -16,8 +16,6 @@ const FilterSearch = (props) => {
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
-
-  const filterList = props?.filterListData;
 
   return (
     <section className="relative w-full md:flex justify-between">
@@ -32,7 +30,7 @@ const FilterSearch = (props) => {
         >
           <FilterSelect
             searchBy="Development Type"
-            selectBy={filterList?.developmentTypes}
+            selectBy={filterListData?.developmentTypes}
           />
         </div>
         <div
@@ -45,7 +43,7 @@ const FilterSearch = (props) => {
         >
           <FilterSelect
             searchBy="Developer Type"
-            selectBy={filterList?.developers}
+            selectBy={filterListData?.developers}
           />
         </div>
         <div
@@ -58,7 +56,7 @@ const FilterSearch = (props) => {
         >
           <FilterSelect
             searchBy="Property Areas"
-            selectBy={filterList?.propertyAreas}
+            selectBy={filterListData?.propertyAreas}
           />
         </div>
 

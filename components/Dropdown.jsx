@@ -13,16 +13,21 @@ import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";
 
 const Dropdown = (props) => {
+  const developersData = props.developersData;
   const [{}, dispatch] = useStateValue();
+  const developers = developersData?.developers?.data;
 
-  const developers = data.data.developers.data;
+  const handleClose = () => {
+    dispatch({ type: "setDropdownOpen", item: false });
+  };
 
   const handleArrangeMeeting = (e) => {
+    e.preventDefault();
     dispatch({ type: "setShowModal", item: true });
   };
 
   return (
-    <div className="font-extralight text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+    <div className="font-extralight mt-[68px] md:-mt-1 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
       <div className={`mt-[68px] md:mt-0 md:dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="pl-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
@@ -38,10 +43,14 @@ const Dropdown = (props) => {
                   </h2>
                   <ul className="text-[10.5px]">
                     <li className="uppercase leading-[15.3px]">
-                      <Link href="/about">about us</Link>
+                      <Link href="/about" onClick={handleClose}>
+                        about us
+                      </Link>
                     </li>
                     <li className="uppercase leading-[15.3px]">
-                      <Link href="/contact-with-us">Contact us</Link>
+                      <Link href="/contact-us" onClick={handleClose}>
+                        Contact us
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -56,10 +65,11 @@ const Dropdown = (props) => {
                     DEVELOPERS
                   </h2>
                   <ul className="text-[10.5px]">
-                    {developers.map((developer) => (
+                    {developers?.map((developer) => (
                       <Link
                         href={`/developers/${developer._id}`}
                         key={developer._id}
+                        onClick={handleClose}
                       >
                         <li className="uppercase leading-[15.3px]">
                           {developer.name}
@@ -67,7 +77,8 @@ const Dropdown = (props) => {
                       </Link>
                     ))}
                     <Link
-                      href={"/developer-list"}
+                      href={"/developers"}
+                      onClick={handleClose}
                       className="uppercase leading-[15.3px]"
                     >
                       ALL DEVELOPERS
@@ -87,18 +98,28 @@ const Dropdown = (props) => {
                     PROJECTS
                   </h2>
                   <ul className="text-[10.5px]">
-                    <Link href="/properties/ready">
+                    <Link
+                      href={
+                        "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="uppercase leading-[15.3px]">READY</li>
                     </Link>
-                    <Link href="/properties/off-plan">
+                    <Link
+                      href={
+                        "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="uppercase leading-[15.3px]">OFF PLAN</li>
                     </Link>
-                    <Link href="/properties">
+                    <Link href="/properties" onClick={handleClose}>
                       <li className="uppercase leading-[15.3px]">
                         ALL PROJECTS
                       </li>
                     </Link>
-                    <Link href="/properties">
+                    <Link href="/properties" onClick={handleClose}>
                       <li className="uppercase leading-[15.3px]">
                         FLOOR PLANS
                       </li>

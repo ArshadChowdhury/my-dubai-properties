@@ -45,8 +45,6 @@ const SingleDeveloperView = (props) => {
     enabled: !!developerId,
   });
 
-  console.log(singleDevData);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);

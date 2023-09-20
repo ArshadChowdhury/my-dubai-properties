@@ -75,16 +75,14 @@ const NextStep = (props) => {
       <div className="flex w-full vector_background h-full">
         <div className="h-full w-full md:grid grid-cols-2 py-[3rem] px-[3rem]">
           <div
-            className={`relative pl-5`}
-            // ${
-            //   mobileDataButtonPosition ? "hidden" : ""
-            // }
+            className={`relative pl-5 `}
+            // ${              mobileDataButtonPosition ? "hidden" : ""            }
           >
             <h3 className="text-white pb-5 text-lg">Select a Date</h3>
             <div className="pr-[2rem]">
               <div className=" px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
                 <span
-                  className=" cursor-pointer"
+                  className="cursor-pointer"
                   onClick={() => setToday(today.month(today.month() - 1))}
                 >
                   <Image src={leftArrow} alt="" />
@@ -114,43 +112,49 @@ const NextStep = (props) => {
               </div>
               <div className="grid grid-cols-7">
                 {generator(today.month(), today.year()).map(
-                  ({ currentMonth, date, today }, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="h-8 grid place-content-center text-[10px]"
-                      >
-                        <p
-                          className={`${
-                            dayjs(date).isBefore(dayjs(), "day") &&
-                            dayjs(date).isBefore(dayjs(), "day")
-                              ? "text-slate-500 hover:bg-red-500 hover:text-white cursor-not-allowed"
-                              : today
-                              ? `cursor-pointer  ${
-                                  active
-                                    ? ""
-                                    : "border rounded-md bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68]"
-                                } text-white`
-                              : "text-white hover:bg-gradient-to-r  from-[#DFBF68] via-[#BFA04B] to-[#DFBF68] cursor-pointer"
-                          } hover:border rounded-sm text-white text-lg md:text-sm`}
-                          onClick={
-                            dayjs(date).isBefore(dayjs(), "day")
-                              ? null
-                              : () => handleSelectDate(date)
+                  ({ currentMonth, date, today }, index) => (
+                    <div
+                      key={index}
+                      className="h-8 grid place-content-center text-[10px]"
+                    >
+                      <button
+                        disabled={
+                          dayjs(date).isBefore(dayjs(), "day") && !today
+                        }
+                        className={`${
+                          dayjs(date).isBefore(dayjs(), "day") && !today
+                            ? "text-slate-500 cursor-not-allowed hover:bg-red-400"
+                            : today
+                            ? `cursor-pointer ${
+                                active
+                                  ? ""
+                                  : "border rounded-md bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68]"
+                              } text-white hover:bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68]`
+                            : "text-white hover:bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68] cursor-pointer"
+                        } hover:border rounded-sm text-white text-lg md:text-sm`}
+                        onClick={() => {
+                          if (!dayjs(date).isBefore(dayjs(), "day")) {
+                            handleSelectDate(date);
                           }
+                        }}
+                      >
+                        <span
+                          className={`${
+                            cn(currentMonth) ? "" : "invisible"
+                          } p-[.3rem] ${
+                            dayjs(date).date() === selectDate.date() &&
+                            dayjs(date).month() === selectDate.month() &&
+                            dayjs(date).year() === selectDate.year()
+                              ? "bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68] rounded-sm"
+                              : null
+                          }`}
+                          onClick={() => handleSelectDate(date)}
                         >
-                          <span
-                            className={`${
-                              cn(currentMonth) ? "" : "invisible"
-                            } p-[.3rem]`}
-                            onClick={() => handleSelectDate(date)}
-                          >
-                            {dayjs(date).date()}
-                          </span>
-                        </p>
-                      </div>
-                    );
-                  }
+                          {dayjs(date).date()}
+                        </span>
+                      </button>
+                    </div>
+                  )
                 )}
               </div>
             </div>
@@ -206,9 +210,8 @@ const NextStep = (props) => {
                   <Image src={world} alt="" />
                 </span>
                 <p className="text-white text-center py-1 border-0 rounded text-sm">
-                  {props.timeZone}
+                  {props.timeZone[0]} / {props.timeZone[1]}
                 </p>
-
                 <span
                   className=" cursor-pointer"
                   onClick={props.handleTimezonePopup}
@@ -217,11 +220,11 @@ const NextStep = (props) => {
                 </span>
                 {props.isTimezonePopupOpen && (
                   <div className="absolute bottom-full left-0 h-[220px] overflow-y-scroll overflow-x-hidden w-full px-5 bg-[#0A223A] pt-5 text-sm text-white">
-                    {props.timezones.map((timezone, index) => (
+                    {props.timezones.map((timezone) => (
                       <p
+                        key={timezone}
                         className="px-5 cursor-pointer hover:text-[#dcb558] shadow-sm py-2"
                         onClick={(e) => handleTime(timezone)}
-                        key={timezone}
                       >
                         {timezone}
                       </p>

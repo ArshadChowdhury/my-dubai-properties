@@ -3,8 +3,29 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import filter from "../../../assets/images/global/filter.png";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
-const FilterSearchInput = (props) => {
+const FilterSearchInput = () => {
+  const [{ filterOpen }, dispatch] = useStateValue();
+
+  const handleScroll = () => {
+    if (filterOpen) {
+      dispatch({ type: "setFilterOpen", item: false });
+    }
+  };
+
+  console.log(filterOpen);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      dispatch({ type: "setFilterOpen", item: false });
+    };
+  }, []);
+
   return (
     <div className="mb-1 mt-4 w-full">
       <div className="relative mb-1 flex w-full flex-wrap items-stretch">
@@ -25,7 +46,7 @@ const FilterSearchInput = (props) => {
           id="button-addon1"
           data-te-ripple-init
           data-te-ripple-color="light"
-          onClick={() => props.setIsFilterModalOpen(true)}
+          onClick={() => dispatch({ type: "setFilterOpen", item: true })}
         >
           <Image src={filter} alt="filter" />
           <span className="ml-2 font-montserrat font-semibold">Filter</span>

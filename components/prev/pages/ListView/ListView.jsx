@@ -98,7 +98,7 @@ const ListView = (props) => {
         // next={fetchMoreData}
         hasMore={hasMore}
       >
-        <div className=" mb-20">
+        <div className="mb-20">
           <div className="w-full flex flex-wrap my-3 md:my-10 px-1">
             {propertiesData?.data?.map((property, idx) => (
               <ListItem

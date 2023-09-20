@@ -6,7 +6,9 @@ const HeadingBox = (props) => {
       <div
         className={`h-full w-1 bg-[#F1BF3F] absolute left-0 top-0 animate-pulse ${props.hidden}`}
       ></div>
-      <h1 className={`font-roboto text-3xl text-white ${props.textPosition}`}>
+      <h1
+        className={`font-roboto text-2xl md:text-3xl text-white ${props.textPosition}`}
+      >
         {props.heading}
       </h1>
     </div>

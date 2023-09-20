@@ -3,7 +3,6 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import DeveloperListItem from "./DeveloperListItem";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import DownArrow from "@/components/prev/DownArrow";
 
@@ -18,15 +17,7 @@ const DeveloperList = (props) => {
   const [isMobileView, setIsMobileView] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
     setAllDev(developers);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   // Fetching more developers data
@@ -76,7 +67,7 @@ const DeveloperList = (props) => {
         hasMore={hasMore}
       >
         <div className="relative grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
-          {allDev.map((developer, index) => (
+          {allDev?.map((developer, index) => (
             <DeveloperListItem
               key={developer._id}
               developerLogo={developer.logo}

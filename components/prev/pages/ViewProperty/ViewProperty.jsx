@@ -16,7 +16,7 @@ import Footer from "../../Footer";
 import { instance } from "../../services/apiFunctions";
 
 const ViewProperty = (props) => {
-  const { filterListData, heading } = props;
+  const { heading } = props;
   const [{ viewType }] = useStateValue();
   const pathname = usePathname();
   const [{ lang }, dispatch] = useStateValue();
@@ -45,6 +45,19 @@ const ViewProperty = (props) => {
     return data;
   };
 
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data.data.data);
+    return data;
+  };
+  const { isLoading: isLoadingFilterList, data: filterListData } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
+
   const {
     isLoading: isLoadingPropertiesData,
     data: propertiesData,
@@ -68,9 +81,9 @@ const ViewProperty = (props) => {
     completion,
   ]);
 
-  if (props.isLoading || isLoadingPropertiesData) {
+  if (isLoadingFilterList || isLoadingPropertiesData) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
       </p>
     );
@@ -112,15 +125,10 @@ const ViewProperty = (props) => {
             />
             <div className="flex items-center">
               <div className="md:hidden">
-                <FilterSearchInput
-                  setIsFilterModalOpen={props.setIsFilterModalOpen}
-                />
+                <FilterSearchInput />
               </div>
               <div className="hidden md:block">
-                <FilterSearch2
-                  filterParams={filterParams}
-                  filterListData={filterListData}
-                />
+                <FilterSearch2 filterListData={filterListData} />
               </div>
             </div>
           </div>

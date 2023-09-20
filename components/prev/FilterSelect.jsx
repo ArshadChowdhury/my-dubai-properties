@@ -12,7 +12,7 @@ const FilterSelect = (props) => {
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
   const developerId = searchParams.get("developers");
-  const allItemsArray = [...props.selectBy];
+  const allItemsArray = [...props?.selectBy];
 
   const getSelectedValue = () => {
     switch (props.searchBy) {

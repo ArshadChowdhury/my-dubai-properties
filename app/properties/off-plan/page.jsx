@@ -6,19 +6,14 @@ import { instance } from "@/components/prev/services/apiFunctions";
 
 import ViewProperty from "@/components/prev/pages/ViewProperty/ViewProperty";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function AllProperties() {
   const [{ lang, filterValues }, dispatch] = useStateValue();
+  const router = useRouter();
 
   useEffect(() => {
-    dispatch({
-      type: "setFilterValues",
-      item: { ...filterValues, developmentTypes: "63feff816023b40ac4385fba" },
-    });
-    return () => {
-      dispatch({ type: "setFilterValues", item: false });
-    };
+    router.push("off-plan?developmentTypes=63feff816023b40ac4385fba");
   }, []);
 
   const getAllFilter = async () => {

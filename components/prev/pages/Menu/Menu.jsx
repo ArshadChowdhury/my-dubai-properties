@@ -4,7 +4,9 @@ import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import the ScrollTrigger plugin
 import { useStateValue } from "../../states/StateProvider";
-import Dropdown from "./partials/Dropdown";
+import Dropdown from "@/components/Dropdown";
+import { instance } from "../../services/apiFunctions";
+import { useQuery } from "@tanstack/react-query";
 
 import backsapce from "../../assets/images/global/backspace-outline.png";
 import Image from "next/image";
@@ -12,23 +14,25 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const Menu = (props) => {
-  const [{ isDropdownMenuOpen, showModal }, dispatch] = useStateValue();
+  const [{ isDropdownMenuOpen, showModal, lang }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(true);
   const menuRef = useRef();
 
-  // let location = useLocation();
+  const getAllDevelopers = async () => {
+    const data = await instance
+      .get(`/${lang}/developers`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      dispatch;
-    };
-  }, []);
+  const { data: developersData } = useQuery({
+    queryKey: ["get-developers"],
+    queryFn: getAllDevelopers,
+  });
+
+  // let location = useLocation();
 
   useEffect(() => {
     closeDropdown();
@@ -51,7 +55,7 @@ const Menu = (props) => {
     };
 
     document.addEventListener("mousedown", handle);
-    window.addEventListener("scroll", handle);
+    document.addEventListener("scroll", handle);
 
     return () => {
       document.removeEventListener("mousedown", handle);
@@ -165,7 +169,10 @@ const Menu = (props) => {
       >
         <Image src={backsapce} alt="backspace" />
       </span>
-      <Dropdown isMobileView={props.mobileView} />
+      <Dropdown
+        developersData={developersData}
+        isMobileView={props.mobileView}
+      />
     </div>
   );
 };
