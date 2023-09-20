@@ -15,8 +15,6 @@ const FilterSearchInput = () => {
     }
   };
 
-  console.log(filterOpen);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 

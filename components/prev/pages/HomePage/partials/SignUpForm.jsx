@@ -72,11 +72,17 @@ const SignUpForm = (popup) => {
                   className="z-10 pl-5  md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
                   value={email}
                   onChange={handleChange}
+                  required
                 />
 
                 <div className="z-0 absolute w-8 h-8 bg-[#333F4A] border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>
               </div>
-              <div className="md:ml-10 " onClick={() => setSubsPopUp(popup)}>
+              <div
+                className="md:ml-10"
+                onClick={() => {
+                  email.length > 0 && setSubsPopUp(popup) && setEmail("");
+                }}
+              >
                 <BtnHexagon btnText="Subscribe" type="submit" />
               </div>
             </form>
@@ -106,7 +112,9 @@ const SignUpForm = (popup) => {
             style={{ top: "0px", left: "28%" }}
           >
             <Image
-              src="/src/assets/images/global/footer-logo.png"
+              height={150}
+              width={150}
+              src="/images/global/footer-logo.png"
               alt=""
               className="h-[100px] my-2 pb-2 "
             />

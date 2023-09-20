@@ -3,11 +3,10 @@ import FilterSelect from "./FilterSelect";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
 
-import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
-  const { filterListData } = props;
+  const { filterListData, setPage } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 
@@ -29,6 +28,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            setPage={setPage}
             searchBy="Development Type"
             selectBy={filterListData?.developmentTypes}
           />
@@ -42,6 +42,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            setPage={setPage}
             searchBy="Developer Type"
             selectBy={filterListData?.developers}
           />
@@ -55,6 +56,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            setPage={setPage}
             searchBy="Property Areas"
             selectBy={filterListData?.propertyAreas}
           />

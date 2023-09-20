@@ -64,6 +64,7 @@ const SignUpForm2 = () => {
                 className="z-10 pl-5  md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
                 value={email}
                 onChange={handleChange}
+                required
               />
 
               <div className="z-0 absolute w-8 h-8 bg-[#333F4A] border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>

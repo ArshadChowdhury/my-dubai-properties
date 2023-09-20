@@ -150,6 +150,8 @@ const ArrangeMeeting = ({ mobileView }) => {
                   className={`cursor-pointer fixed flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-footer`}
                 >
                   <Image
+                    height={300}
+                    width={300}
                     src="/src/assets/images/global/footer-logo.png"
                     alt=""
                     className="h-[100px] my-2 pb-2 "
