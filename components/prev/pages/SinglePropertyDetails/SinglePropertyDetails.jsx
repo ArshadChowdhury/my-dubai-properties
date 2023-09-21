@@ -179,6 +179,7 @@ const SinglePropertyDetails = () => {
         <Downloads />
         <SimilarProperties listView={propertiesData?.data} />
       </div>
+
       <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>
   );

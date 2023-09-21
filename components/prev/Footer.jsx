@@ -7,31 +7,38 @@ import Link from "next/link";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import Image from "next/image";
 
+function camalize(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+}
+
 const Footer = ({ footerBg, home, homeData }) => {
   const homeDatas = homeData?.lang?.footer;
   const [uiVisibility, setUIVisibility] = useState({
     whyUs: false,
-    offPlanProperties: false,
+    developers: false,
     featuredProjects: false,
-    propertyTypes: false,
+    propertiesForSale: false,
   });
 
   const toggleUIVisibility = (element) => {
+    const camelCaseId = camalize(element.id);
+
     setUIVisibility((prevState) => {
       const updatedVisibility = {};
 
       for (const key in prevState) {
-        if (key === element) {
+        if (key === camelCaseId) {
           updatedVisibility[key] = !prevState[key];
         } else {
           updatedVisibility[key] = false;
         }
       }
-
+      console.log(updatedVisibility);
       return updatedVisibility;
     });
   };
-
   const uiElements = [
     {
       id: homeDatas?.whyUs,
@@ -85,39 +92,37 @@ const Footer = ({ footerBg, home, homeData }) => {
           <div className="footer_background_home2 absolute bottom-0 w-full h-full"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">
             <div className="md:flex justify-between py-10">
-              {uiElements.map((element, idx) => {
-                return (
-                  <div key={idx} className="text-white">
-                    <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">
-                      <h1 className="font-montserrat  md:text-xl uppercase ">
-                        {element.title}
-                      </h1>
-                      <span
-                        className="md:hidden z-10"
-                        onClick={() => toggleUIVisibility(element.id)}
-                      >
-                        {uiVisibility[element.id] ? (
-                          <AiOutlineMinusCircle />
-                        ) : (
-                          <AiOutlinePlusCircle />
-                        )}
-                      </span>
-                    </div>
-                    <ul className="hidden lg:block font-montserrat leading-7">
+              {uiElements.map((element, idx) => (
+                <div key={idx} className="text-white">
+                  <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">
+                    <h1 className="font-montserrat  md:text-xl uppercase ">
+                      {element.title}
+                    </h1>
+                    <span
+                      className="md:hidden z-10"
+                      onClick={() => toggleUIVisibility(element)}
+                    >
+                      {uiVisibility[camalize(element?.id)] ? (
+                        <AiOutlineMinusCircle />
+                      ) : (
+                        <AiOutlinePlusCircle />
+                      )}
+                    </span>
+                  </div>
+                  <ul className="hidden lg:block font-montserrat leading-7">
+                    {element.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  {uiVisibility[camalize(element.id)] && (
+                    <ul className="md:hidden font-montserrat leading-7 mb-7">
                       {element.items.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
-                    {uiVisibility[element.id] && (
-                      <ul className=" md:hidden font-montserrat leading-7 mb-7">
-                        {element.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                );
-              })}
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
