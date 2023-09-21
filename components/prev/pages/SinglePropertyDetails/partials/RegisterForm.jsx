@@ -5,6 +5,7 @@ import { useStateValue } from "../../../states/StateProvider";
 import { useState } from "react";
 
 const RegisterForm = (props) => {
+  const registerData = props?.homeData?.lang?.enquiryForm;
   // const [name, setName]=useState("")
   // const [gmail, setGmail] = useState("");
   // const [phone, setPhone]=useState("")
@@ -12,13 +13,13 @@ const RegisterForm = (props) => {
   // const[des, setDes]
   const [{ lang }] = useStateValue();
   const { register, handleSubmit } = useForm();
-  const langList = props?.filterListData?.langList;
+  const langList = props?.homeData?.langList;
 
   return (
     <div className="border-top-white bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md  text-center flex justify-center py-3 z-[20]">
       <div className="w-full h-auto">
         <h1 className="font-montserrat text-[13px] leading-[150%] text-white">
-          {props.propertyName} <br /> Register Your Interest
+          {props.propertyName} <br /> {registerData?.register}
         </h1>
         <form action="" className="mt-3" onSubmit={handleSubmit((data) => {})}>
           <div className="flex items-center">
@@ -26,7 +27,7 @@ const RegisterForm = (props) => {
               type="text"
               {...register("name", { required: true })}
               id="name"
-              placeholder="Enter Your Name"
+              placeholder={registerData?.placeholderName}
               className="w-full px-5 py-2 rounded-md mb-2 placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
             />
           </div>
@@ -35,7 +36,7 @@ const RegisterForm = (props) => {
               type="email"
               {...register("email", { required: true })}
               id="email"
-              placeholder="Enter Your Email"
+              placeholder={registerData?.placeholderEmail}
               className="w-full px-5 py-2 rounded-md mb-2 placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
             />
           </div>
@@ -45,7 +46,7 @@ const RegisterForm = (props) => {
               {...register("phone")}
               name="phone"
               id="phone"
-              placeholder="Phone Number"
+              placeholder={registerData?.placeholderPhone}
               className="w-full px-5 py-2 rounded-md mb-2 placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
             />
           </div>
@@ -57,7 +58,7 @@ const RegisterForm = (props) => {
               className="w-full px-5 py-3 rounded-md mb-2 font-montserrat text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-gray-400 focus:text-[#f1bf3f]"
             >
               <option className="rounded-2xl font-montserrat text-[9.5px] text-[#f1bf3f] ">
-                Select a Language
+                {registerData?.placeholderLanguage}
               </option>
               {langList?.map((lang) => (
                 <option
@@ -72,7 +73,7 @@ const RegisterForm = (props) => {
           </div>
           <div className="flex items-center">
             <textarea
-              placeholder="Description"
+              placeholder={registerData?.placeholderDescription}
               {...register("des")}
               name="description"
               id="description"
@@ -86,7 +87,7 @@ const RegisterForm = (props) => {
             style={{ borderRadius: "4px" }}
             className="w-full text-white py-2 font-montserrat uppercase bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]"
           >
-            Submit Your Interest
+            {registerData?.register}
           </button>
         </form>
       </div>

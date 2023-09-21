@@ -90,7 +90,7 @@ const SinglePropertyDescription = (props) => {
         </div>
         <div className="xl:basis-[24.7%] z-10 mt-10 md:mt-0 px-3 md:px-0 md:mr-3">
           <RegisterForm
-            filterListData={props.filterListData}
+            homeData={props.homeData}
             propertyName={propertyDetails.propertyName}
           />
         </div>

@@ -14,8 +14,23 @@ const Footer = ({ footerBg, home, homeData }) => {
     offPlanProperties: false,
     featuredProjects: false,
     propertyTypes: false,
-    // Add more elements as needed
   });
+
+  const toggleUIVisibility = (element) => {
+    setUIVisibility((prevState) => {
+      const updatedVisibility = {};
+
+      for (const key in prevState) {
+        if (key === element) {
+          updatedVisibility[key] = !prevState[key];
+        } else {
+          updatedVisibility[key] = false;
+        }
+      }
+
+      return updatedVisibility;
+    });
+  };
 
   const uiElements = [
     {
@@ -54,24 +69,7 @@ const Footer = ({ footerBg, home, homeData }) => {
         homeDatas?.featuredProject5,
       ],
     },
-    // Add more elements as needed
   ];
-
-  const toggleUIVisibility = (element) => {
-    setUIVisibility((prevState) => {
-      const updatedVisibility = {};
-
-      for (const key in prevState) {
-        if (key === element) {
-          updatedVisibility[key] = !prevState[key];
-        } else {
-          updatedVisibility[key] = false;
-        }
-      }
-
-      return updatedVisibility;
-    });
-  };
 
   return (
     <footer className="my-20">
@@ -87,7 +85,7 @@ const Footer = ({ footerBg, home, homeData }) => {
           <div className="footer_background_home2 absolute bottom-0 w-full h-full"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">
             <div className="md:flex justify-between py-10">
-              {uiElements?.map((element, idx) => {
+              {uiElements.map((element, idx) => {
                 return (
                   <div key={idx} className="text-white">
                     <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">

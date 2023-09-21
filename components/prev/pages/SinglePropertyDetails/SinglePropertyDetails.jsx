@@ -30,6 +30,15 @@ const SinglePropertyDetails = () => {
   const propertiesUrl = pathname.split("/");
   const propertyId = propertiesUrl[propertiesUrl.length - 1];
 
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
   const getAllFilter = async () => {
     const data = await instance
       .get(`/${lang}/data/filter-list`, {
@@ -57,28 +66,21 @@ const SinglePropertyDetails = () => {
     return data;
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 500 && window.innerWidth < 768) {
-        setNav(false);
-      } else if (window.scrollY > 980) {
-        setNav(false);
-      } else {
-        setNav(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+    refetch,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
 
   const {
     isLoading,
     data: singleProperty,
     isError,
+    refetch: singlePropertyRefetch,
   } = useQuery({
     queryKey: ["single-property-details", propertyId],
     queryFn: getSingleProperty,
@@ -98,16 +100,35 @@ const SinglePropertyDetails = () => {
     queryFn: getAllFilter,
   });
 
-  if (isLoading || isLoadingPropertiesData) {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500 && window.innerWidth < 768) {
+        setNav(false);
+      } else if (window.scrollY > 980) {
+        setNav(false);
+      } else {
+        setNav(true);
+      }
+    };
+    singlePropertyRefetch();
+    refetch();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lang]);
+
+  if (isLoading || isLoadingPropertiesData || isLoadingHomeContent) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
       </p>
     );
   }
 
-  if (isError || isPropertiesError) {
-    <p className="h-screen text-4xl flex justify-center items-center text-white">
+  if (isError || isPropertiesError || isErrorHomeContent) {
+    <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
       Something went wrong...
     </p>;
   }
@@ -120,18 +141,21 @@ const SinglePropertyDetails = () => {
         <div className="md:hidden">
           <Navbar2
             filterListData={filterListData}
+            homeData={homeData}
             className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
             type="inline"
           />
         </div>
         {nav ? (
           <Navbar
+            homeData={homeData}
             className={`absolute top-0 left-0  w-full py-5 z-20`}
             type="inline"
             filterListData={filterListData}
           />
         ) : (
           <Navbar2
+            homeData={homeData}
             filterListData={filterListData}
             className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
             type="inline"
@@ -141,6 +165,7 @@ const SinglePropertyDetails = () => {
         <SinglePropertyHeader header={singlePropertyDetails?.images} />
         <div className="my-2 md:my-8"></div>
         <SinglePropertyDescription
+          homeData={homeData}
           filterListData={filterListData}
           property={singlePropertyDetails}
         />
@@ -154,7 +179,7 @@ const SinglePropertyDetails = () => {
         <Downloads />
         <SimilarProperties listView={propertiesData?.data} />
       </div>
-      <Footer footerBg={"footer_background"} />
+      <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>
   );
 };
