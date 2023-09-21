@@ -5,6 +5,7 @@ import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const FilterModal = (props) => {
+  const { filterListData, setPage } = props;
   const [{ filterValuesMob }, dispatch] = useStateValue();
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -32,17 +33,7 @@ const FilterModal = (props) => {
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
   const handleReset = () => {
-    dispatch({
-      type: "setFilterSelectReset",
-      item: true,
-    });
-
-    setTimeout(() => {
-      dispatch({
-        type: "setFilterSelectReset",
-        item: false,
-      });
-    }, 1000);
+    props.setIsFilterModalOpen(false);
   };
 
   const hadleSubmit = () => {
@@ -56,27 +47,15 @@ const FilterModal = (props) => {
   };
 
   return props.isFilterModalOpen ? (
-    <div
-      style={{ "z-index": "100" }}
-      className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900"
-    >
-      <div className="w-[75%] h-[320px] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
-        <FilterSearch
-          title={
-            props.propertyToView === "ready"
-              ? "Ready Properties"
-              : props.propertyToView === "off-plan"
-              ? "Off Plan Properties"
-              : "All Properties"
-          }
-        />
-        <div className={"flex px-5 py-2 border-t justify-between "}>
-          <div onClick={hadleSubmit} className="mr-2 basis-1/2 ">
-            <BtnItem btnText="search" />
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900 z-[100]">
+      <div className="w-[75%] h-[310px] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
+        <FilterSearch setPage={setPage} filterListData={filterListData} />
+        <div className={"flex px-5 py-2 border-t justify-between items-center"}>
+          <div onClick={hadleSubmit} className="mr-2 basis-1/2">
+            <BtnItem btnText="search" to="#" />
           </div>
-
           <div onClick={handleReset} className="ml-2 basis-1/2">
-            <BtnItemOutline btnText="Discard" />
+            <BtnItemOutline to="#" btnText="Discard" />
           </div>
         </div>
       </div>

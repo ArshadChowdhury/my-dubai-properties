@@ -6,7 +6,8 @@ import PaymentHeading from "@/components/prev/PaymentHeading";
 import paymentBottom from "../../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
 
-const Payment = () => {
+const Payment = (props) => {
+  const homeData = props.homeData.lang.paymentMethod;
   const [isMobileView, setIsMobileView] = useState(true);
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const Payment = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  console.log(homeData);
   return (
     <section>
       <Skeleton className="w-full md:my-12 mt-20 mb-10 relative">
@@ -27,19 +30,17 @@ const Payment = () => {
         </div>
         <div className="w-full md:w-1/2 px-5 md:mt-20">
           <p className="text-white text-[16.5px] font-montserrat font-extralight -mt-[15px]">
-            Figma ipsum component variant main layer. Duplicate ellipse draft
-            scrolling move select ipsum link. Font image boolean library invite
-            hand create. Ipsum image text bold strikethrough.
+            {homeData?.text}
           </p>
           <div className="w-full mt-10">
             <div className="w-full flex mt-10">
-              <PaymentHeading title="Cash" />
+              <PaymentHeading title={homeData?.cash} />
             </div>
             <div className="w-full flex justify-end md:justify-center mt-10">
-              <PaymentHeading title="Crypto" />
+              <PaymentHeading title={homeData?.crypto} />
             </div>
             <div className="w-full flex md:justify-end mt-10">
-              <PaymentHeading title="Mortgage" />
+              <PaymentHeading title={homeData?.mortgage} />
             </div>
           </div>
         </div>

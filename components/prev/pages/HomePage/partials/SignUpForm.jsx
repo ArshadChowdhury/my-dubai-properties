@@ -4,11 +4,11 @@ import BtnHexagon from "@/components/prev/BtnHexagon";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-const SignUpForm = (popup) => {
+const SignUpForm = (props) => {
+  const homeData = props?.homeData?.lang?.newsletter;
   const [email, setEmail] = useState("");
   const [subsPopUp, setSubsPopUp] = useState(false);
   const [isMobileView, setIsMobileView] = useState(true);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
@@ -38,13 +38,9 @@ const SignUpForm = (popup) => {
     <div className="relative">
       <section>
         <Skeleton>
-          <div
-            className="w-full h-full flex flex-col justify-center text-center items-center mt-3 px-3"
-            style={{ marginBottom: isMobileView ? "180px" : "250px" }}
-          >
+          <div className="w-full h-full flex flex-col justify-center text-center items-center mt-3 mb-[180px] md:mb-[250px] px-3">
             <h1 className="text-white font-montserrat text-[16px] md:text-[1.375rem] font-light">
-              Sign up for our exclusive updates and information about the newest
-              projects in Dubai
+              {homeData?.title}
             </h1>
 
             <form
@@ -68,7 +64,7 @@ const SignUpForm = (popup) => {
                 <input
                   type="email"
                   name="email"
-                  placeholder={`EMAIL*`}
+                  placeholder={homeData?.email}
                   className="z-10 pl-5  md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
                   value={email}
                   onChange={handleChange}
@@ -80,10 +76,10 @@ const SignUpForm = (popup) => {
               <div
                 className="md:ml-10"
                 onClick={() => {
-                  email.length > 0 && setSubsPopUp(popup) && setEmail("");
+                  email.length > 0 && setSubsPopUp(props.popup) && setEmail("");
                 }}
               >
-                <BtnHexagon btnText="Subscribe" type="submit" />
+                <BtnHexagon btnText={homeData?.button} type="submit" />
               </div>
             </form>
           </div>
@@ -118,11 +114,8 @@ const SignUpForm = (popup) => {
               alt=""
               className="h-[100px] my-2 pb-2 "
             />
-            <h1 className="text-xl">Thanks for subscribing us.</h1>
-            <p>
-              We&apos;d like to show you notifictions for the latest news and
-              updates
-            </p>
+            <h1 className="text-xl">{homeData?.submitTextTitle}</h1>
+            <p>{homeData?.submitTextSubTitle}</p>
           </motion.div>
         )}
       </AnimatePresence>

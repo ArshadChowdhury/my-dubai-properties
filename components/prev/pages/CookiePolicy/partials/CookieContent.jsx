@@ -4,9 +4,12 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/prev/Footer";
 import { useStateValue } from "@/components/prev/states/StateProvider";
+import RouteLink from "@/components/prev/RouteLink";
+import { usePathname } from "next/navigation";
 
 const CookieContent = () => {
   const [{ lang }] = useStateValue();
+  const pathname = usePathname();
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -14,7 +17,14 @@ const CookieContent = () => {
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
       />
-      <Skeleton className="pt-24 px-5">
+      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28 md:mt-10 lg:mt-0">
+        <RouteLink
+          locationName={pathname}
+          buttonHide={"true"}
+          marginBottom="mb-12 md:mb-0"
+        />
+      </div>
+      <Skeleton className="md:mt-5 px-5">
         <div className="pt-3 text-white font-montserrat">
           <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
             What are cookies?

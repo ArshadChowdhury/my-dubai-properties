@@ -7,65 +7,49 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import DownArrow from "@/components/prev/DownArrow";
 
 const DeveloperList = (props) => {
-  const { developers, developersDataLength } = props;
-  const [filterData, setFilterData] = useState([]);
-  const [allDev, setAllDev] = useState([]);
-  const [dataLimit, setDataLimit] = useState(null);
-  const [showArrow, setShowArrow] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const { developers, fetchMoreData, page } = props;
+  // const [filterData, setFilterData] = useState([]);
 
-  const [isMobileView, setIsMobileView] = useState(true);
+  const [allDev, setAllDev] = useState([]);
+  // const [dataLimit, setDataLimit] = useState(null);
+
+  //   const [isMobileView, setIsMobileView] = useState(true);
+  const totalPages = Math.ceil(
+    developers?.developers?.count / developers?.developers?.size
+  );
+  const hasNextPage = page < totalPages;
+
+  const firstDevData = developers?.developers?.data;
 
   useEffect(() => {
-    setAllDev(developers);
+    setAllDev(developers?.developers?.data);
   }, []);
 
-  // Fetching more developers data
-  // const fetchMore = () => {
-  //   let pageNumber = 2;
-  //   return function () {
-  //     axios
-  //       .get(
-  //         `http://52.77.121.171:3008/api/v1/en/developers?page=${pageNumber}&size=8`
-  //       )
-  //       .then((response) => {
-  //         setAllDev(allDev.concat(response.data.data.developers.data));
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //     pageNumber += 1;
-  //   };
-  // };
-
-  // const fetchMoreData = fetchMore();
-
-  // // Fetching developer data
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://52.77.121.171:3008/api/v1/en/developers?page=1&size=8`)
-  //     .then((response) => {
-  //       setAllDev(response.data.data.developers.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (allDev.length == props.developersDataLength) {
-  //     setShowArrow(false);
-  //   }
-  // }, [allDev]);
+  useEffect(() => {
+    if (developers?.developers?.page === page) {
+      const uniqueIds = new Set(allDev?.map((item) => item._id));
+      const filteredDeveloperData = developers?.developers?.data.filter(
+        (item) => {
+          if (!uniqueIds.has(item._id)) {
+            uniqueIds.add(item._id);
+            return true;
+          }
+          return false;
+        }
+      );
+      setAllDev(allDev && [...allDev, ...filteredDeveloperData]);
+    } else {
+      setAllDev(firstDevData);
+    }
+    if (page === 1) {
+      setAllDev(firstDevData);
+    }
+  }, [developers, page]);
 
   return (
     <section className="w-full">
       <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[78px] md:top-[68px]"></div>
-      <InfiniteScroll
-        dataLength={4}
-        // next={fetchMoreData}
-        hasMore={hasMore}
-      >
+      <InfiniteScroll dataLength={4} next={fetchMoreData} hasMore={hasNextPage}>
         <div className="relative grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev?.map((developer, index) => (
             <DeveloperListItem
@@ -77,7 +61,7 @@ const DeveloperList = (props) => {
           ))}
         </div>
       </InfiniteScroll>
-      {showArrow && (
+      {hasNextPage && (
         <button className="w-full flex items-center justify-center m-auto pt-5">
           <DownArrow />
         </button>

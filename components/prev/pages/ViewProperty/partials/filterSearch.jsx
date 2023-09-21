@@ -6,12 +6,12 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
-const FilterSearchInput = () => {
-  const [{ filterOpen }, dispatch] = useStateValue();
+const FilterSearchInput = (props) => {
+  const [{ filterSelectReset }, dispatch] = useStateValue();
 
   const handleScroll = () => {
-    if (filterOpen) {
-      dispatch({ type: "setFilterOpen", item: false });
+    if (filterSelectReset) {
+      // dispatch({ type: "setFilterSelectReset", item: false });
     }
   };
 
@@ -20,7 +20,7 @@ const FilterSearchInput = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      dispatch({ type: "setFilterOpen", item: false });
+      // dispatch({ type: "setFilterSelectReset", item: false });
     };
   }, []);
 
@@ -29,7 +29,7 @@ const FilterSearchInput = () => {
       <div className="relative mb-1 flex w-full flex-wrap items-stretch">
         <input
           type="search"
-          className="relative m-0 -mr-0.5 block w-[1px] pl-10 min-w-0 flex-auto rounded-l border-[.5px] !border-r-0 border-solid border-white bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-[#f1bf3f] outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary  focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+          className="relative w-1/2 m-0 -mr-0.5 block pl-10 min-w-0 flex-auto rounded-l border-[.5px] !border-r-0 border-solid border-white bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-[#f1bf3f] outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary  focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
           placeholder="Search"
           aria-label="Search"
           aria-describedby="button-addon1"
@@ -44,7 +44,7 @@ const FilterSearchInput = () => {
           id="button-addon1"
           data-te-ripple-init
           data-te-ripple-color="light"
-          onClick={() => dispatch({ type: "setFilterOpen", item: true })}
+          onClick={() => props.setIsFilterModalOpen(true)}
         >
           <Image src={filter} alt="filter" />
           <span className="ml-2 font-montserrat font-semibold">Filter</span>

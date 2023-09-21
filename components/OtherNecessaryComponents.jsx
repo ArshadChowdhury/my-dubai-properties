@@ -6,6 +6,7 @@ import FilterModalViewProperty from "@/components/prev/pages/ViewProperty/partia
 import BottomMenu from "@/components/prev/BottomMenu";
 import Chat from "@/components/prev/Chat";
 import { useState, useEffect } from "react";
+import Footer from "./prev/Footer";
 
 const OtherNecessaryComponents = () => {
   const [mobileView, setMobileView] = useState(false);

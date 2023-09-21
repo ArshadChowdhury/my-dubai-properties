@@ -46,21 +46,24 @@ const Home = () => {
   };
 
   const handleScroll = () => {
-    if (filterOpen) {
-      dispatch({ type: "setFilterOpen", item: false });
-    }
+    dispatch({ type: "setFilterOpen", item: false });
   };
 
   const {
     isLoading: isLoadingHomeContent,
     data: homeData,
     isError: isErrorHomeContent,
+    refetch,
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
   });
 
-  const { data: propertiesData, isError: isErrorPropertiesData } = useQuery({
+  const {
+    isLoading: isLoadingPropertiesData,
+    data: propertiesData,
+    isError: isErrorPropertiesData,
+  } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
   });
@@ -72,14 +75,14 @@ const Home = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
+    refetch();
     return () => {
       window.removeEventListener("scroll", handleScroll);
       dispatch({ type: "setFilterOpen", item: false });
     };
-  }, []);
+  }, [lang]);
 
-  if (isLoadingHomeContent) {
+  if (isLoadingHomeContent || isLoadingPropertiesData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -102,12 +105,13 @@ const Home = () => {
       <VerticalLine2 />
       <div>
         <Navbar
+          homeData={homeData}
           filterListData={filterListData}
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
           type="inline"
         />
         <section className="bg-[#000F1D] relative">
-          <HeroSection sliders={sliders} />
+          <HeroSection homeData={homeData} sliders={sliders} />
           <div
             className={`${
               filterOpen
@@ -117,15 +121,14 @@ const Home = () => {
           >
             <Filter filterLists={filterListData} />
           </div>
-          <LatestProperty properties={propertiesData} />
-          <PropertyInvestment />
-          <Payment />
-          <SignUpForm popup={true} />
+          <LatestProperty homeData={homeData} properties={propertiesData} />
+          <PropertyInvestment homeData={homeData} />
+          <Payment homeData={homeData} />
+          <SignUpForm homeData={homeData} popup={true} />
         </section>
       </div>
-
       <div className="-mt-6 relative bg-[#000f1d]">
-        <Footer home={true} />
+        <Footer homeData={homeData} home={true} />
       </div>
     </section>
   );

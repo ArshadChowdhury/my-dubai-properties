@@ -9,38 +9,74 @@ import RouteLink from "../../RouteLink";
 import { usePathname } from "next/navigation";
 import HeadingBox from "../../HeadingBox";
 
-import search from "../../assets/images/global/icon-search.png";
+import search from "@/public/images/global/icon-search.png";
 import Skeleton from "../../Skeleton/Skeleton";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import FilterModal from "../ViewProperty/partials/filterModal";
 
-const DeveloperListPage = (props) => {
+const DeveloperListPage = () => {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState();
   const [{ lang }] = useStateValue();
+  const [page, setPage] = useState(1);
   const pathname = usePathname();
+
+  const fetchMoreData = () => {
+    setPage((page) => page + 1);
+    return async () => {
+      const data = await instance
+        .get(`/${lang}/developers`, {
+          timeout: 5000,
+          params: { page },
+        })
+        .then((data) => data.data.data.properties);
+      return data;
+    };
+  };
 
   const getAllDevelopers = async () => {
     const data = await instance
       .get(`/${lang}/developers`, {
         timeout: 5000,
+        params: { page },
       })
-      .then((data) => data);
+      .then((data) => data?.data?.data);
     return data;
   };
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const { data: filterListData } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
 
   const {
     isLoading: isLoadingDevelopersData,
     data: developersData,
     isError: isErrorDevelopersData,
+    refetch,
   } = useQuery({
     queryKey: ["get-developers"],
     queryFn: getAllDevelopers,
   });
 
+  useEffect(() => {
+    refetch();
+  }, [lang, page]);
+
   if (isLoadingDevelopersData) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
       </p>
     );
@@ -53,9 +89,6 @@ const DeveloperListPage = (props) => {
       </p>
     );
   }
-
-  const developers = developersData?.data?.data?.developers?.data;
-  const developersDataLength = developersData?.data?.data?.developers?.count;
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -71,11 +104,16 @@ const DeveloperListPage = (props) => {
             <div className="w-full md:w-[25%] py-3">
               <HeadingBox heading="All Developers" />
             </div>
-            {props.mobileView ? (
-              <FilterSearchInput
-                setIsFilterModalOpen={props.setIsFilterModalOpen}
-              />
-            ) : (
+            <FilterModal
+              setPage={setPage}
+              setIsFilterModalOpen={setIsFilterModalOpen}
+              filterListData={filterListData}
+              isFilterModalOpen={isFilterModalOpen}
+            />
+            <div className="md:hidden">
+              <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
+            </div>
+            <div className="hidden md:block">
               <div className="w-1/4 bg-white bg-opacity-10 rounded-md flex items-center custom-shadow">
                 <input
                   type="search"
@@ -85,15 +123,16 @@ const DeveloperListPage = (props) => {
                   className="w-full px-5 py-1 rounded-md font-roboto font-extralight text-[#DBA318] placeholder:text-[#798A9C] placeholder:font-light placeholder:font-roboto placeholder:text-sm bg-transparent focus-visible:outline-0"
                 />
                 <button className="px-5">
-                  <Image src={search} alt="search" className="w-7" />
+                  <Image src={search} alt="search" className="w-3" />
                 </button>
               </div>
-            )}
+            </div>
           </div>
           <DevelopersDescription />
           <DeveloperList2
-            developers={developers}
-            developersDataLength={developersDataLength}
+            fetchMoreData={fetchMoreData}
+            page={page}
+            developers={developersData}
           />
         </Skeleton>
       </div>

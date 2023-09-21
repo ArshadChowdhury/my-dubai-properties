@@ -43,9 +43,8 @@ const TermsAndConditions = () => {
         />
       )}
       <section className="w-full relative md:-mt-24 md:ml-5">
-        <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20  md:pt-28">
+        <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28">
           <div className="about-overlay"></div>
-
           <RouteLink
             locationName={pathname}
             buttonHide={"true"}

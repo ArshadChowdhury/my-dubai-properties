@@ -7,39 +7,42 @@ import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
+  const { filterListData, setPage } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 
   const beds = [1, 2, 3, 4, 5];
+  console.log(filterListData);
 
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
-
-  const filterList = data.data;
 
   return (
     <section className="relative w-full md:flex justify-between ">
       <div className="w-full lg:w-auto gap-[20px] md:flex items-center my-2 md:my-0">
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
+            setPage={setPage}
             searchBy="Property Areas"
-            selectBy={filterList?.propertyAreas}
+            selectBy={filterListData?.propertyAreas}
           />
         </div>
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
-            searchBy="Property Type"
-            selectBy={filterList?.propertyTypes}
+            setPage={setPage}
+            searchBy="Development Type"
+            selectBy={filterListData?.developmentTypes}
           />
         </div>
-        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
-          <FilterSelectMob searchBy="Beds" selectBy={beds} />
-        </div>
+        {/* <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
+          <FilterSelectMob setPage={setPage} searchBy="Beds" selectBy={beds} />
+        </div> */}
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
-            searchBy="Completions"
-            selectBy={filterList?.completions}
+            setPage={setPage}
+            searchBy="Developer Type"
+            selectBy={filterListData?.developers}
           />
         </div>
 

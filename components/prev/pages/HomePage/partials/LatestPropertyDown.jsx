@@ -72,10 +72,10 @@ const LatestPropertyDown = (props) => {
       <div className="w-full md:basis-[75%]  md:mt-12">
         <div className="md:ml-[205px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full  md:pr-[155px]">
           <div className="mb-12 md:mb-0">
-            <HomeHeading heading="Latest Ready Properties" />
+            <HomeHeading heading={props?.homeData?.lang?.slider?.titleReady} />
           </div>
           <div className="w-1/4 mx-auto md:mr-[13rem]">
-            <BtnElore2 title="Explore More" />
+            <BtnElore2 title={props?.homeData?.lang?.slider?.buttonExplore} />
           </div>
         </div>
 

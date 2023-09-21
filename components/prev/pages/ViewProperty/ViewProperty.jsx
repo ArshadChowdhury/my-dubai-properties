@@ -16,9 +16,11 @@ import HeadingBox from "../../HeadingBox";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import { instance } from "../../services/apiFunctions";
+import FilterModal from "./partials/filterModal";
 
 export default function ViewProperty(props) {
   const { heading } = props;
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const pathname = usePathname();
   const [page, setPage] = useState(1);
   const [{ lang, viewType }, dispatch] = useStateValue();
@@ -40,7 +42,7 @@ export default function ViewProperty(props) {
 
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
-    const getAllProperties = async () => {
+    return async () => {
       const data = await instance
         .get(`/${lang}/properties`, {
           timeout: 5000,
@@ -141,9 +143,17 @@ export default function ViewProperty(props) {
               className="flex justify-center items-center"
               textPosition="text-center w-full"
             />
+            <FilterModal
+              setPage={setPage}
+              setIsFilterModalOpen={setIsFilterModalOpen}
+              filterListData={filterListData}
+              isFilterModalOpen={isFilterModalOpen}
+            />
             <div className="flex items-center">
               <div className="md:hidden">
-                <FilterSearchInput />
+                <FilterSearchInput
+                  setIsFilterModalOpen={setIsFilterModalOpen}
+                />
               </div>
               <div className="hidden md:block">
                 <FilterSearch2

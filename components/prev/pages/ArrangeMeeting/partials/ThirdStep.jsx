@@ -192,6 +192,7 @@ const ThirdStep = (props) => {
                 }`}
               >
                 <BtnAdd
+                  type="Submit"
                   btnText="Add Guests Emails"
                   className="w-[105px] border-top-white z-10"
                   handleAddGuestEmailsClick={handleAddGuestEmailsClick}

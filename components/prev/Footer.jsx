@@ -7,7 +7,8 @@ import Link from "next/link";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import Image from "next/image";
 
-const Footer = ({ footerBg, home }) => {
+const Footer = ({ footerBg, home, homeData }) => {
+  const homeDatas = homeData?.lang?.footer;
   const [uiVisibility, setUIVisibility] = useState({
     whyUs: false,
     offPlanProperties: false,
@@ -15,6 +16,46 @@ const Footer = ({ footerBg, home }) => {
     propertyTypes: false,
     // Add more elements as needed
   });
+
+  const uiElements = [
+    {
+      id: homeDatas?.whyUs,
+      title: homeDatas?.whyUs,
+      items: [homeDatas?.aboutUs, homeDatas?.contactUs],
+    },
+    {
+      id: homeDatas?.developers,
+      title: homeDatas?.developers,
+      items: [
+        homeDatas?.emaar,
+        homeDatas?.damac,
+        homeDatas?.nakheel,
+        homeDatas?.meraas,
+      ],
+    },
+    {
+      id: homeDatas?.propertiesForSale,
+      title: homeDatas?.propertiesForSale,
+      items: [
+        homeDatas?.villa,
+        homeDatas?.appartment,
+        homeDatas?.hotel,
+        homeDatas?.readyVilla,
+      ],
+    },
+    {
+      id: homeDatas?.featuredProjects,
+      title: homeDatas?.featuredProjects,
+      items: [
+        homeDatas?.featuredProject1,
+        homeDatas?.featuredProject2,
+        homeDatas?.featuredProject3,
+        homeDatas?.featuredProject4,
+        homeDatas?.featuredProject5,
+      ],
+    },
+    // Add more elements as needed
+  ];
 
   const toggleUIVisibility = (element) => {
     setUIVisibility((prevState) => {
@@ -32,51 +73,6 @@ const Footer = ({ footerBg, home }) => {
     });
   };
 
-  const uiElements = [
-    {
-      id: "whyUs",
-      title: "Why us",
-      items: ["About Us", "Contact Us", "Meet The Team"],
-    },
-    {
-      id: "offPlanProperties",
-      title: "Off plan properties",
-      items: [
-        "Emaar Properties",
-        "Dubai Properties",
-        "Damac Properties",
-        "Sobha Group",
-        "Nakheel",
-        "Meraas",
-      ],
-    },
-    {
-      id: "featuredProjects",
-      title: "Featured Projects",
-      items: [
-        "Burj Crown in Downtown Dubai",
-        "The Valley EDEN by Emaar",
-        "Featured Projects-1",
-        "Featured Projects-2",
-        "Featured Projects-3",
-        "Featured Projects-4",
-      ],
-    },
-    {
-      id: "propertyTypes",
-      title: "Property Types",
-      items: [
-        "Dubai Apartments for Sale",
-        "Dubai Villas for Sale",
-        "Property Types-1",
-        "Property Types-2",
-        "Property Types-3",
-        "Property Types-4",
-      ],
-    },
-    // Add more elements as needed
-  ];
-
   return (
     <footer className="my-20">
       <div className="px-3 lg:p-5 flex flex-col items-center relative z-20">
@@ -91,7 +87,7 @@ const Footer = ({ footerBg, home }) => {
           <div className="footer_background_home2 absolute bottom-0 w-full h-full"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">
             <div className="md:flex justify-between py-10">
-              {uiElements.map((element, idx) => {
+              {uiElements?.map((element, idx) => {
                 return (
                   <div key={idx} className="text-white">
                     <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">

@@ -5,7 +5,7 @@ import LatestPropertyDown from "./LatestPropertyDown";
 import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
 
 const LatestProperty = (props) => {
-  const { properties } = props;
+  const { properties, homeData } = props;
   const offPlanProperties = [];
   const readyProperties = [];
   {
@@ -20,12 +20,11 @@ const LatestProperty = (props) => {
     <section className="relative overlay-property-color-3 py-4">
       <SkeletonSingleProperty>
         <p className="lg:text-[26px] pt-[3rem] font-medium font-expleteusSans text-white text-center tracking-[2%]">
-          Find your next investment opportunity with the latest Off-plan & Ready
-          projects in Dubai
+          {homeData?.lang?.slider?.textCopy}
         </p>
       </SkeletonSingleProperty>
-      <LatestPropertyTop properties={offPlanProperties} />
-      <LatestPropertyDown properties={readyProperties} />
+      <LatestPropertyTop homeData={homeData} properties={offPlanProperties} />
+      <LatestPropertyDown homeData={homeData} properties={readyProperties} />
     </section>
   );
 };

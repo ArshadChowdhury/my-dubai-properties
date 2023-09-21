@@ -8,7 +8,7 @@ import Link from "next/link";
 import BtnSearch2 from "@/components/prev/BtnSearch2";
 
 const Filter = ({ filterLists }) => {
-  const [animate, setAnimate] = useState(false);
+  // const [animate, setAnimate] = useState(false);
   const [{ filterValues, filterOpen }] = useStateValue();
 
   // useEffect(() => {

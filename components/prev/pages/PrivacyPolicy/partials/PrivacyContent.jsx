@@ -6,16 +6,27 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import HomeHeading from "@/components/prev/HomeHeading";
 import Footer from "@/components/prev/Footer";
 import { useStateValue } from "@/components/prev/states/StateProvider";
+import RouteLink from "@/components/prev/RouteLink";
+import { usePathname } from "next/navigation";
 
 const PrivacyContent = () => {
   const [{ lang }] = useStateValue();
+  const pathname = usePathname();
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
       />
-      <Skeleton className="mt-14 px-5">
+      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24">
+        <RouteLink
+          locationName={pathname}
+          buttonHide={"true"}
+          marginBottom="mb-12 md:mb-0"
+        />
+      </div>
+
+      <Skeleton className="px-5">
         <div className="mt-5 md:mt-10 w-full">
           <div className="w-full md:w-[25%]">
             <HomeHeading heading="Introduction" />

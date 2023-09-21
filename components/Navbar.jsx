@@ -9,7 +9,7 @@ import logo from "@/public/images/global/logo.png";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const Navbar = (props) => {
-  const { filterListData } = props;
+  const { filterListData, homeData } = props;
   const [{ lang }, dispatch] = useStateValue();
   const [dropDown, setDropDown] = useState(true);
   const [navPoint, setNavPoint] = useState(false);
@@ -91,9 +91,9 @@ const Navbar = (props) => {
                   height={30}
                   width={30}
                   alt="calender"
-                  className="mr-3"
+                  className={`mr-3`}
                 />
-                Arrange a Meeting
+                {homeData?.lang?.navber?.arrangeMeeting}
               </h1>
             </button>
             <div
@@ -109,7 +109,7 @@ const Navbar = (props) => {
                     "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
                   }
                 >
-                  Off Plan
+                  {homeData?.lang?.navber?.offPlan}
                 </Link>
               </h1>
               <h1
@@ -121,14 +121,17 @@ const Navbar = (props) => {
                     "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
                   }
                 >
-                  Ready
+                  {homeData?.lang?.navber?.ready}
                 </Link>
               </h1>
               <h1
                 className="uppercase cursor-pointer font-openSans text-white mx-4"
                 onMouseEnter={() => setNavPoint(true)}
               >
-                <Link href={"/properties"}>All Properties</Link>
+                <Link href={"/properties"}>
+                  {" "}
+                  {homeData?.lang?.navber?.allProjects}
+                </Link>
               </h1>
               {navPoint ? (
                 <div

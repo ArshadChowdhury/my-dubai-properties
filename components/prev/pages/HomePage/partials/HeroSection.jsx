@@ -8,6 +8,7 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import Image from "next/image";
 
 const HeroSection = (props) => {
+  const { homeData } = props;
   const [{ filterValues, filterOpen }, dispatch] = useStateValue();
   const [index, setIndex] = useState(0);
   const sliders = props?.sliders;

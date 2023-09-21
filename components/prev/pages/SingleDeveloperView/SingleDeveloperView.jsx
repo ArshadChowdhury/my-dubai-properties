@@ -57,13 +57,9 @@ const SingleDeveloperView = (props) => {
     };
   }, []);
 
-  // const developer = data.data;
-
-  // const locationName = [developer.developer.name];
-
   if (isLoadingSingleDev) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
       </p>
     );
@@ -76,6 +72,7 @@ const SingleDeveloperView = (props) => {
       </p>
     );
   }
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {isMobileView ? (
@@ -92,7 +89,10 @@ const SingleDeveloperView = (props) => {
           marginBottom: isMobileView ? "" : "80px",
         }}
       >
-        <RouteLink locationName={pathname} buttonHide={"true"} />
+        <RouteLink
+          locationName={"/" + singleDevData?.developer?.name}
+          buttonHide={"true"}
+        />
         <EmmarProperties developerDetails={singleDevData} />
         <div
           className="sticky  bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2"
