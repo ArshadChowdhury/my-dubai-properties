@@ -7,6 +7,7 @@ import GridItem from "./partials/GridItem";
 
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
 import DownArrow from "../../DownArrow";
+import axios from "axios";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 

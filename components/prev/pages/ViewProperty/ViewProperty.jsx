@@ -40,7 +40,7 @@ export default function ViewProperty(props) {
 
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
-    return async () => {
+    const getAllProperties = async () => {
       const data = await instance
         .get(`/${lang}/properties`, {
           timeout: 5000,
@@ -99,7 +99,7 @@ export default function ViewProperty(props) {
     page,
   ]);
 
-  if (isLoadingPropertiesData || isLoadingFilterData) {
+  if (isLoadingPropertiesData || isLoadingFilterData || isLoadingFilterData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
