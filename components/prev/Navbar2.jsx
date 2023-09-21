@@ -8,8 +8,10 @@ import Image from "next/image";
 
 const Navbar2 = (props) => {
   const [dropDown, setDropDown] = useState(true);
-  const { filterListData } = props;
+  const { filterListData, homeData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
+
+  const navData = homeData?.lang?.navber;
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
@@ -25,7 +27,7 @@ const Navbar2 = (props) => {
     dispatch({ type: "setDropdownOpen", item: dropDown });
   };
 
-  const langList = filterListData?.langList;
+  const langList = homeData?.langList;
 
   return (
     <section className={props.className}>
@@ -84,7 +86,7 @@ const Navbar2 = (props) => {
             >
               <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
                 <Image src={calender} alt="calender" className="mr-3" />
-                Arrange a Meeting
+                {navData?.arrangeMeeting}
               </h1>
             </button>
             <div className="flex items-center nav">
@@ -94,7 +96,7 @@ const Navbar2 = (props) => {
                     "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
                   }
                 >
-                  Off Plan
+                  {navData?.offPlan}
                 </Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
@@ -103,11 +105,14 @@ const Navbar2 = (props) => {
                     "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
                   }
                 >
-                  Ready
+                  {navData?.ready}
                 </Link>
               </h1>
               <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
-                <Link href={"/properties"}>All Properties</Link>
+                <Link href={"/properties"}>
+                  {" "}
+                  {homeData?.lang?.allProjects?.titleAllProperties}
+                </Link>
               </h1>
               {/* <div className="animation start-home"></div> */}
               {/* <div className="line bg-gradient-to-l from-white"></div> */}

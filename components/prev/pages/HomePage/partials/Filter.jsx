@@ -7,7 +7,8 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import Link from "next/link";
 import BtnSearch2 from "@/components/prev/BtnSearch2";
 
-const Filter = ({ filterLists }) => {
+const Filter = ({ filterLists, homeData }) => {
+  const filterTexts = homeData?.lang?.filterHomepage;
   // const [animate, setAnimate] = useState(false);
   const [{ filterValues, filterOpen }] = useStateValue();
 
@@ -43,7 +44,7 @@ const Filter = ({ filterLists }) => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 px-8 md:pl-12 py-4">
           <BtnFilter
-            btnText={"All Property Area"}
+            btnText={filterTexts?.textBoxPropertyArea}
             btnImage={downArrow}
             cat={"propertyAreas"}
             content={filterLists?.propertyAreas}
@@ -51,7 +52,7 @@ const Filter = ({ filterLists }) => {
           />
           <BtnFilter
             cat={"developers"}
-            btnText={"All Dubai Developer"}
+            btnText={filterTexts?.textBoxDubaiDeveloper}
             btnImage={downArrow}
             content={filterLists?.developers}
             selectedValue={filterValues?.developers}
@@ -59,27 +60,30 @@ const Filter = ({ filterLists }) => {
 
           <BtnFilter
             cat={"propertyTypes"}
-            btnText={"All Property Type"}
+            btnText={filterTexts?.textBoxPropertyType}
             btnImage={downArrow}
             content={filterLists?.propertyTypes}
             selectedValue={filterValues?.propertyTypes}
           />
           <BtnFilter
             cat={"completions"}
-            btnText={"All Completions"}
+            btnText={filterTexts?.textBoxCompletion}
             btnImage={downArrow}
             content={filterLists?.completions}
             selectedValue={filterValues?.completions}
           />
           <BtnFilter
             cat={"developmentTypes"}
-            btnText={"All Development Type"}
+            btnText={filterTexts?.textBoxDevelopmentType}
             btnImage={downArrow}
             content={filterLists?.developmentTypes}
             selectedValue={filterValues?.developmentTypes}
           />
           <Link href={`/properties?${query}`}>
-            <BtnSearch2 btnText="SEARCH" btnImage={IconSearch} />
+            <BtnSearch2
+              btnText={filterTexts?.buttonSearch}
+              btnImage={IconSearch}
+            />
           </Link>
         </div>
       </div>

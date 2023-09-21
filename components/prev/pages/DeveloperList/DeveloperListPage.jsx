@@ -24,6 +24,15 @@ const DeveloperListPage = () => {
   const [page, setPage] = useState(1);
   const pathname = usePathname();
 
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
   const fetchMoreData = () => {
     setPage((page) => page + 1);
     return async () => {
@@ -55,6 +64,16 @@ const DeveloperListPage = () => {
     return data;
   };
 
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+    refetch: refetchHomeData,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
   const { data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
@@ -70,11 +89,14 @@ const DeveloperListPage = () => {
     queryFn: getAllDevelopers,
   });
 
+  console.log(homeData);
+
   useEffect(() => {
     refetch();
+    refetchHomeData();
   }, [lang, page]);
 
-  if (isLoadingDevelopersData) {
+  if (isLoadingDevelopersData || isLoadingHomeContent) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -97,6 +119,7 @@ const DeveloperListPage = () => {
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
           type="inline"
           filterListData={developersData}
+          homeData={homeData}
         />
         <RouteLink locationName={pathname} />
         <Skeleton className="px-5">
@@ -136,7 +159,7 @@ const DeveloperListPage = () => {
           />
         </Skeleton>
       </div>
-      <Footer footerBg={"footer_background"} />
+      <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>
   );
 };

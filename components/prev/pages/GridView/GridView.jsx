@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import FilterSearch from "../../FilterSearch";
-import Skeleton from "../../Skeleton/Skeleton";
-import ListItem from "../ListView/partials/ListItem";
 import GridItem from "./partials/GridItem";
 
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
 import DownArrow from "../../DownArrow";
-import axios from "axios";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-
-function extractIdFromValue(value) {
-  return value ? value.split(",")[0] : null;
-}
 
 const GridView = (props) => {
   const { propertiesData, filterParams, fetchMoreData, page } = props;
@@ -23,32 +15,6 @@ const GridView = (props) => {
 
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
-
-  // useEffect(() => {
-  //   if (propertiesData.page === page) {
-  //     const uniqueIds = new Set(filterData.map((item) => item._id));
-  //     const filteredPropertiesData = propertiesData?.data.filter((item) => {
-  //       if (!uniqueIds.has(item._id)) {
-  //         uniqueIds.add(item._id);
-  //         return true;
-  //       }
-  //       return false;
-  //     });
-  //     setFilterData([...filterData, ...filteredPropertiesData]);
-  //   }
-  // }, [propertiesData]);
-
-  // useEffect(() => {
-  //   if (propertiesData?.page === 1) {
-  //     const firstFilterData = propertiesData?.data;
-  //     console.log(firstFilterData);
-  //     setFilterData([...firstFilterData]);
-  //   }
-  // }, [
-  //   filterParams.propertyAreaId,
-  //   filterParams.developmentTypeId,
-  //   filterParams.developerId,
-  // ]);
 
   useEffect(() => {
     if (propertiesData.page === page) {
@@ -72,7 +38,6 @@ const GridView = (props) => {
 
   useEffect(() => {
     if (propertiesData?.page === 1) {
-      // Reset filterData to the initial data
       setFilterData([...firstFilterData]);
     }
   }, [

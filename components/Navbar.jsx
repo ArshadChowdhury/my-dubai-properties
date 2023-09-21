@@ -130,7 +130,7 @@ const Navbar = (props) => {
               >
                 <Link href={"/properties"}>
                   {" "}
-                  {homeData?.lang?.navber?.allProjects}
+                  {homeData?.lang?.allProjects?.titleAllProperties}
                 </Link>
               </h1>
               {navPoint ? (

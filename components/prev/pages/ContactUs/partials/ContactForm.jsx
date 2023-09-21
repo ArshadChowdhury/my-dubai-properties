@@ -4,14 +4,14 @@ import RegisterForm from "@/components/prev/RegisterForm";
 import AddresInfo from "./AddresInfo";
 import Footer from "@/components/prev/Footer";
 
-const ContactForm = () => {
+const ContactForm = (props) => {
   return (
     <>
       <section>
         <Skeleton className="!pb-12 px-0">
           <div className=" md:mt-16 w-full md:grid grid-cols-2 ">
             <div className="w-full">
-              <RegisterForm />
+              <RegisterForm homeData={props?.homeData} />
             </div>
 
             <div className="w-full -ml-2">

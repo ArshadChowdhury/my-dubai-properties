@@ -10,7 +10,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const LatestPropertyTop = (props) => {
-  console.log(props.homeData);
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   // const properties = props.properties;

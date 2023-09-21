@@ -53,6 +53,15 @@ export default function ViewProperty(props) {
     };
   };
 
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
   const getAllProperties = async () => {
     const data = await instance
       .get(`/${lang}/properties`, {
@@ -71,7 +80,11 @@ export default function ViewProperty(props) {
       .then((data) => data.data.data);
     return data;
   };
-  const { isLoading: isLoadingFilterData, data: filterListData } = useQuery({
+  const {
+    isLoading: isLoadingFilterData,
+    data: filterListData,
+    refetch: filterListRefetch,
+  } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -86,8 +99,19 @@ export default function ViewProperty(props) {
     queryFn: getAllProperties,
   });
 
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    refetch: homeDataRefetch,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
   useEffect(() => {
     refetch();
+    homeDataRefetch();
+    filterListRefetch();
     return () => {
       dispatch({ type: "setFilterValues", item: false });
     };
@@ -101,7 +125,12 @@ export default function ViewProperty(props) {
     page,
   ]);
 
-  if (isLoadingPropertiesData || isLoadingFilterData || isLoadingFilterData) {
+  if (
+    isLoadingPropertiesData ||
+    isLoadingFilterData ||
+    isLoadingFilterData ||
+    isLoadingHomeContent
+  ) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -124,10 +153,15 @@ export default function ViewProperty(props) {
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
-        <Navbar2 className={` w-full py-5 bg-[#000F1D] z-50 `} type="inline" />
+        <Navbar2
+          homeData={homeData}
+          className={` w-full py-5 bg-[#000F1D] z-50 `}
+          type="inline"
+        />
       </div>
       <div className="hidden md:block">
         <Navbar2
+          homeData={homeData}
           filterListData={filterListData}
           className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
           type="inline"
@@ -157,6 +191,7 @@ export default function ViewProperty(props) {
               </div>
               <div className="hidden md:block">
                 <FilterSearch2
+                  homeData={homeData}
                   setPage={setPage}
                   filterListData={filterListData}
                 />
@@ -174,13 +209,16 @@ export default function ViewProperty(props) {
             />
           ) : (
             <ListView
+              page={page}
+              filterParams={filterParams}
               propertiesData={propertiesData}
               handleShowAll={handleShowAll}
+              fetchMoreData={fetchMoreData}
             />
           )}
         </Skeleton>
       </section>
-      <Footer footerBg={"footer_background"} />
+      <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>
   );
 }

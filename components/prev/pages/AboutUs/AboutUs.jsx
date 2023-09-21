@@ -10,20 +10,64 @@ import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useStateValue } from "../../states/StateProvider";
+import { useQuery } from "@tanstack/react-query";
+import { instance } from "../../services/apiFunctions";
+import { useEffect } from "react";
 
 const AboutUs = () => {
   const pathname = usePathname();
   const [{ lang }] = useStateValue();
+
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+    refetch,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [lang]);
+
+  if (isLoadingHomeContent) {
+    return (
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
+        Loading...Please wait...
+      </p>
+    );
+  }
+
+  if (isErrorHomeContent) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
+      </p>
+    );
+  }
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
         <Navbar2
+          homeData={homeData}
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
           type="inline"
         />
       </div>
       <div className="hidden md:block">
         <Navbar2
+          homeData={homeData}
           className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
           type="inline"
         />
@@ -36,11 +80,11 @@ const AboutUs = () => {
             buttonHide={"true"}
             marginBottom="mb-12 md:mb-0"
           />
-          <AboutUsContent />
+          <AboutUsContent homeData={homeData} />
         </div>
       </section>
       <div className="relative -mb-[70px] md:mb-[120px]">
-        <ContactForm type="top" />
+        <ContactForm homeData={homeData} type="top" />
       </div>
       <div className="md:hidden absolute w-full h-[2px] flex justify-center items-center">
         <p className="w-1/2 h-full bg-[#FFD15F]"></p>
@@ -50,7 +94,7 @@ const AboutUs = () => {
         <p className="w-1/2 h-full bg-[#FFD15F]"></p>
       </div>
       <div className="mt-28">
-        <Footer footerBg={"footer_background"} />
+        <Footer homeData={homeData} footerBg={"footer_background"} />
       </div>
     </section>
   );

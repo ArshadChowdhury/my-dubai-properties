@@ -6,7 +6,7 @@ import HeadingBox from "./HeadingBox";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
-  const { filterListData, setPage } = props;
+  const { filterListData, setPage, homeData } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 

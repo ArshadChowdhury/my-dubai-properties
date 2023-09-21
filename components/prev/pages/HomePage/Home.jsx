@@ -68,7 +68,7 @@ const Home = () => {
     queryFn: getAllProperties,
   });
 
-  const { data: filterListData } = useQuery({
+  const { isLoading: isLoadingFilterData, data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -82,7 +82,7 @@ const Home = () => {
     };
   }, [lang]);
 
-  if (isLoadingHomeContent || isLoadingPropertiesData) {
+  if (isLoadingHomeContent || isLoadingPropertiesData || isLoadingFilterData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -119,7 +119,7 @@ const Home = () => {
                 : "hidden md:block"
             }`}
           >
-            <Filter filterLists={filterListData} />
+            <Filter homeData={homeData} filterLists={filterListData} />
           </div>
           <LatestProperty homeData={homeData} properties={propertiesData} />
           <PropertyInvestment homeData={homeData} />

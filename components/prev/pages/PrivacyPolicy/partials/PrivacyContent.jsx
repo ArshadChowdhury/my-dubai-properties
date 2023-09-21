@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
+import Navbar2 from "@/components/prev/Navbar2";
 import HeadingBox from "@/components/prev/HeadingBox";
 import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import HomeHeading from "@/components/prev/HomeHeading";
@@ -8,15 +8,62 @@ import Footer from "@/components/prev/Footer";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import RouteLink from "@/components/prev/RouteLink";
 import { usePathname } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { instance } from "@/components/prev/services/apiFunctions";
+import { useEffect } from "react";
 
 const PrivacyContent = () => {
   const [{ lang }] = useStateValue();
   const pathname = usePathname();
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+    refetch,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [lang]);
+
+  if (isLoadingHomeContent) {
+    return (
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
+        Loading...Please wait...
+      </p>
+    );
+  }
+
+  if (isErrorHomeContent) {
+    return (
+      <p className="h-screen text-4xl flex justify-center items-center text-white">
+        Something Went Wrong...
+      </p>
+    );
+  }
+
+  const privacyData = homeData?.lang?.privacypoicy;
+
+  console.log(privacyData);
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <Navbar
+      <Navbar2
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
+        homeData={homeData}
       />
       <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24">
         <RouteLink
@@ -29,159 +76,106 @@ const PrivacyContent = () => {
       <Skeleton className="px-5">
         <div className="mt-5 md:mt-10 w-full">
           <div className="w-full md:w-[25%]">
-            <HomeHeading heading="Introduction" />
+            <HomeHeading heading={privacyData?.title1} />
           </div>
 
           <div className="md:mt-5 font-montserrat text-white text-[13.5px] tracking-[2%] leading-[24px]">
             <p className="py-3 text-[13.5px] font-extralight">
-              This privacy policy has been compiled to better serve those who
-              are concerned with how their &apos;Personally Identifiable
-              Information&apos; (PII) is being used online. PII, as described in
-              UAE privacy law and information security, is information that can
-              be used on its own or with other information to identify, contact,
-              or locate a single person, or to identify an individual in
-              context. Please read our privacy policy carefully to get a clear
-              understanding of how we collect, use, protect or otherwise handle
-              your Personally Identifiable Information in accordance with our
-              website.
+              {privacyData?.p1}
             </p>
-            <p className="pt-3">
-              What personal information do we collect from the people that visit
-              our blog, website or app?
-            </p>
+            <p className="pt-3">{privacyData?.q1}</p>
             <p className="pb-3 text-[10.5px] font-extralight">
-              When registering on our site, you may be asked to enter your name,
-              email address, phone number or other details to help you with your
-              experience.
+              {privacyData?.a1}
             </p>
-            <p className="pt-3">When do we collect information?</p>
+            <p className="pt-3">{privacyData?.q2}</p>
             <p className="pb-3 text-[10.5px] font-extralight">
-              We collect information from you when you register on our site,
-              subscribe to a newsletter, fill out a form, Use Live Chat or enter
-              information on our site.
+              {privacyData?.a2}
             </p>
-            <p className="pt-3">How do we protect your information?</p>
+            <p className="pt-3">{privacyData?.q3}</p>
             <p className="pb-3 text-[10.5px] font-extralight">
-              Our website is scanned on a regular basis for security holes and
-              known vulnerabilities in order to make your visit to our site as
-              safe as possible. <br />
-              We use regular Malware Scanning. <br /> We never ask for personal
-              or private information like credit card numbers.
+              {privacyData?.a3p1}
+              <br />
+              {privacyData?.a3p2}
+              <br /> {privacyData?.a3p3}
             </p>
           </div>
         </div>
         <div className="mt-10 w-full flex flex-col justify-center items-center">
           <div className="w-full md:w-[30%] mr-0 md:mr-56">
-            <HomeHeading heading="Do we use ‘cookies’?" />
+            <HomeHeading heading={privacyData?.title2} />
           </div>
 
           <div className="w-full md:mt-5 font-montserrat text-white ">
             <p className="py-3 text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
-              We do not use cookies for tracking purposes. You can choose to
-              have your computer warn you each time a cookie is being sent, or
-              you can choose to turn off all cookies. You do this through your
-              browser settings. Since browser is a little different, look at
-              your browser&apos;s Help Menu to learn the correct way to modify
-              your cookies. If you turn cookies off, some features will be
-              disabled. that make your site experience more efficient and may
-              not function properly. However, you will still be able to register
-              your interest.
+              {privacyData?.p2}
             </p>
             <div className="py-3">
               <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
-                Third-party disclosure
+                {privacyData?.subTitle1}
               </p>
               <p className="pb-3 text-[10.5px] font-extralight">
-                We do not sell, trade, or otherwise transfer to outside parties
-                your Personally Identifiable Information.
+                {privacyData?.p3}
               </p>
             </div>
             <div className="py-3">
               <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
-                Google
+                {privacyData?.subTitle2}
               </p>
               <p className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
-                Google&apos;s advertising requirements can be summed up by
-                Google&apos;s Advertising Principles. They are put in place to
-                provide a positive experience for users. <br />
+                {privacyData?.p4}
                 <span className="text-[#FFD15F] font-medium">
-                  https://support.google.com/adwordspolicy/answer/1316548?hl=en
+                  {privacyData?.p5}
                 </span>
                 <br />
-                We use Google AdSense Advertising on our website. <br /> Google,
-                as a third-party vendor, uses cookies to serve ads on our site.
-                Google&apos;s use of the DART cookie enables it to serve ads to
-                our users based on previous visits to our site and other sites
-                on the Internet. Users may opt-out of the use of the DART cookie
-                by visiting the Google Ad and Content Network privacy policy.
+                {privacyData?.p6}
+                <br />
+                {privacyData?.p7}
               </p>
             </div>
             <div className="py-3">
               <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
-                We have implemented the following:
+                {privacyData?.subTitle3}
               </p>
               <div className="py-3 text-[10.5px] font-extralight">
                 <ul>
-                  <li>• Remarketing with Google AdSense</li>
-                  <li>• Google Display Network Impression Reporting</li>
+                  <li>• {privacyData?.b1}</li>
+                  <li>• {privacyData?.b2}</li>
                 </ul>
-                <p className="py-3">
-                  We, along with third-party vendors such as Google use
-                  first-party cookies (such as the Google Analytics cookies) and
-                  third-party cookies (such as the DoubleClick cookie) or other
-                  third-party identifiers together to compile data regarding
-                  user interactions with ad impressions and other ad service
-                  functions as they relate to our website.
-                </p>
+                <p className="py-3">{privacyData?.p8}</p>
               </div>
             </div>
             <div className="py-3">
               <p className="font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
-                CAN SPAM Act
+                {privacyData?.subTitle4}
               </p>
-              <p
-                className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] "
-                style={{ fontWeight: "200" }}
-              >
-                The CAN-SPAM Act is a law that sets the rules for commercial
-                email, establishes requirements for commercial messages, gives
-                recipients the right to have emails stopped from being sent to
-                them, and spells out tough penalties for violations.
+              <p className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
+                {privacyData?.p9}
               </p>
             </div>
             <div className="py-3 font-semibold text-[13.5px] tracking-[2%] leading-[24px]">
               <p>
-                If at any time you would like to unsubscribe from receiving
-                future emails, you can email us at{" "}
+                {privacyData?.p10} <br />
                 <span className="text-[#FFD15F]">
                   info@my-dubai-property.com
                 </span>{" "}
                 <br />
-                and we will promptly remove you from ALL correspondence.
               </p>
             </div>
             <div className="py-3">
               <p className="font-semibold text-[#FFD15F] text-[13.5px] tracking-[2%] leading-[24px]">
-                This policy does not apply to information collected:
+                {privacyData?.p11}
               </p>
               <div className="py-3 text-[10.5px] font-extralight">
                 <ul>
-                  <li>
-                    • through any other means, including any other website
-                    operated by any third party; or
-                  </li>
-                  <li>
-                    • by any third party, including through any application or
-                    content (including advertising) that may link to the
-                    Website.
-                  </li>
+                  <li>• {privacyData?.b3}</li>
+                  <li>• {privacyData?.b4}</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </Skeleton>
-      <Footer />
+      <Footer homeData={homeData} />
     </section>
   );
 };

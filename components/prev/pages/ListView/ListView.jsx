@@ -1,106 +1,62 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ListItem from "./partials/ListItem";
 import downArrow from "../../assets/images/property details page/Group 360(2).png";
 import DownArrow from "../../DownArrow";
-import axios from "axios";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useStateValue } from "../../states/StateProvider";
 
-function extractIdFromValue(value) {
-  return value ? value.split(",")[0] : null;
-}
-
 const ListView = (props) => {
-  const { propertiesData } = props;
+  const { propertiesData, filterParams, fetchMoreData, page } = props;
   const [filterData, setFilterData] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [totalDataCount, setTotalDataCount] = useState(null);
-  const [dataLimit, setDataLimit] = useState(null);
-  const [showArrow, setShowArrow] = useState(true);
 
   const [{ filterValues }] = useStateValue();
   const dataLength = 6;
+  const firstFilterData = propertiesData?.data;
 
-  // const fetchMore = () => {
-  //   let pageNumber = 2;
-  //   return function () {
-  //     const params = {
-  //       page: pageNumber,
-  //       size: dataLength || size,
-  //       developerId: filterValues.developers || extractIdFromValue(developers),
-  //       developmentTypeId:
-  //         filterValues.developmentTypes || extractIdFromValue(developmentTypes),
-  //       propertyAreaId:
-  //         filterValues.propertyAreas || extractIdFromValue(propertyAreas),
-  //       completion: filterValues.completions || extractIdFromValue(completions),
-  //       propertyTypeId:
-  //         filterValues.propertyTypes || extractIdFromValue(propertyTypes),
-  //     };
-  //     axios
-  //       .get(`http://52.77.121.171:3008/api/v1/en/properties?${pageNumber}`, {
-  //         params,
-  //       })
-  //       .then((response) => {
-  //         setFilterData(filterData.concat(response.data.data.properties.data));
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //     pageNumber += 1;
-  //   };
-  // };
+  const totalPages = Math.ceil(propertiesData?.count / dataLength);
+  const hasNextPage = page < totalPages;
 
-  // const fetchMoreData = fetchMore();
+  useEffect(() => {
+    if (propertiesData.page === page) {
+      const uniqueIds = new Set(filterData.map((item) => item._id));
+      const filteredPropertiesData = propertiesData?.data.filter((item) => {
+        if (!uniqueIds.has(item._id)) {
+          uniqueIds.add(item._id);
+          return true;
+        }
+        return false;
+      });
+      setFilterData([...filterData, ...filteredPropertiesData]);
+    } else {
+      // Reset filterData to the initial data
+      setFilterData([...firstFilterData]);
+    }
+    if (page === 1) {
+      setFilterData(propertiesData?.data);
+    }
+  }, [propertiesData, page]);
 
-  // useEffect(() => {
-  //   const params = {
-  //     page: 1,
-  //     size: dataLength || size,
-  //     developerId: filterValues.developers || extractIdFromValue(developers),
-  //     developmentTypeId:
-  //       filterValues.developmentTypes || extractIdFromValue(developmentTypes),
-  //     propertyAreaId:
-  //       filterValues.propertyAreas || extractIdFromValue(propertyAreas),
-  //     completion: filterValues.completions || extractIdFromValue(completions),
-  //     propertyTypeId:
-  //       filterValues.propertyTypes || extractIdFromValue(propertyTypes),
-  //   };
-  //   axios
-  //     .get("http://52.77.121.171:3008/api/v1/en/properties", { params })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setFilterData(response.data.data.properties.data);
-  //       setTotalDataCount(response.data.data.properties.count);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, [
-  //   filterValues.developers,
-  //   filterValues.developmentTypes,
-  //   filterValues.propertyAreas,
-  //   filterValues.completions,
-  //   filterValues.propertyTypes,
-  // ]);
-
-  // useEffect(() => {
-  //   if (filterData.length == totalDataCount) {
-  //     setShowArrow(false);
-  //     setHasMore(false);
-  //   }
-  // }, [filterData]);
+  useEffect(() => {
+    if (propertiesData?.page === 1) {
+      setFilterData([...firstFilterData]);
+    }
+  }, [
+    filterParams.propertyAreaId,
+    filterParams.developmentTypeId,
+    filterParams.developerId,
+  ]);
 
   return (
     <>
       <InfiniteScroll
         dataLength={dataLength}
-        // next={fetchMoreData}
-        hasMore={hasMore}
+        next={fetchMoreData}
+        hasMore={hasNextPage}
       >
         <div className="mb-20">
           <div className="w-full flex flex-wrap my-3 md:my-10 px-1">
-            {propertiesData?.data?.map((property, idx) => (
+            {filterData?.map((property, idx) => (
               <ListItem
                 id={idx + 1}
                 key={property.propertyName}
@@ -120,7 +76,7 @@ const ListView = (props) => {
           </div>
         </div>
       </InfiniteScroll>
-      {showArrow && (
+      {hasNextPage && (
         <button className="m-auto pt-5" onClick={props.handleShowAll}>
           <DownArrow />
         </button>

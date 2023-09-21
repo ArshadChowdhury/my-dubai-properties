@@ -36,6 +36,25 @@ const SingleDeveloperView = (props) => {
     return data;
   };
 
+  const getAllHomeContent = async () => {
+    const data = await instance
+      .get(`/${lang}/get-home`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingHomeContent,
+    data: homeData,
+    isError: isErrorHomeContent,
+    refetch,
+  } = useQuery({
+    queryKey: ["get-home"],
+    queryFn: getAllHomeContent,
+  });
+
   const {
     isLoading: isLoadingSingleDev,
     data: singleDevData,
@@ -47,17 +66,10 @@ const SingleDeveloperView = (props) => {
   });
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+    refetch();
+  }, [lang]);
 
-  if (isLoadingSingleDev) {
+  if (isLoadingHomeContent || isLoadingSingleDev) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...
@@ -65,39 +77,36 @@ const SingleDeveloperView = (props) => {
     );
   }
 
-  if (isErrorSingleDev) {
+  if (isErrorHomeContent || isErrorSingleDev) {
     return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
+      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Something Went Wrong...
       </p>
     );
   }
-
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      {isMobileView ? (
-        <Navbar2 className={`w-full py-5 bg-[#000F1D] z-50 `} type="inline" />
-      ) : (
+      <div className="md:hidden">
         <Navbar2
+          homeData={homeData}
+          className={`w-full py-5 bg-[#000F1D] z-50 `}
+          type="inline"
+        />
+      </div>
+      <div className="hidden md:block">
+        <Navbar2
+          homeData={homeData}
           className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
           type="inline"
         />
-      )}
-      <div
-        style={{
-          marginTop: isMobileView ? "" : "15px",
-          marginBottom: isMobileView ? "" : "80px",
-        }}
-      >
+      </div>
+      <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
         <RouteLink
           locationName={"/" + singleDevData?.developer?.name}
           buttonHide={"true"}
         />
         <EmmarProperties developerDetails={singleDevData} />
-        <div
-          className="sticky  bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2"
-          style={{ "z-index": "20", top: isMobileView ? "-10px" : "88px" }}
-        >
+        <div className="sticky z-[20] -top-[10px] md:top-[88px] bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           {/* {props.mobileView ? (
             <div className="py-4">
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
@@ -174,7 +183,7 @@ const SingleDeveloperView = (props) => {
 
         {/* <PropertyList propertyList={developer.developerProperty.data} /> */}
       </div>
-      <Footer footerBg={"footer_background"} />
+      <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>
   );
 };
