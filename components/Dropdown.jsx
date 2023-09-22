@@ -14,8 +14,11 @@ import Image from "next/image";
 
 const Dropdown = (props) => {
   const developersData = props.developersData;
+  const homeData = props.homeData;
   const [{}, dispatch] = useStateValue();
+  const navItem = homeData?.lang?.menu;
   const developers = developersData?.developers?.data;
+  const propertySelection = homeData?.lang?.propertySelection;
 
   const handleClose = () => {
     dispatch({ type: "setDropdownOpen", item: false });
@@ -39,17 +42,17 @@ const Dropdown = (props) => {
 
                 <div className="text-white ml-[10.5px]">
                   <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
-                    Why Us
+                    {navItem?.whyUs}
                   </h2>
                   <ul className="text-[10.5px]">
                     <li className="uppercase leading-[15.3px]">
                       <Link href="/about" onClick={handleClose}>
-                        about us
+                        {navItem?.aboutUs}
                       </Link>
                     </li>
                     <li className="uppercase leading-[15.3px]">
                       <Link href="/contact-us" onClick={handleClose}>
-                        Contact us
+                        {navItem?.contactUs}
                       </Link>
                     </li>
                   </ul>
@@ -61,8 +64,8 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
-                    DEVELOPERS
+                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2 uppercase">
+                    {navItem?.developers}
                   </h2>
                   <ul className="text-[10.5px]">
                     {developers?.map((developer) => (
@@ -71,17 +74,15 @@ const Dropdown = (props) => {
                         key={developer._id}
                         onClick={handleClose}
                       >
-                        <li className="uppercase leading-[15.3px]">
-                          {developer.name}
-                        </li>
+                        <li className="leading-[15.3px]">{developer.name}</li>
                       </Link>
                     ))}
                     <Link
                       href={"/developers"}
                       onClick={handleClose}
-                      className="uppercase leading-[15.3px]"
+                      className="leading-[15.3px]"
                     >
-                      ALL DEVELOPERS
+                      {navItem?.all}
                     </Link>
                   </ul>
                 </div>
@@ -95,7 +96,7 @@ const Dropdown = (props) => {
 
                 <div className="text-white ml-[10.5px]">
                   <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
-                    PROJECTS
+                    {navItem?.projects}
                   </h2>
                   <ul className="text-[10.5px]">
                     <Link
@@ -104,7 +105,7 @@ const Dropdown = (props) => {
                       }
                       onClick={handleClose}
                     >
-                      <li className="uppercase leading-[15.3px]">READY</li>
+                      <li className="leading-[15.3px]"> {navItem?.ready}</li>
                     </Link>
                     <Link
                       href={
@@ -112,16 +113,11 @@ const Dropdown = (props) => {
                       }
                       onClick={handleClose}
                     >
-                      <li className="uppercase leading-[15.3px]">OFF PLAN</li>
+                      <li className="leading-[15.3px]"> {navItem?.offPlan}</li>
                     </Link>
                     <Link href="/properties" onClick={handleClose}>
-                      <li className="uppercase leading-[15.3px]">
-                        ALL PROJECTS
-                      </li>
-                    </Link>
-                    <Link href="/properties" onClick={handleClose}>
-                      <li className="uppercase leading-[15.3px]">
-                        FLOOR PLANS
+                      <li className="leading-[15.3px]">
+                        {navItem?.allProject}
                       </li>
                     </Link>
                   </ul>
@@ -134,7 +130,7 @@ const Dropdown = (props) => {
 
                 <div className="text-white ml-[10.5px]">
                   <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
-                    OFFERS
+                    {navItem?.offers}
                   </h2>
                 </div>
               </div>
@@ -145,7 +141,7 @@ const Dropdown = (props) => {
 
                 <div className="text-white ml-[10.5px]">
                   <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
-                    3D Tour
+                    {navItem?.tour}
                   </h2>
                 </div>
               </div>
@@ -159,7 +155,7 @@ const Dropdown = (props) => {
           >
             <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
               <Image src={calender} alt="calender" className="mr-3" />
-              Arrange a Meeting
+              {props?.homeData?.lang?.meetings?.title}
             </h1>
           </button>
         </div>
@@ -171,17 +167,14 @@ const Dropdown = (props) => {
         <div className="w-full h-full absolute-center px-10 bg-[#171717] bg-opacity-30 rounded-md flex flex-col justify-center p-5">
           <div className="bg-black bg-opacity-70 ml-10 mr-10 px-10 py-6 rounded-lg">
             <p className="text-[12px] font-medium text-[#D4B970] font-roboto leading-[14px]">
-              THE PREMIER LUXURY PROPERTY DEVELOPER IN DUBAI
+              {propertySelection?.insideTitle}
             </p>
             <p className="text-[11px] font-extralight font-montserrat text-white pb-1">
-              DAMAC Properties has been shaping the Middle East’s luxury real
-              estate market since 2002, delivering iconic residential,
-              commercial and leisure properties for sale in Dubai, across the
-              region and beyond.
+              {propertySelection?.insideSubTitle}
             </p>
             <button className="bg-[#bea04e] rounded-md px-1 py-[1x] w-[70%] border border-1 border-[#bea04e] hover:bg-transparent">
               <span className="text-white py-1 flex justify-center items-center text-[12px] font-normal font-montserrat ">
-                GET IN TOUCH WITH OUR PROPERTY EXPERTS
+                {propertySelection?.insideButton}
               </span>
             </button>
           </div>

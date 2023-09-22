@@ -17,6 +17,7 @@ const ArrangeMeetingStep1 = ({
   openMeetLink,
   showMeetLink,
   handleSubmitButton,
+  meetingData,
 }) => {
   const [activeBtn, setActiveBtn] = useState("");
   const [mobileView, setMobileView] = useState(null);
@@ -45,12 +46,11 @@ const ArrangeMeetingStep1 = ({
           </div>
           <h4 className="text-lg leading-[23px] font-[500] uppercase">
             <span className="bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] text-white md:text-transparent bg-clip-text">
-              Arrange a meeting
+              {meetingData?.title}
             </span>
           </h4>
           <p className="text-[12px] text-center hidden md:block">
-            Follow the steps to set up a meeting with sales team to get the best
-            solution
+            {meetingData?.subTitle}
           </p>
         </div>
       </div>
@@ -84,14 +84,17 @@ const ArrangeMeetingStep1 = ({
                   } transition-all duration-300`}
                 />
                 <p className="text-[10px] font-[500] pl-5">
-                  INTRODUCTION PHONE CALL
+                  {meetingData?.phone?.text}
                 </p>
               </button>
               <div className="w-[30%] h-full rounded-l-md flex px-5 py-2 justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A]">
                 <span>
                   <Image src={clock} alt="Clock" />
                 </span>
-                <span className="text-white uppercase text-[10px]">30 min</span>
+                <span className="text-white uppercase text-[10px]">
+                  {meetingData?.phone?.timeCount}{" "}
+                  {meetingData?.phone?.timeFormat}
+                </span>
               </div>
             </div>
             <div className="relative my-5 w-[320px]  bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A] flex items-center rounded-md ">
@@ -114,14 +117,17 @@ const ArrangeMeetingStep1 = ({
                   } transition-all duration-300`}
                 />
                 <p className="text-[10px] font-[500] uppercase w-full text-start pl-5">
-                  Video CALL
+                  {meetingData?.video?.text}
                 </p>
               </button>
               <div className="w-[30%] h-full rounded-r-md flex px-5 py-2 justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A]">
                 <span>
                   <Image src={clock} alt="Clock" />
                 </span>
-                <span className="text-white uppercase text-[10px]">60 min</span>
+                <span className="text-white uppercase text-[10px]">
+                  {meetingData?.video?.timeCount}{" "}
+                  {meetingData?.video?.timeFormat}
+                </span>
               </div>
             </div>
           </div>
@@ -159,7 +165,7 @@ const ArrangeMeetingStep1 = ({
           }
         >
           <BtnNextStep
-            btnText="Next step"
+            btnText={meetingData?.next}
             btnImage={ForwordIcon}
             className={
               (openMeetLink === "video" &&

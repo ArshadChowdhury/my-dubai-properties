@@ -53,7 +53,7 @@ const Home = () => {
     isLoading: isLoadingHomeContent,
     data: homeData,
     isError: isErrorHomeContent,
-    refetch,
+    refetch: refetchHomeContent,
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
@@ -63,12 +63,17 @@ const Home = () => {
     isLoading: isLoadingPropertiesData,
     data: propertiesData,
     isError: isErrorPropertiesData,
+    refetch: refetchPropertiesData,
   } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
   });
 
-  const { isLoading: isLoadingFilterData, data: filterListData } = useQuery({
+  const {
+    refetch,
+    isLoading: isLoadingFilterData,
+    data: filterListData,
+  } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -76,6 +81,8 @@ const Home = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     refetch();
+    refetchHomeContent();
+    refetchPropertiesData();
     return () => {
       window.removeEventListener("scroll", handleScroll);
       dispatch({ type: "setFilterOpen", item: false });
@@ -97,8 +104,6 @@ const Home = () => {
       </p>
     );
   }
-
-  console.log(homeData);
 
   const sliders = homeData?.sliders;
 

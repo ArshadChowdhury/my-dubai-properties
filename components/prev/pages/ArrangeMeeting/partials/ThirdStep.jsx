@@ -16,10 +16,8 @@ import BtnTime from "@/components/prev/BtnTime";
 import BtnAdd from "@/components/prev/BtnAdd";
 
 const ThirdStep = (props) => {
+  const meetingData = props?.meetingData;
   const [showGuestEmails, setShowGuestEmails] = useState(false);
-
-  const [isMobileView, setIsMobileView] = useState(true);
-
   const [emails, setEmails] = useState([]);
   const [emailLength, setEmailLength] = useState(false);
   const [input, setInput] = useState("");
@@ -80,17 +78,6 @@ const ThirdStep = (props) => {
     }
   }, [emails]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const handleAddGuestEmailsClick = () => {
     setShowGuestEmails(true);
   };
@@ -111,7 +98,7 @@ const ThirdStep = (props) => {
         <div className="h-full w-full flex justify-center pt-[3rem] pb-[3rem] md:pt-[2rem]  md:px-[3rem]">
           <div className="w-[85%] md:w-[60%]">
             <h1 className="font-montserrat text-lg leading-6 text-white">
-              Enter Details
+              {meetingData?.enterDetails}
             </h1>
             <form action="" className="mt-5" onSubmit={handleSubmit}>
               <div className="flex items-center w-full text-[#bfa04b]">
@@ -119,7 +106,7 @@ const ThirdStep = (props) => {
                   type="text"
                   required
                   id="name"
-                  placeholder="Your Name"
+                  placeholder={meetingData?.placeholderName}
                   className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                 />
               </div>
@@ -128,7 +115,7 @@ const ThirdStep = (props) => {
                   type="email"
                   required
                   id="email"
-                  placeholder="*Email"
+                  placeholder={meetingData?.placeholderEmail}
                   className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
                 />
               </div>
@@ -144,11 +131,10 @@ const ThirdStep = (props) => {
               <div className="flex items-center mb-3">
                 <div className="w-full h-full">
                   <PhoneInput
-                    placeholder="Enter phone number"
+                    placeholder={meetingData?.placeholderPhoneNumber}
                     value={value}
                     onChange={setValue}
                     defaultCountry="BD"
-                    inputClassName="" // Apply the custom CSS class here
                     className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                   />
                 </div>
@@ -180,7 +166,7 @@ const ThirdStep = (props) => {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleInputKeyDown}
-                      placeholder="Guest Emails (separate with commas)"
+                      placeholder={meetingData?.placeholderGuestEmails}
                       className="w-full outline-none bg-transparent"
                     />
                   </div>
@@ -192,8 +178,8 @@ const ThirdStep = (props) => {
                 }`}
               >
                 <BtnAdd
-                  type="Submit"
-                  btnText="Add Guests Emails"
+                  type={meetingData?.button}
+                  btnText={meetingData?.buttonAddGuests}
                   className="w-[105px] border-top-white z-10"
                   handleAddGuestEmailsClick={handleAddGuestEmailsClick}
                 />
@@ -229,7 +215,7 @@ const ThirdStep = (props) => {
         >
           <BtnTime
             onClick={handleInVisible}
-            btnText="Submit"
+            btnText={meetingData?.button}
             className="border-round w-[80px] mt-8 md:mt-0"
           />
         </div>

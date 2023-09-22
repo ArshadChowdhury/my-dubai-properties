@@ -9,7 +9,7 @@ import close from "../../assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
 import Image from "next/image";
 
-const ArrangeMeeting = ({ mobileView }) => {
+const ArrangeMeeting = ({ mobileView, homeData }) => {
   const [
     { showModal, openMeetLink, isMeetSelected, isZoomSelected },
     dispatch,
@@ -29,6 +29,8 @@ const ArrangeMeeting = ({ mobileView }) => {
     setOpenFinalStep(false);
     setCloseBtn(false);
   };
+
+  const meetingData = homeData?.lang?.meetings;
 
   const [timeZone, setTimezone] = useState(
     Intl.DateTimeFormat().resolvedOptions().timeZone.split("/")
@@ -186,6 +188,7 @@ const ArrangeMeeting = ({ mobileView }) => {
                 </div>
                 {closeFirststep && (
                   <FirstStep
+                    meetingData={meetingData}
                     openMeetLink={openMeetLink}
                     showMeetLink={showMeetLink}
                     handleSubmitButton={handleSubmitButton}
@@ -195,6 +198,7 @@ const ArrangeMeeting = ({ mobileView }) => {
                 )}
                 {openNextStep && (
                   <NextStep
+                    meetingData={meetingData}
                     handleTimezonePopup={handleTimezonePopup}
                     isTimezonePopupOpen={isTimezonePopupOpen}
                     handleNextButton={handleNextButton}
@@ -205,7 +209,12 @@ const ArrangeMeeting = ({ mobileView }) => {
                     mobileView={mobileView}
                   />
                 )}
-                {openFinalStep && <ThirdStep closePopUp={closePopUp} />}
+                {openFinalStep && (
+                  <ThirdStep
+                    meetingData={meetingData}
+                    closePopUp={closePopUp}
+                  />
+                )}
               </div>
             </div>
             {/* <style jsx>{`

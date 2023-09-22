@@ -14,23 +14,8 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const Menu = (props) => {
-  const [{ isDropdownMenuOpen, showModal, lang }, dispatch] = useStateValue();
-  const [isMobileView, setIsMobileView] = useState(true);
+  const [{ isDropdownMenuOpen, showModal }, dispatch] = useStateValue();
   const menuRef = useRef();
-
-  const getAllDevelopers = async () => {
-    const data = await instance
-      .get(`/${lang}/developers`, {
-        timeout: 5000,
-      })
-      .then((data) => data?.data?.data);
-    return data;
-  };
-
-  const { data: developersData } = useQuery({
-    queryKey: ["get-developers"],
-    queryFn: getAllDevelopers,
-  });
 
   // let location = useLocation();
 
@@ -170,7 +155,8 @@ const Menu = (props) => {
         <Image src={backsapce} alt="backspace" />
       </span>
       <Dropdown
-        developersData={developersData}
+        homeData={props.homeData}
+        developersData={props.developersData}
         isMobileView={props.mobileView}
       />
     </div>

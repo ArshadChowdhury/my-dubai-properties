@@ -11,6 +11,7 @@ import BtnNextStep from "@/components/prev/BtnNextStep";
 import Image from "next/image";
 
 const NextStep = (props) => {
+  const meetingData = props.meetingData;
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
@@ -78,7 +79,9 @@ const NextStep = (props) => {
             className={`relative pl-5 `}
             // ${              mobileDataButtonPosition ? "hidden" : ""            }
           >
-            <h3 className="text-white pb-5 text-lg">Select a Date</h3>
+            <h3 className="text-white pb-5 text-lg">
+              {meetingData?.selectDate}
+            </h3>
             <div className="pr-[2rem]">
               <div className=" px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
                 <span
@@ -163,7 +166,7 @@ const NextStep = (props) => {
               onClick={activeButton !== null ? props.handleNextButton : null}
             >
               <BtnNextStep
-                btnText="Next step"
+                btnText={meetingData?.next}
                 btnImage={ForwordIcon}
                 className={
                   activeButton !== null ? "border-round" : "cursor-not-allowed"
@@ -172,7 +175,9 @@ const NextStep = (props) => {
             </div>
           </div>
           <div className={`md:ml-[5rem]`}>
-            <h3 className="text-white pb-5 text-lg">Select a Time</h3>
+            <h3 className="text-white pb-5 text-lg">
+              {meetingData?.selectTime}
+            </h3>
 
             <div>
               <p className="text-white  border-0 rounded text-sm">
@@ -233,10 +238,11 @@ const NextStep = (props) => {
           className={`absolute top-[75%] md:top-[86%] left-[40%] w-full hidden md:!block`}
           // ${ mobileDataButtonPosition ? "" : "hidden"}
           // onClick={props.handleNextButton}
+
           onClick={activeButton !== null ? props.handleNextButton : null}
         >
           <BtnNextStep
-            btnText="Next step"
+            btnText={meetingData?.next}
             btnImage={ForwordIcon}
             className={
               activeButton !== null ? "border-round" : "cursor-not-allowed"

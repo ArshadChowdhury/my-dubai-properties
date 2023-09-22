@@ -38,6 +38,8 @@ const Footer = ({ footerBg, home, homeData }) => {
       return updatedVisibility;
     });
   };
+
+  console.log(homeDatas);
   const uiElements = [
     {
       id: homeDatas?.whyUs,
