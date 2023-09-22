@@ -76,7 +76,7 @@ const ArrangeMeeting = ({ mobileView }) => {
     if (showModal) {
       if (mobileView) {
         gsap.to(arrangeRef.current, {
-          bottom: "0",
+          bottom: "100px",
           duration: 1,
           ease: "linear",
         });
@@ -166,7 +166,7 @@ const ArrangeMeeting = ({ mobileView }) => {
 
               <div
                 ref={currentArrangeRef}
-                className={`relative w-full h-[60vh] md:h-[390px]  md:w-[800px]  mx-auto max-w-3xl`}
+                className={`relative w-full h-[60vh] md:h-[390px] md:w-[800px] mx-auto max-w-3xl`}
               >
                 <div>
                   <button

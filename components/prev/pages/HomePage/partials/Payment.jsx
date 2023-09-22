@@ -21,7 +21,6 @@ const Payment = (props) => {
     };
   }, []);
 
-  console.log(homeData);
   return (
     <section>
       <Skeleton className="w-full md:my-12 mt-20 mb-10 relative">

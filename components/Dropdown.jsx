@@ -28,7 +28,7 @@ const Dropdown = (props) => {
 
   return (
     <div className="font-extralight mt-[68px] md:-mt-1 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div className={`mt-[68px] md:mt-0 md:dropdown_background w-full h-full`}>
+      <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="pl-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">
@@ -152,7 +152,7 @@ const Dropdown = (props) => {
             </div>
           </div>
         </SkeletonSingleProperty>
-        <div className="flex justify-center items-center mt-[220px]">
+        <div className="flex justify-center items-center">
           <button
             className="md:hidden border-t hex-btn-outline  text-white relative p-2  w-3/4 flex justify-center items-center"
             onClick={handleArrangeMeeting}

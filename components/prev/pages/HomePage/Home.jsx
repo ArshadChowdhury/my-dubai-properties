@@ -98,6 +98,8 @@ const Home = () => {
     );
   }
 
+  console.log(homeData);
+
   const sliders = homeData?.sliders;
 
   return (

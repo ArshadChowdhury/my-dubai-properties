@@ -159,9 +159,8 @@ const NextStep = (props) => {
               </div>
             </div>
             <div
-              className="md:hidden absolute  -bottom-[20%] left-[40%] w-full flex"
-              // onClick={handleDateNextButton}
-              onClick={activeButton !== null ? null : handleDateNextButton}
+              className="md:hidden absolute -bottom-[9%] left-[55%] w-full flex"
+              onClick={activeButton !== null ? props.handleNextButton : null}
             >
               <BtnNextStep
                 btnText="Next step"
@@ -172,12 +171,7 @@ const NextStep = (props) => {
               />
             </div>
           </div>
-          <div
-            className={`md:ml-[5rem]`}
-            // ${
-            //   props.mobileView ? (mobileDataButtonPosition ? "" : "hidden") : ""
-            // }
-          >
+          <div className={`md:ml-[5rem]`}>
             <h3 className="text-white pb-5 text-lg">Select a Time</h3>
 
             <div>
@@ -236,7 +230,7 @@ const NextStep = (props) => {
           </div>
         </div>
         <div
-          className={`absolute  top-[75%] md:top-[86%] left-[40%] w-full flex md:!block`}
+          className={`absolute top-[75%] md:top-[86%] left-[40%] w-full hidden md:!block`}
           // ${ mobileDataButtonPosition ? "" : "hidden"}
           // onClick={props.handleNextButton}
           onClick={activeButton !== null ? props.handleNextButton : null}

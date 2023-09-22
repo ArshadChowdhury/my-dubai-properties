@@ -35,7 +35,6 @@ const Footer = ({ footerBg, home, homeData }) => {
           updatedVisibility[key] = false;
         }
       }
-      console.log(updatedVisibility);
       return updatedVisibility;
     });
   };
