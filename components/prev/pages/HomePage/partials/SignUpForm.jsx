@@ -13,6 +13,7 @@ const SignUpForm = (props) => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
@@ -22,6 +23,7 @@ const SignUpForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setEmail("");
   };
 
   const handleChange = (event) => {
@@ -29,9 +31,13 @@ const SignUpForm = (props) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", (e) => {
-      setSubsPopUp(false);
-    });
+    window.addEventListener("scroll", (e) => setSubsPopUp(false));
+    document.addEventListener("mousedown", (e) => setSubsPopUp(false));
+
+    return () => {
+      window.removeEventListener("scroll", (e) => setSubsPopUp(false));
+      document.removeEventListener("mousedown", (e) => setSubsPopUp(false));
+    };
   }, []);
 
   return (
@@ -64,9 +70,9 @@ const SignUpForm = (props) => {
                 <input
                   type="email"
                   name="email"
+                  value={email}
                   placeholder={homeData?.email}
                   className="z-10 pl-5  md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
-                  value={email}
                   onChange={handleChange}
                   required
                 />

@@ -13,8 +13,6 @@ const GridView = (props) => {
   const dataLength = 6;
   const firstFilterData = propertiesData?.data;
 
-  console.log(page);
-
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
 

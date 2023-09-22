@@ -181,15 +181,21 @@ const SinglePropertyDetails = () => {
           filterListData={filterListData}
           property={singlePropertyDetails}
         />
-        <VillaFeatures villa={singlePropertyDetails} />
-        <Highlights highlights={singlePropertyDetails?.highlights} />
-        <PaymentPlan paymentPlan={singlePropertyDetails?.paymentPlan} />
-        <PhotoGallery images={singlePropertyDetails?.images} />
+        <VillaFeatures singleProperty={singleProperty} />
+        <Highlights singleProperty={singleProperty} />
+        <PaymentPlan
+          singleProperty={singleProperty}
+          paymentPlan={singlePropertyDetails?.paymentPlan}
+        />
+        <PhotoGallery singleProperty={singleProperty} />
         {/* <PropertyVideo url={singlePropertyDetails.videos[0].path} /> */}
-        <Amenities amenities={singlePropertyDetails?.amenities} />
-        <Nearby nearby={singlePropertyDetails?.location} />
-        <Downloads />
-        <SimilarProperties listView={propertiesData?.data} />
+        <Amenities singleProperty={singleProperty} />
+        <Nearby singleProperty={singleProperty} />
+        <Downloads singleProperty={singleProperty} />
+        <SimilarProperties
+          singleProperty={singleProperty}
+          listView={propertiesData?.data}
+        />
       </div>
 
       <Footer homeData={homeData} footerBg={"footer_background"} />

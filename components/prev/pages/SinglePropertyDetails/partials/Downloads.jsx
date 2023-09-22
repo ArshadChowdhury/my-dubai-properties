@@ -6,13 +6,14 @@ import iconDownload from "../../../assets/images/global/icon-download-outline.sv
 import HeadingText2 from "./HeadingText2";
 import BtnOutline from "@/components/prev/BtnOutline";
 
-const Downloads = () => {
+const Downloads = (props) => {
+  const heading = props?.singleProperty?.lang?.propertyDetails?.titleDownloads;
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
   return (
     <section className="mt-16 md:mt-5  mb-5 z-10">
       <SkeletonSingleProperty className="flex-col px-5">
         <div className="items-start w-full md:w-1/4 ml-2 pr-2">
-          <HeadingText innerText="Downloads" className="text-center " />
+          <HeadingText innerText={heading} className="text-center " />
         </div>
 
         <div className="md:flex justify-center w-full md:w-1/2 px-10 md:mx-auto mt-10 z-10">

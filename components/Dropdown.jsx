@@ -30,7 +30,7 @@ const Dropdown = (props) => {
   };
 
   return (
-    <div className="font-extralight mt-[68px] md:-mt-1 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+    <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
       <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="pl-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
@@ -39,12 +39,11 @@ const Dropdown = (props) => {
                 <span>
                   <Image src={helpLine} alt="help line image" />
                 </span>
-
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
+                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
                     {navItem?.whyUs}
                   </h2>
-                  <ul className="text-[10.5px]">
+                  <ul className="text-[14px] flex flex-col gap-1">
                     <li className="uppercase leading-[15.3px]">
                       <Link href="/about" onClick={handleClose}>
                         {navItem?.aboutUs}
@@ -64,10 +63,10 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2 uppercase">
+                  <h2 className="text-2xl font-[500] leading-[27px] mb-2 uppercase">
                     {navItem?.developers}
                   </h2>
-                  <ul className="text-[10.5px]">
+                  <ul className="text-[14px] flex flex-col gap-1">
                     {developers?.map((developer) => (
                       <Link
                         href={`/developers/${developer._id}`}
@@ -95,10 +94,10 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
+                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
                     {navItem?.projects}
                   </h2>
-                  <ul className="text-[10.5px]">
+                  <ul className="text-[14px] flex flex-col gap-1">
                     <Link
                       href={
                         "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
@@ -129,7 +128,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
+                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
                     {navItem?.offers}
                   </h2>
                 </div>
@@ -140,7 +139,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-[18px] font-[500] leading-[27px] mb-2">
+                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
                     {navItem?.tour}
                   </h2>
                 </div>
@@ -162,8 +161,8 @@ const Dropdown = (props) => {
       </div>
 
       {/**right side */}
-      <div className="w-full h-full relative hidden md:block">
-        <Image src={investment} alt="" className="h-full w-full " />
+      <div className="w-full h-full relative hidden md:block bg-cover">
+        <Image src={investment} alt="" className="h-full w-full" />
         <div className="w-full h-full absolute-center px-10 bg-[#171717] bg-opacity-30 rounded-md flex flex-col justify-center p-5">
           <div className="bg-black bg-opacity-70 ml-10 mr-10 px-10 py-6 rounded-lg">
             <p className="text-[12px] font-medium text-[#D4B970] font-roboto leading-[14px]">

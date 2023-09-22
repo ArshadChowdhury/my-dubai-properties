@@ -89,8 +89,6 @@ const DeveloperListPage = () => {
     queryFn: getAllDevelopers,
   });
 
-  console.log(homeData);
-
   useEffect(() => {
     refetch();
     refetchHomeData();

@@ -8,16 +8,12 @@ const BtnFilter = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [{ filterValues }, dispatch] = useStateValue();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const filterRef = useRef(null);
   const inputRef = useRef(null);
   // const [resetData, setResetData] = useState(true);
 
-  // const handleDropdownToggle = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
   const handleOptionSelect = (value) => {
     let updatedFilterValue;
-
     if (props.cat === "completions") {
       updatedFilterValue = Object.values(value)[1] || value;
       setInputValue(updatedFilterValue);
@@ -28,36 +24,33 @@ const BtnFilter = (props) => {
       ];
       setInputValue(updatedFilterValue[1]);
     }
-
     const updatedFilterValues = {
       ...filterValues,
       [props.cat]: updatedFilterValue,
     };
-
     dispatch({ type: "setFilterValues", item: updatedFilterValues });
     setIsDropdownOpen(false);
   };
 
-  const handleOnClick = (e) => {
+  const handleOnClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // useEffect(() => {
-  //   let handle = (e) => {
-  //     if (filterRef.current && !filterRef.current.contains(e.target)) {
-  //       setIsDropdownOpen(false);
-  //     }
-  //   };
+  useEffect(() => {
+    let handle = (e) => {
+      if (filterRef.current && !filterRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
 
-  //   document.addEventListener("mousedown", handle);
-  //   window.addEventListener("scroll", handle);
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("scroll", handle);
 
-  //   return () => {
-  //     document.removeEventListener("mousedown", handle);
-  //     document.removeEventListener("scroll", handle);
-  //     // dispatch({ type: "setFilterValues", item: false });
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("scroll", handle);
+    };
+  }, []);
 
   const inputChange = (e) => {
     setInputValue(e.target.value);
@@ -87,8 +80,10 @@ const BtnFilter = (props) => {
             <BsFillCaretDownFill />
           </span>
         </form>
+
         {isDropdownOpen && (
           <FilterDropdown
+            filterRef={filterRef}
             content={props.content}
             handleOptionSelect={handleOptionSelect}
             selectedValue={props.selectedValue}
@@ -96,7 +91,7 @@ const BtnFilter = (props) => {
           />
         )}
       </div>
-      <div className="z-0 absolute w-8 h-8  border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>
+      <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>
       {/* <div onClick={resetInputValue}>Delete</div> */}
     </div>
   );

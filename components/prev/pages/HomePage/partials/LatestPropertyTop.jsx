@@ -52,11 +52,10 @@ const LatestPropertyTop = (props) => {
   return (
     <div className="w-full flex pt-[3rem] md:pt-0">
       <div className="w-full basis-[75%] z-10">
-        <div className="px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full  md:pr-[155px]">
+        <div className="px-5 sm:pl-12 md:pl-20 lg:pl-28 md:py-[-4px] xl:pl-32 2xl:pl-40 flex flex-col md:flex-row items-center justify-between w-full md:pr-[155px]">
           <div className="mb-12 md:mb-0">
             <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
           </div>
-
           <div className="w-1/4 md:mr-[260px]">
             <BtnElore2 title={props.homeData.lang.slider.buttonExplore} />
           </div>

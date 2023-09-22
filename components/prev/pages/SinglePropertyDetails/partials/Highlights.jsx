@@ -6,7 +6,10 @@ import HeadingText2 from "./HeadingText2";
 import Image from "next/image";
 
 const Highlights = (props) => {
-  const highlights = props?.highlights?.split("#");
+  const highlights = props?.singleProperty?.property?.highlights?.split("#");
+  const heading =
+    props?.singleProperty?.lang?.propertyDetails?.titleIHighlights;
+
   const [margin, setMargin] = useState("25px");
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const Highlights = (props) => {
         <div className="w-full md:w-3/4 flex flex-col  ml-auto">
           <div className="w-full ml-0">
             <HeadingText2
-              innerText="Highlights"
+              innerText={heading}
               className="items-start w-full md:w-1/3"
             />
           </div>

@@ -38,12 +38,12 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   const timezones = moment.tz.names();
 
   const closeMeeting = (e) => {
+    setSubsPopUp(false);
     dispatch({ type: "setShowModal", item: false });
     setCloseFirststep(true);
     setOpenNextStep(false);
     setOpenFinalStep(false);
     dispatch({ type: "selectVideoMeeting", item: false });
-    setSubsPopUp(false);
     setCloseBtn(true);
   };
 
@@ -89,7 +89,6 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   useLayoutEffect(() => {
     let handle = (e) => {
       const distanceFromTop = window.scrollY;
-
       if (currentArrangeRef.current) {
         const menuHeight = arrangeRef.current?.offsetHeight;
         const menuOffsetTop = arrangeRef.current?.offsetTop;
@@ -107,7 +106,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
 
     return () => {
       document.removeEventListener("mousedown", handle);
-      document.removeEventListener("scroll", handle);
+      window.removeEventListener("scroll", handle);
     };
   }, [showModal, currentArrangeRef]);
 

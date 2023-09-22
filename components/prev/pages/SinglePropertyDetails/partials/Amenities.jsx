@@ -3,9 +3,12 @@ import HeadingText from "./HeadingText";
 import returnDownForward from "../../../assets/images/property details page/icon-return-down-forward.png";
 import HeadingText2 from "./HeadingText2";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const Amenities = (props) => {
-  const amenities = props.amenities;
+  const [{ lang }] = useStateValue();
+  const amenities = props?.singleProperty?.property?.amenities;
+  const heading = props?.singleProperty?.lang?.propertyDetails?.titleAmenities;
 
   const features = amenities.features.split("#");
   const features1 = [];
@@ -21,7 +24,7 @@ const Amenities = (props) => {
     <section className="!mt-20 md:mt-10  mb-5 z-50">
       <SkeletonSingleProperty className="flex-col px-5">
         <div className="items-start w-full md:w-1/4 ml-2 pr-2">
-          <HeadingText innerText="Amenities" className="text-center " />
+          <HeadingText innerText={heading} className="text-center " />
         </div>
 
         <div className="md:flex md:justify-between">
@@ -32,32 +35,58 @@ const Amenities = (props) => {
           </div>
           <div className="w-full flex flex-col ml-3 md:mx-10 md:flex-row basis-1/2 justify-between mt-5 md:mt-0">
             <ul className="text-left w-auto">
-              {features1.map((item, index) => (
-                <li className={`flex leading-8`} key={`features1-${index}`}>
-                  <Image
-                    src={returnDownForward}
-                    alt="return-down-forward"
-                    className="mr-5 w-[25px] h-[30px]"
-                  />
-                  <span className="font-montserrat text-white text-md">
-                    {item}
-                  </span>
-                </li>
-              ))}
+              {features1.map((item, index) =>
+                lang === "en" ? (
+                  <li className={`flex leading-8`} key={`features1-${index}`}>
+                    <Image
+                      src={returnDownForward}
+                      alt="return-down-forward"
+                      className="mr-5 w-[25px] h-[30px]"
+                    />
+                    <span className="font-montserrat text-white text-md">
+                      {item}
+                    </span>
+                  </li>
+                ) : (
+                  <li className={`flex leading-8`} key={`features1-${index}`}>
+                    <span className="font-montserrat text-white text-md">
+                      {item}
+                    </span>
+                    <Image
+                      src={returnDownForward}
+                      alt="return-down-forward"
+                      className="mr-5 w-[25px] h-[30px]"
+                    />
+                  </li>
+                )
+              )}
             </ul>
             <ul className="text-left w-auto">
-              {features2.map((item, index) => (
-                <li className="flex  leading-8" key={`features2-${index}`}>
-                  <Image
-                    src={returnDownForward}
-                    alt="return-down-forward"
-                    className="mr-5 w-[25px] h-[30px]"
-                  />
-                  <span className="font-montserrat text-white text-md ">
-                    {item}
-                  </span>
-                </li>
-              ))}
+              {features2.map((item, index) =>
+                lang === "en" ? (
+                  <li className="flex leading-8" key={`features2-${index}`}>
+                    <Image
+                      src={returnDownForward}
+                      alt="return-down-forward"
+                      className="mr-5 w-[25px] h-[30px]"
+                    />
+                    <span className="font-montserrat text-white text-md ">
+                      {item}
+                    </span>
+                  </li>
+                ) : (
+                  <li className="flex leading-8" key={`features2-${index}`}>
+                    <span className="font-montserrat text-white text-md ">
+                      {item}
+                    </span>
+                    <Image
+                      src={returnDownForward}
+                      alt="return-down-forward"
+                      className="mr-5 w-[25px] h-[30px]"
+                    />
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </div>

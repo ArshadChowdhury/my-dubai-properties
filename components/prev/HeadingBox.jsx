@@ -1,13 +1,21 @@
-import React from "react";
+import { useStateValue } from "./states/StateProvider";
 
 const HeadingBox = (props) => {
+  const [{ lang }] = useStateValue();
   return (
     <div
       className={`px-4 xl:px-16 py-1 bg-[#042C51] relative ${props.className}`}
     >
-      <div
-        className={`h-full w-1 bg-[#F1BF3F] absolute left-0 top-0 animate-pulse ${props.hidden}`}
-      ></div>
+      {lang === "en" ? (
+        <div
+          className={`h-full w-1 bg-[#F1BF3F] absolute left-0 top-0 animate-pulse ${props.hidden}`}
+        ></div>
+      ) : (
+        <div
+          className={`h-full w-1 bg-[#F1BF3F] absolute right-0 top-0 animate-pulse ${props.hidden}`}
+        ></div>
+      )}
+
       <h1
         className={`font-roboto text-xl xl:text-3xl text-white ${props.textPosition}`}
       >

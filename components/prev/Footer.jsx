@@ -79,7 +79,7 @@ const Footer = ({ footerBg, home, homeData }) => {
   ];
 
   return (
-    <footer className="my-20">
+    <footer className="py-20">
       <div className="px-3 lg:p-5 flex flex-col items-center relative z-20">
         <Image
           src={footerLogo}

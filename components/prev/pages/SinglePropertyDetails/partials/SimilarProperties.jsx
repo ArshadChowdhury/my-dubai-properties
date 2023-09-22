@@ -5,12 +5,14 @@ import ListItem from "../../ListView/partials/ListItem";
 import Image from "next/image";
 
 const SimilarProperties = (props) => {
+  const heading =
+    props?.singleProperty?.lang?.propertyDetails?.bradecumSimiliarProperties;
   return (
     <section className="mb-10 !mt-20 md:mt-5">
       <SkeletonSingleProperty className="flex-col px-5">
         <p className="text-white text-[18px] flex">
           <Image src={rightArrow} alt="" />
-          <span>Similler propertiese</span>
+          <span>{heading}</span>
         </p>
         <div className="mb-5 md:pl-2 md:pr-5">
           {props?.listView &&

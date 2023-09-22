@@ -10,18 +10,20 @@ import mosqueGif from "../../../assets/images/property details page/153-bar-char
 import frys from "../../../assets/images/property details page/2030-frysztak-town-outline.gif";
 
 const VillaFeatures = (props) => {
-  const villa = props?.villa;
+  const villa = props?.singleProperty?.property;
+  const heading = props?.singleProperty?.lang?.propertyDetails?.titleInvestment;
+
   return (
     <section className=" relative mt-16 ">
       <div className="w-full md:w-[80%] h-auto flex justify-center  px-5">
         <HeadingText
-          innerText="Key Investment"
+          innerText={heading}
           className="md:items-center md:mr-3"
           size="mr-2"
         />
       </div>
       <SkeletonSingleProperty className={`px-5 !pt-0`}>
-        <div className="single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px]  md:h-3/5  w-[85%] md:w-[40%]"></div>
+        <div className="single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px] md:h-3/5 w-[85%] md:w-[40%]"></div>
         <div className="border-right w-[65%] md:w-[45%] mt-[45px] md:mt-0 md:absolute -left-[4rem] top-[20%] skew-y-6 -skew-x-6 h-[132px] md:h-3/5 flex md:justify-center items-center">
           <div className="md:ml-[5.8rem] h-[132px]  md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
             <Image src={mosqueGif} alt="" />

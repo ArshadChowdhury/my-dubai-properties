@@ -153,7 +153,11 @@ const Navbar = (props) => {
                 )
               ) : null}
 
-              <div className="line bg-gradient-to-l from-white"></div>
+              {lang === "en" ? (
+                <div className="line bg-gradient-to-l from-white"></div>
+              ) : (
+                <div className="line bg-gradient-to-r from-white"></div>
+              )}
             </div>
           </div>
           <div className={`${props.type === "home" ? "pt-5" : ""}`}>

@@ -12,10 +12,11 @@ import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSinglePro
 import Image from "next/image";
 
 const PhotoGallery = (props) => {
+  const heading = props?.singleProperty?.lang?.propertyDetails?.titleGallery;
   const swiperRef = useRef();
   const [strokeLeft, setStrokeLeft] = useState("#B4B4B4");
   const [strokeRight, setStrokeRight] = useState("#B4B4B4");
-  const gallery = props.images;
+  const gallery = props?.singleProperty?.property?.images;
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imgPath, setImgPath] = useState();
@@ -77,11 +78,7 @@ const PhotoGallery = (props) => {
       )}
       <SkeletonSingleProperty className="px-5">
         <div className="items-start w-full md:w-1/4 ml-2 pr-2">
-          <HeadingText
-            innerText="Photo Gallery"
-            className="text-center"
-            size=""
-          />
+          <HeadingText innerText={heading} className="text-center" size="" />
         </div>
       </SkeletonSingleProperty>
       <Swiper

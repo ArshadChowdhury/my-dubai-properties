@@ -12,7 +12,6 @@ const FilterSearch = (props) => {
   const filterRef = useRef();
 
   const beds = [1, 2, 3, 4, 5];
-  console.log(filterListData);
 
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });

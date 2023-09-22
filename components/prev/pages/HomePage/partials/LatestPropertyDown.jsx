@@ -70,7 +70,7 @@ const LatestPropertyDown = (props) => {
   return (
     <div className="w-full flex flex-row-reverse relative z-20">
       <div className="w-full md:basis-[75%]  md:mt-12">
-        <div className="md:ml-[205px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full  md:pr-[155px]">
+        <div className="md:ml-[205px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-40 flex flex-col md:flex-row justify-between w-full md:pr-[155px]">
           <div className="mb-12 md:mb-0">
             <HomeHeading heading={props?.homeData?.lang?.slider?.titleReady} />
           </div>

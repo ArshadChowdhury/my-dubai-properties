@@ -22,11 +22,17 @@ const ThirdStep = (props) => {
   const [emailLength, setEmailLength] = useState(false);
   const [input, setInput] = useState("");
 
-  const [value, setValue] = useState();
+  const [phoneValue, setPhoneValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [nameValue, setNameValue] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
   const handleInVisible = () => {
-    setIsVisible(false); // Hide the div smoothly before unmounting
+    phoneValue.length > 0 &&
+      emailValue.length > 0 &&
+      nameValue.length > 0 &&
+      emails.length > 0 &&
+      setIsVisible(false); // Hide the div smoothly before unmounting
   };
 
   // const handleInputKeyDown = (e) => {
@@ -104,19 +110,23 @@ const ThirdStep = (props) => {
               <div className="flex items-center w-full text-[#bfa04b]">
                 <input
                   type="text"
-                  required
                   id="name"
+                  value={nameValue}
+                  onChange={(e) => setNameValue(e.target.value)}
                   placeholder={meetingData?.placeholderName}
                   className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
+                  required
                 />
               </div>
               <div className="flex items-center w-full text-[#bfa04b]">
                 <input
                   type="email"
-                  required
                   id="email"
+                  value={emailValue}
+                  onChange={(e) => setEmailValue(e.target.value)}
                   placeholder={meetingData?.placeholderEmail}
                   className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
+                  required
                 />
               </div>
               {/* <div className="flex items-center w-full text-[#bfa04b]">
@@ -132,8 +142,8 @@ const ThirdStep = (props) => {
                 <div className="w-full h-full">
                   <PhoneInput
                     placeholder={meetingData?.placeholderPhoneNumber}
-                    value={value}
-                    onChange={setValue}
+                    value={phoneValue}
+                    onChange={(e) => setPhoneValue(e.target.value)}
                     defaultCountry="BD"
                     className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                   />
@@ -214,6 +224,7 @@ const ThirdStep = (props) => {
           onClick={props.closePopUp}
         >
           <BtnTime
+            type="submit"
             onClick={handleInVisible}
             btnText={meetingData?.button}
             className="border-round w-[80px] mt-8 md:mt-0"

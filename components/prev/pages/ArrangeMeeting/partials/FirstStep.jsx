@@ -132,22 +132,24 @@ const ArrangeMeetingStep1 = ({
             </div>
           </div>
           {openMeetLink === "video" && (
-            <div className="md:absolute top-[60%] left-[35%]   flex justify-center items-center">
+            <div className="md:absolute top-[60%] left-[35%] flex justify-center gap-2 items-center">
               <div
                 onClick={() => setActiveBtn("zoom")}
-                className={`md:w-[60px] mx-[10px] cursor-pointer border-0 rounded-[.25rem]  ${
+                className={`px-1 cursor-pointer border-0 rounded-[.25rem] ${
                   activeBtn === "zoom" ? "border-x border-x-[#dcb558]" : ""
                 }`}
               >
+                {/* md:w-[60px] mx-[10px] */}
                 <Image src={Zoom} alt="" />
               </div>
+              {/* w-[40px] md:w-[45px] */}
               <div
                 onClick={() => setActiveBtn("meet")}
-                className={`w-[40px] md:w-auto mx-[10px] cursor-pointer border-0 rounded-[.25rem] ${
+                className={`py-[5px] px-2 cursor-pointer border-0 rounded-[.25rem] ${
                   activeBtn === "meet" ? "border-x border-x-[#dcb558]" : ""
                 }`}
               >
-                <Image src={GoogleMeet} alt="" className="w-full" />
+                <Image src={GoogleMeet} alt="" />
               </div>
             </div>
           )}

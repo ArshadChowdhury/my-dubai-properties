@@ -56,8 +56,6 @@ const PrivacyContent = () => {
 
   const privacyData = homeData?.lang?.privacypoicy;
 
-  console.log(privacyData);
-
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar2

@@ -24,6 +24,9 @@ const planTitle = (plan) => {
 };
 
 const PaymentPlan = (props) => {
+  const heading =
+    props?.singleProperty?.lang?.propertyDetails?.titlePaymentPlan;
+
   const [firstPlan, setFirstPlan] = useState({
     title: planTitle(props?.paymentPlan[0]),
     description: props?.paymentPlan[0]?.milestone,
@@ -143,7 +146,7 @@ const PaymentPlan = (props) => {
       <SkeletonSingleProperty className="px-5 flex-col ">
         <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
           <HeadingText
-            innerText="Payment Plan"
+            innerText={heading}
             className="items-start text-center w-full md:w-auto"
             size="px-4"
           />
