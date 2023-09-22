@@ -6,7 +6,7 @@ import HeadingText2 from "./HeadingText2";
 import Image from "next/image";
 
 const Highlights = (props) => {
-  const highlights = props.highlights.split("#");
+  const highlights = props?.highlights?.split("#");
   const [margin, setMargin] = useState("25px");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Highlights = (props) => {
             style={{ marginRight: `${margin}` }}
           >
             <ul className="pl-5 md:pl-12 pt-10  w-full single-key-background pr-2">
-              {highlights.map((highlight, index) => (
+              {highlights?.map((highlight, index) => (
                 <li className="flex mb-6" key={`highlight-${index}`}>
                   <Image
                     src={tick}
@@ -50,7 +50,7 @@ const Highlights = (props) => {
         </div>
       </SkeletonSingleProperty>
       <div className="-rotate-90 absolute -left-[140px] top-[13rem] opacity-0 md:opacity-50 text-white font-turretRoad mix-blend-overlay">
-        <h1 className="text-[80px] ">Highlights</h1>
+        <h1 className="text-[80px]">Highlights</h1>
       </div>
     </section>
   );

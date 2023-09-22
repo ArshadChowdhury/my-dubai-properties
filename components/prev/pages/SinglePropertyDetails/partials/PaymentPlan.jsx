@@ -25,13 +25,13 @@ const planTitle = (plan) => {
 
 const PaymentPlan = (props) => {
   const [firstPlan, setFirstPlan] = useState({
-    title: planTitle(props.paymentPlan[0]),
-    description: props.paymentPlan[0].milestone,
+    title: planTitle(props?.paymentPlan[0]),
+    description: props?.paymentPlan[0]?.milestone,
   });
   const [planList, setPlanList] = useState([
     {
-      title: planTitle(props.paymentPlan[0]),
-      description: props.paymentPlan[0].milestone,
+      title: planTitle(props?.paymentPlan[0]),
+      description: props?.paymentPlan[0]?.milestone,
     },
   ]);
   const [mobileView, setMobileView] = useState(false);
@@ -41,7 +41,7 @@ const PaymentPlan = (props) => {
   }, []);
 
   const [panelRef, setPanelRef] = useState(null);
-  const paymentPlan = props.paymentPlan.slice(1);
+  const paymentPlan = props?.paymentPlan?.slice(1);
   const circleDivRef = useRef(null);
   const parentRef = useRef(null);
   const scrollDiv = useRef(null);
@@ -62,7 +62,7 @@ const PaymentPlan = (props) => {
         if (index === 0 && itemX > holder) {
           setFirstPlan({
             title: planTitle(props?.paymentPlan[0]),
-            description: props?.paymentPlan[0].milestone,
+            description: props?.paymentPlan[0]?.milestone,
           });
         }
 

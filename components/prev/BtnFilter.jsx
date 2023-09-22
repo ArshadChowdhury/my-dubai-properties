@@ -8,7 +8,6 @@ const BtnFilter = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [{ filterValues }, dispatch] = useStateValue();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const filterRef = useRef(null);
   const inputRef = useRef(null);
   // const [resetData, setResetData] = useState(true);
 
@@ -89,14 +88,12 @@ const BtnFilter = (props) => {
           </span>
         </form>
         {isDropdownOpen && (
-          <div className="absolute bottom-0 left-0" ref={filterRef}>
-            <FilterDropdown
-              content={props.content}
-              handleOptionSelect={handleOptionSelect}
-              selectedValue={props.selectedValue}
-              inputValue={inputValue}
-            />
-          </div>
+          <FilterDropdown
+            content={props.content}
+            handleOptionSelect={handleOptionSelect}
+            selectedValue={props.selectedValue}
+            inputValue={inputValue}
+          />
         )}
       </div>
       <div className="z-0 absolute w-8 h-8  border-2 border-white rotate-45 top-[5px] right-[-16px] border-l-0 border-b-0"></div>

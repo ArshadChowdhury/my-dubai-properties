@@ -90,12 +90,17 @@ const SinglePropertyDetails = () => {
     isLoading: isLoadingPropertiesData,
     data: propertiesData,
     isError: isPropertiesError,
+    refetch: refetchPropertiesData,
   } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
   });
 
-  const { data: filterListData } = useQuery({
+  const {
+    isLoading: filterDataLoading,
+    refetch: filterDataRefetch,
+    data: filterListData,
+  } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
   });
@@ -110,8 +115,10 @@ const SinglePropertyDetails = () => {
         setNav(true);
       }
     };
-    singlePropertyRefetch();
     refetch();
+    singlePropertyRefetch();
+    refetchPropertiesData();
+    filterDataRefetch();
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -119,7 +126,12 @@ const SinglePropertyDetails = () => {
     };
   }, [lang]);
 
-  if (isLoading || isLoadingPropertiesData || isLoadingHomeContent) {
+  if (
+    isLoading ||
+    isLoadingPropertiesData ||
+    isLoadingHomeContent ||
+    filterDataLoading
+  ) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Loading...Please wait...

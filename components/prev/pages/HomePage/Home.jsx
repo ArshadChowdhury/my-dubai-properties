@@ -70,9 +70,9 @@ const Home = () => {
   });
 
   const {
-    refetch,
     isLoading: isLoadingFilterData,
     data: filterListData,
+    refetch,
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,

@@ -19,9 +19,9 @@ import { instance } from "../../services/apiFunctions";
 import FilterModal from "./partials/filterModal";
 
 export default function ViewProperty(props) {
-  const { heading } = props;
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const pathname = usePathname();
+
   const [page, setPage] = useState(1);
   const [{ lang, viewType }, dispatch] = useStateValue();
   const searchParams = useSearchParams();
@@ -145,6 +145,14 @@ export default function ViewProperty(props) {
       </p>
     );
   }
+
+  const headingMap = {
+    "/properties/ready": homeData?.lang?.navber?.ready,
+    "/properties": homeData?.lang?.allProjects?.titleAllProperties,
+    "/properties/off-plan": homeData?.lang?.navber?.offPlan,
+  };
+
+  const heading = headingMap[pathname] || "";
 
   const handleShowAll = () => {
     setPage((page) => page + 1);

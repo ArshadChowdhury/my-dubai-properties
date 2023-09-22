@@ -44,7 +44,7 @@ const SinglePropertyHeader = (props) => {
 
   return (
     <section className="relative h-[70vh] md:h-[100vh] w-screen">
-      {props.header.map((img, idx) => {
+      {props?.header?.map((img, idx) => {
         let position = "nextSlide";
         if (idx === index) {
           position = "activeSlide";

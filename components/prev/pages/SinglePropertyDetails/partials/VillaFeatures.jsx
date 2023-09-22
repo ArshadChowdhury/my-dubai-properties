@@ -10,7 +10,7 @@ import mosqueGif from "../../../assets/images/property details page/153-bar-char
 import frys from "../../../assets/images/property details page/2030-frysztak-town-outline.gif";
 
 const VillaFeatures = (props) => {
-  const villa = props.villa;
+  const villa = props?.villa;
   return (
     <section className=" relative mt-16 ">
       <div className="w-full md:w-[80%] h-auto flex justify-center  px-5">
@@ -36,28 +36,28 @@ const VillaFeatures = (props) => {
               <FeatureItem
                 featureImage={price}
                 featureText="Starting Price"
-                featureDetails={villa.startingPrice}
+                featureDetails={villa?.startingPrice}
               />
             </div>
             <div className="w-[90%] md:w-auto mb-4 md:mb-8 md:ml-8">
               <FeatureItem
                 featureImage={type}
                 featureText="Type"
-                featureDetails={villa.propertyType.name}
+                featureDetails={villa?.propertyType?.name}
               />
             </div>
             <div className="w-[90%] md:w-auto mb-4 md:mb-8 md:mr-8">
               <FeatureItem
                 featureImage={location}
                 featureText="Location"
-                featureDetails={villa.propertyArea.areaName}
+                featureDetails={villa?.propertyArea?.areaName}
               />
             </div>
             <div className="w-[90%] md:w-auto mb-4 md:mb-8 md:ml-8">
               <FeatureItem
                 featureImage={bedrooms}
                 featureText="Bedrooms"
-                featureDetails={villa.unitType.size}
+                featureDetails={villa?.unitType?.size}
               />
             </div>
           </div>

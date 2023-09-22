@@ -15,29 +15,29 @@ import Image from "next/image";
 const SinglePropertyDescription = (props) => {
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
 
-  const propertyDetails = props.property;
+  const propertyDetails = props?.property;
 
   const propertyDescription =
-    propertyDetails.propertyDescription.split("\r\n\r\n");
+    propertyDetails?.propertyDescription?.split("\r\n\r\n");
 
   return (
     <section className="ml-3 mr-3">
       <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0 ">
         <div className="xl:basis-[75%] xl:pr-8 text-justify lg:text-left">
           <h1 className="font-robotoCondensed font-medium text-white text-[30px] ml-2">
-            {propertyDetails.propertyName}
+            {propertyDetails?.propertyName}
           </h1>
           <div className="flex items-center ml-2">
             <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
               <Image src={iconLocationBlack} alt="Location" className="mr-1" />
-              {propertyDetails.developerType.name}
+              {propertyDetails?.developerType?.name}
             </p>
             <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
               <Image src={iconBuilding} alt="building" className="mr-1" />
-              {propertyDetails.propertyArea.areaName}
+              {propertyDetails?.propertyArea?.areaName}
             </p>
           </div>
-          {propertyDescription.map((paragraph, index) => (
+          {propertyDescription?.map((paragraph, index) => (
             <p
               className="font-montserrat text-white leading-7 py-2 text-[15px]"
               key={`paragraph-${index}`}
@@ -90,8 +90,8 @@ const SinglePropertyDescription = (props) => {
         </div>
         <div className="xl:basis-[24.7%] z-10 mt-10 md:mt-0 px-3 md:px-0 md:mr-3">
           <RegisterForm
-            homeData={props.homeData}
-            propertyName={propertyDetails.propertyName}
+            homeData={props?.homeData}
+            propertyName={propertyDetails?.propertyName}
           />
         </div>
       </SkeletonSingleProperty>
