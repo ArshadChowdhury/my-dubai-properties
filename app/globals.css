@@ -3525,9 +3525,8 @@ video {
 .nav .animation2 {
   position: absolute;
   height: 5px;
-  /* height: 5px; */
   /* top: 0; */
-  bottom: -1rem;
+  top: 2.2rem;
   z-index: 1;
   background: #042c51;
   border-radius: 8px;
@@ -3548,19 +3547,39 @@ video {
 }
 
 .nav .start-home,
-h1:nth-child(1):hover ~ .animation2 {
+.first-en:hover ~ .animation2 {
   width: 78px;
-  left: 3px;
+  left: 0.1em;
 }
 
-.nav h1:nth-child(2):hover ~ .animation2 {
+.nav .start-home,
+.second-en:hover ~ .animation2 {
   width: 53px;
   left: 110px;
 }
 
-.nav h1:nth-child(3):hover ~ .animation2 {
+.nav .start-home,
+.third-en:hover ~ .animation2 {
   width: 135px;
   left: 198px;
+}
+
+.nav .start-home-ar,
+.first-ar:hover ~ .animation2 {
+  width: 38px;
+  left: 160px;
+}
+
+.nav .start-home-ar,
+.second-ar:hover ~ .animation2 {
+  width: 43px;
+  left: 97px;
+}
+
+.nav .start-home-ar,
+.third-ar:hover ~ .animation2 {
+  width: 83px;
+  left: -5px;
 }
 
 .bg-gradient-custom {

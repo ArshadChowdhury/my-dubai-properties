@@ -101,7 +101,9 @@ const Navbar = (props) => {
               onMouseLeave={() => setNavPoint(false)}
             >
               <h1
-                className="uppercase cursor-pointer font-openSans text-white mx-4"
+                className={`uppercase cursor-pointer font-openSans text-white mx-4 ${
+                  lang === "en" ? "first-en" : "first-ar"
+                }`}
                 onMouseEnter={() => setNavPoint(true)}
               >
                 <Link
@@ -113,7 +115,9 @@ const Navbar = (props) => {
                 </Link>
               </h1>
               <h1
-                className="uppercase cursor-pointer font-openSans text-white mx-4"
+                className={`uppercase cursor-pointer font-openSans text-white mx-4 ${
+                  lang === "en" ? "second-en" : "second-ar"
+                }`}
                 onMouseEnter={() => setNavPoint(true)}
               >
                 <Link
@@ -125,7 +129,9 @@ const Navbar = (props) => {
                 </Link>
               </h1>
               <h1
-                className="uppercase cursor-pointer font-openSans text-white mx-4"
+                className={`uppercase cursor-pointer font-openSans text-white mx-4 ${
+                  lang === "en" ? "third-en" : "third-ar"
+                }`}
                 onMouseEnter={() => setNavPoint(true)}
               >
                 <Link href={"/properties"}>
@@ -134,13 +140,18 @@ const Navbar = (props) => {
                 </Link>
               </h1>
               {navPoint ? (
-                <div
-                  className="animation2 start-home duration-1000"
-                  style={{ transition: "1s" }}
-                ></div>
-              ) : (
-                ""
-              )}
+                lang === "en" ? (
+                  <div
+                    className="animation2 start-home duration-1000"
+                    style={{ transition: "1s" }}
+                  ></div>
+                ) : (
+                  <div
+                    className="animation2 start-home-ar duration-1000"
+                    style={{ transition: "1s" }}
+                  ></div>
+                )
+              ) : null}
 
               <div className="line bg-gradient-to-l from-white"></div>
             </div>
