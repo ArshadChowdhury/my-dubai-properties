@@ -13,6 +13,8 @@ const GridView = (props) => {
   const dataLength = 6;
   const firstFilterData = propertiesData?.data;
 
+  console.log(page);
+
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
 
@@ -52,6 +54,7 @@ const GridView = (props) => {
         dataLength={dataLength}
         next={fetchMoreData}
         hasMore={hasNextPage}
+        refreshFunction={fetchMoreData}
       >
         <div className="mb-20">
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">

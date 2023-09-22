@@ -137,7 +137,7 @@ const DeveloperListPage = () => {
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
             </div>
             <div className="hidden md:block">
-              <div className="w-1/4 bg-white bg-opacity-10 rounded-md flex items-center custom-shadow">
+              <div className="w-full bg-white bg-opacity-10 rounded-md flex items-center custom-shadow">
                 <input
                   type="search"
                   name="search developers"

@@ -65,7 +65,10 @@ const FilterSearch = (props) => {
         <div className="hidden md:visible -top-[192px] md:relative md:top-0 md:flex z-100">
           <span
             className="hover:scale-125 transition duration-300 cursor-pointer"
-            onClick={() => switchViewType("list")}
+            onClick={() => {
+              switchViewType("list");
+              setPage(1);
+            }}
           >
             <svg
               width="35"
@@ -122,7 +125,10 @@ const FilterSearch = (props) => {
           </span>
           <span
             className="hover:scale-125 transition duration-300 cursor-pointer"
-            onClick={() => switchViewType("grid")}
+            onClick={() => {
+              switchViewType("grid");
+              setPage(1);
+            }}
           >
             <svg
               width="35"

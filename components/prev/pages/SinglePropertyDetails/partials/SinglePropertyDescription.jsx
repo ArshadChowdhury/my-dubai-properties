@@ -16,6 +16,7 @@ const SinglePropertyDescription = (props) => {
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
 
   const propertyDetails = props?.property;
+  const homeData = props?.homeData?.lang?.propertyDetails;
 
   const propertyDescription =
     propertyDetails?.propertyDescription?.split("\r\n\r\n");
@@ -57,14 +58,14 @@ const SinglePropertyDescription = (props) => {
               <div className="xl:pr-4 pt-3 ">
                 <Button
                   to="#"
-                  btnText="Download Brochure"
+                  btnText={homeData?.titleDownloads}
                   btnImage={iconDownload}
                   btnClass={btnHoverEffect ? "?bg-none" : ""}
                 />
               </div>
               <div className=" xl:pl-4 pt-3 ">
                 <BtnOutline
-                  btnText="location"
+                  btnText={homeData?.titleNearbyAttractions}
                   btnImage={iconLocation}
                   onMouseEnterEvent={setBtnHoverEffect}
                 />
@@ -74,13 +75,13 @@ const SinglePropertyDescription = (props) => {
               <div className="xl:pl-16 pt-5">
                 <BtnOutline
                   onMouseEnterEvent={setBtnHoverEffect}
-                  btnText="Download Floor Plan"
+                  btnText={homeData?.titleDownloads}
                   btnImage={iconDownload}
                 />
               </div>
               <div className="xl:pr-16 pt-5">
                 <BtnOutline
-                  btnText="view gallery"
+                  btnText={homeData?.titleGallery}
                   btnImage={iconFilm}
                   onMouseEnterEvent={setBtnHoverEffect}
                 />

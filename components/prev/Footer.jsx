@@ -39,7 +39,6 @@ const Footer = ({ footerBg, home, homeData }) => {
     });
   };
 
-  console.log(homeDatas);
   const uiElements = [
     {
       id: homeDatas?.whyUs,

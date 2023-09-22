@@ -77,6 +77,7 @@ const FilterSelect = (props) => {
     const updatedUrl = updatedQueryString
       ? `?${updatedQueryString}`
       : "/properties";
+
     props.setPage(1);
     router.push(updatedUrl);
   };

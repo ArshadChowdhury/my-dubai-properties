@@ -50,7 +50,7 @@ const DeveloperList = (props) => {
     <section className="w-full">
       <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[78px] md:top-[68px]"></div>
       <InfiniteScroll dataLength={4} next={fetchMoreData} hasMore={hasNextPage}>
-        <div className="relative grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
+        <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev?.map((developer, index) => (
             <DeveloperListItem
               key={developer._id}
