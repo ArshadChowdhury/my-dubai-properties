@@ -45,6 +45,24 @@ const SingleDeveloperView = (props) => {
     return data;
   };
 
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingFilterData,
+    data: filterListData,
+    refetch: filterRefetch,
+  } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
+
   const {
     isLoading: isLoadingHomeContent,
     data: homeData,
@@ -84,6 +102,9 @@ const SingleDeveloperView = (props) => {
       </p>
     );
   }
+
+  console.log(singleDevData);
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
@@ -107,43 +128,32 @@ const SingleDeveloperView = (props) => {
         />
         <EmmarProperties developerDetails={singleDevData} />
         <div className="sticky z-[20] -top-[10px] md:top-[88px] bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
-          {/* {props.mobileView ? (
+          <div className="md:hidden">
             <div className="py-4">
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
             </div>
-          ) : (
+          </div>
+          <div className="hidden md:block">
             <div className="w-full md:grid grid-cols-5">
-              <div
-                className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}
-              >
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelect
                   searchBy="Property Areas"
-                  selectBy={filterList?.propertyAreas}
+                  selectBy={filterListData?.propertyAreas}
                 />
               </div>
-              <div
-                className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}
-              >
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelect
                   searchBy="Property Types"
-                  selectBy={filterList?.propertyTypes}
+                  selectBy={filterListData?.propertyTypes}
                 />
               </div>
-              <div
-                className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}
-              >
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelect searchBy="Beds" selectBy={beds} />
               </div>
-              <div
-                className="mt-2 md:mt-0  md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-                style={{ width: "220px" }}
-              >
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelect
                   searchBy="Completions"
-                  selectBy={filterList?.completions}
+                  selectBy={filterListData?.completions}
                 />
               </div>
               <div
@@ -167,7 +177,7 @@ const SingleDeveloperView = (props) => {
                 </button>
               </div>
             </div>
-          )} */}
+          </div>
         </div>
         <div className="">
           <FilterModal
@@ -176,12 +186,9 @@ const SingleDeveloperView = (props) => {
             setIsFilterModalOpen={setIsFilterModalOpen}
           />
         </div>
-        {/* <TableView
-          mobileView={props.mobileView}
-          properties={developer.developerProperty.data}
-        /> */}
+        <TableView properties={singleDevData?.developerProperty?.data} />
 
-        {/* <PropertyList propertyList={developer.developerProperty.data} /> */}
+        <PropertyList singleDevData={singleDevData?.developerProperty} />
       </div>
       <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>

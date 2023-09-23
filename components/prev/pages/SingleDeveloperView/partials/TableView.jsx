@@ -138,6 +138,8 @@ const TableView = (props) => {
                             style={{ width: "10%", height: "auto" }}
                           >
                             <Image
+                              height={300}
+                              width={300}
                               src={coverImage[0].path}
                               alt="propertyImage"
                               className="w-full h-full"

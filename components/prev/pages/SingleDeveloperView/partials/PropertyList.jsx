@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Skeleton from "@/components/prev/Skeleton/Skeleton";
-import GridView from "../../GridView/GridView";
+import SingleDeveloperGridView from "@/components/SingleDeveloperGridView";
 
 const PropertyList = (props) => {
   const [showAll, setShowAll] = useState(false);
-  const properties = props.propertyList;
-  const productsToShow = showAll ? properties : properties.slice(0, 3);
+  const singleDevData = props?.singleDevData;
+  const page = props.singleDevData.page;
+  const propertiesToShow = showAll
+    ? singleDevData?.data
+    : singleDevData?.data?.slice(0, 3);
 
   const handleShowAll = () => {
     setShowAll(true);
@@ -13,7 +16,12 @@ const PropertyList = (props) => {
   return (
     <section>
       <Skeleton className="px-5">
-        <GridView properties={productsToShow} handleShowAll={handleShowAll} />
+        <SingleDeveloperGridView
+          page={page}
+          singleDevData={singleDevData}
+          propertiesToShow={propertiesToShow}
+          handleShowAll={handleShowAll}
+        />
       </Skeleton>
     </section>
   );
