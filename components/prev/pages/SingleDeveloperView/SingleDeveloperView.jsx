@@ -8,7 +8,7 @@ import PropertyList from "./partials/PropertyList";
 import TableView from "./partials/TableView";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
-import FilterSelect from "../../FilterSelect";
+import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDeveloper";
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
 import FilterModal from "../ViewProperty/partials/filterModal";
@@ -18,19 +18,46 @@ import Image from "next/image";
 import { instance } from "../../services/apiFunctions";
 
 const SingleDeveloperView = (props) => {
-  const [{ lang }] = useStateValue();
-  const [{ propertyToView }] = useStateValue();
+  const [{ lang, propertyToView }] = useStateValue();
   const pathname = usePathname();
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
+  const [page, setPage] = useState(1);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const beds = [1, 2, 3, 4, 5];
+  const searchParams = useSearchParams();
+  const propertyAreaId = searchParams.get("propertyAreas");
+  const propertyTypeId = searchParams.get("propertyTypes");
+  const completion = searchParams.get("completions");
+  const beds = searchParams.get("beds");
+  // const beds = [1, 2, 3, 4, 5];
   const [isMobileView, setIsMobileView] = useState(true);
+
+  const filterParams = {
+    propertyAreaId,
+    propertyTypeId,
+    completion,
+    beds,
+    page,
+  };
+
+  // const fetchMoreData = async () => {
+  //   setPage((page) => page + 1);
+  //   return async () => {
+  //     const data = await instance
+  //       .get(`/${lang}/developers/${developerId}`, {
+  //         timeout: 5000,
+  //         params: filterParams,
+  //       })
+  //       .then((data) => data.data.data.properties);
+  //     return data;
+  //   };
+  // };
 
   const getSingleDeveloperData = async () => {
     const data = await instance
       .get(`/${lang}/developers/${developerId}`, {
         timeout: 5000,
+        params: filterParams,
       })
       .then((data) => data.data.data);
     return data;
@@ -77,6 +104,7 @@ const SingleDeveloperView = (props) => {
     isLoading: isLoadingSingleDev,
     data: singleDevData,
     isError: isErrorSingleDev,
+    refetch: refetchSingleDev,
   } = useQuery({
     queryKey: ["get-single-dev", developerId],
     queryFn: getSingleDeveloperData,
@@ -85,7 +113,8 @@ const SingleDeveloperView = (props) => {
 
   useEffect(() => {
     refetch();
-  }, [lang]);
+    refetchSingleDev();
+  }, [lang, filterParams]);
 
   if (isLoadingHomeContent || isLoadingSingleDev) {
     return (
@@ -102,8 +131,6 @@ const SingleDeveloperView = (props) => {
       </p>
     );
   }
-
-  console.log(singleDevData);
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -127,7 +154,7 @@ const SingleDeveloperView = (props) => {
           buttonHide={"true"}
         />
         <EmmarProperties developerDetails={singleDevData} />
-        <div className="sticky z-[20] -top-[10px] md:top-[88px] bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
+        <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
             <div className="py-4">
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
@@ -135,23 +162,34 @@ const SingleDeveloperView = (props) => {
           </div>
           <div className="hidden md:block">
             <div className="w-full md:grid grid-cols-5">
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelect
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+                <FilterSelectSingleDeveloper
+                  developerId={developerId}
+                  setPage={setPage}
                   searchBy="Property Areas"
                   selectBy={filterListData?.propertyAreas}
                 />
               </div>
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelect
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+                <FilterSelectSingleDeveloper
+                  developerId={developerId}
+                  setPage={setPage}
                   searchBy="Property Types"
                   selectBy={filterListData?.propertyTypes}
                 />
               </div>
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelect searchBy="Beds" selectBy={beds} />
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+                <FilterSelectSingleDeveloper
+                  developerId={developerId}
+                  setPage={setPage}
+                  searchBy="Beds"
+                  selectBy={filterListData?.noOfBeds}
+                />
               </div>
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelect
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+                <FilterSelectSingleDeveloper
+                  developerId={developerId}
+                  setPage={setPage}
                   searchBy="Completions"
                   selectBy={filterListData?.completions}
                 />
@@ -186,9 +224,18 @@ const SingleDeveloperView = (props) => {
             setIsFilterModalOpen={setIsFilterModalOpen}
           />
         </div>
-        <TableView properties={singleDevData?.developerProperty?.data} />
+        <TableView
+          filterParams={filterParams}
+          page={page}
+          singleDevData={singleDevData}
+        />
 
-        <PropertyList singleDevData={singleDevData?.developerProperty} />
+        <PropertyList
+          filterParams={filterParams}
+          page={page}
+          setPage={setPage}
+          singleDevData={singleDevData}
+        />
       </div>
       <Footer homeData={homeData} footerBg={"footer_background"} />
     </section>

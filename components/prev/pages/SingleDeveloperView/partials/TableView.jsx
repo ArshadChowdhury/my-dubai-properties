@@ -12,6 +12,7 @@ import axios from "axios";
 import Image from "next/image";
 
 const TableView = (props) => {
+  const singleDevData = props.singleDevData;
   const [{ propertyToView, filterValues }] = useStateValue();
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
@@ -19,24 +20,40 @@ const TableView = (props) => {
   const [filterData, setFilterData] = useState([]);
   const [showCount, setShowCount] = useState(5);
   const dataLength = 6;
+  const firstFilterData = props.singleDevData?.developerProperty?.data;
 
   useEffect(() => {
-    const params = {
-      developerId: filterValues.developers,
-      developmentTypeId: filterValues.developmentTypes,
-      propertyAreaId: filterValues.propertyAreas,
-      completion: filterValues.completions,
-      propertyTypeId: filterValues.propertyTypes,
-    };
-    axios
-      .get("http://52.77.121.171:3008/api/v1/en/properties", { params })
-      .then((response) => {
-        setFilterData(response.data.data.properties.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [filterValues]);
+    if (singleDevData?.developerProperty?.page === props.page) {
+      const uniqueIds = new Set(filterData.map((item) => item._id));
+      const filteredPropertiesData =
+        singleDevData?.developerProperty?.data.filter((item) => {
+          if (!uniqueIds.has(item._id)) {
+            uniqueIds.add(item._id);
+            return true;
+          }
+          return false;
+        });
+      setFilterData([...filterData, ...filteredPropertiesData]);
+    } else {
+      // Reset filterData to the initial data
+      setFilterData([...firstFilterData]);
+    }
+    if (props.page === 1) {
+      setFilterData(props.singleDevData?.developerProperty?.data);
+    }
+  }, [props.singleDevData, props.page]);
+
+  useEffect(() => {
+    if (singleDevData?.developerProperty?.page === 1) {
+      setFilterData([...firstFilterData]);
+    }
+  }, [
+    props.filterParams.propertyAreaId,
+    props.filterParams.propertyTypeId,
+    props.filterParams.completion,
+    props.filterParams.beds,
+    props.filterParams.page,
+  ]);
 
   const increaseCount = () => {
     setShowCount((prev) => prev + 5);
@@ -122,7 +139,7 @@ const TableView = (props) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
-                  {filterData.map((property, idx) => {
+                  {filterData?.map((property, idx) => {
                     const { images } = property;
                     const coverImage = images.filter((image) => {
                       if (image.type === "cover") {
@@ -219,7 +236,7 @@ const TableView = (props) => {
                 </tbody>
               </table>
             </div>
-            {!showTableView && (
+            {/* {!showTableView && (
               <div
                 // onClick={handleShowButton}
                 onClick={increaseCount}
@@ -228,7 +245,7 @@ const TableView = (props) => {
                 <Image src={downOption} alt="" />
                 <span>Show More</span>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

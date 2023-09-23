@@ -5,14 +5,19 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 
 const FilterSelect = (props) => {
+  const { developerId } = props;
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
-  const developmentTypeId = searchParams.get("developmentTypes");
-  const developerId = searchParams.get("developers");
+  const propertyTypeId = searchParams.get("propertyTypes");
+  const completions = searchParams.get("completions");
+  const beds = searchParams.get("beds");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
+  console.log(beds);
+  console.log(completions);
+  console.log(props.selectBy);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
@@ -22,17 +27,22 @@ const FilterSelect = (props) => {
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
         );
-      case "Development Type":
-        allItemsArray?.unshift({ id: null, name: "Development Type" });
+      case "Property Types":
+        allItemsArray?.unshift({ id: null, name: "Property Types" });
         return (
-          props?.selectBy?.find((item) => item._id === developmentTypeId)
-            ?.name || allItemsArray[0].name
-        );
-      case "Developer Type":
-        allItemsArray?.unshift({ id: null, name: "Developer Type" });
-        return (
-          props?.selectBy?.find((item) => item._id === developerId)?.name ||
+          props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
           allItemsArray[0].name
+        );
+      case "Beds":
+        allItemsArray?.unshift("Beds");
+        return (
+          props?.selectBy?.find((item) => item == beds) || allItemsArray[0]
+        );
+      case "Completions":
+        allItemsArray?.unshift("Completions");
+        return (
+          props?.selectBy?.find((item) => item == completions) ||
+          allItemsArray[0]
         );
       default:
         return null;
@@ -47,13 +57,13 @@ const FilterSelect = (props) => {
   const handleOptionSelect = (content) => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    if (props.searchBy === "Developer Type") {
-      if (content.name === "Developer Type") {
-        urlParams.delete("developers");
-        setSelectedValue(content.name);
-      } else if (content.name) {
-        urlParams.set("developers", content._id);
-        setSelectedValue(content.name);
+    if (props.searchBy === "Beds") {
+      if (content === "Beds") {
+        urlParams.delete("beds");
+        setSelectedValue(content);
+      } else if (content) {
+        urlParams.set("beds", content);
+        setSelectedValue(content);
       }
     } else if (props.searchBy === "Property Areas") {
       if (content.areaName === "Property Areas") {
@@ -63,12 +73,20 @@ const FilterSelect = (props) => {
         urlParams.set("propertyAreas", content._id);
         setSelectedValue(content.areaName);
       }
-    } else if (props.searchBy === "Development Type") {
-      if (content.name === "Development Type") {
-        urlParams.delete("developmentTypes");
+    } else if (props.searchBy === "Completions") {
+      if (content === "Completions") {
+        urlParams.delete("completions");
+        setSelectedValue(content);
+      } else if (content) {
+        urlParams.set("completions", content);
+        setSelectedValue(content);
+      }
+    } else if (props.searchBy === "Property Types") {
+      if (content.name === "Property Types") {
+        urlParams.delete("propertyTypes");
         setSelectedValue(content.name);
       } else if (content.name) {
-        urlParams.set("developmentTypes", content._id);
+        urlParams.set("propertyTypes", content._id);
         setSelectedValue(content.name);
       }
     }
@@ -76,7 +94,7 @@ const FilterSelect = (props) => {
     const updatedQueryString = urlParams.toString();
     const updatedUrl = updatedQueryString
       ? `?${updatedQueryString}`
-      : "/properties";
+      : `/developers/${developerId}`;
 
     props.setPage(1);
     router.push(updatedUrl);
