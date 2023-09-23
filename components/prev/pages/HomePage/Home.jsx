@@ -134,7 +134,7 @@ const Home = () => {
           <SignUpForm homeData={homeData} popup={true} />
         </section>
       </div>
-      <div className="-mt-6 relative bg-[#000f1d]">
+      <div className="relative bg-[#000f1d]">
         <Footer homeData={homeData} home={true} />
       </div>
     </section>

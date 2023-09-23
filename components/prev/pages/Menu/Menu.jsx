@@ -81,7 +81,7 @@ const Menu = (props) => {
             // smooth: true,
           },
           {
-            top: "78px",
+            top: "72px",
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",
@@ -143,8 +143,8 @@ const Menu = (props) => {
     <div
       className={`${
         isDropdownMenuOpen
-          ? "w-[100vw] h-[100vh] z-50 md:h-[375px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-[0px] transition-all"
-          : "z-50 hidden"
+          ? "w-[100vw] h-[100vh] z-[100] md:h-[375px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-0 transition-all"
+          : "hidden"
       } `}
       ref={menuRef}
     >

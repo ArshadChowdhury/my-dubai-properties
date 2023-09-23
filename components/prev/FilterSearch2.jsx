@@ -9,8 +9,11 @@ const FilterSearch = (props) => {
   const { filterListData, setPage, homeData } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
+  const filterTexts = homeData?.lang?.filterHomepage;
 
   const beds = [1, 2, 3, 4, 5];
+
+  console.log(homeData);
 
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
@@ -28,6 +31,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterTexts={filterTexts}
             setPage={setPage}
             searchBy="Development Type"
             selectBy={filterListData?.developmentTypes}
@@ -42,6 +46,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterTexts={filterTexts}
             setPage={setPage}
             searchBy="Developer Type"
             selectBy={filterListData?.developers}
@@ -56,6 +61,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterTexts={filterTexts}
             setPage={setPage}
             searchBy="Property Areas"
             selectBy={filterListData?.propertyAreas}

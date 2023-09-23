@@ -44,7 +44,7 @@ const SignUpForm = (props) => {
     <div className="relative">
       <section>
         <Skeleton>
-          <div className="w-full h-full flex flex-col justify-center text-center items-center mt-3 mb-[180px] md:mb-[250px] px-3">
+          <div className="w-full h-full flex flex-col justify-center text-center items-center mt-3 mb-[110px] md:mb-[150px] px-3">
             <h1 className="text-white font-montserrat text-[16px] md:text-[1.375rem] font-light">
               {homeData?.title}
             </h1>
@@ -72,7 +72,7 @@ const SignUpForm = (props) => {
                   name="email"
                   value={email}
                   placeholder={homeData?.email}
-                  className="z-10 pl-5  md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
+                  className="z-10 pl-5 w-full md:w-[540px] md:pr-16 bg-transparent focus:outline-none hover:placeholder-[#F1BF3F] focus:placeholder-[#F1BF3F]"
                   onChange={handleChange}
                   required
                 />

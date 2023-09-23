@@ -3,8 +3,12 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./states/StateProvider";
+import { useEffect } from "react";
 
 const FilterSelect = (props) => {
+  const [{ lang }] = useStateValue();
+  const { filterTexts } = props;
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,19 +21,28 @@ const FilterSelect = (props) => {
   const getSelectedValue = () => {
     switch (props?.searchBy) {
       case "Property Areas":
-        allItemsArray?.unshift({ id: null, areaName: "Property Areas" });
+        allItemsArray?.unshift({
+          id: null,
+          areaName: filterTexts?.textBoxPropertyArea,
+        });
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
         );
       case "Development Type":
-        allItemsArray?.unshift({ id: null, name: "Development Type" });
+        allItemsArray?.unshift({
+          id: null,
+          name: filterTexts?.textBoxDevelopmentType,
+        });
         return (
           props?.selectBy?.find((item) => item._id === developmentTypeId)
             ?.name || allItemsArray[0].name
         );
       case "Developer Type":
-        allItemsArray?.unshift({ id: null, name: "Developer Type" });
+        allItemsArray?.unshift({
+          id: null,
+          name: filterTexts?.textBoxDubaiDeveloper,
+        });
         return (
           props?.selectBy?.find((item) => item._id === developerId)?.name ||
           allItemsArray[0].name
@@ -48,7 +61,7 @@ const FilterSelect = (props) => {
     const urlParams = new URLSearchParams(window.location.search);
 
     if (props.searchBy === "Developer Type") {
-      if (content.name === "Developer Type") {
+      if (content.name === filterTexts?.textBoxDubaiDeveloper) {
         urlParams.delete("developers");
         setSelectedValue(content.name);
       } else if (content.name) {
@@ -56,7 +69,7 @@ const FilterSelect = (props) => {
         setSelectedValue(content.name);
       }
     } else if (props.searchBy === "Property Areas") {
-      if (content.areaName === "Property Areas") {
+      if (content.areaName === filterTexts?.textBoxPropertyArea) {
         urlParams.delete("propertyAreas");
         setSelectedValue(content.areaName);
       } else if (content.areaName) {
@@ -64,7 +77,7 @@ const FilterSelect = (props) => {
         setSelectedValue(content.areaName);
       }
     } else if (props.searchBy === "Development Type") {
-      if (content.name === "Development Type") {
+      if (content.name === filterTexts?.textBoxDevelopmentType) {
         urlParams.delete("developmentTypes");
         setSelectedValue(content.name);
       } else if (content.name) {
@@ -82,10 +95,12 @@ const FilterSelect = (props) => {
     router.push(updatedUrl);
   };
 
+  useEffect(() => {}, [lang]);
+
   return (
     <>
       <div
-        className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-sm items-center !h-full !w-[230px] relative px-6 py-2 z-[100]"
+        className="flex cursor-pointer justify-between gap-2 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[180px] relative px-4 py-2 z-[100]"
         onClick={handleOnClick}
       >
         {selectedValue}
@@ -93,7 +108,7 @@ const FilterSelect = (props) => {
           <BsFillCaretDownFill />
         </span>
         {isDropdownOpen && (
-          <div className="absolute z-[100] right-[2px] outline-none top-[38px] w-[325px] md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[220px] text-md font-[300]">
+          <div className="absolute z-[100] right-0 outline-none top-[34px] rounded-md w-[325px] md:w-[180px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[182px] text-md font-[300]">
             <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
               <div className="p-3 space-y-2">
                 {allItemsArray?.map((content, idx) => {

@@ -5,11 +5,13 @@ import calender from "../../components/prev/assets/images/global/calendar-outlin
 import { useStateValue } from "./states/StateProvider";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar2 = (props) => {
   const [dropDown, setDropDown] = useState(true);
   const { filterListData, homeData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
+  const pathname = usePathname();
 
   const navData = homeData?.lang?.navber;
 
@@ -90,7 +92,13 @@ const Navbar2 = (props) => {
               </h1>
             </button>
             <div className="flex items-center nav">
-              <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
+              <h1
+                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                  pathname == "/properties/off-plan"
+                    ? "text-[#F1BF3F]"
+                    : "text-white"
+                }`}
+              >
                 <Link
                   href={
                     "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
@@ -99,7 +107,13 @@ const Navbar2 = (props) => {
                   {navData?.offPlan}
                 </Link>
               </h1>
-              <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
+              <h1
+                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                  pathname == "/properties/ready"
+                    ? "text-[#F1BF3F]"
+                    : "text-white"
+                }`}
+              >
                 <Link
                   href={
                     "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
@@ -108,7 +122,12 @@ const Navbar2 = (props) => {
                   {navData?.ready}
                 </Link>
               </h1>
-              <h1 className="uppercase cursor-pointer font-openSans text-white mx-4">
+
+              <h1
+                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                  pathname == "/properties" ? "text-[#F1BF3F]" : "text-white"
+                }`}
+              >
                 <Link href={"/properties"}>
                   {" "}
                   {homeData?.lang?.allProjects?.titleAllProperties}

@@ -186,6 +186,7 @@ export default function ViewProperty(props) {
               textPosition="text-center w-full"
             />
             <FilterModal
+              homeData={homeData}
               setPage={setPage}
               setIsFilterModalOpen={setIsFilterModalOpen}
               filterListData={filterListData}

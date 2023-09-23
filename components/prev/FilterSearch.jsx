@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
-  const { filterListData, setPage } = props;
+  const { filterListData, setPage, homeData } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
 
@@ -22,6 +22,7 @@ const FilterSearch = (props) => {
       <div className="w-full lg:w-auto gap-[20px] md:flex items-center my-2 md:my-0">
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
+            homeData={homeData}
             setPage={setPage}
             searchBy="Property Areas"
             selectBy={filterListData?.propertyAreas}
@@ -29,6 +30,7 @@ const FilterSearch = (props) => {
         </div>
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
+            homeData={homeData}
             setPage={setPage}
             searchBy="Development Type"
             selectBy={filterListData?.developmentTypes}
@@ -39,6 +41,7 @@ const FilterSearch = (props) => {
         </div> */}
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob
+            homeData={homeData}
             setPage={setPage}
             searchBy="Developer Type"
             selectBy={filterListData?.developers}

@@ -40,10 +40,10 @@ const Dropdown = (props) => {
                   <Image src={helpLine} alt="help line image" />
                 </span>
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
+                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
                     {navItem?.whyUs}
                   </h2>
-                  <ul className="text-[14px] flex flex-col gap-1">
+                  <ul className="text-xs flex flex-col gap-1">
                     <li className="uppercase leading-[15.3px]">
                       <Link href="/about" onClick={handleClose}>
                         {navItem?.aboutUs}
@@ -63,10 +63,10 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-2xl font-[500] leading-[27px] mb-2 uppercase">
+                  <h2 className="text-lg font-[500] leading-[27px] mb-2 uppercase">
                     {navItem?.developers}
                   </h2>
-                  <ul className="text-[14px] flex flex-col gap-1">
+                  <ul className="text-xs flex flex-col gap-1">
                     {developers?.map((developer) => (
                       <Link
                         href={`/developers/${developer._id}`}
@@ -79,7 +79,7 @@ const Dropdown = (props) => {
                     <Link
                       href={"/developers"}
                       onClick={handleClose}
-                      className="leading-[15.3px]"
+                      className="text-xs leading-[15.3px]"
                     >
                       {navItem?.all}
                     </Link>
@@ -94,17 +94,20 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
+                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
                     {navItem?.projects}
                   </h2>
-                  <ul className="text-[14px] flex flex-col gap-1">
+                  <ul className="flex flex-col gap-1">
                     <Link
                       href={
                         "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
                       }
                       onClick={handleClose}
                     >
-                      <li className="leading-[15.3px]"> {navItem?.ready}</li>
+                      <li className="text-xs leading-[15.3px]">
+                        {" "}
+                        {navItem?.ready}
+                      </li>
                     </Link>
                     <Link
                       href={
@@ -112,10 +115,13 @@ const Dropdown = (props) => {
                       }
                       onClick={handleClose}
                     >
-                      <li className="leading-[15.3px]"> {navItem?.offPlan}</li>
+                      <li className="text-xs leading-[15.3px]">
+                        {" "}
+                        {navItem?.offPlan}
+                      </li>
                     </Link>
                     <Link href="/properties" onClick={handleClose}>
-                      <li className="leading-[15.3px]">
+                      <li className="text-xs leading-[15.3px]">
                         {navItem?.allProject}
                       </li>
                     </Link>
@@ -128,7 +134,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
+                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
                     {navItem?.offers}
                   </h2>
                 </div>
@@ -139,7 +145,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-2xl font-[500] leading-[27px] mb-2">
+                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
                     {navItem?.tour}
                   </h2>
                 </div>
@@ -149,7 +155,7 @@ const Dropdown = (props) => {
         </SkeletonSingleProperty>
         <div className="flex justify-center items-center">
           <button
-            className="md:hidden border-t hex-btn-outline  text-white relative p-2  w-3/4 flex justify-center items-center"
+            className="md:hidden border-t hex-btn-outline text-white relative p-2 w-3/4 flex justify-center items-center my-8"
             onClick={handleArrangeMeeting}
           >
             <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
