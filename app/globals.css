@@ -2920,27 +2920,27 @@ video {
 .filter-box_shadow::after {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 1px;
+  bottom: 1px;
   width: 5px;
   background-color: #f1be3f;
-  border-radius: 100px;
+  border-radius: 400px;
   opacity: 0;
   animation: pulse 1.5s infinite;
 }
 
 .filter-box_shadow::before {
-  left: -5px;
-  animation-delay: 0.5s;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  left: -4.5px;
+  animation-delay: 1s;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .filter-box_shadow::after {
-  right: -5px;
+  right: -4.5px;
   animation-delay: 1s;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 @keyframes pulse {

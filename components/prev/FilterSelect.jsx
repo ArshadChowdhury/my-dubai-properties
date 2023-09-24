@@ -106,7 +106,6 @@ const FilterSelect = (props) => {
         className="flex cursor-pointer justify-between gap-2 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[180px] relative px-4 py-2 z-[100]"
         onClick={handleOnClick}
       >
-        {console.log(allItemsArray)}
         {selectedValue ===
         (allItemsArray[0].areaName || allItemsArray[0].name) ? (
           <span>{selectedValue}</span>
