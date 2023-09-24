@@ -1,15 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./states/StateProvider";
 
 const FilterSelectMob = (props) => {
   const filterTexts = props?.homeData?.lang?.filterHomepage;
   const router = useRouter();
+  const [{ filterRoute }, dispatch] = useStateValue();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
+  const [currentUrl, setCurrentUrl] = useState("");
   const propertyAreaId = searchParams.get("propertyAreas");
   const developmentTypeId = searchParams.get("developmentTypes");
   const developerId = searchParams.get("developers");
@@ -63,6 +66,10 @@ const FilterSelectMob = (props) => {
         setSelectedValue(content.name);
       } else if (content.name) {
         urlParams.set("developers", content._id);
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, developers: content._id },
+        });
         setSelectedValue(content.name);
       }
     } else if (props.searchBy === "Property Areas") {
@@ -71,6 +78,10 @@ const FilterSelectMob = (props) => {
         setSelectedValue(content.areaName);
       } else if (content.areaName) {
         urlParams.set("propertyAreas", content._id);
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, propertyAreas: content._id },
+        });
         setSelectedValue(content.areaName);
       }
     } else if (props.searchBy === "Development Type") {
@@ -79,16 +90,13 @@ const FilterSelectMob = (props) => {
         setSelectedValue(content.name);
       } else if (content.name) {
         urlParams.set("developmentTypes", content._id);
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, developmentTypes: content._id },
+        });
         setSelectedValue(content.name);
       }
     }
-
-    const updatedQueryString = urlParams.toString();
-    const updatedUrl = updatedQueryString
-      ? `?${updatedQueryString}`
-      : "/properties";
-    props.setPage(1);
-    router.push(updatedUrl);
   };
 
   return (

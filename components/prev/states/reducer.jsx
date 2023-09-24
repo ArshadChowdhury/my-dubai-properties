@@ -10,6 +10,11 @@ export const initialState = {
   isMeetSelected: true,
   isDropdownMenuOpen: false,
   filterOpen: false,
+  filterRoute: {
+    developers: null,
+    developmentTypes: null,
+    propertyAreas: null,
+  },
   filterValues: {
     propertyAreas: null,
     developers: null,
@@ -64,6 +69,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         contactModalInfo: action.item,
+      };
+    case "setFilterRoute":
+      return {
+        ...state,
+        filterRoute: action.item,
       };
     case "selectVideoMeeting":
       return {

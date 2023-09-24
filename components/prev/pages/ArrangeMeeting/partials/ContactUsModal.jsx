@@ -27,17 +27,17 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   //   };
 
   const onSubmit = (data) => {
-    instance
-      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
-    dispatch({ type: "setShowContactModal", item: false });
+    // instance
+    //   .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+    //     headers: { "Content-Type": "application/json" },
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.data);
+    //   });
+    // dispatch({ type: "setShowContactModal", item: false });
     setSubsPopUp(true);
     // console.log(data);
     reset();

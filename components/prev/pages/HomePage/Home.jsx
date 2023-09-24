@@ -80,13 +80,13 @@ const Home = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousedown", handleScroll);
+    // window.addEventListener("mousedown", handleScroll);
     refetch();
     refetchHomeContent();
     refetchPropertiesData();
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousedown", handleScroll);
+      // window.removeEventListener("mousedown", handleScroll);
     };
   }, [lang]);
 

@@ -3,10 +3,32 @@ import FilterSearch from "@/components/prev/FilterSearch";
 import BtnItem from "@/components/prev/BtnItem";
 import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import { useStateValue } from "@/components/prev/states/StateProvider";
+import { useRouter } from "next/navigation";
 
 const FilterModal = (props) => {
   const { filterListData, setPage, homeData } = props;
-  const [{ filterValuesMob }, dispatch] = useStateValue();
+  const router = useRouter();
+  const [{ filterValuesMob, filterRoute }, dispatch] = useStateValue();
+  const developmentTypeId = filterRoute?.developmentTypes;
+  const propertyTypeId = filterRoute?.propertyAreas;
+  const developerId = filterRoute?.developers;
+
+  const queryParams = [];
+
+  if (developmentTypeId) {
+    queryParams.push(`developmentTypes=${developmentTypeId}`);
+  }
+
+  if (propertyTypeId) {
+    queryParams.push(`propertyAreas=${propertyTypeId}`);
+  }
+
+  if (developerId) {
+    queryParams.push(`developers=${developerId}`);
+  }
+
+  const queryParametersString = queryParams.join("&");
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
@@ -29,18 +51,25 @@ const FilterModal = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
+      dispatch({
+        type: "setFilterRoute",
+        item: null,
+      });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
   const handleReset = () => {
+    router.push("/properties");
     props.setIsFilterModalOpen(false);
+    dispatch({ type: "setFilterRoute", item: null });
   };
 
   const hadleSubmit = () => {
-    dispatch({
-      type: "setFilterValues",
-      item: filterValuesMob,
-    });
+    const updatedUrl = queryParametersString
+      ? `?${queryParametersString}`
+      : "/properties";
+    props.setPage(1);
+    router.push(updatedUrl);
     if (props.isFilterModalOpen) {
       props.setIsFilterModalOpen(false);
     }
@@ -54,11 +83,15 @@ const FilterModal = (props) => {
           setPage={setPage}
           filterListData={filterListData}
         />
-        <div className={"flex px-5 py-2 border-t justify-between items-center"}>
-          <div onClick={hadleSubmit} className="mr-2 basis-1/2">
+        <div
+          className={
+            "flex gap-4 px-4 py-2 border-t justify-between items-center"
+          }
+        >
+          <div onClick={hadleSubmit} className="basis-1/2">
             <BtnItem btnText="search" to="#" />
           </div>
-          <div onClick={handleReset} className="ml-2 basis-1/2">
+          <div onClick={handleReset} className="basis-1/2">
             <BtnItemOutline to="#" btnText="Discard" />
           </div>
         </div>

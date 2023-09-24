@@ -15,9 +15,6 @@ const FilterSelect = (props) => {
   const completions = searchParams.get("completions");
   const beds = searchParams.get("beds");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
-  console.log(beds);
-  console.log(completions);
-  console.log(props.selectBy);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
