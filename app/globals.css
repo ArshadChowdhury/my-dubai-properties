@@ -2914,33 +2914,32 @@ video {
   border-style: solid;
   border-color: transparent;
   box-shadow: 0px 0px 15px 2px rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .filter-box_shadow::before,
 .filter-box_shadow::after {
   content: "";
   position: absolute;
-  top: 1px;
-  bottom: 1px;
+  top: 0px;
+  bottom: 0.5px;
   width: 5px;
   background-color: #f1be3f;
-  border-radius: 400px;
   opacity: 0;
-  animation: pulse 1.5s infinite;
+  animation: pulse 2.5s infinite;
 }
 
 .filter-box_shadow::before {
-  left: -4.5px;
+  left: -4.9px;
   animation-delay: 1s;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
+  border-top-left-radius: 900px;
+  border-bottom-left-radius: 900px;
 }
 
 .filter-box_shadow::after {
   right: -4.9px;
   animation-delay: 1s;
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
+  border-top-right-radius: 900px;
+  border-bottom-right-radius: 900px;
 }
 
 @keyframes pulse {

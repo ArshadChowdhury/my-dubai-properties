@@ -40,7 +40,7 @@ const Dropdown = (props) => {
                   <Image src={helpLine} alt="help line image" />
                 </span>
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2">
                     {navItem?.whyUs}
                   </h2>
                   <ul className="text-xs flex flex-col gap-1">
@@ -63,7 +63,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-lg font-[500] leading-[27px] mb-2 uppercase">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2 uppercase">
                     {navItem?.developers}
                   </h2>
                   <ul className="text-xs flex flex-col gap-1">
@@ -94,7 +94,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2">
                     {navItem?.projects}
                   </h2>
                   <ul className="flex flex-col gap-1">
@@ -134,7 +134,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2">
                     {navItem?.offers}
                   </h2>
                 </div>
@@ -145,7 +145,7 @@ const Dropdown = (props) => {
                 </span>
 
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-lg font-[500] leading-[27px] mb-2">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2">
                     {navItem?.tour}
                   </h2>
                 </div>

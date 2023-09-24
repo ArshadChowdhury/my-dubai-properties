@@ -32,8 +32,8 @@ const GridItem = (props) => {
 
   return (
     <div
-      className={`link min-w-[75%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 p-3 overflow-clip ${
-        isHoveredCard ? "hovered" : ""
+      className={`link min-w-[90%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 p-3 overflow-clip ${
+        isHoveredCard ? "hovered group" : ""
       }`}
     >
       <div
@@ -49,37 +49,37 @@ const GridItem = (props) => {
           src={props.coverImage[0].path}
           alt="cover"
         />
-        <div className="p-5">
+        <div className="p-5 group-hover:bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D]">
           <h1
             onClick={() => router.push(`/properties/${props.id}`)}
             className="font-roboto text-[16px] text-white cursor-pointer w-fit"
           >
             {props.propertyName}
           </h1>
-          <div className="flex flex-wrap w-full">
-            <div className="mr-4 text-[11.5px] w-32">
-              <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <Image src={iconLocation} alt="building" className="mr-1" />
+          <div className="grid grid-cols-2 w-full">
+            <div>
+              <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
+                <Image src={iconLocation} alt="building" />
                 {props.areaName}
               </p>
             </div>
-            <div className="mr-4 text-[11.5px]">
-              <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <Image src={iconBuilding} alt="building" className="mr-1" />
+            <div>
+              <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
+                <Image src={iconBuilding} alt="building" />
                 {props.developerName}
               </p>
             </div>
           </div>
-          <div className="flex flex-wrap w-full text-[11.5px]">
-            <div className="mr-4 w-32">
-              <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <Image src={iconVillas} alt="building" className="mr-1" />
+          <div className="grid grid-cols-2 w-full">
+            <div className="w-32">
+              <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
+                <Image src={iconVillas} alt="building" />
                 {props.propertyType}
               </p>
             </div>
-            <div className="mr-4">
-              <p className="font-montserrat text-white  leading-4 flex my-2 pr-3">
-                <Image src={iconBed} alt="building" className="mr-1" />
+            <div className="flex gap-4 w-full">
+              <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
+                <Image src={iconBed} alt="building" />
                 {props.unitSize}
               </p>
             </div>

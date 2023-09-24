@@ -75,7 +75,12 @@ const LatestPropertyDown = (props) => {
             <HomeHeading heading={props?.homeData?.lang?.slider?.titleReady} />
           </div>
           <div className="w-1/4 mx-auto md:mr-[13rem]">
-            <BtnElore2 title={props?.homeData?.lang?.slider?.buttonExplore} />
+            <BtnElore2
+              route={
+                "properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+              }
+              title={props?.homeData?.lang?.slider?.buttonExplore}
+            />
           </div>
         </div>
 

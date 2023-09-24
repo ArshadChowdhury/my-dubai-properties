@@ -71,7 +71,7 @@ const HeroSection = (props) => {
                   <span className="ml-2">Filter</span>
                 </button>
               </div>
-              {/* <div
+              <div
                 className="inner-shadow absolute bottom-0 left-0 w-full h-[5px]"
                 style={{
                   background:
@@ -105,7 +105,7 @@ const HeroSection = (props) => {
                   background:
                     "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
                 }}
-              /> */}
+              />
             </div>
           </article>
         );

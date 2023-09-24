@@ -17,7 +17,7 @@ const LatestProperty = (props) => {
   }
 
   return (
-    <section className="relative overlay-property-color-3 py-4">
+    <section className="relative overlay-property-color-3 py-4 my-8">
       <SkeletonSingleProperty>
         <p className="lg:text-[26px] pt-[3rem] font-medium font-expleteusSans text-white text-center tracking-[2%]">
           {homeData?.lang?.slider?.textCopy}

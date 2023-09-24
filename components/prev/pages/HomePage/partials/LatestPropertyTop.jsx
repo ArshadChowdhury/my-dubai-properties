@@ -57,7 +57,12 @@ const LatestPropertyTop = (props) => {
             <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
           </div>
           <div className="w-1/4 md:mr-[260px]">
-            <BtnElore2 title={props.homeData.lang.slider.buttonExplore} />
+            <BtnElore2
+              route={
+                "properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
+              }
+              title={props.homeData.lang.slider.buttonExplore}
+            />
           </div>
         </div>
 
