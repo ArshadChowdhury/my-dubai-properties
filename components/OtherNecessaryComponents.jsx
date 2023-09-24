@@ -60,19 +60,11 @@ const OtherNecessaryComponents = () => {
   }, [lang]);
 
   if (isLoadingHomeContent || isDeveloperDataLoading) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return;
   }
 
   if (isErrorHomeContent) {
-    return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
-        Something Went Wrong...
-      </p>
-    );
+    return;
   }
 
   return (

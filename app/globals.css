@@ -3399,6 +3399,17 @@ video {
   transition: background-color 0.5s ease-in-out;
 }
 
+.filter-btn-dropdown {
+  display: flex;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 34, 58, 0.6) 0%,
+    rgba(33, 66, 101, 0.6) 49.27%,
+    rgba(10, 34, 58, 0.6) 100%
+  );
+  transition: background-color 0.5s ease-in-out;
+}
+
 .filter-btn:before,
 .filter-btn:after {
   width: 100%;

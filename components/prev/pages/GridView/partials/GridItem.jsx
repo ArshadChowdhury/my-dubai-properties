@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 import iconBuilding from "../../../assets/images/property details page/icon-building.svg";
 import iconLocation from "../../../assets/images/property details page/icon-locate.svg";
@@ -41,20 +42,18 @@ const GridItem = (props) => {
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <Image
-          onClick={() => router.push(`/properties/${props.id}`)}
-          width={700}
-          height={700}
-          className="cursor-pointer w-full h-fit"
-          src={props.coverImage[0].path}
-          alt="cover"
-        />
+        <Link href={`/properties/${props.id}`}>
+          <Image
+            width={700}
+            height={700}
+            className="cursor-pointer w-full h-fit"
+            src={props.coverImage[0].path}
+            alt="cover"
+          />
+        </Link>
         <div className="p-5 group-hover:bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D]">
-          <h1
-            onClick={() => router.push(`/properties/${props.id}`)}
-            className="font-roboto text-[16px] text-white cursor-pointer w-fit"
-          >
-            {props.propertyName}
+          <h1 className="font-roboto text-[16px] text-white cursor-pointer w-fit hover:text-[#F1BF3F]">
+            <Link href={`/properties/${props.id}`}>{props.propertyName}</Link>
           </h1>
           <div className="grid grid-cols-2 w-full">
             <div>
@@ -87,20 +86,18 @@ const GridItem = (props) => {
         </div>
         <div
           className={
-            props.type === "home"
-              ? "hidden"
-              : "flex px-5 py-2 border-t-0 md:border-t justify-between bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]"
+            "flex px-5 py-2 border-t-0 md:border-t gap-4 bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]"
           }
         >
           <BtnItem
             btnText="Details"
-            className="mr-2 basis-1/2"
+            className="basis-1/2"
             to={`/properties/${props.id}`}
           />
           <BtnItemOutline
             to={`/contact-us`}
             btnText="Enquiry"
-            className="ml-2 basis-1/2"
+            className="basis-1/2"
           />
         </div>
       </div>

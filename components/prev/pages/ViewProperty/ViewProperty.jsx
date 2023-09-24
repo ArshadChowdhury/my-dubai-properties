@@ -125,6 +125,10 @@ export default function ViewProperty(props) {
     page,
   ]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [lang, viewType]);
+
   if (
     isLoadingPropertiesData ||
     isLoadingFilterData ||
@@ -147,8 +151,8 @@ export default function ViewProperty(props) {
   }
 
   const headingMap = {
+    "/properties": homeData?.lang?.navber?.allProjects,
     "/properties/ready": homeData?.lang?.navber?.ready,
-    "/properties": homeData?.lang?.allProjects?.titleAllProperties,
     "/properties/off-plan": homeData?.lang?.navber?.offPlan,
   };
 
@@ -180,11 +184,7 @@ export default function ViewProperty(props) {
         <RouteLink locationName={pathname} />
         <Skeleton className="w-full mt-4 px-5 sticky mb-8">
           <div className="w-full -top-[60px] md:top-0 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
-            <HeadingBox
-              heading={heading}
-              className="flex justify-center items-center"
-              textPosition="text-center w-full"
-            />
+            <HeadingBox heading={heading} />
             <FilterModal
               homeData={homeData}
               setPage={setPage}

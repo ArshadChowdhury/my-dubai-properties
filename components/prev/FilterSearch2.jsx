@@ -13,8 +13,6 @@ const FilterSearch = (props) => {
 
   const beds = [1, 2, 3, 4, 5];
 
-  console.log(homeData?.lang?.filterHomepage);
-
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };

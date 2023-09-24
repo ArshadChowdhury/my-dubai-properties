@@ -6,9 +6,11 @@ import downArrow from "../../assets/images/property details page/Group 360(2).pn
 import DownArrow from "../../DownArrow";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useStateValue } from "../../states/StateProvider";
 
 const GridView = (props) => {
   const { propertiesData, filterParams, fetchMoreData, page } = props;
+  const [{ lang }] = useStateValue();
   const [filterData, setFilterData] = useState([]);
   const dataLength = 6;
   const firstFilterData = propertiesData?.data;
@@ -34,7 +36,7 @@ const GridView = (props) => {
     if (page === 1) {
       setFilterData(propertiesData?.data);
     }
-  }, [propertiesData, page]);
+  }, [propertiesData, page, lang]);
 
   useEffect(() => {
     if (propertiesData?.page === 1) {
@@ -44,6 +46,7 @@ const GridView = (props) => {
     filterParams.propertyAreaId,
     filterParams.developmentTypeId,
     filterParams.developerId,
+    lang,
   ]);
 
   return (
