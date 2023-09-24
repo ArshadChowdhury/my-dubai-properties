@@ -18,9 +18,13 @@ const FilterSelect = (props) => {
   const developerId = searchParams.get("developers");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
 
+  useEffect(() => {
+    setSelectedValue(getSelectedValue());
+  }, [lang, filterTexts]);
+
   const getSelectedValue = () => {
     switch (props?.searchBy) {
-      case "Property Areas":
+      case filterTexts?.textBoxPropertyArea:
         allItemsArray?.unshift({
           id: null,
           areaName: filterTexts?.textBoxPropertyArea,
@@ -29,7 +33,7 @@ const FilterSelect = (props) => {
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
         );
-      case "Development Type":
+      case filterTexts?.textBoxDevelopmentType:
         allItemsArray?.unshift({
           id: null,
           name: filterTexts?.textBoxDevelopmentType,
@@ -38,7 +42,7 @@ const FilterSelect = (props) => {
           props?.selectBy?.find((item) => item._id === developmentTypeId)
             ?.name || allItemsArray[0].name
         );
-      case "Developer Type":
+      case filterTexts?.textBoxDubaiDeveloper:
         allItemsArray?.unshift({
           id: null,
           name: filterTexts?.textBoxDubaiDeveloper,
@@ -51,6 +55,7 @@ const FilterSelect = (props) => {
         return null;
     }
   };
+
   const [selectedValue, setSelectedValue] = useState(getSelectedValue());
 
   const handleOnClick = () => {
@@ -60,7 +65,7 @@ const FilterSelect = (props) => {
   const handleOptionSelect = (content) => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    if (props.searchBy === "Developer Type") {
+    if (props.searchBy === filterTexts?.textBoxDubaiDeveloper) {
       if (content.name === filterTexts?.textBoxDubaiDeveloper) {
         urlParams.delete("developers");
         setSelectedValue(content.name);
@@ -68,7 +73,7 @@ const FilterSelect = (props) => {
         urlParams.set("developers", content._id);
         setSelectedValue(content.name);
       }
-    } else if (props.searchBy === "Property Areas") {
+    } else if (props.searchBy === filterTexts?.textBoxPropertyArea) {
       if (content.areaName === filterTexts?.textBoxPropertyArea) {
         urlParams.delete("propertyAreas");
         setSelectedValue(content.areaName);
@@ -76,7 +81,7 @@ const FilterSelect = (props) => {
         urlParams.set("propertyAreas", content._id);
         setSelectedValue(content.areaName);
       }
-    } else if (props.searchBy === "Development Type") {
+    } else if (props.searchBy === filterTexts?.textBoxDevelopmentType) {
       if (content.name === filterTexts?.textBoxDevelopmentType) {
         urlParams.delete("developmentTypes");
         setSelectedValue(content.name);
@@ -95,15 +100,21 @@ const FilterSelect = (props) => {
     router.push(updatedUrl);
   };
 
-  useEffect(() => {}, [lang]);
-
   return (
     <>
       <div
         className="flex cursor-pointer justify-between gap-2 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[180px] relative px-4 py-2 z-[100]"
         onClick={handleOnClick}
       >
-        {selectedValue}
+        {console.log(allItemsArray)}
+        {selectedValue ===
+        (allItemsArray[0].areaName || allItemsArray[0].name) ? (
+          <span>{selectedValue}</span>
+        ) : (
+          <span className="text-[#F1BF3F] hover:text-white">
+            {selectedValue}
+          </span>
+        )}
         <span className="group-hover:text-[#F1BF3F]">
           <BsFillCaretDownFill />
         </span>

@@ -128,10 +128,7 @@ const Navbar2 = (props) => {
                   pathname == "/properties" ? "text-[#F1BF3F]" : "text-white"
                 }`}
               >
-                <Link href={"/properties"}>
-                  {" "}
-                  {homeData?.lang?.allProjects?.titleAllProperties}
-                </Link>
+                <Link href={"/properties"}> {navData?.allProjects}</Link>
               </h1>
               {/* <div className="animation start-home"></div> */}
               {/* <div className="line bg-gradient-to-l from-white"></div> */}

@@ -78,7 +78,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     if (showModal) {
       if (mobileView) {
         gsap.to(arrangeRef.current, {
-          bottom: "100px",
+          bottom: "60px",
           duration: 1,
           ease: "linear",
         });
