@@ -3,17 +3,18 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./states/StateProvider";
 
-const FilterSelect = (props) => {
-  const { developerId, filterTexts, setPage } = props;
-  const router = useRouter();
+const FilterSelectMob = (props) => {
+  const { filterTexts } = props;
+  const [{ singleDevFilterValuesMob }, dispatch] = useStateValue();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
-  const propertyTypeId = searchParams.get("propertyTypes");
-  const completions = searchParams.get("completions");
+  const developmentTypeId = searchParams.get("developmentTypes");
   const beds = searchParams.get("beds");
+  const completions = searchParams.get("completions");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
 
   useEffect(() => {
@@ -37,8 +38,8 @@ const FilterSelect = (props) => {
           name: filterTexts?.dropdownPropertyType,
         });
         return (
-          props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
-          allItemsArray[0].name
+          props?.selectBy?.find((item) => item._id === developmentTypeId)
+            ?.name || allItemsArray[0].name
         );
       case filterTexts?.dropdownCompletion:
         allItemsArray?.unshift(filterTexts?.dropdownCompletion);
@@ -70,6 +71,10 @@ const FilterSelect = (props) => {
         setSelectedValue(content);
       } else if (content) {
         urlParams.set("beds", content);
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, beds: content },
+        });
         setSelectedValue(content);
       }
     } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
@@ -77,6 +82,10 @@ const FilterSelect = (props) => {
         urlParams.delete("propertyAreas");
         setSelectedValue(content.areaName);
       } else if (content.areaName) {
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, propertyAreas: content._id },
+        });
         urlParams.set("propertyAreas", content._id);
         setSelectedValue(content.areaName);
       }
@@ -85,6 +94,10 @@ const FilterSelect = (props) => {
         urlParams.delete("completions");
         setSelectedValue(content);
       } else if (content) {
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, completions: content },
+        });
         urlParams.set("completions", content);
         setSelectedValue(content);
       }
@@ -93,17 +106,22 @@ const FilterSelect = (props) => {
         urlParams.delete("propertyTypes");
         setSelectedValue(content.name);
       } else if (content.name) {
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, propertyTypes: content._id },
+        });
         urlParams.set("propertyTypes", content._id);
         setSelectedValue(content.name);
       }
     }
     const updatedQueryString = urlParams.toString();
     const updatedUrl = updatedQueryString
-      ? `?${updatedQueryString}`
-      : `/developers/${developerId}`;
+      ? `/developers/${props?.singleDeveloperId}?${updatedQueryString}`
+      : `/developers/${props?.singleDeveloperId}`;
     props.setPage(1);
-    router.push(updatedUrl);
   };
+
+  console.log(singleDevFilterValuesMob);
 
   useEffect(() => {
     let handle = (e) => {
@@ -122,38 +140,36 @@ const FilterSelect = (props) => {
   }, []);
 
   return (
-    <>
-      <div
-        ref={filterRef}
-        className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-sm items-center !h-full !w-[230px] relative px-6 py-2 z-[100]"
-        onClick={handleOnClick}
-      >
-        {selectedValue}
-        <span className="group-hover:text-[#F1BF3F]">
-          <BsFillCaretDownFill />
-        </span>
-        {isDropdownOpen && (
-          <div className="absolute z-[100] right-[2px] outline-none top-[38px] w-[325px] md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] h-[180px] text-md font-[300]">
-            <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
-              <div className="p-3 space-y-2">
-                {allItemsArray?.map((content, idx) => {
-                  return (
-                    <p
-                      className={`cursor-pointer z-[100] hover:text-[#dcb558] shadow-sm`}
-                      key={idx}
-                      onClick={() => handleOptionSelect(content)}
-                    >
-                      {content.name || content.areaName || content}
-                    </p>
-                  );
-                })}
-              </div>
+    <div
+      ref={filterRef}
+      className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[230px] relative px-6 py-2"
+      onClick={handleOnClick}
+    >
+      {selectedValue}
+      <span className="group-hover:text-[#F1BF3F]">
+        <BsFillCaretDownFill />
+      </span>
+      {isDropdownOpen && (
+        <div className="absolute top-[33px] right-1 outline-none w-[236px] rounded-md md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[180px] md:h-[220px] z-[100] text-md font-[300]">
+          <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
+            <div className="p-3 space-y-2">
+              {allItemsArray?.map((content, idx) => {
+                return (
+                  <p
+                    className={`cursor-pointer hover:text-[#dcb558] shadow-sm`}
+                    key={idx}
+                    onClick={() => handleOptionSelect(content)}
+                  >
+                    {content.name || content.areaName || content}
+                  </p>
+                );
+              })}
             </div>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default FilterSelect;
+export default FilterSelectMob;

@@ -30,7 +30,6 @@ const GridView = (props) => {
       });
       setFilterData([...filterData, ...filteredPropertiesData]);
     } else {
-      // Reset filterData to the initial data
       setFilterData([...firstFilterData]);
     }
     if (page === 1) {

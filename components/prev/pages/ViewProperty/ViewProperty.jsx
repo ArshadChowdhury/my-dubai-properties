@@ -100,6 +100,7 @@ export default function ViewProperty(props) {
   } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
+    enabled: !!filterParams,
   });
 
   const {

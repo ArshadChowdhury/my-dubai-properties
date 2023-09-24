@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDeveloper";
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
-import FilterModal from "../ViewProperty/partials/filterModal";
+import SingleDevFilterModal from "../../../SingleDevFilterModal";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import Image from "next/image";
@@ -225,8 +225,13 @@ const SingleDeveloperView = (props) => {
           </div>
         </div>
         <div className="">
-          <FilterModal
+          <SingleDevFilterModal
+            developerId={developerId}
+            setPage={setPage}
+            homeData={homeData}
+            filterListData={filterListData}
             propertyToView={propertyToView}
+            singleDevData={singleDevData}
             isFilterModalOpen={isFilterModalOpen}
             setIsFilterModalOpen={setIsFilterModalOpen}
           />

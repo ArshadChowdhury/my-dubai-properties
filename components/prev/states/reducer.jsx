@@ -15,6 +15,13 @@ export const initialState = {
     developmentTypes: null,
     propertyAreas: null,
   },
+  singleDevFilterValuesMob: {
+    propertyAreas: null,
+    propertyTypes: null,
+    completions: null,
+    beds: null,
+  },
+
   filterValues: {
     propertyAreas: null,
     developers: null,
@@ -69,6 +76,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         contactModalInfo: action.item,
+      };
+    case "setSingleDevFilterValuesMob":
+      return {
+        ...state,
+        singleDevFilterValuesMob: action.item,
       };
     case "setFilterRoute":
       return {

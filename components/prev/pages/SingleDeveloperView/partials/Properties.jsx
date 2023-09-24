@@ -11,7 +11,7 @@ const EmmarProperties = (props) => {
       <Skeleton className="mt-5 md:mt-10 px-5">
         <div className="w-full md:w-[25%] mt-10 md:mt-0">
           <HeadingBox
-            heading={developerDetails.name}
+            heading={developerDetails?.name}
             className="!px-0"
             textPosition="text-center"
           />
