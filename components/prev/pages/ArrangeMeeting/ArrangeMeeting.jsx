@@ -167,7 +167,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
 
               <div
                 ref={currentArrangeRef}
-                className={`relative w-full h-[60vh] md:h-[390px] md:w-[800px] mx-auto max-w-3xl`}
+                className={`relative w-full h-[60vh] md:h-[390px] md:w-[800px] mx-auto max-w-3xl z-[100]`}
               >
                 <div>
                   <button

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Skeleton from "./prev/Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
@@ -10,7 +10,8 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const Navbar = (props) => {
   const { filterListData, homeData } = props;
-  const [{ lang }, dispatch] = useStateValue();
+  const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
+  const [isMobileView, setIsMobileView] = useState(false);
   const [dropDown, setDropDown] = useState(true);
   const [navPoint, setNavPoint] = useState(false);
 
@@ -22,10 +23,25 @@ const Navbar = (props) => {
     dispatch({ type: "setShowModal", item: true });
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handleMenu = (e) => {
     e.preventDefault();
-    setDropDown((prev) => !prev);
-    dispatch({ type: "setDropdownOpen", item: dropDown });
+    if (isMobileView) {
+      dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
+    } else {
+      setDropDown((prev) => !prev);
+      dispatch({ type: "setDropdownOpen", item: dropDown });
+    }
   };
 
   const langList = filterListData?.langList;

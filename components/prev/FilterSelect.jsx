@@ -111,9 +111,7 @@ const FilterSelect = (props) => {
         (allItemsArray[0].areaName || allItemsArray[0].name) ? (
           <span>{selectedValue}</span>
         ) : (
-          <span className="text-[#F1BF3F] hover:text-white">
-            {selectedValue}
-          </span>
+          <span className="text-[#F1BF3F]">{selectedValue}</span>
         )}
         <span className="group-hover:text-[#F1BF3F]">
           <BsFillCaretDownFill />
