@@ -17,6 +17,7 @@ import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import { instance } from "../../services/apiFunctions";
 import FilterModal from "./partials/filterModal";
+import VerticalLine from "../../VerticalLine";
 
 export default function ViewProperty(props) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -164,6 +165,7 @@ export default function ViewProperty(props) {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
+      <VerticalLine />
       <div className="md:hidden">
         <Navbar2
           homeData={homeData}

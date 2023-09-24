@@ -32,7 +32,8 @@ const BtnFilter = (props) => {
     setIsDropdownOpen(false);
   };
 
-  const handleOnClick = () => {
+  const handleOnClick = (e) => {
+    e.stopPropagation();
     setIsDropdownOpen(!isDropdownOpen);
   };
 
@@ -74,7 +75,7 @@ const BtnFilter = (props) => {
             ref={inputRef}
             value={inputValue}
             onChange={inputChange}
-            className="z-10 bg-transparent focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]"
+            className="z-[100] bg-transparent focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]"
           />
           <span className="group-hover:text-[#F1BF3F]">
             <BsFillCaretDownFill />

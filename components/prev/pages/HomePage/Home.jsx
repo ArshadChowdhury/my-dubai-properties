@@ -86,8 +86,7 @@ const Home = () => {
     refetchPropertiesData();
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.addEventListener("mousedown", handleScroll);
-      dispatch({ type: "setFilterOpen", item: false });
+      window.removeEventListener("mousedown", handleScroll);
     };
   }, [lang]);
 
