@@ -3393,6 +3393,16 @@ video {
   transform: perspective(25px) rotateX(-15deg);
 }
 
+.middle-screen-component {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  background-color: #000f1d;
+  z-index: 100;
+}
+
 .filter-btn {
   display: flex;
   background: transparent;

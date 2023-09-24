@@ -38,7 +38,7 @@ const Filter = ({ filterLists, homeData }) => {
       <div
         className={`${
           filterOpen
-            ? "absolute w-[90%] top-[380px] bg-[#000F1D] z-[100]"
+            ? "middle-screen-component bg-[#000F1D] z-[100]"
             : "lg:absolute lg:left-[12.5%] xl:left-1/4 w-screen lg:w-[75vw] xl:w-[50vw] bg-[#000F1D] lg:top-[92.5vh] filter-box_shadow z-20"
         } `}
       >
