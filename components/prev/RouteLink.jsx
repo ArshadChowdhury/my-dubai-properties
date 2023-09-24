@@ -5,8 +5,9 @@ import Skeleton from "./Skeleton/Skeleton";
 import { useStateValue } from "./states/StateProvider";
 import Image from "next/image";
 
-const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
+const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
   const [{ viewType }, dispatch] = useStateValue();
+  const [{ lang }] = useStateValue();
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
@@ -15,18 +16,22 @@ const RouteLink = ({ locationName, buttonHide, marginBottom }) => {
     <section className={`w-full ${marginBottom}`}>
       <div className="relative flex justify-end">
         <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5 ">
-          <div className="w-full flex items-center text-[15px] md:text-[9px]">
+          <div className="w-full flex gap-2 items-center text-[15px] md:text-[9px]">
             <p>
               <Image src={home} alt="Home Icon" />
             </p>
-            <p className=" text-[#ffffff] md:text-[#626262] pl-2 font-semibold md:font-normal">
-              Home
+            <p className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal">
+              {homeData?.lang?.allProjects?.breadcrumb}
             </p>
-            <p className="pl-2 text-[15px] md:text-[9px]">
-              <Image src={arrow} alt="Arrow icon" />
+            <p className="text-[15px] md:text-[9px]">
+              {lang === "en" ? (
+                <Image src={arrow} alt="Arrow icon" />
+              ) : (
+                <Image src={arrow} alt="Arrow icon" className="rotate-180" />
+              )}
             </p>
-            <p className="text-[15px] md:text-[9px] text-[#ffffff] md:text-[#626262] pl-2 capitalize font-semibold md:font-normal">
-              {locationName.substring(1)}
+            <p className="text-[15px] md:text-[9px] text-[#ffffff] md:text-[#626262] capitalize font-semibold md:font-normal">
+              {locationName}
             </p>
           </div>
         </Skeleton>

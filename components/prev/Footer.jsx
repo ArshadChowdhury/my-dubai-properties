@@ -16,20 +16,18 @@ function camalize(str) {
 const Footer = ({ footerBg, home, homeData }) => {
   const homeDatas = homeData?.lang?.footer;
   const [uiVisibility, setUIVisibility] = useState({
-    whyUs: false,
-    developers: false,
-    featuredProjects: false,
-    propertiesForSale: false,
+    0: false,
+    1: false,
+    2: false,
+    3: false,
   });
 
-  const toggleUIVisibility = (element) => {
-    const camelCaseId = camalize(element.id);
-
+  const toggleUIVisibility = (index) => {
     setUIVisibility((prevState) => {
       const updatedVisibility = {};
 
       for (const key in prevState) {
-        if (key === camelCaseId) {
+        if (key == index) {
           updatedVisibility[key] = !prevState[key];
         } else {
           updatedVisibility[key] = false;
@@ -38,6 +36,23 @@ const Footer = ({ footerBg, home, homeData }) => {
       return updatedVisibility;
     });
   };
+
+  // const toggleUIVisibility = (element) => {
+  //   const camelCaseId = camalize(element.id);
+
+  //   setUIVisibility((prevState) => {
+  //     const updatedVisibility = {};
+
+  //     for (const key in prevState) {
+  //       if (key === camelCaseId) {
+  //         updatedVisibility[key] = !prevState[key];
+  //       } else {
+  //         updatedVisibility[key] = false;
+  //       }
+  //     }
+  //     return updatedVisibility;
+  //   });
+  // };
 
   const uiElements = [
     {
@@ -80,7 +95,7 @@ const Footer = ({ footerBg, home, homeData }) => {
 
   return (
     <footer className="pb-20">
-      <div className="px-3 lg:p-5 flex flex-col items-center relative z-20">
+      <div className="flex flex-col items-center px-3 lg:p-5 relative z-20">
         <Image
           src={footerLogo}
           alt="my dubai logo"
@@ -100,9 +115,9 @@ const Footer = ({ footerBg, home, homeData }) => {
                     </h1>
                     <span
                       className="md:hidden z-10"
-                      onClick={() => toggleUIVisibility(element)}
+                      onClick={() => toggleUIVisibility(idx)}
                     >
-                      {uiVisibility[camalize(element?.id)] ? (
+                      {uiVisibility[idx] ? (
                         <AiOutlineMinusCircle />
                       ) : (
                         <AiOutlinePlusCircle />
@@ -110,11 +125,11 @@ const Footer = ({ footerBg, home, homeData }) => {
                     </span>
                   </div>
                   <ul className="hidden lg:block font-montserrat leading-7">
-                    {element.items.map((item) => (
+                    {element.items.map((item, idx) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  {uiVisibility[camalize(element.id)] && (
+                  {uiVisibility[idx] && (
                     <ul className="md:hidden font-montserrat leading-7 mb-7">
                       {element.items.map((item) => (
                         <li key={item}>{item}</li>
@@ -125,32 +140,6 @@ const Footer = ({ footerBg, home, homeData }) => {
               ))}
             </div>
           </div>
-        </div>
-        <div className="flex absolute bottom-[2.5%]">
-          <Link
-            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
-            href={"/privacy-policy"}
-          >
-            privacy policy
-          </Link>
-          <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
-            |
-          </span>
-          <Link
-            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
-            href={"/terms-and-conditions"}
-          >
-            terms & conditions
-          </Link>
-          <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
-            |
-          </span>
-          <Link
-            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
-            href={"/cookie-policy"}
-          >
-            cookie policy
-          </Link>
         </div>
       </div>
     </footer>

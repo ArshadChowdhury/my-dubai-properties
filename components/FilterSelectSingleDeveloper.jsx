@@ -111,7 +111,7 @@ const FilterSelect = (props) => {
           <BsFillCaretDownFill />
         </span>
         {isDropdownOpen && (
-          <div className="absolute z-[100] right-[2px] outline-none top-[38px] w-[325px] md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[220px] text-md font-[300]">
+          <div className="absolute z-[100] right-[2px] outline-none top-[38px] w-[325px] md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[180px] text-md font-[300]">
             <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
               <div className="p-3 space-y-2">
                 {allItemsArray?.map((content, idx) => {
