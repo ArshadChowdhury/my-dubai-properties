@@ -141,6 +141,32 @@ const Footer = ({ footerBg, home, homeData }) => {
             </div>
           </div>
         </div>
+        <div className="flex absolute bottom-[2.5%]">
+          <Link
+            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
+            href={"/privacy-policy"}
+          >
+            privacy policy
+          </Link>
+          <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
+            |
+          </span>
+          <Link
+            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
+            href={"/terms-and-conditions"}
+          >
+            terms & conditions
+          </Link>
+          <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
+            |
+          </span>
+          <Link
+            className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
+            href={"/cookie-policy"}
+          >
+            cookie policy
+          </Link>
+        </div>
       </div>
     </footer>
   );

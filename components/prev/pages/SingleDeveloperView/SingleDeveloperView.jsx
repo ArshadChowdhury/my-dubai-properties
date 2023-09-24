@@ -132,6 +132,8 @@ const SingleDeveloperView = (props) => {
     );
   }
 
+  const filterTexts = singleDevData?.lang?.developerDetails;
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
@@ -163,35 +165,39 @@ const SingleDeveloperView = (props) => {
           </div>
           <div className="hidden md:block">
             <div className="w-full md:grid grid-cols-5">
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
                 <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy="Property Areas"
+                  searchBy={filterTexts?.dropdownDubaiArea}
                   selectBy={filterListData?.propertyAreas}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy="Property Types"
+                  searchBy={filterTexts?.dropdownPropertyType}
                   selectBy={filterListData?.propertyTypes}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy="Beds"
+                  searchBy={filterTexts?.dropdownBeds}
                   selectBy={filterListData?.noOfBeds}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy="Completions"
+                  searchBy={filterTexts?.dropdownCompletion}
                   selectBy={filterListData?.completions}
                 />
               </div>

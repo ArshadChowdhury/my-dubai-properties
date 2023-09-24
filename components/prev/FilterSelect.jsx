@@ -7,7 +7,6 @@ import { useStateValue } from "./states/StateProvider";
 import { useEffect } from "react";
 
 const FilterSelect = (props) => {
-  const [{ lang }] = useStateValue();
   const { filterTexts } = props;
   const router = useRouter();
   const filterRef = useRef(null);
@@ -20,7 +19,7 @@ const FilterSelect = (props) => {
 
   useEffect(() => {
     setSelectedValue(getSelectedValue());
-  }, [lang, filterTexts]);
+  }, [filterTexts]);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {

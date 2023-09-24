@@ -37,9 +37,8 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     //   .catch((error) => {
     //     console.log(error.data);
     //   });
-    // dispatch({ type: "setShowContactModal", item: false });
+    dispatch({ type: "setShowContactModal", item: false });
     setSubsPopUp(true);
-    // console.log(data);
     reset();
   };
 
@@ -49,6 +48,8 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     reset();
     setCloseBtn(true);
   };
+  console.log(showContactModal);
+  console.log(subsPopUp);
 
   //   const handleSubmitButton = (e) => {
   //     e.preventDefault();

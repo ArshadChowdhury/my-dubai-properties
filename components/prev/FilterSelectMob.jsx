@@ -99,8 +99,25 @@ const FilterSelectMob = (props) => {
     }
   };
 
+  useEffect(() => {
+    let handle = (e) => {
+      if (filterRef.current && !filterRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("scroll", handle);
+
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("scroll", handle);
+    };
+  }, []);
+
   return (
     <div
+      ref={filterRef}
       className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[230px] relative px-6 py-2"
       onClick={handleOnClick}
     >

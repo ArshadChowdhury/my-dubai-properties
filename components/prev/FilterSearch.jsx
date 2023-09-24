@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import FilterSelect from "./FilterSelect";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
@@ -9,7 +8,6 @@ import FilterSelectMob from "./FilterSelectMob";
 const FilterSearch = (props) => {
   const { filterListData, homeData } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
-  const filterRef = useRef();
 
   const beds = [1, 2, 3, 4, 5];
 

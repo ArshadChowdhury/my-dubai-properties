@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 
 const FilterSelect = (props) => {
-  const { developerId } = props;
+  const { developerId, filterTexts } = props;
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -16,30 +16,40 @@ const FilterSelect = (props) => {
   const beds = searchParams.get("beds");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
 
+  useEffect(() => {
+    setSelectedValue(getSelectedValue());
+  }, [filterTexts]);
+
   const getSelectedValue = () => {
     switch (props?.searchBy) {
-      case "Property Areas":
-        allItemsArray?.unshift({ id: null, areaName: "Property Areas" });
+      case filterTexts?.dropdownDubaiArea:
+        allItemsArray?.unshift({
+          id: null,
+          areaName: filterTexts?.dropdownDubaiArea,
+        });
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
         );
-      case "Property Types":
-        allItemsArray?.unshift({ id: null, name: "Property Types" });
+      case filterTexts?.dropdownPropertyType:
+        allItemsArray?.unshift({
+          id: null,
+          name: filterTexts?.dropdownPropertyType,
+        });
         return (
           props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
           allItemsArray[0].name
         );
-      case "Beds":
-        allItemsArray?.unshift("Beds");
-        return (
-          props?.selectBy?.find((item) => item == beds) || allItemsArray[0]
-        );
-      case "Completions":
-        allItemsArray?.unshift("Completions");
+      case filterTexts?.dropdownCompletion:
+        allItemsArray?.unshift(filterTexts?.dropdownCompletion);
         return (
           props?.selectBy?.find((item) => item == completions) ||
           allItemsArray[0]
+        );
+      case filterTexts?.dropdownBeds:
+        allItemsArray?.unshift(filterTexts?.dropdownBeds);
+        return (
+          props?.selectBy?.find((item) => item == beds) || allItemsArray[0]
         );
       default:
         return null;
@@ -54,32 +64,32 @@ const FilterSelect = (props) => {
   const handleOptionSelect = (content) => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    if (props.searchBy === "Beds") {
-      if (content === "Beds") {
+    if (props.searchBy === filterTexts?.dropdownBeds) {
+      if (content === filterTexts?.dropdownBeds) {
         urlParams.delete("beds");
         setSelectedValue(content);
       } else if (content) {
         urlParams.set("beds", content);
         setSelectedValue(content);
       }
-    } else if (props.searchBy === "Property Areas") {
-      if (content.areaName === "Property Areas") {
+    } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
+      if (content.areaName === filterTexts?.dropdownDubaiArea) {
         urlParams.delete("propertyAreas");
         setSelectedValue(content.areaName);
       } else if (content.areaName) {
         urlParams.set("propertyAreas", content._id);
         setSelectedValue(content.areaName);
       }
-    } else if (props.searchBy === "Completions") {
-      if (content === "Completions") {
+    } else if (props.searchBy === filterTexts?.dropdownCompletion) {
+      if (content === filterTexts?.dropdownCompletion) {
         urlParams.delete("completions");
         setSelectedValue(content);
       } else if (content) {
         urlParams.set("completions", content);
         setSelectedValue(content);
       }
-    } else if (props.searchBy === "Property Types") {
-      if (content.name === "Property Types") {
+    } else if (props.searchBy === filterTexts?.dropdownPropertyType) {
+      if (content.name === filterTexts?.dropdownPropertyType) {
         urlParams.delete("propertyTypes");
         setSelectedValue(content.name);
       } else if (content.name) {
@@ -87,19 +97,34 @@ const FilterSelect = (props) => {
         setSelectedValue(content.name);
       }
     }
-
     const updatedQueryString = urlParams.toString();
     const updatedUrl = updatedQueryString
       ? `?${updatedQueryString}`
       : `/developers/${developerId}`;
-
     props.setPage(1);
     router.push(updatedUrl);
   };
 
+  useEffect(() => {
+    let handle = (e) => {
+      if (filterRef.current && !filterRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("scroll", handle);
+
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("scroll", handle);
+    };
+  }, []);
+
   return (
     <>
       <div
+        ref={filterRef}
         className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-sm items-center !h-full !w-[230px] relative px-6 py-2 z-[100]"
         onClick={handleOnClick}
       >
