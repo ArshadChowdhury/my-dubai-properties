@@ -15,8 +15,8 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
   return (
     <section className={`w-full ${marginBottom}`}>
       <div className="relative flex justify-end">
-        <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5 ">
-          <div className="w-full flex gap-2 items-center text-[15px] md:text-[9px]">
+        <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5">
+          <div className="w-full flex gap-1 items-center text-[15px] md:text-[9px]">
             <p>
               <Image src={home} alt="Home Icon" />
             </p>

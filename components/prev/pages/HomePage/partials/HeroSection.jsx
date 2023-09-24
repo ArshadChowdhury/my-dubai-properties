@@ -8,7 +8,6 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import Image from "next/image";
 
 const HeroSection = (props) => {
-  const { homeData } = props;
   const [{ filterValues, filterOpen }, dispatch] = useStateValue();
   const [index, setIndex] = useState(0);
   const sliders = props?.sliders;
@@ -59,8 +58,7 @@ const HeroSection = (props) => {
                 {slider.description2}
               </h1>
               <p className="text-white font-saira text-[14px]">
-                Secure Your Property Investment Without Paying any Commission or
-                Fees
+                {slider.description3}
               </p>
               <div className="w-full md:hidden mt-10">
                 <button

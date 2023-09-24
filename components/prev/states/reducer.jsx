@@ -3,7 +3,9 @@ export const initialState = {
   viewType: "grid",
   planList: [],
   showModal: false,
+  showContactModal: false,
   openMeetLink: null,
+  contactModalInfo: null,
   isZoomSelected: false,
   isMeetSelected: true,
   isDropdownMenuOpen: false,
@@ -52,6 +54,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         showModal: action.item,
+      };
+    case "setShowContactModal":
+      return {
+        ...state,
+        showContactModal: action.item,
+      };
+    case "setContactModalInfo":
+      return {
+        ...state,
+        contactModalInfo: action.item,
       };
     case "selectVideoMeeting":
       return {

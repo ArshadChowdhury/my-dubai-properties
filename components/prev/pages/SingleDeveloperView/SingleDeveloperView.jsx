@@ -150,7 +150,8 @@ const SingleDeveloperView = (props) => {
       </div>
       <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
         <RouteLink
-          locationName={"/" + singleDevData?.developer?.name}
+          homeData={homeData}
+          locationName={singleDevData?.developer?.name}
           buttonHide={"true"}
         />
         <EmmarProperties developerDetails={singleDevData} />

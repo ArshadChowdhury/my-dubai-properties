@@ -110,6 +110,8 @@ const DeveloperListPage = () => {
     );
   }
 
+  const heading = homeData?.lang?.menu?.all;
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="relative w-full pt-20 md:pt-28 font-montserrat bg-payment mb-40">
@@ -119,11 +121,11 @@ const DeveloperListPage = () => {
           filterListData={developersData}
           homeData={homeData}
         />
-        <RouteLink locationName={pathname} />
+        <RouteLink homeData={homeData} locationName={heading} />
         <Skeleton className="px-5">
           <div className="w-full z-50  flex flex-col md:flex-row justify-between items-center sticky pb-2 md:pb-0 px-2 -top-16 md:top-0 mt-5 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <div className="w-full md:w-[25%] py-3">
-              <HeadingBox heading="All Developers" />
+              <HeadingBox heading={heading} />
             </div>
             <FilterModal
               setPage={setPage}
