@@ -104,17 +104,17 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
           <motion.div>
             <div className="absolute top-0 pointer-events-none w-full h-[100vh]">
               <div
-                className="absolute inset-0  bg-opacity-70 z-50"
+                className="absolute inset-0 bg-opacity-70 z-50"
                 style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
                 }}
               ></div>
             </div>
             <div
               ref={arrangeRef}
-              className={`w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+              className={`w-full z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.4)",
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
               }}
             >
               {subsPopUp && (

@@ -2,7 +2,7 @@ import ProptyOffPlan from "../../../assets/images/global/bg-hero.png";
 // import HeadingBox from "../../../components/HeadingBox";
 // import BtnExplore from "../../../components/BtnExplore";
 import HomeHeading from "@/components/prev/HomeHeading";
-import GridItem from "../../GridView/partials/GridItem";
+import GridItemForSlider from "../../GridView/partials/GridItemForSlider";
 
 import { useRef, useEffect, useState } from "react";
 import BtnElore2 from "@/components/prev/BtnElore2";
@@ -75,7 +75,7 @@ const LatestPropertyTop = (props) => {
             ref={cardBoxRef}
           >
             {properties.map((property, idx) => (
-              <GridItem
+              <GridItemForSlider
                 id={idx + 1}
                 key={idx + 2}
                 coverImage={property.images.filter((image) => {

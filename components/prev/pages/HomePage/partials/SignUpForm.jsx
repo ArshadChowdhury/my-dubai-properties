@@ -51,7 +51,7 @@ const SignUpForm = (props) => {
 
             <form
               onSubmit={handleSubmit}
-              className="px-3 flex md:flex-row flex-col gap-5 justify-between items-center pt-5 z-10"
+              className="px-3 flex md:flex-row flex-col gap-12 justify-between items-center pt-5 z-10"
             >
               {/* <div className="before:bg-[#F1BF3F] after:bg-[#F1BF3F] text-white relative p-1 group-hover">
               <div className="flex justify-around hover:text-[#F1BF3F] items-center !w-full !h-full relative btn-signUp px-20 py-2 before:!border-2 after:!border-2 before:!border-white after:!border-white">

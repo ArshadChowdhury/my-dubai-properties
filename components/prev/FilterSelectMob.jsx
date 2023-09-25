@@ -18,6 +18,10 @@ const FilterSelectMob = (props) => {
   const developerId = searchParams.get("developers");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
 
+  // useEffect(() => {
+  //   setSelectedValue(null);
+  // }, [props?.page, filterRoute]);
+
   const getSelectedValue = () => {
     switch (props?.searchBy) {
       case "Property Areas":
@@ -121,7 +125,12 @@ const FilterSelectMob = (props) => {
       className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[230px] relative px-6 py-2"
       onClick={handleOnClick}
     >
-      {selectedValue}
+      {selectedValue ===
+      (allItemsArray[0].areaName || allItemsArray[0].name) ? (
+        <span>{selectedValue}</span>
+      ) : (
+        <span className="text-[#F1BF3F]">{selectedValue}</span>
+      )}
       <span className="group-hover:text-[#F1BF3F]">
         <BsFillCaretDownFill />
       </span>

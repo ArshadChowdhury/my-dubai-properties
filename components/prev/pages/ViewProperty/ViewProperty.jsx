@@ -191,6 +191,7 @@ export default function ViewProperty(props) {
           <div className="w-full -top-[60px] md:top-0 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <HeadingBox heading={heading} />
             <FilterModal
+              page={page}
               homeData={homeData}
               setPage={setPage}
               setIsFilterModalOpen={setIsFilterModalOpen}

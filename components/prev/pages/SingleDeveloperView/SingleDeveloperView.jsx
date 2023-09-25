@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RouteLink from "../../RouteLink";
+import DeveloperDetailsRouteLink from "../../DeveloperDetailsRouteLink";
 import { usePathname, useSearchParams } from "next/navigation";
 import EmmarProperties from "./partials/Properties";
 import PropertyList from "./partials/PropertyList";
@@ -151,7 +151,7 @@ const SingleDeveloperView = (props) => {
         />
       </div>
       <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
-        <RouteLink
+        <DeveloperDetailsRouteLink
           homeData={homeData}
           locationName={singleDevData?.developer?.name}
           buttonHide={"true"}
@@ -163,7 +163,7 @@ const SingleDeveloperView = (props) => {
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:block mx-[26px]">
             <div className="w-full md:grid grid-cols-5">
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
                 <FilterSelectSingleDeveloper

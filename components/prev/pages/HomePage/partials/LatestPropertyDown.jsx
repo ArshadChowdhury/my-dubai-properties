@@ -1,7 +1,7 @@
 import ProptyOffPlan from "../../../assets/images/home/LatestPlane2.png";
 // import HeadingBox from "../../../components/HeadingBox";
 import HomeHeading from "@/components/prev/HomeHeading";
-import GridItem from "../../GridView/partials/GridItem";
+import GridItemForSlider from "../../GridView/partials/GridItemForSlider";
 
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
@@ -93,7 +93,7 @@ const LatestPropertyDown = (props) => {
             }}
           >
             {properties.map((property, idx) => (
-              <GridItem
+              <GridItemForSlider
                 id={idx + 1}
                 key={idx + 2}
                 coverImage={property.images.filter((image) => {

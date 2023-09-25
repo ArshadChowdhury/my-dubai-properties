@@ -4,7 +4,7 @@ const HeadingBox = (props) => {
   const [{ lang }] = useStateValue();
   return (
     <div
-      className={`px-4 xl:px-12 py-1 bg-[#042C51] relative ${props.className}`}
+      className={`px-4 xl:px-6 py-1 bg-[#042C51] relative ${props.className}`}
     >
       {lang === "en" ? (
         <div
@@ -17,7 +17,7 @@ const HeadingBox = (props) => {
       )}
 
       <h1
-        className={`font-roboto text-xl xl:text-3xl text-white ${props.textPosition}`}
+        className={`font-roboto text-xl xl:text-2xl text-white ${props.textPosition}`}
       >
         {props.heading}
       </h1>

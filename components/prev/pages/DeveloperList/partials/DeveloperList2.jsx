@@ -48,7 +48,8 @@ const DeveloperList = (props) => {
 
   return (
     <section className="w-full">
-      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[78px] md:top-[68px]"></div>
+      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] pt-1 h-9 top-0 md:top-0"></div>
+      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[28px] md:top-[63px]"></div>
       <InfiniteScroll dataLength={4} next={fetchMoreData} hasMore={hasNextPage}>
         <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev?.map((developer, index) => (

@@ -18,16 +18,16 @@ const DeveloperListItem = (props) => {
           className="group-hover:scale-125 transition-all ease-in-out duration-500 w-full"
         />
       </div>
-      <div className="flex mt-5">
+      <div className="flex gap-4 mt-5">
         <BtnItem
           to={`/developers/${props.id}`}
           btnText="Project List"
-          className="mr-2 basis-1/2"
+          className="basis-1/2"
         />
         <BtnItemOutline
           to={`/developers/${props.id}`}
           btnText="Details"
-          className="ml-2 basis-1/2"
+          className="basis-1/2"
         />
       </div>
     </div>

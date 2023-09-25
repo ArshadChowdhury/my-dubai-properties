@@ -5,7 +5,12 @@ import Skeleton from "./Skeleton/Skeleton";
 import { useStateValue } from "./states/StateProvider";
 import Image from "next/image";
 
-const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
+const DeveloperDetailsRouteLink = ({
+  homeData,
+  locationName,
+  buttonHide,
+  marginBottom,
+}) => {
   const [{ viewType }, dispatch] = useStateValue();
   const [{ lang }] = useStateValue();
   const switchViewType = (viewType) => {
@@ -16,7 +21,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
     <section className={`w-full ${marginBottom}`}>
       <div className="relative flex justify-end">
         <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5">
-          <div className="w-full flex gap-1 items-center text-[15px] md:text-[9px] px-2">
+          <div className="w-full flex gap-1 items-center text-[15px] md:text-[9px]">
             <p>
               <Image src={home} alt="Home Icon" />
             </p>
@@ -271,4 +276,4 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
   );
 };
 
-export default RouteLink;
+export default DeveloperDetailsRouteLink;

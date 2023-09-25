@@ -113,12 +113,36 @@ import { Link, useNavigate } from "react-router-dom";
 import BtnItem from "@/components/prev/BtnItem";
 import ButtonOutline2 from "@/components/prev/ButtonOutline2";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useRouter } from "next/navigation";
 
 const ListItem = (props) => {
-  const [isHoveredCard, setIsHoveredCard] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const router = useRouter();
+  const [isHoveredCard, setIsHoveredCard] = useState(false);
+  const [{ showContactModal }, dispatch] = useStateValue();
+  const onMouseEnterHandler = () => {
+    props.setIsHovered && props.setIsHovered(true);
+    setIsHoveredCard(true);
+  };
+
+  const handleModalOpen = (id, propertyName) => {
+    dispatch({ type: "setShowContactModal", item: true });
+    dispatch({ type: "setContactModalInfo", item: { id, propertyName } });
+  };
+
+  const onMouseLeaveHandler = () => {
+    props.setIsHovered && props.setIsHovered(false);
+    setIsHoveredCard(false);
+  };
+  const [imageLoading, setImageLoading] = useState(true);
+  const [pulsing, setPulsing] = useState(true);
+
+  const imageLoaded = () => {
+    setImageLoading(false);
+    setTimeout(() => setPulsing(false), 600);
+  };
+
+  const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -142,13 +166,7 @@ const ListItem = (props) => {
   //   props.setIsHoveredCard(false);
   //   setIsHoveredCard(false);
   // };
-  const [imageLoading, setImageLoading] = useState(true);
-  const [pulsing, setPulsing] = useState(true);
 
-  const imageLoaded = () => {
-    setImageLoading(false);
-    setTimeout(() => setPulsing(false), 600);
-  };
   return (
     <div className={` ${isHoveredCard ? "hovered" : ""}`}>
       <div
@@ -179,30 +197,30 @@ const ListItem = (props) => {
             >
               {props.propertyName} at {props.developerName}
             </h1>
-            <div className="flex  w-full items-center md:mt-2">
-              <div className="md:flex">
-                <div className="mr-4">
-                  <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
-                    <Image src={iconLocation} alt="building" className="mr-1" />
+            <div className="flex gap-6 w-full items-center md:mt-2">
+              <div className="md:flex gap-6">
+                <div>
+                  <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
+                    <Image src={iconLocation} alt="building" />
                     {props.areaName}
                   </p>
                 </div>
-                <div className="mr-4">
-                  <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
+                <div>
+                  <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconBuilding} alt="building" className="mr-1" />
                     {props.developerName}
                   </p>
                 </div>
               </div>
-              <div className="md:flex">
-                <div className="mr-4">
-                  <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
+              <div className="md:flex gap-6">
+                <div>
+                  <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconVillas} alt="building" className="mr-1" />
                     {props.propertyType}
                   </p>
                 </div>
-                <div className="mr-4">
-                  <p className="font-montserrat text-white text-[9px] md:text-sm leading-4 flex my-2 pr-3">
+                <div>
+                  <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconBed} alt="building" className="mr-1" />
                     {props.unitSize}
                   </p>
@@ -214,8 +232,21 @@ const ListItem = (props) => {
             >
               {props.description}
             </p>
-            <div className="flex py-2">
-              <div className="w-full md:w-[450px] mr-5">
+            <div className="flex w-full md:w-[450px] gap-10">
+              <BtnItem
+                btnText="Details"
+                className="basis-1/2"
+                to={`/properties/${props.id}`}
+              />
+              <button
+                onClick={() => handleModalOpen(props.id, props.propertyName)}
+                className={`border border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]`}
+              >
+                <div className="w-full h-full flex justify-around items-center bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]   text-white rounded text-xs md:text-sm font-montserrat py-2 uppercase">
+                  Enquiry
+                </div>
+              </button>
+              {/* <div className="w-full md:w-[450px] mr-5">
                 <BtnItem
                   btnText="Details"
                   className="w-full"
@@ -227,7 +258,7 @@ const ListItem = (props) => {
                   link={() => router.push(`/contact-us`)}
                   btnText="Enquiry"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

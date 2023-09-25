@@ -2845,7 +2845,6 @@ video {
   background-image: url(../components/prev/assets/images/global/footer.png);
   /* Adjust the opacity here */
   background-color: rgba(0, 24, 46, 0.7);
-
   background-blend-mode: multiply;
   background-repeat: repeat;
 }
@@ -2867,7 +2866,6 @@ video {
 }
 .footer_background_home2 {
   background-image: url(../components/prev/assets/images/global/footer.png);
-
   background-blend-mode: color;
   background-repeat: repeat;
   opacity: 0.4;

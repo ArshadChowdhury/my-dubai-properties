@@ -95,11 +95,11 @@ const Footer = ({ footerBg, home, homeData }) => {
 
   return (
     <footer className="pb-20">
-      <div className="flex flex-col items-center px-3 lg:p-5 relative z-20">
+      <div className="flex flex-col items-center px-3 lg:p-5 relative">
         <Image
           src={footerLogo}
           alt="my dubai logo"
-          className="absolute -top-[63px] md:-top-[75px] z-10 w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
+          className="absolute -top-[63px] md:-top-[75px] w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
         />
         <div
           className={`flex justify-center  bg-repeat-x rounded-md w-full h-full relative before:absolute before:left-0 before:border before:w-[34%] md:before:w-[37%] before:rounded-l-md before:border-[#F1BF3F] before:top-0 after:top-0 before:border-r-0 before:h-full after:absolute after:right-0 after:border after:w-[37%] after:rounded-r-md after:border-[#F1BF3F] after:border-l-0 after:h-full`}
@@ -114,7 +114,7 @@ const Footer = ({ footerBg, home, homeData }) => {
                       {element.title}
                     </h1>
                     <span
-                      className="md:hidden z-10"
+                      className="md:hidden"
                       onClick={() => toggleUIVisibility(idx)}
                     >
                       {uiVisibility[idx] ? (

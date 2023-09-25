@@ -86,8 +86,8 @@ const Navbar2 = (props) => {
               className="hex-btn-outline text-white relative p-2 mx-6"
               onClick={handleArrangeMeeting}
             >
-              <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
-                <Image src={calender} alt="calender" className="mr-3" />
+              <h1 className="flex gap-3 uppercase font-asul text-white text-lg items-center z-30">
+                <Image src={calender} alt="calender" />
                 {navData?.arrangeMeeting}
               </h1>
             </button>

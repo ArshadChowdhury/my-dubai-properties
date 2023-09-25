@@ -13,7 +13,7 @@ import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import Image from "next/image";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
-const GridItem = (props) => {
+const GridItemForSlider = (props) => {
   const router = useRouter();
   const [isHoveredCard, setIsHoveredCard] = useState(false);
   const [{ showContactModal }, dispatch] = useStateValue();
@@ -92,29 +92,9 @@ const GridItem = (props) => {
             </div>
           </div>
         </div>
-
-        <div
-          className={
-            "flex px-5 py-2 border-t-0 md:border-t gap-4 bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]"
-          }
-        >
-          <BtnItem
-            btnText="Details"
-            className="basis-1/2"
-            to={`/properties/${props.id}`}
-          />
-          <button
-            onClick={() => handleModalOpen(props.id, props.propertyName)}
-            className={`border border-[#283646] hover:border-transparent rounded w-full basis-1/2`}
-          >
-            <div className="flex justify-around items-center hover:bg-gradient-to-r btn-ourLine text-white rounded text-xs md:text-sm font-montserrat py-2 uppercase">
-              Enquiry
-            </div>
-          </button>
-        </div>
       </div>
     </div>
   );
 };
 
-export default GridItem;
+export default GridItemForSlider;

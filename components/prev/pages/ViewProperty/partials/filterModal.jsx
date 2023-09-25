@@ -6,7 +6,7 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useRouter } from "next/navigation";
 
 const FilterModal = (props) => {
-  const { filterListData, setPage, homeData } = props;
+  const { filterListData, setPage, homeData, page } = props;
   const router = useRouter();
   const [{ filterValuesMob, filterRoute }, dispatch] = useStateValue();
   const developmentTypeId = filterRoute?.developmentTypes;
@@ -58,9 +58,10 @@ const FilterModal = (props) => {
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
+  const handleFilterFieldsReset = () => {};
+
   const handleReset = () => {
     router.push("/properties");
-    props.setIsFilterModalOpen(false);
     dispatch({ type: "setFilterRoute", item: null });
   };
 
@@ -79,8 +80,10 @@ const FilterModal = (props) => {
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900 z-[100]">
       <div className="w-[75%] h-[310px] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
         <FilterSearch
+          page={page}
           homeData={homeData}
           setPage={setPage}
+          handleFilterFieldsReset={handleFilterFieldsReset}
           filterListData={filterListData}
         />
         <div

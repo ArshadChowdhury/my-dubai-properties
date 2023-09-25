@@ -49,9 +49,9 @@ const Navbar = (props) => {
   return (
     <section className={props.className}>
       <Skeleton className="justify-between items-center px-5">
-        <div className="flex items-center z-50">
+        <div className="flex gap-5 items-center z-50">
           <div
-            className="flex flex-wrap mr-5 w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative group"
+            className="flex flex-wrap w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative group"
             onClick={handleMenu}
           >
             <div className="absolute -right-1 -top-1 group-hover:top-7 group-hover:right-8 scale-110 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500">
@@ -101,13 +101,12 @@ const Navbar = (props) => {
               className="hex-btn-outline text-white relative p-2 mx-6"
               onClick={handleArrangeMeeting}
             >
-              <h1 className="uppercase font-asul text-white text-lg flex items-center z-30">
+              <h1 className="flex gap-3 uppercase font-asul text-white text-lg items-center z-30">
                 <Image
                   src="/images/global/calendar-outline.svg"
                   height={30}
                   width={30}
                   alt="calender"
-                  className={`mr-3`}
                 />
                 {homeData?.lang?.navber?.arrangeMeeting}
               </h1>
