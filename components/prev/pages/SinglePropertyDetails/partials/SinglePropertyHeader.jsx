@@ -63,9 +63,46 @@ const SinglePropertyHeader = (props) => {
               backgroundSize: "100% 100%",
               backgroundPosition: "center",
             }}
-          ></article>
+          >
+            <div
+              className="inner-shadow absolute bottom-0 left-0 w-full h-[5px]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
+              }}
+            />
+            <div
+              className="inner-shadow absolute bottom-0 left-0 w-full h-[15px]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
+              }}
+            />
+            <div
+              className="inner-shadow absolute bottom-0 left-0 w-full h-[30px]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
+              }}
+            />
+            <div
+              className="inner-shadow absolute bottom-0 left-0 w-full h-[50px]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
+              }}
+            />
+            <div
+              className="inner-shadow absolute bottom-0 left-0 w-full h-[70px]"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 15, 29, 0.9), rgba(0, 15, 29, 0))",
+              }}
+            />
+          </article>
         );
       })}
+
       {/* <img
         src={header}
         alt="Single Property Banner"

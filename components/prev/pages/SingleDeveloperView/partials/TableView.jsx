@@ -13,6 +13,7 @@ import Image from "next/image";
 
 const TableView = (props) => {
   const singleDevData = props.singleDevData;
+  const devProjects = props.singleDevData?.developerProperty;
   const [{ propertyToView, filterValues }] = useStateValue();
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
@@ -21,6 +22,8 @@ const TableView = (props) => {
   const [showCount, setShowCount] = useState(5);
   const dataLength = 6;
   const firstFilterData = props.singleDevData?.developerProperty?.data;
+  const totalPages = Math.ceil(devProjects?.count / dataLength);
+  const hasNextPage = props.page < totalPages;
 
   useEffect(() => {
     if (singleDevData?.developerProperty?.page === props.page) {
@@ -236,16 +239,15 @@ const TableView = (props) => {
                 </tbody>
               </table>
             </div>
-            {/* {!showTableView && (
+            {hasNextPage && (
               <div
-                // onClick={handleShowButton}
-                onClick={increaseCount}
+                onClick={props?.fetchMoreData}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
                 <Image src={downOption} alt="" />
                 <span>Show More</span>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>

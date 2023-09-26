@@ -19,6 +19,8 @@ import { useStateValue } from "../../states/StateProvider";
 import { motion } from "framer-motion";
 import SimilarProperties from "./partials/SimilarProperties";
 import Navbar from "@/components/Navbar";
+import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
+import VerticalLine from "../../VerticalLine";
 
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
@@ -149,7 +151,9 @@ const SinglePropertyDetails = () => {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <div className="single_background mb-20">
+      {/* <VerticalLine /> */}
+      <ContactUsModal homeData={homeData} />
+      <div className="single_background mb-20 z-[100]">
         <div className="md:hidden">
           <Navbar2
             filterListData={filterListData}
@@ -173,7 +177,7 @@ const SinglePropertyDetails = () => {
             type="inline"
           />
         )}
-
+        <ContactUsModal homeData={homeData} />
         <SinglePropertyHeader header={singlePropertyDetails?.images} />
         <div className="my-2 md:my-8"></div>
         <SinglePropertyDescription

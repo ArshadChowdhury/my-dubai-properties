@@ -40,6 +40,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
             </p>
           </div>
         </Skeleton>
+
         {lang === "en" ? (
           <div className="flex -top-[100px] md:top-0 md:hidden z-10 pt-2 px-[26px]">
             <span

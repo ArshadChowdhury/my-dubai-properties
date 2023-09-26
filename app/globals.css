@@ -3428,9 +3428,10 @@ video {
 .filter-btn:before {
   position: absolute;
   height: 50%;
+  width: 113%;
   content: "";
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: -9px;
   background: transparent;
   transform: perspective(25px) rotateX(15deg);
   transition: background-color 0.5s ease-in-out;
@@ -3438,9 +3439,10 @@ video {
 
 .filter-btn:after {
   position: absolute;
-  height: 50%;
-  top: 55%;
-  left: 0;
+  height: 60%;
+  width: 108%;
+  top: 54%;
+  left: -5px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);

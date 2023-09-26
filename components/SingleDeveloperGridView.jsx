@@ -11,12 +11,16 @@ const SingleDeveloperGridView = (props) => {
   const { page, singleDevData, filterParams } = props;
 
   const [filterData, setFilterData] = useState([]);
-  const dataLength = 2;
+  const dataLength = 6;
   const firstFilterData = singleDevData?.developerProperty?.data;
   const totalPages = Math.ceil(
     singleDevData?.developerProperty?.count / dataLength
   );
   const hasNextPage = page < totalPages;
+
+  const handleShowMore = () => {
+    setPage((page) => page + 1);
+  };
 
   useEffect(() => {
     if (singleDevData?.developerProperty?.page === page) {
@@ -81,7 +85,7 @@ const SingleDeveloperGridView = (props) => {
       {/* </InfiniteScroll>
        */}
       {hasNextPage ? (
-        <button className="m-auto pt-5" onClick={props.handleShowAll}>
+        <button className="m-auto pt-5" onClick={handleShowMore}>
           <DownArrow />
         </button>
       ) : null}

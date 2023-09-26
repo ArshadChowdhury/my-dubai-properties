@@ -41,7 +41,7 @@ const GridItemForSlider = (props) => {
 
   return (
     <div
-      className={`link min-w-[90%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 p-3 overflow-clip ${
+      className={`link min-w-[90%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-[75%] p-3 overflow-clip ${
         isHoveredCard ? "hovered group" : ""
       }`}
     >

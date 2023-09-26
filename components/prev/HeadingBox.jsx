@@ -17,7 +17,7 @@ const HeadingBox = (props) => {
       )}
 
       <h1
-        className={`font-roboto text-xl xl:text-2xl text-white ${props.textPosition}`}
+        className={`font-roboto text-xl xl:text-2xl text-white text-center ${props.textPosition}`}
       >
         {props.heading}
       </h1>

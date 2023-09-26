@@ -105,9 +105,9 @@ const GridItem = (props) => {
           />
           <button
             onClick={() => handleModalOpen(props.id, props.propertyName)}
-            className={`border border-[#283646] hover:border-transparent rounded w-full basis-1/2`}
+            className={`border basis-1/2 border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]`}
           >
-            <div className="flex justify-around items-center hover:bg-gradient-to-r btn-ourLine text-white rounded text-xs md:text-sm font-montserrat py-2 uppercase">
+            <div className="w-full h-full flex justify-around items-center bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] text-white rounded text-xs md:text-sm font-montserrat py-2 uppercase">
               Enquiry
             </div>
           </button>

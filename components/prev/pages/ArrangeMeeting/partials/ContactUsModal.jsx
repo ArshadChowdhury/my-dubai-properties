@@ -100,14 +100,14 @@ const ContactUsModal = ({ mobileView, homeData }) => {
       <AnimatePresence>
         {showContactModal ? (
           <motion.div>
-            <div className="absolute top-0 pointer-events-none w-full h-[100vh] z-[100]">
+            {/* <div className="absolute top-0 pointer-events-none w-full h-[100vh] z-[100]">
               <div
                 className="absolute inset-0 z-50"
                 style={{
                   backgroundColor: "rgba(0, 0, 0, 8)",
                 }}
               ></div>
-            </div>
+            </div> */}
             <div
               ref={arrangeRef}
               className={`w-full z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
@@ -154,7 +154,7 @@ const ContactUsModal = ({ mobileView, homeData }) => {
                 ref={currentArrangeRef}
                 className={`w-full h-[60vh] md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
               >
-                <div className="border-top-white relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[20]">
+                <div className="border-top-white relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]">
                   <div className="w-full h-auto">
                     <div>
                       <button

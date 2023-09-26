@@ -186,18 +186,24 @@ export default function ViewProperty(props) {
       </div>
 
       <section className="min-h-screen w-full mt-0 md:mt-4 bg-payment">
-        <RouteLink homeData={homeData} locationName={heading} />
+        <RouteLink
+          setPage={setPage}
+          homeData={homeData}
+          locationName={heading}
+        />
+        <FilterModal
+          page={page}
+          homeData={homeData}
+          setPage={setPage}
+          setIsFilterModalOpen={setIsFilterModalOpen}
+          filterListData={filterListData}
+          isFilterModalOpen={isFilterModalOpen}
+        />
+        <ContactUsModal homeData={homeData} />
         <Skeleton className="w-full mt-4 px-5 sticky mb-8">
           <div className="w-full -top-[60px] md:top-0 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <HeadingBox heading={heading} />
-            <FilterModal
-              page={page}
-              homeData={homeData}
-              setPage={setPage}
-              setIsFilterModalOpen={setIsFilterModalOpen}
-              filterListData={filterListData}
-              isFilterModalOpen={isFilterModalOpen}
-            />
+
             <div className="flex items-center">
               <div className="md:hidden">
                 <FilterSearchInput
@@ -213,8 +219,6 @@ export default function ViewProperty(props) {
               </div>
             </div>
           </div>
-
-          <ContactUsModal homeData={homeData} />
 
           {viewType === "grid" ? (
             <GridView

@@ -4,6 +4,7 @@ import arrow from "../../components/prev/assets/images/global/chevron-forward-ou
 import Skeleton from "./Skeleton/Skeleton";
 import { useStateValue } from "./states/StateProvider";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const DeveloperDetailsRouteLink = ({
   homeData,
@@ -13,19 +14,23 @@ const DeveloperDetailsRouteLink = ({
 }) => {
   const [{ viewType }, dispatch] = useStateValue();
   const [{ lang }] = useStateValue();
+  const router = useRouter();
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
 
   return (
-    <section className={`w-full ${marginBottom}`}>
+    <section className={`w-full ${marginBottom} mt-8`}>
       <div className="relative flex justify-end">
         <Skeleton className="absolute w-full bg-[#bea04e] py-4 md:!py-0 md:!bg-transparent px-5">
           <div className="w-full flex gap-1 items-center text-[15px] md:text-[9px]">
             <p>
               <Image src={home} alt="Home Icon" />
             </p>
-            <p className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal">
+            <p
+              onClick={() => router.push("/")}
+              className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal cursor-pointer"
+            >
               {homeData?.lang?.allProjects?.breadcrumb}
             </p>
             <p className="text-[15px] md:text-[9px]">

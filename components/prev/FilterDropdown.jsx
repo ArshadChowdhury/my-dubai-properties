@@ -1,7 +1,7 @@
 const FilterDropdown = (props) => (
   <div
     ref={props.filterRef}
-    className="absolute z-[100] top-[38px] w-[325px] md:w-[170px] px-3 border-top-white bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[130px]"
+    className="absolute z-[100] top-[40px] w-[325px] md:w-[170px] px-3 border-top-white bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[130px]"
   >
     <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
       {/* <Scrollbars

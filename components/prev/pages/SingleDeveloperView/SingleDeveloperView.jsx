@@ -16,6 +16,7 @@ import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import Image from "next/image";
 import { instance } from "../../services/apiFunctions";
+import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
 
 const SingleDeveloperView = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
@@ -40,18 +41,18 @@ const SingleDeveloperView = (props) => {
     page,
   };
 
-  // const fetchMoreData = async () => {
-  //   setPage((page) => page + 1);
-  //   return async () => {
-  //     const data = await instance
-  //       .get(`/${lang}/developers/${developerId}`, {
-  //         timeout: 5000,
-  //         params: filterParams,
-  //       })
-  //       .then((data) => data.data.data.properties);
-  //     return data;
-  //   };
-  // };
+  const fetchMoreData = async () => {
+    setPage((page) => page + 1);
+    return async () => {
+      const data = await instance
+        .get(`/${lang}/developers/${developerId}`, {
+          timeout: 5000,
+          params: filterParams,
+        })
+        .then((data) => data.data.data.properties);
+      return data;
+    };
+  };
 
   const getSingleDeveloperData = async () => {
     const data = await instance
@@ -156,6 +157,7 @@ const SingleDeveloperView = (props) => {
           locationName={singleDevData?.developer?.name}
           buttonHide={"true"}
         />
+        <ContactUsModal homeData={homeData} />
         <EmmarProperties developerDetails={singleDevData} />
         <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
@@ -163,8 +165,8 @@ const SingleDeveloperView = (props) => {
               <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
             </div>
           </div>
-          <div className="hidden md:block mx-[26px]">
-            <div className="w-full md:grid grid-cols-5">
+          <div className="hidden md:flex sm:px-12 md:px-[4.5rem] lg:px-28 xl:px-0 2xl:px-[29px] flex-wrap">
+            <div className="w-full md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
                 <FilterSelectSingleDeveloper
                   filterTexts={filterTexts}
@@ -237,6 +239,7 @@ const SingleDeveloperView = (props) => {
           />
         </div>
         <TableView
+          fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}
           singleDevData={singleDevData}
@@ -247,6 +250,7 @@ const SingleDeveloperView = (props) => {
           page={page}
           setPage={setPage}
           singleDevData={singleDevData}
+          fetchMoreData={fetchMoreData}
         />
       </div>
       <Footer homeData={homeData} footerBg={"footer_background"} />

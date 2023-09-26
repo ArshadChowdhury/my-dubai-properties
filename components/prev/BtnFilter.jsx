@@ -75,7 +75,7 @@ const BtnFilter = (props) => {
             ref={inputRef}
             value={inputValue}
             onChange={inputChange}
-            className="z-[100] bg-transparent focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]"
+            className="bg-transparent focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]"
           />
           <span className="group-hover:text-[#F1BF3F]">
             <BsFillCaretDownFill />
