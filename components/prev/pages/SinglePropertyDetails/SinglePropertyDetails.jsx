@@ -21,6 +21,7 @@ import SimilarProperties from "./partials/SimilarProperties";
 import Navbar from "@/components/Navbar";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
 import VerticalLine from "../../VerticalLine";
+import LoadingState from "@/components/LoadingState";
 
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
@@ -134,11 +135,7 @@ const SinglePropertyDetails = () => {
     isLoadingHomeContent ||
     filterDataLoading
   ) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isError || isPropertiesError || isErrorHomeContent) {

@@ -56,7 +56,7 @@ const PrivacyContent = () => {
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar2
-        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
+        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
         type="inline"
         homeData={homeData}
       />

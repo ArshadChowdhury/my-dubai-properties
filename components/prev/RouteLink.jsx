@@ -24,7 +24,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
             </p>
             <p
               onClick={() => router.push("/")}
-              className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal cursor-pointer"
+              className=" text-[#ffffff] md:text-[#bea04e] font-semibold md:font-normal cursor-pointer"
             >
               {homeData?.lang?.allProjects?.breadcrumb}
             </p>

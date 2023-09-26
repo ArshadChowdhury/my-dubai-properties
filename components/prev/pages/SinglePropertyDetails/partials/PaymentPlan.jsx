@@ -113,7 +113,7 @@ const PaymentPlan = (props) => {
   };
 
   useEffect(() => {
-    if (!mobileView) {
+    if (mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().left;
@@ -153,7 +153,7 @@ const PaymentPlan = (props) => {
             size="px-4"
           />
         </div>
-        <div className="w-full relative mt-20">
+        <div className="w-full relative mt-20 z-10">
           {mobileView ? (
             <>
               <div className="flex items-center mx-10">

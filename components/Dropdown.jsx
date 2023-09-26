@@ -12,6 +12,7 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 
 import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Dropdown = (props) => {
   const developersData = props.filterListData?.developers;
@@ -20,6 +21,7 @@ const Dropdown = (props) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const navItem = homeData?.lang?.menu;
   const propertySelection = homeData?.lang?.propertySelection;
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -200,7 +202,13 @@ const Dropdown = (props) => {
               <p className="text-[11px] font-extralight font-montserrat text-white pb-1">
                 {propertySelection?.insideSubTitle}
               </p>
-              <button className="bg-[#bea04e] rounded-md px-1 py-[1x] w-[70%] border border-1 border-[#bea04e] hover:bg-transparent">
+              <button
+                onClick={() => {
+                  router.push("/contact-us");
+                  handleClose();
+                }}
+                className="bg-[#bea04e] rounded-md px-1 py-[1x] w-[70%] border border-1 border-[#bea04e] hover:bg-transparent"
+              >
                 <span className="text-white py-1 flex justify-center items-center text-[12px] font-normal font-montserrat ">
                   {propertySelection?.insideButton}
                 </span>
@@ -222,7 +230,13 @@ const Dropdown = (props) => {
               <p className="text-[11px] font-extralight font-montserrat text-white pb-1">
                 {propertySelection?.insideSubTitle}
               </p>
-              <button className="bg-[#bea04e] self-end rounded-md px-1 py-[1x] w-[70%] border border-1 border-[#bea04e] hover:bg-transparent">
+              <button
+                onClick={() => {
+                  router.push("/contact-us");
+                  handleClose();
+                }}
+                className="bg-[#bea04e] self-end rounded-md px-1 py-[1x] w-[70%] border border-1 border-[#bea04e] hover:bg-transparent"
+              >
                 <span className="text-white py-1 flex justify-center items-center text-[12px] font-normal font-montserrat ">
                   {propertySelection?.insideButton}
                 </span>

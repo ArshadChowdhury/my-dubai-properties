@@ -35,7 +35,7 @@ const AboutUsContent = (props) => {
               />
             </div>
 
-            <ul className="font-extralight ml-[10px] list-disc text-[12px] tracking-[2%] text-white pl-[15px] pt-5 leading-[24px] font-montserrat">
+            <ul className="font-extralight mx-[10px] list-disc text-[12px] tracking-[2%] text-white px-[15px] pt-5 leading-[24px] font-montserrat">
               <li>
                 <span>{aboutData?.b1}</span>
               </li>
