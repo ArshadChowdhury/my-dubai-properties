@@ -8,14 +8,12 @@ import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../../services/apiFunctions";
 import { useEffect } from "react";
 
 const AboutUs = () => {
-  const pathname = usePathname();
   const [{ lang }] = useStateValue();
 
   const getAllHomeContent = async () => {
@@ -56,6 +54,9 @@ const AboutUs = () => {
       </p>
     );
   }
+
+  const breadCrumb = homeData?.lang?.menu?.aboutUs;
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">
@@ -76,7 +77,8 @@ const AboutUs = () => {
         <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20  md:pt-28">
           <div className="about-overlay"></div>
           <RouteLink
-            locationName={pathname}
+            homeData={homeData}
+            locationName={breadCrumb}
             buttonHide={"true"}
             marginBottom="mb-12 md:mb-0"
           />

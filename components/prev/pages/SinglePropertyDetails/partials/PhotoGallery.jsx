@@ -15,7 +15,6 @@ import {
   A11y,
   Controller,
 } from "swiper/modules";
-// import { Navigation } from "swiper/modules";
 import { useCallback } from "react";
 
 import SkeletonSingleProperty from "@/components/prev/Skeleton/SkeletonSingleProperty";
@@ -87,7 +86,7 @@ const PhotoGallery = (props) => {
       {isModalOpen && (
         <div
           onClick={handleCloseModalOnScroll}
-          className={`w-full h-screen md:px-24 md:pb-32 px-10 md:pl-96 flex justify-center items-center fixed top-5 bottom-5 left-0 z-50 bg-black bg-opacity-70`}
+          className={`w-full h-screen md:px-24 md:pb-20 px-10 md:pl-72 flex justify-center items-center fixed bottom-5 left-0 z-50 bg-black bg-opacity-70`}
         >
           <Swiper
             ref={sliderRef}
@@ -120,7 +119,7 @@ const PhotoGallery = (props) => {
                   width={1000}
                   src={image.path}
                   alt={image.metaDescription}
-                  className={`rounded-md cursor-pointer md:h-2/3 md:w-9/12 md:ml-30 ${
+                  className={`rounded-md cursor-pointer md:h-5/6 md:w-10/12 md:ml-30 ${
                     isMobile ? "h-[350px] w-[450px]" : ""
                   }  `}
                   onClick={(e) => {
@@ -232,7 +231,7 @@ const PhotoGallery = (props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="mt-5 w-full flex justify-center items-center translate-y-1/2 ">
+      <div className="mt-5 w-full flex justify-center items-center translate-y-1/2">
         <div className="w-1/4 flex justify-between relative">
           <button
             onClick={() => {
