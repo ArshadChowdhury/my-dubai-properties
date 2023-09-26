@@ -14,12 +14,11 @@ import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";
 
 const Dropdown = (props) => {
-  const developersData = props.developersData;
+  const developersData = props.filterListData?.developers;
   const homeData = props.homeData;
   const [{ lang }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(false);
   const navItem = homeData?.lang?.menu;
-  const developers = developersData?.developers?.data;
   const propertySelection = homeData?.lang?.propertySelection;
 
   useEffect(() => {
@@ -89,7 +88,7 @@ const Dropdown = (props) => {
                       {navItem?.developers}
                     </h2>
                     <ul className="text-xs flex flex-col gap-1">
-                      {developers?.map((developer) => (
+                      {developersData?.map((developer) => (
                         <Link
                           href={`/developers/${developer._id}`}
                           className="hover:text-[#ffd15f]"
@@ -264,7 +263,7 @@ const Dropdown = (props) => {
                       {navItem?.developers}
                     </h2>
                     <ul className="text-xs flex flex-col gap-1">
-                      {developers?.map((developer) => (
+                      {developersData?.map((developer) => (
                         <Link
                           href={`/developers/${developer._id}`}
                           key={developer._id}
@@ -403,7 +402,7 @@ const Dropdown = (props) => {
                     {navItem?.developers}
                   </h2>
                   <ul className="text-xs flex flex-col gap-1">
-                    {developers?.map((developer) => (
+                    {developersData?.map((developer) => (
                       <Link
                         href={`/developers/${developer._id}`}
                         key={developer._id}

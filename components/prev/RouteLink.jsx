@@ -4,10 +4,12 @@ import arrow from "../../components/prev/assets/images/global/chevron-forward-ou
 import Skeleton from "./Skeleton/Skeleton";
 import { useStateValue } from "./states/StateProvider";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
   const [{ viewType }, dispatch] = useStateValue();
   const [{ lang }] = useStateValue();
+  const router = useRouter();
   const switchViewType = (viewType) => {
     dispatch({ type: "setViewType", item: viewType });
   };
@@ -20,7 +22,10 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
             <p>
               <Image src={home} alt="Home Icon" />
             </p>
-            <p className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal">
+            <p
+              onClick={() => router.push("/")}
+              className=" text-[#ffffff] md:text-[#626262] font-semibold md:font-normal cursor-pointer"
+            >
               {homeData?.lang?.allProjects?.breadcrumb}
             </p>
             <p className="text-[15px] md:text-[9px]">

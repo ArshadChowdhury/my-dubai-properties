@@ -15,14 +15,14 @@ const OtherNecessaryComponents = () => {
   const [{ lang }] = useStateValue();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
-  const getAllDevelopers = async () => {
-    const data = await instance
-      .get(`/${lang}/developers`, {
-        timeout: 5000,
-      })
-      .then((data) => data?.data?.data);
-    return data;
-  };
+  // const getAllDevelopers = async () => {
+  //   const data = await instance
+  //     .get(`/${lang}/developers`, {
+  //       timeout: 5000,
+  //     })
+  //     .then((data) => data?.data?.data);
+  //   return data;
+  // };
 
   const getAllHomeContent = async () => {
     const data = await instance
@@ -32,6 +32,24 @@ const OtherNecessaryComponents = () => {
       .then((data) => data?.data?.data);
     return data;
   };
+
+  const getAllFilter = async () => {
+    const data = await instance
+      .get(`/${lang}/data/filter-list`, {
+        timeout: 5000,
+      })
+      .then((data) => data?.data?.data);
+    return data;
+  };
+
+  const {
+    isLoading: isLoadingFilterData,
+    data: filterListData,
+    refetch: filterRefetch,
+  } = useQuery({
+    queryKey: ["filter-list"],
+    queryFn: getAllFilter,
+  });
 
   const {
     isLoading: isLoadingHomeContent,
@@ -43,23 +61,23 @@ const OtherNecessaryComponents = () => {
     queryFn: getAllHomeContent,
   });
 
-  const {
-    isLoading: isDeveloperDataLoading,
-    data: developersData,
-    refetch: developerRefetch,
-  } = useQuery({
-    queryKey: ["get-developers"],
-    queryFn: getAllDevelopers,
-  });
+  // const {
+  //   isLoading: isDeveloperDataLoading,
+  //   data: developersData,
+  //   refetch: developerRefetch,
+  // } = useQuery({
+  //   queryKey: ["get-developers"],
+  //   queryFn: getAllDevelopers,
+  // });
 
   useEffect(() => {
-    developerRefetch();
     homeDataRefetch();
+    filterRefetch();
     const isMobileView = window.matchMedia("(max-width: 767px)").matches;
     setMobileView(isMobileView);
   }, [lang]);
 
-  if (isLoadingHomeContent || isDeveloperDataLoading) {
+  if (isLoadingHomeContent) {
     return;
   }
 
@@ -71,7 +89,8 @@ const OtherNecessaryComponents = () => {
     <>
       <Menu
         homeData={homeData}
-        developersData={developersData}
+        filterListData={filterListData}
+        // developersData={developersData}
         mobileView={mobileView}
       />
       <ArrangeMeeting homeData={homeData} mobileView={mobileView} />

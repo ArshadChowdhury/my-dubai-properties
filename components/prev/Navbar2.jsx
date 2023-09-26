@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Skeleton from "./Skeleton/Skeleton";
 import logo from "../../components/prev/assets/images/global/logo.png";
 import calender from "../../components/prev/assets/images/global/calendar-outline.svg";
@@ -8,12 +8,25 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const Navbar2 = (props) => {
-  const [dropDown, setDropDown] = useState(true);
-  const { filterListData, homeData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
+  const { filterListData, homeData } = props;
+  const [dropDown, setDropDown] = useState(true);
+  const [isMobileView, setIsMobileView] = useState(false);
   const pathname = usePathname();
 
   const navData = homeData?.lang?.navber;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
@@ -25,8 +38,12 @@ const Navbar2 = (props) => {
 
   const handleMenu = (e) => {
     e.preventDefault();
-    setDropDown((prev) => !prev);
-    dispatch({ type: "setDropdownOpen", item: dropDown });
+    if (isMobileView) {
+      dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
+    } else {
+      setDropDown((prev) => !prev);
+      dispatch({ type: "setDropdownOpen", item: dropDown });
+    }
   };
 
   const langList = homeData?.langList;
@@ -36,25 +53,25 @@ const Navbar2 = (props) => {
       <Skeleton className="justify-between items-center px-5">
         <div className="flex items-center z-50">
           <div
-            className="flex flex-wrap mr-5 w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative group"
+            className="flex flex-wrap mr-5 w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative"
             onClick={handleMenu}
           >
-            <div className="absolute -right-1 -top-1 group-hover:top-7 group-hover:right-8 scale-110 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500 ">
+            <div className="absolute -right-1 -top-1 group-hover:top-7 group-hover:right-8 scale-110 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500">
               <div className="w-full h-full rounded-full bg-white bg-opacity-50"></div>
             </div>
-            <div className="absolute -right-1 -bottom-2 group-hover:bottom-5 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500 ">
+            <div className="absolute -right-1 -bottom-2 group-hover:bottom-5 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500">
               <div className="w-1/2 h-1/6 rounded-2xl bg-white bg-opacity-50"></div>
             </div>
-            <div className="w-1/2 h-1/2 scale-125 p-1 transition duration-500 ">
+            <div className="w-1/2 h-1/2 scale-125 p-1 transition duration-500">
               <div className="w-full h-full border-2 rounded-full border-[#F1BF3F]"></div>
             </div>
             <div className="w-1/2 h-1/2 p-1 transition duration-500 relative">
               <div className="w-full h-full border-2 rounded rounded-bl-none border-[#F1BF3F]"></div>
             </div>
-            <div className="w-1/2 h-1/2 p-1 transition duration-500 ">
+            <div className="w-1/2 h-1/2 p-1 transition duration-500">
               <div className="w-full h-full border-2 rounded rounded-tr-none border-[#F1BF3F]"></div>
             </div>
-            <div className="w-1/2 h-1/2 p-1 transition duration-500 ">
+            <div className="w-1/2 h-1/2 p-1 transition duration-500">
               <div className="w-full h-full scale-125 border-2 rounded rounded-tl-none border-[#F1BF3F]"></div>
             </div>
           </div>

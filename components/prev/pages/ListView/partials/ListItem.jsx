@@ -232,7 +232,7 @@ const ListItem = (props) => {
             >
               {props.description}
             </p>
-            <div className="flex w-full md:w-[450px] gap-10">
+            <div className="flex w-full md:w-[450px] gap-2 md:gap-10">
               <BtnItem
                 btnText="Details"
                 className="basis-1/2"
@@ -240,7 +240,7 @@ const ListItem = (props) => {
               />
               <button
                 onClick={() => handleModalOpen(props.id, props.propertyName)}
-                className={`border border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]`}
+                className={`border basis-1/2 border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]`}
               >
                 <div className="w-full h-full flex justify-around items-center bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]   text-white rounded text-xs md:text-sm font-montserrat py-2 uppercase">
                   Enquiry

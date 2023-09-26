@@ -12,6 +12,7 @@ const FilterModal = (props) => {
   const developmentTypeId = filterRoute?.developmentTypes;
   const propertyTypeId = filterRoute?.propertyAreas;
   const developerId = filterRoute?.developers;
+  const buttonSearchText = filterListData?.lang?.filterHomepage?.buttonSearch;
 
   const queryParams = [];
 
@@ -92,7 +93,7 @@ const FilterModal = (props) => {
           }
         >
           <div onClick={hadleSubmit} className="basis-1/2">
-            <BtnItem btnText="search" to="#" />
+            <BtnItem btnText={buttonSearchText} to="#" />
           </div>
           <div onClick={handleReset} className="basis-1/2">
             <BtnItemOutline to="#" btnText="Discard" />

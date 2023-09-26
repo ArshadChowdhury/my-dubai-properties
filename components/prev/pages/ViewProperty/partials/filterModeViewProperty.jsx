@@ -58,10 +58,7 @@ const FilterModalViewProperty = (props) => {
   };
 
   return props.isFilterModalOpen ? (
-    <div
-      style={{ "z-index": "100" }}
-      className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900"
-    >
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900 z-[100]">
       <div className="w-[75%] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
         <FilterSearch3
           title={

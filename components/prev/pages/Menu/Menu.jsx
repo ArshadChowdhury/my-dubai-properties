@@ -143,7 +143,7 @@ const Menu = (props) => {
     <div
       className={`${
         isDropdownMenuOpen
-          ? "w-[100vw] h-[100vh] z-[100] md:h-[375px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-0 transition-all"
+          ? "w-[100vw] h-[100vh] z-[100] md:h-[435px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-0 transition-all"
           : "hidden"
       } `}
       ref={menuRef}
@@ -156,7 +156,8 @@ const Menu = (props) => {
       </span>
       <Dropdown
         homeData={props.homeData}
-        developersData={props.developersData}
+        filterListData={props.filterListData}
+        // developersData={props.developersData}
         isMobileView={props.mobileView}
       />
     </div>

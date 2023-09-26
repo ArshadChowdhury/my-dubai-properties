@@ -18,9 +18,9 @@ const FilterSelectMob = (props) => {
   const developerId = searchParams.get("developers");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
 
-  // useEffect(() => {
-  //   setSelectedValue(null);
-  // }, [props?.page, filterRoute]);
+  useEffect(() => {
+    setSelectedValue(getSelectedValue());
+  }, [filterTexts, props?.page]);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
@@ -29,6 +29,7 @@ const FilterSelectMob = (props) => {
           id: null,
           areaName: filterTexts?.textBoxPropertyArea,
         });
+
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
