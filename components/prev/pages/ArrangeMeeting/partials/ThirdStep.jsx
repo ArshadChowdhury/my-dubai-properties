@@ -143,7 +143,7 @@ const ThirdStep = (props) => {
                   <PhoneInput
                     placeholder={meetingData?.placeholderPhoneNumber}
                     value={phoneValue}
-                    onChange={(e) => setPhoneValue(e.target.value)}
+                    onChange={setPhoneValue}
                     defaultCountry="BD"
                     className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                   />

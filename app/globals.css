@@ -3453,6 +3453,36 @@ video {
 .filter-btn:hover:after {
   background: rgba(255, 255, 255, 0.1);
 }
+
+.dropdown-btn:hover {
+  display: flex;
+  background: transparent;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.dropdown-btn:before {
+  position: absolute;
+  height: 50%;
+  width: 60%;
+  content: "";
+  top: 0px;
+  left: -9px;
+  background: transparent;
+  transform: perspective(25px) rotateX(15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+.dropdown-btn:after {
+  position: absolute;
+  height: 60%;
+  width: 60%;
+  top: 54%;
+  left: -5px;
+  content: "";
+  background: transparent;
+  transform: perspective(25px) rotateX(-15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
 .btn-search {
   width: 100%;
   -webkit-clip-path: polygon(

@@ -9,10 +9,26 @@ import PhoneInput from "react-phone-number-input";
 
 const RegisterForm = (props) => {
   const contactData = props?.homeData?.lang?.contactUs?.enquire;
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState, reset } = useForm();
+  const { errors } = formState;
   const [value, setValue] = useState();
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
+
+  const onSubmit = (data) => {
+    return console.log(data);
+    instance
+      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+    reset();
+  };
 
   const handleCheckbox1Change = () => {
     setIsChecked1(!isChecked1);
@@ -21,6 +37,8 @@ const RegisterForm = (props) => {
   const handleCheckbox2Change = () => {
     setIsChecked2(!isChecked2);
   };
+
+  console.log(errors);
 
   return (
     <div className="w-full md:w-3/4 bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] p-5 border border-[#373F48] rounded-md xl:basis-1/3 text-center flex items-center">
@@ -31,40 +49,71 @@ const RegisterForm = (props) => {
         <p className="text-white text-left font-montserrat mt-2 text-sm font-light">
           {contactData?.required}
         </p>
-        <form action="" className="mt-8" onSubmit={handleSubmit((data) => {})}>
+        <form action="" className="mt-8" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center space-x-3">
             <input
               type="text"
-              {...register("name", { required: true })}
               id="fname"
+              {...register("fname", {
+                required: {
+                  value: true,
+                  message: "First name is required",
+                },
+              })}
               placeholder={contactData?.placeholderFirstName}
-              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
+              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
             />
+            {/* <p className="text-red-300 text-xs text-left w-full py-1">
+              {errors.fname?.message?.length > 0 ? errors.fname?.message : null}
+            </p> */}
             <input
               type="text"
-              {...register("name", { required: true })}
               id="lname"
+              {...register("lname", {
+                required: {
+                  value: true,
+                  message: "Last name is required",
+                },
+              })}
               placeholder={contactData?.placeholderLastName}
-              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
+              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
             />
+            {/* <p className="text-red-300 text-xs text-left w-full py-1">
+              {errors.lname?.message?.length > 0 ? errors.lname?.message : null}
+            </p> */}
           </div>
           <div className="flex items-center">
             <input
               type="email"
-              {...register("email", { required: true })}
               id="email"
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Email is required",
+                },
+              })}
               placeholder={contactData?.placeholderEmail}
-              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
+              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
             />
+            {/* <p className="text-red-300 text-xs text-left w-full py-1">
+              {errors.email?.message?.length > 0 ? errors.email?.message : null}
+            </p> */}
           </div>
           <div className="flex items-center mb-3">
             <div className="w-full h-full">
               <PhoneInput
+                id="phone"
                 placeholder={contactData?.placeholderPhoneNumber}
                 value={value}
                 onChange={setValue}
                 defaultCountry="FR"
-                className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
+                className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+                {...register("phone", {
+                  required: {
+                    value: true,
+                    message: "Phone is required",
+                  },
+                })}
               />
             </div>
           </div>
@@ -76,8 +125,19 @@ const RegisterForm = (props) => {
               id="description"
               cols="30"
               rows="3"
-              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none"
+              className="w-full px-5 py-3 rounded-sm mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+              {...register("description", {
+                required: {
+                  value: true,
+                  message: "Description is required",
+                },
+              })}
             />
+            {/* <p className="text-red-300 text-xs text-left w-full py-1">
+              {errors.description?.message?.length > 0
+                ? errors.description?.message
+                : null}
+            </p> */}
           </div>
           <div className="flex flex-col justify-start items-start mb-2 text-white font-montserrat text-sm font-light">
             <label>

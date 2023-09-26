@@ -110,7 +110,7 @@ const Navbar2 = (props) => {
             </button>
             <div className="flex items-center nav">
               <h1
-                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                className={`uppercase cursor-pointer font-openSans mx-4 hover:text-[#F1BF3F] ${
                   pathname == "/properties/off-plan"
                     ? "text-[#F1BF3F]"
                     : "text-white"
@@ -125,7 +125,7 @@ const Navbar2 = (props) => {
                 </Link>
               </h1>
               <h1
-                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                className={`uppercase cursor-pointer font-openSans mx-4 hover:text-[#F1BF3F] ${
                   pathname == "/properties/ready"
                     ? "text-[#F1BF3F]"
                     : "text-white"
@@ -141,7 +141,7 @@ const Navbar2 = (props) => {
               </h1>
 
               <h1
-                className={`uppercase cursor-pointer font-openSans mx-4 ${
+                className={`uppercase cursor-pointer font-openSans mx-4 hover:text-[#F1BF3F] ${
                   pathname == "/properties" ? "text-[#F1BF3F]" : "text-white"
                 }`}
               >

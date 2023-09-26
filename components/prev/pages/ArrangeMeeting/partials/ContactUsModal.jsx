@@ -27,16 +27,16 @@ const ContactUsModal = ({ mobileView, homeData }) => {
   //   };
 
   const onSubmit = (data) => {
-    // instance
-    //   .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.data);
-    //   });
+    instance
+      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
     dispatch({ type: "setShowContactModal", item: false });
     setSubsPopUp(true);
     reset();
@@ -239,6 +239,10 @@ const ContactUsModal = ({ mobileView, homeData }) => {
                               value: true,
                               message: "Phone number is required",
                             },
+                            pattern: {
+                              value: /^[0-9]+$/,
+                              message: "Please enter a number",
+                            },
                             maxLength: {
                               value: 30,
                               message:
@@ -259,6 +263,10 @@ const ContactUsModal = ({ mobileView, homeData }) => {
                           className="w-full px-5 py-3 rounded-md font-montserrat text-[11.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-gray-400 focus:text-[#f1bf3f]"
                           {...register("preferedLang", {
                             required: "Language is required",
+                            maxLength: {
+                              value: 2,
+                              message: "Please select a language",
+                            },
                           })}
                         >
                           <option className="rounded-2xl font-montserrat text-[10.5px] text-[#f1bf3f]">
@@ -275,8 +283,8 @@ const ContactUsModal = ({ mobileView, homeData }) => {
                           ))}
                         </select>
                         <p className="text-red-300 text-xs text-left w-full py-1">
-                          {errors.language?.message?.length > 0
-                            ? errors.language?.message
+                          {errors.preferedLang?.message?.length > 0
+                            ? errors.preferedLang?.message
                             : null}
                         </p>
                       </div>
