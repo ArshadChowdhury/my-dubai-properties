@@ -86,7 +86,7 @@ const PhotoGallery = (props) => {
       {isModalOpen && (
         <div
           onClick={handleCloseModalOnScroll}
-          className={`w-full h-screen md:px-24 md:pb-20 px-10 md:pl-72 flex justify-center items-center fixed bottom-5 left-0 z-50 bg-black bg-opacity-70`}
+          className={`w-full h-screen md:px-24 md:pb-20 px-10 md:pl-72 flex justify-center items-center fixed bottom-5 left-0 z-50 bg-black bg-opacity-90`}
         >
           <Swiper
             ref={sliderRef}
