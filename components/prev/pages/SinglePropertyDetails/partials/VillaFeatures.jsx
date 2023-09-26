@@ -27,27 +27,18 @@ const VillaFeatures = (props) => {
       <SkeletonSingleProperty className={`px-5 !pt-0`}>
         <div className="single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px] md:h-3/5 w-[85%] md:w-[40%]"></div>
         <div className="border-right w-[65%] md:w-[45%] mt-[45px] md:mt-0 md:absolute -left-[4rem] top-[20%] skew-y-6 -skew-x-6 h-[132px] md:h-3/5 flex md:justify-center items-center">
-          {lang === "en" ? (
-            <>
-              <div className="md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
-                <Image src={mosqueGif} alt="" />
-              </div>
-              <div className="absolute right-[32px] md:right-0 top-[.9rem] md:top-[2.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
-                <Image src={frys} alt="" className="opacity-40" />
-              </div>{" "}
-            </>
-          ) : (
-            <>
-              <div className="md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
-                <Image src={mosqueGif} alt="" />
-              </div>
-              <div className="absolute right-[32px] md:right-0 top-[.9rem] md:top-[2.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
-                <Image src={frys} alt="" className="opacity-40" />
-              </div>{" "}
-            </>
-          )}
+          <div className="md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
+            <Image src={mosqueGif} alt="" />
+          </div>
+          <div className="absolute right-[32px] md:right-0 top-[.9rem] md:top-[2.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
+            <Image src={frys} alt="" className="opacity-40" />
+          </div>{" "}
         </div>
-        <div className="w-full flex justify-end pt-16 md:pt-0">
+        <div
+          className={`w-full flex  ${
+            lang === "en" ? "justify-end" : "justify-start"
+          } pt-16 md:pt-0`}
+        >
           <div className="w-full md:w-1/2 flex flex-col items-center md:pt-16">
             <div className="w-[90%] md:w-auto mb-4 md:mb-8 md:mr-8">
               <FeatureItem

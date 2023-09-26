@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { gsap } from "gsap";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const SinglePropertyHeader = (props) => {
   const [index, setIndex] = useState(0);

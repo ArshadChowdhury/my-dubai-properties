@@ -17,7 +17,7 @@ const Nearby = (props) => {
   return (
     <section className="mt-16 md:mt-5 mb-5">
       <SkeletonSingleProperty className="flex-col px-5">
-        <div className="w-full md:w-3/4 flex flex-col  ml-auto">
+        <div className="w-full md:w-3/4 flex flex-col ml-auto">
           <HeadingText2
             innerText={heading}
             className="items-start w-full md:w-1/3"

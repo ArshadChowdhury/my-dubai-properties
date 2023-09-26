@@ -11,9 +11,11 @@ import ButtonOutline from "@/components/prev/ButtonOutline";
 import { useState } from "react";
 import BtnOutline from "@/components/prev/BtnOutline";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const SinglePropertyDescription = (props) => {
   const [btnHoverEffect, setBtnHoverEffect] = useState(false);
+  const [{ lang }] = useStateValue();
 
   const propertyDetails = props?.property;
   const homeData = props?.homeData?.lang?.propertyDetails;
@@ -25,25 +27,30 @@ const SinglePropertyDescription = (props) => {
     <section className="ml-3 mr-3">
       <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0 ">
         <div className="xl:basis-[75%] xl:pr-8 text-justify lg:text-left">
-          <h1 className="font-robotoCondensed font-medium text-white text-[30px] ml-2">
+          <h1
+            className={`font-robotoCondensed font-medium text-white text-[30px] ml-2 ${
+              lang === "en" ? "" : "text-right"
+            }`}
+          >
             {propertyDetails?.propertyName}
           </h1>
-          <div className="flex items-center ml-2">
-            <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
+          <div className="flex gap-4 items-center ml-2">
+            <p className="flex gap-2 font-montserrat text-white text-[12px] leading-4 items-center my-2">
               <Image src={iconLocationBlack} alt="Location" className="mr-1" />
               {propertyDetails?.developerType?.name}
             </p>
-            <p className="font-montserrat text-white text-[12px] leading-4 flex items-center my-2 mr-4">
+            <p className="flex gap-2 font-montserrat text-white text-[12px] leading-4 items-center my-2">
               <Image src={iconBuilding} alt="building" className="mr-1" />
               {propertyDetails?.propertyArea?.areaName}
             </p>
           </div>
           {propertyDescription?.map((paragraph, index) => (
             <p
-              className="font-montserrat text-white leading-7 py-2 text-[15px]"
+              className={`font-montserrat text-white leading-7 py-2 text-[15px] ${
+                lang === "en" ? "" : "text-right"
+              }`}
               key={`paragraph-${index}`}
               style={{
-                textAlign: "left",
                 fontWeight: "200",
                 fontSize: "14px",
                 marginLeft: "10px",

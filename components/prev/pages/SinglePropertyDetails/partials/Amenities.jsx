@@ -28,8 +28,12 @@ const Amenities = (props) => {
         </div>
 
         <div className="md:flex md:justify-between">
-          <div className="basis-1/2 md:pr-10">
-            <p className="font-montserrat mx-3 text-white leading-7 text-justify py-2">
+          <div className="basis-1/2">
+            <p
+              className={`font-montserrat mx-3 text-white leading-7 text-justify py-2 ${
+                lang === "en" ? "" : "text-right"
+              }`}
+            >
               {amenities.description}
             </p>
           </div>
