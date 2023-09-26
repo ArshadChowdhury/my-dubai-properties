@@ -154,18 +154,18 @@ const SinglePropertyDetails = () => {
       {/* <VerticalLine /> */}
       <ContactUsModal homeData={homeData} />
       <div className="single_background mb-20 z-[100]">
-        <div className="md:hidden">
+        {/* <div className="md:hidden">
           <Navbar2
             filterListData={filterListData}
             homeData={homeData}
             className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
             type="inline"
           />
-        </div>
+        </div> */}
         {nav ? (
           <Navbar
             homeData={homeData}
-            className={`absolute top-0 left-0  w-full py-5 z-20`}
+            className={`absolute top-0 left-0 w-full py-5 z-20`}
             type="inline"
             filterListData={filterListData}
           />

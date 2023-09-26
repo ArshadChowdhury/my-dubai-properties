@@ -13,6 +13,7 @@ import Footer from "../../Footer";
 import paymentBottom from "../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
 import { useStateValue } from "../../states/StateProvider";
+import LoadingState from "@/components/LoadingState";
 
 const TermsAndConditions = () => {
   const pathname = usePathname();
@@ -52,11 +53,7 @@ const TermsAndConditions = () => {
   }, [lang]);
 
   if (isLoadingHomeContent) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent) {
@@ -85,11 +82,13 @@ const TermsAndConditions = () => {
       <section className="w-full relative md:-mt-24 md:ml-5">
         <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28">
           <div className="about-overlay"></div>
-          <RouteLink
-            locationName={pathname}
-            buttonHide={"true"}
-            marginBottom="mb-12 md:mb-0"
-          />
+          <div className="-mx-2">
+            <RouteLink
+              locationName={pathname.slice(1)}
+              buttonHide={"true"}
+              marginBottom="mb-12 md:mb-0"
+            />
+          </div>
           <Terms homeData={homeData} />
         </div>
       </section>

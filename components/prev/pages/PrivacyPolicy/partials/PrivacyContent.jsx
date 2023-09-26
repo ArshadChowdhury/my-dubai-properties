@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar2 from "@/components/prev/Navbar2";
-import HeadingBox from "@/components/prev/HeadingBox";
+import LoadingState from "@/components/LoadingState";
 import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import HomeHeading from "@/components/prev/HomeHeading";
 import Footer from "@/components/prev/Footer";
@@ -15,6 +15,7 @@ import { useEffect } from "react";
 const PrivacyContent = () => {
   const [{ lang }] = useStateValue();
   const pathname = usePathname();
+
   const getAllHomeContent = async () => {
     const data = await instance
       .get(`/${lang}/get-home`, {
@@ -39,11 +40,7 @@ const PrivacyContent = () => {
   }, [lang]);
 
   if (isLoadingHomeContent) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent) {
@@ -63,9 +60,9 @@ const PrivacyContent = () => {
         type="inline"
         homeData={homeData}
       />
-      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24">
+      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24 -mx-2">
         <RouteLink
-          locationName={pathname}
+          locationName={pathname.slice(1)}
           buttonHide={"true"}
           marginBottom="mb-12 md:mb-0"
         />
@@ -103,7 +100,7 @@ const PrivacyContent = () => {
             <HomeHeading heading={privacyData?.title2} />
           </div>
 
-          <div className="w-full md:mt-5 font-montserrat text-white ">
+          <div className="w-full md:mt-5 font-montserrat text-white pb-32">
             <p className="py-3 text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
               {privacyData?.p2}
             </p>

@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
 import { useEffect } from "react";
 import Link from "next/link";
+import LoadingState from "@/components/LoadingState";
 
 const CookieContent = () => {
   const [{ lang }] = useStateValue();
@@ -39,11 +40,7 @@ const CookieContent = () => {
   }, [lang]);
 
   if (isLoadingHomeContent) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent) {
@@ -55,6 +52,7 @@ const CookieContent = () => {
   }
 
   const cookieData = homeData?.lang?.cookie;
+  const heading = homeData?.lang?.cookie?.breadcrumb;
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -63,9 +61,10 @@ const CookieContent = () => {
         className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
         type="inline"
       />
-      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28 md:mt-10 lg:mt-0">
+      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28 md:mt-10 lg:mt-0 -mx-2">
         <RouteLink
-          locationName={pathname}
+          homeData={homeData}
+          locationName={pathname.slice(1)}
           buttonHide={"true"}
           marginBottom="mb-12 md:mb-0"
         />
@@ -115,7 +114,7 @@ const CookieContent = () => {
             {cookieData?.p7}
           </p>
         </div>
-        <div className="pt-3 text-[#FFD15F] font-montserrat text-[12.5px]">
+        <div className="pt-3 text-[#FFD15F] font-montserrat text-[12.5px] pb-32">
           <div className="list-disc grid ml-4 grid-cols-2 gap-5 w-full">
             <ul className="list-disc w-full">
               <li>

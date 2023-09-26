@@ -35,9 +35,9 @@ const Highlights = (props) => {
             className="border-right flex justify-center items-center my-5"
             style={{ marginRight: `${margin}` }}
           >
-            <ul className="pl-5 md:pl-12 pt-10  w-full single-key-background pr-2">
+            <ul className="pl-5 md:pl-12 pt-10 w-full single-key-background pr-2">
               {highlights?.map((highlight, index) => (
-                <li className="flex mb-6" key={`highlight-${index}`}>
+                <li className="flex gap-4 mb-6" key={`highlight-${index}`}>
                   <Image
                     src={tick}
                     alt="tick"

@@ -17,6 +17,7 @@ import Footer from "../../Footer";
 import Image from "next/image";
 import { instance } from "../../services/apiFunctions";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
+import LoadingState from "@/components/LoadingState";
 
 const SingleDeveloperView = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
@@ -118,11 +119,7 @@ const SingleDeveloperView = (props) => {
   }, [lang, filterParams]);
 
   if (isLoadingHomeContent || isLoadingSingleDev) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent || isErrorSingleDev) {

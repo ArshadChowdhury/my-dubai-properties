@@ -4,7 +4,7 @@ const HeadingBox = (props) => {
   const [{ lang }] = useStateValue();
   return (
     <div
-      className={`px-4 xl:px-6 py-1 bg-[#042C51] relative ${props.className}`}
+      className={`px-4 xl:px-12 py-1 bg-[#042C51] relative ${props.className}`}
     >
       {lang === "en" ? (
         <div

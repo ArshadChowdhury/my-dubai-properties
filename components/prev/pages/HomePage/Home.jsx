@@ -14,6 +14,7 @@ import Payment from "./partials/Payment";
 import Navbar from "@/components/Navbar";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
+import LoadingState from "@/components/LoadingState";
 
 const Home = () => {
   const [{ filterOpen, lang }, dispatch] = useStateValue();
@@ -91,11 +92,7 @@ const Home = () => {
   }, [lang]);
 
   if (isLoadingHomeContent || isLoadingPropertiesData || isLoadingFilterData) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent || isErrorPropertiesData) {

@@ -24,17 +24,17 @@ const SinglePropertyDescription = (props) => {
     propertyDetails?.propertyDescription?.split("\r\n\r\n");
 
   return (
-    <section className="ml-3 mr-3">
+    <section className="mx-3">
       <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0 ">
         <div className="xl:basis-[75%] xl:pr-8 text-justify lg:text-left">
           <h1
-            className={`font-robotoCondensed font-medium text-white text-[30px] ml-2 ${
+            className={`font-robotoCondensed font-medium text-white text-[30px] mx-2 ${
               lang === "en" ? "" : "text-right"
             }`}
           >
             {propertyDetails?.propertyName}
           </h1>
-          <div className="flex gap-4 items-center ml-2">
+          <div className="flex gap-4 items-center mx-2">
             <p className="flex gap-2 font-montserrat text-white text-[12px] leading-4 items-center my-2">
               <Image src={iconLocationBlack} alt="Location" className="mr-1" />
               {propertyDetails?.developerType?.name}
@@ -46,7 +46,7 @@ const SinglePropertyDescription = (props) => {
           </div>
           {propertyDescription?.map((paragraph, index) => (
             <p
-              className={`font-montserrat text-white leading-7 py-2 text-[15px] ${
+              className={`font-montserrat text-white leading-7 py-2 text-[15px] mx-2 ${
                 lang === "en" ? "" : "text-right"
               }`}
               key={`paragraph-${index}`}

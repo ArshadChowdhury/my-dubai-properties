@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useStateValue } from "../../states/StateProvider";
 import { instance } from "../../services/apiFunctions";
 import { useQuery } from "@tanstack/react-query";
+import LoadingState from "@/components/LoadingState";
 
 const ContactUs = () => {
   const [{ lang }] = useStateValue();
@@ -42,11 +43,7 @@ const ContactUs = () => {
   }, [lang]);
 
   if (isLoadingHomeContent) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent) {
@@ -73,14 +70,17 @@ const ContactUs = () => {
         />
       </div>
       <section className="w-full relative md:-mt-24 md:ml-5">
-        <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20  md:pt-28">
+        <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28">
           <div className="about-overlay"></div>
+          <div className="-mx-2">
+            <RouteLink
+              homeData={homeData}
+              locationName={pathname.slice(1)}
+              buttonHide={"true"}
+              marginBottom="mb-12 md:mb-0"
+            />
+          </div>
 
-          <RouteLink
-            locationName={pathname}
-            buttonHide={"true"}
-            marginBottom="mb-12 md:mb-0"
-          />
           <ContactForms homeData={homeData} />
         </div>
       </section>

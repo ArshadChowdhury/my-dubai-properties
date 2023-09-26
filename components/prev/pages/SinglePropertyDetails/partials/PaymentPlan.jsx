@@ -11,6 +11,7 @@ import upArrow2 from "../../../assets/images/global/upArrow2.png";
 import upArrow from "../../../assets/images/global/upArrow.png";
 import tick from "../../../assets/images/property details page/icon-tick.svg";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
@@ -24,6 +25,7 @@ const planTitle = (plan) => {
 };
 
 const PaymentPlan = (props) => {
+  const [{ lang }] = useStateValue();
   const heading =
     props?.singleProperty?.lang?.propertyDetails?.titlePaymentPlan;
 
@@ -206,13 +208,13 @@ const PaymentPlan = (props) => {
             </>
           ) : (
             <div
-              className="flex justify-center items-center w-3/4 pt-52 relative left-[25%]"
+              className="flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
               ref={scrollDiv}
             >
               <div
                 className={`basis-1/2 flex justify-center items-center z-10 holder`}
               >
-                <div className={`absolute top-0 left-[60px] px-2 w-auto`}>
+                <div className={`absolute -top-[25px] left-[5%] px-2 w-auto`}>
                   <h1
                     className={`font-oswald uppercase text-white text-[75px]`}
                   >
@@ -259,7 +261,7 @@ const PaymentPlan = (props) => {
           )}
         </div>
       </SkeletonSingleProperty>
-      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white fixed top-[204px] ml-36">
+      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white fixed top-[180px] ml-[7%]">
         {planList.map((plan, index) => (
           <div key={index} className="flex items-center">
             <Image
@@ -274,7 +276,7 @@ const PaymentPlan = (props) => {
         ))}
       </div>
       <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
-        <h1 className="text-[60px] ">Payment Plan</h1>
+        <h1 className="text-[60px]">Payment Plan</h1>
       </div>
     </section>
   );

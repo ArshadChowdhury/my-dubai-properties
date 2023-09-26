@@ -12,6 +12,7 @@ import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../../services/apiFunctions";
 import { useEffect } from "react";
+import LoadingState from "@/components/LoadingState";
 
 const AboutUs = () => {
   const [{ lang }] = useStateValue();
@@ -40,11 +41,7 @@ const AboutUs = () => {
   }, [lang]);
 
   if (isLoadingHomeContent) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isErrorHomeContent) {
@@ -76,12 +73,14 @@ const AboutUs = () => {
       <section className="w-full relative md:-mt-24 md:ml-5 ">
         <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20  md:pt-28">
           <div className="about-overlay"></div>
-          <RouteLink
-            homeData={homeData}
-            locationName={breadCrumb}
-            buttonHide={"true"}
-            marginBottom="mb-12 md:mb-0"
-          />
+          <div className="-mx-2">
+            <RouteLink
+              homeData={homeData}
+              locationName={breadCrumb}
+              buttonHide={"true"}
+              marginBottom="mb-12 md:mb-0"
+            />
+          </div>
           <AboutUsContent homeData={homeData} />
         </div>
       </section>

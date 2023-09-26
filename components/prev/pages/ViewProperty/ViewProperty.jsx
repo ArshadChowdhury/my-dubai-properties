@@ -19,6 +19,7 @@ import { instance } from "../../services/apiFunctions";
 import FilterModal from "./partials/filterModal";
 import VerticalLine from "../../VerticalLine";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
+import LoadingState from "@/components/LoadingState";
 
 export default function ViewProperty(props) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -139,11 +140,7 @@ export default function ViewProperty(props) {
     isLoadingFilterData ||
     isLoadingHomeContent
   ) {
-    return (
-      <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
-        Loading...Please wait...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isError) {
