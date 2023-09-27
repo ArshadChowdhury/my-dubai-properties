@@ -7,12 +7,6 @@ import Link from "next/link";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import Image from "next/image";
 
-function camalize(str) {
-  return str
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-}
-
 const Footer = ({ footerBg, home, homeData }) => {
   const homeDatas = homeData?.lang?.footer;
   const [uiVisibility, setUIVisibility] = useState({
@@ -36,23 +30,6 @@ const Footer = ({ footerBg, home, homeData }) => {
       return updatedVisibility;
     });
   };
-
-  // const toggleUIVisibility = (element) => {
-  //   const camelCaseId = camalize(element.id);
-
-  //   setUIVisibility((prevState) => {
-  //     const updatedVisibility = {};
-
-  //     for (const key in prevState) {
-  //       if (key === camelCaseId) {
-  //         updatedVisibility[key] = !prevState[key];
-  //       } else {
-  //         updatedVisibility[key] = false;
-  //       }
-  //     }
-  //     return updatedVisibility;
-  //   });
-  // };
 
   const uiElements = [
     {
@@ -94,8 +71,8 @@ const Footer = ({ footerBg, home, homeData }) => {
   ];
 
   return (
-    <footer className="mb-20">
-      <div className="flex z-[20] flex-col items-center px-3 lg:p-5 relative">
+    <footer className="mb-20 z-10">
+      <div className="flex flex-col items-center px-3 lg:p-5 relative">
         <Image
           src={footerLogo}
           alt="my dubai logo"
@@ -106,7 +83,7 @@ const Footer = ({ footerBg, home, homeData }) => {
         >
           <div className="footer_background_home2 absolute bottom-0 w-full h-full"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">
-            <div className="md:flex justify-between py-10 z-[1000]">
+            <div className="md:flex justify-between py-10">
               {uiElements.map((element, idx) => (
                 <div key={idx} className="text-white">
                   <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">
@@ -126,13 +103,15 @@ const Footer = ({ footerBg, home, homeData }) => {
                   </div>
                   <ul className="hidden lg:block font-montserrat leading-7">
                     {element.items.map((item, idx) => (
-                      <li key={item}>{item}</li>
+                      <Link className="z-10" key={idx} href={"#"}>
+                        <li>{item}</li>
+                      </Link>
                     ))}
                   </ul>
                   {uiVisibility[idx] && (
                     <ul className="md:hidden font-montserrat leading-7 mb-7">
-                      {element.items.map((item) => (
-                        <li key={item}>{item}</li>
+                      {element.items.map((item, index) => (
+                        <li key={index}>{item}</li>
                       ))}
                     </ul>
                   )}

@@ -14,13 +14,17 @@ import "react-phone-number-input/style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import BtnTime from "@/components/prev/BtnTime";
 import BtnAdd from "@/components/prev/BtnAdd";
+import Image from "next/image";
+import BtnNextStep from "@/components/prev/BtnNextStep";
 
 const ThirdStep = (props) => {
+  const { selectDate } = props;
   const meetingData = props?.meetingData;
   const [showGuestEmails, setShowGuestEmails] = useState(false);
   const [emails, setEmails] = useState([]);
   const [emailLength, setEmailLength] = useState(false);
   const [input, setInput] = useState("");
+  const [activeButton, setActiveButton] = useState(null);
 
   const [phoneValue, setPhoneValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
@@ -70,6 +74,44 @@ const ThirdStep = (props) => {
     );
   };
 
+  const handleSelectTimeClick = (btnText) => {
+    console.log(btnText);
+    setActiveButton(btnText);
+  };
+
+  const btnTimeData = [
+    { btnText: "9.00 AM" },
+    { btnText: "9.30 AM" },
+    { btnText: "10.00 AM" },
+    { btnText: "10.30 AM" },
+    { btnText: "11.00 AM" },
+    { btnText: "11.30 AM" },
+    { btnText: "12.00 PM" },
+    { btnText: "12.30 PM" },
+    { btnText: "01.00 PM" },
+    { btnText: "01.30 PM" },
+    { btnText: "02.00 PM" },
+    { btnText: "02.30 PM" },
+    { btnText: "03.00 PM" },
+    { btnText: "03.30 PM" },
+    { btnText: "04.00 PM" },
+    { btnText: "04.30 PM" },
+    { btnText: "05.00 PM" },
+    { btnText: "05.30 PM" },
+    { btnText: "06.00 PM" },
+    { btnText: "06.30 PM" },
+    { btnText: "07.00 PM" },
+    { btnText: "07.30 PM" },
+    { btnText: "08.00 PM" },
+    { btnText: "08.30 PM" },
+    { btnText: "09.00 PM" },
+  ];
+
+  const handleTime = (timezone) => {
+    props.setTimezone(timezone);
+    props.setIsTimezonePopupOpen(false);
+  };
+
   useEffect(() => {
     if (emails.length > 9) {
       setEmailLength(true);
@@ -87,6 +129,7 @@ const ThirdStep = (props) => {
   const handleAddGuestEmailsClick = () => {
     setShowGuestEmails(true);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -98,143 +141,78 @@ const ThirdStep = (props) => {
       //   transition: "opacity 0.5s ease-in-out", // Smooth fade-out transition
       // }}
       key="modal"
-      className="h-full md:h-auto border-0 rounded-lg shadow-lg relative flex w-full bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] outline-none focus:outline-none"
+      className="h-full md:h-auto border-0 rounded-lg shadow-lg relative flex justify-center items-center w-full bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] outline-none focus:outline-none"
     >
-      <div className="h-full flex w-full vector_background">
-        <div className="h-full w-full flex justify-center pt-[3rem] pb-[3rem] md:pt-[2rem]  md:px-[3rem]">
-          <div className="w-[85%] md:w-[60%]">
-            <h1 className="font-montserrat text-lg leading-6 text-white">
-              {meetingData?.enterDetails}
-            </h1>
-            <form action="" className="mt-5" onSubmit={handleSubmit}>
-              <div className="flex items-center w-full text-[#bfa04b]">
-                <input
-                  type="text"
-                  id="name"
-                  value={nameValue}
-                  onChange={(e) => setNameValue(e.target.value)}
-                  placeholder={meetingData?.placeholderName}
-                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
-                  required
-                />
-              </div>
-              <div className="flex items-center w-full text-[#bfa04b]">
-                <input
-                  type="email"
-                  id="email"
-                  value={emailValue}
-                  onChange={(e) => setEmailValue(e.target.value)}
-                  placeholder={meetingData?.placeholderEmail}
-                  className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
-                  required
-                />
-              </div>
-              {/* <div className="flex items-center w-full text-[#bfa04b]">
-                <input
-                  type="text"
-                  required
-                  id="phone"
-                  placeholder="Your Phone Number"
-                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
-                />
-              </div> */}
-              <div className="flex items-center mb-3">
-                <div className="w-full h-full">
-                  <PhoneInput
-                    placeholder={meetingData?.placeholderPhoneNumber}
-                    value={phoneValue}
-                    onChange={setPhoneValue}
-                    defaultCountry="BD"
-                    className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
-                  />
-                </div>
-              </div>
+      <div className={`md:hidden md:ml-[5rem] w-10/12`}>
+        <h3 className="text-white pb-5 text-lg">{meetingData?.selectTime}</h3>
 
-              {showGuestEmails && (
-                <div className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white">
-                  <div className="flex flex-wrap items-center">
-                    {emails.map((email, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center mb-1 mr-2 justify-center rounded-sm bg-[#DFBF68] px-3 font-semibold"
-                      >
-                        <div className="flex flex-wrap items-center justify-center font-montserrat text-[10px]">
-                          {email}
-                        </div>
-                        <button
-                          onClick={() => handleRemoveEmail(email)}
-                          className="ml-2 pb-1 text-black flex items-center justify-center align-middle"
-                        >
-                          x
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-center w-full text-[#bfa04b]">
-                    <textarea
-                      id="guestEmails"
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      onKeyDown={handleInputKeyDown}
-                      placeholder={meetingData?.placeholderGuestEmails}
-                      className="w-full outline-none bg-transparent"
-                    />
-                  </div>
-                </div>
-              )}
-              <div
-                className={`flex w-full justify-center py-3 ${
-                  showGuestEmails ? "hidden" : ""
-                }`}
-              >
-                <BtnAdd
-                  type={meetingData?.button}
-                  btnText={meetingData?.buttonAddGuests}
-                  className="w-[105px] border-top-white z-10"
-                  handleAddGuestEmailsClick={handleAddGuestEmailsClick}
-                />
-              </div>
-            </form>
+        <div>
+          <p className="text-white  border-0 rounded text-sm">
+            {selectDate.date()} {months[selectDate.month()]},{" "}
+            {selectDate.year()}
+          </p>
+
+          <div className="pt-5 pr-5 grid grid-cols-2 gap-[6px] h-[235px] overflow-y-scroll scrollbar-thin scrollbar-track-gray-500/10 scrollbar-thumb-[#3374FF]/30">
+            {btnTimeData.map((item, index) => (
+              <BtnTime
+                key={index}
+                btnText={item.btnText}
+                className={
+                  activeButton === item.btnText
+                    ? "border border-round"
+                    : "border-top-white"
+                }
+                handleSelectTimeClick={() =>
+                  handleSelectTimeClick(item.btnText)
+                }
+              />
+            ))}
           </div>
-          {/**
-        <div className="col-span-2 ml-5">
-            <h1 className="font-montserrat text-lg leading-6 text-white">
-              Guests List
-            </h1>
-            <p className="text-white py-1 border-0 rounded text-sm"></p>
-            <div className=" pt-3 grid grid-cols-2 gap-[10px]">
-              <BtnTime btnText="Guests1" className="border-top-white" />
-              <BtnTime btnText="Guests2" className="border-top-white" />
-              <BtnTime btnText="Guests3" className="border-top-white" />
-              <BtnTime btnText="Guests4" className="border-top-white" />
-              <BtnTime btnText="Guests5" className="border-top-white" />
-              <BtnTime btnText="Guests6" className="border-top-white" />
-              <BtnTime btnText="Guests7" className="border-top-white" />
-              <BtnTime btnText="Guests8" className="border-top-white" />
-              <BtnTime btnText="Guests9" className="border-top-white" />
-              <BtnTime btnText="Guests10" className="border-top-white" />
-              <BtnTime btnText="Edit" className="border-top" />
-              <BtnTime btnText="Done" className="border-top" />
-            </div>
-          </div>
-         */}
         </div>
+
+        {/* disabled */}
         <div
-          className="absolute md:top-[90%] top-[70%] w-full flex left-[41%] md:left-[45%]"
-          onClick={props.closePopUp}
+          className="md:hidden absolute bottom-[7%] left-[65%] w-full flex"
+          onClick={activeButton !== null ? props.handleFinalButton : null}
         >
-          <BtnTime
-            type="submit"
-            onClick={handleInVisible}
-            btnText={meetingData?.button}
-            className="border-round w-[80px] mt-8 md:mt-0"
+          <BtnNextStep
+            btnText={meetingData?.next}
+            btnImage={ForwordIcon}
+            className={
+              activeButton !== null ? "border-round" : "cursor-not-allowed"
+            }
           />
         </div>
-        {emailLength && (
-          <div className="fixed text-gray-600 text-md rounded-md top-[740px] left-[115px]  md:left-[620px] md:top-[640px] border px-10 py-[5px] bg-white">
-            Max limit exceed
+        <div className="pt-2 pr-5">
+          <h3 className="text-white  text-lg">Time Zone</h3>
+          <div className="relative w-full px-5 flex justify-between items-center bg-gradient-to-r from-[#0A223A]  via-[#214265] to-[#0A223A]">
+            <span className=" cursor-pointer">
+              <Image src={world} alt="" />
+            </span>
+            <p className="text-white text-center py-1 border-0 rounded text-sm">
+              {props.timeZone[0]} / {props.timeZone[1]}
+            </p>
+            <span
+              className=" cursor-pointer"
+              onClick={props.handleTimezonePopup}
+            >
+              <Image src={rightArrow} alt="" />
+            </span>
+            {props.isTimezonePopupOpen && (
+              <div className="absolute bottom-full left-0 h-[220px] overflow-y-scroll overflow-x-hidden w-full px-5 bg-[#0A223A] pt-5 text-sm text-white">
+                {props.timezones.map((timezone) => (
+                  <p
+                    key={timezone}
+                    className="px-5 cursor-pointer hover:text-[#dcb558] shadow-sm py-2"
+                    onClick={(e) => handleTime(timezone)}
+                  >
+                    {timezone}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

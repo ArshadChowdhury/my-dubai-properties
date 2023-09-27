@@ -9,15 +9,18 @@ import ForwordIcon from "../../../assets/images/global/chevron-forward.png";
 import BtnTime from "@/components/prev/BtnTime";
 import BtnNextStep from "@/components/prev/BtnNextStep";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const NextStep = (props) => {
+  const { setSelectDate, selectDate } = props;
   const meetingData = props.meetingData;
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
-  const [selectDate, setSelectDate] = useState(today);
   const [active, setActive] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [activeButton, setActiveButton] = useState(null);
+
   const [mobileDataButtonPosition, setMobileDateButtonPosition] =
     useState(false);
 
@@ -71,12 +74,22 @@ const NextStep = (props) => {
     setMobileDateButtonPosition(true);
   };
 
+  useEffect(() => {
+    if (selectDate.date() == today.date()) {
+      setDisabled(false);
+    }
+  }, []);
+
+  console.log(disabled);
+  console.log(selectDate);
+  console.log(today);
+
   return (
-    <div className="h-full border-0 rounded-lg shadow-lg relative w-full bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] outline-none focus:outline-none">
+    <div className="h-full border-0 rounded-lg shadow-lg relative w-full bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] outline-none focus:outline-none">
       <div className="flex w-full vector_background h-full">
         <div className="h-full w-full md:grid grid-cols-2 py-[3rem] px-[3rem]">
           <div
-            className={`relative pl-5 `}
+            className={`relative pl-5 mt-10 md:mt-0`}
             // ${              mobileDataButtonPosition ? "hidden" : ""            }
           >
             <h3 className="text-white pb-5 text-lg">
@@ -151,7 +164,15 @@ const NextStep = (props) => {
                               ? "bg-gradient-to-r from-[#DFBF68] via-[#BFA04B] to-[#DFBF68] rounded-sm"
                               : null
                           }`}
-                          onClick={() => handleSelectDate(date)}
+                          onClick={() => {
+                            handleSelectDate(date);
+                            if (
+                              !dayjs(date).isBefore(dayjs(), "day") &&
+                              today
+                            ) {
+                              setDisabled(false);
+                            }
+                          }}
                         >
                           {dayjs(date).date()}
                         </span>
@@ -163,18 +184,18 @@ const NextStep = (props) => {
             </div>
             <div
               className="md:hidden absolute -bottom-[9%] left-[55%] w-full flex"
-              onClick={activeButton !== null ? props.handleNextButton : null}
+              onClick={disabled ? null : props.handleNextButton}
             >
               <BtnNextStep
                 btnText={meetingData?.next}
                 btnImage={ForwordIcon}
-                className={
-                  activeButton !== null ? "border-round" : "cursor-not-allowed"
-                }
+                className={disabled ? "cursor-not-allowed" : "border-round"}
               />
             </div>
           </div>
-          <div className={`md:ml-[5rem]`}>
+          <div
+            className={`${props?.mobileView ? "hidden" : "block"} md:ml-[5rem]`}
+          >
             <h3 className="text-white pb-5 text-lg">
               {meetingData?.selectTime}
             </h3>
@@ -234,12 +255,13 @@ const NextStep = (props) => {
             </div>
           </div>
         </div>
+
         <div
           className={`absolute top-[75%] md:top-[86%] left-[40%] w-full hidden md:!block`}
           // ${ mobileDataButtonPosition ? "" : "hidden"}
           // onClick={props.handleNextButton}
 
-          onClick={activeButton !== null ? props.handleNextButton : null}
+          onClick={activeButton !== null ? props.handleFinalButton : null}
         >
           <BtnNextStep
             btnText={meetingData?.next}

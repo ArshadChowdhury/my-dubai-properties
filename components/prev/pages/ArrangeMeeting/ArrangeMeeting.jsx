@@ -8,6 +8,8 @@ import ThirdStep from "./partials/ThirdStep";
 import close from "../../assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
 import Image from "next/image";
+import FinalStep from "./partials/FinalStep";
+import dayjs from "dayjs";
 
 const ArrangeMeeting = ({ mobileView, homeData }) => {
   const [
@@ -16,10 +18,13 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   ] = useStateValue();
   const [openNextStep, setOpenNextStep] = useState(false);
   const [closeFirststep, setCloseFirststep] = useState(true);
+  const [openThirdStep, setOpenThirdStep] = useState(false);
   const [openFinalStep, setOpenFinalStep] = useState(false);
   const [isTimezonePopupOpen, setIsTimezonePopupOpen] = useState(false);
   const [subsPopUp, setSubsPopUp] = useState(false);
   const [closeBtn, setCloseBtn] = useState(true);
+  const currentDate = dayjs();
+  const [selectDate, setSelectDate] = useState(currentDate);
 
   const arrangeRef = useRef();
   const currentArrangeRef = useRef();
@@ -61,8 +66,16 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
 
   const handleNextButton = (e) => {
     e.preventDefault();
+    setOpenThirdStep(true);
+    setOpenNextStep(false);
+  };
+
+  const handleFinalButton = (e) => {
+    e.preventDefault();
     setOpenFinalStep(true);
     setOpenNextStep(false);
+    setOpenThirdStep(false);
+    setSelectDate(currentDate);
   };
 
   const handleTimezonePopup = (e) => {
@@ -132,10 +145,17 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
             >
               {subsPopUp && (
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: -500,
-                  }}
+                  initial={
+                    !mobileView
+                      ? {
+                          opacity: 0,
+                          x: -500,
+                        }
+                      : {
+                          opacity: 0,
+                          x: -200,
+                        }
+                  }
                   transition={{
                     duration: 0.3,
                   }}
@@ -143,19 +163,26 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                     opacity: 1,
                     x: 0,
                   }}
-                  exit={{
-                    opacity: 0,
-                    x: -500,
-                  }}
+                  exit={
+                    !mobileView
+                      ? {
+                          opacity: 0,
+                          x: -500,
+                        }
+                      : {
+                          opacity: 0,
+                          x: -200,
+                        }
+                  }
                   viewport={{ once: true }}
-                  className={`cursor-pointer fixed flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-footer`}
+                  className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
                 >
                   <Image
                     height={150}
                     width={150}
                     src="/images/global/footer-logo.png"
                     alt=""
-                    className="h-[100px] my-2 pb-2"
+                    className="my-2 pb-2"
                   />
                   <h1 className="text-xl">Form Submitted!</h1>
                   <p>
@@ -197,6 +224,23 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 )}
                 {openNextStep && (
                   <NextStep
+                    selectDate={selectDate}
+                    setSelectDate={setSelectDate}
+                    meetingData={meetingData}
+                    handleTimezonePopup={handleTimezonePopup}
+                    isTimezonePopupOpen={isTimezonePopupOpen}
+                    handleNextButton={handleNextButton}
+                    timezones={timezones}
+                    timeZone={timeZone}
+                    setTimezone={setTimezone}
+                    handleFinalButton={handleFinalButton}
+                    setIsTimezonePopupOpen={setIsTimezonePopupOpen}
+                    mobileView={mobileView}
+                  />
+                )}
+                {openThirdStep && (
+                  <ThirdStep
+                    selectDate={selectDate}
                     meetingData={meetingData}
                     handleTimezonePopup={handleTimezonePopup}
                     isTimezonePopupOpen={isTimezonePopupOpen}
@@ -205,11 +249,12 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                     timeZone={timeZone}
                     setTimezone={setTimezone}
                     setIsTimezonePopupOpen={setIsTimezonePopupOpen}
+                    handleFinalButton={handleFinalButton}
                     mobileView={mobileView}
                   />
                 )}
                 {openFinalStep && (
-                  <ThirdStep
+                  <FinalStep
                     meetingData={meetingData}
                     closePopUp={closePopUp}
                   />
