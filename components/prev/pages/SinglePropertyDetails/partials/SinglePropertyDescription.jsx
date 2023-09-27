@@ -62,7 +62,7 @@ const SinglePropertyDescription = (props) => {
 
           <div className="relative -bottom-[18%] py-8 px-10 md:px-0">
             <div className="md:flex justify-evenly">
-              <div className="xl:pr-4 pt-3 ">
+              <div className="xl:pr-4 pt-3">
                 <Button
                   to="#"
                   btnText={homeData?.titleDownloads}
@@ -75,6 +75,7 @@ const SinglePropertyDescription = (props) => {
                   btnText={homeData?.titleNearbyAttractions}
                   btnImage={iconLocation}
                   onMouseEnterEvent={setBtnHoverEffect}
+                  onMouseLeaveEvent={setBtnHoverEffect}
                 />
               </div>
             </div>
@@ -82,6 +83,7 @@ const SinglePropertyDescription = (props) => {
               <div className="xl:pl-16 pt-5">
                 <BtnOutline
                   onMouseEnterEvent={setBtnHoverEffect}
+                  onMouseLeaveEvent={setBtnHoverEffect}
                   btnText={homeData?.titleDownloads}
                   btnImage={iconDownload}
                 />
@@ -91,6 +93,7 @@ const SinglePropertyDescription = (props) => {
                   btnText={homeData?.titleGallery}
                   btnImage={iconFilm}
                   onMouseEnterEvent={setBtnHoverEffect}
+                  onMouseLeaveEvent={setBtnHoverEffect}
                 />
               </div>
             </div>

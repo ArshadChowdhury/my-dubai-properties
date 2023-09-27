@@ -3702,7 +3702,7 @@ video {
 article.activeSlide {
   opacity: 1 !important ;
   transform: translateX(0);
-  transition: all 0.8s ease;
+  transition: all 1.5s linear;
 }
 article.lastSlide {
   transform: translateX(-100%);
@@ -3713,7 +3713,6 @@ article.nextSlide {
 
 .d-flex {
   display: flex;
-
   overflow: visible;
   animation: animateContainer 30s linear forwards infinite;
   animation-play-state: paused;
