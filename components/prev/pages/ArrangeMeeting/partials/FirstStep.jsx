@@ -29,7 +29,7 @@ const ArrangeMeetingStep1 = ({
 
   return (
     <div
-      className={`py-12 md:py-0 h-full border-0 rounded-lg shadow-lg relative flex md:flex-row flex-col  w-full bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D]`}
+      className={`py-12 md:py-0 h-full border-0 rounded-lg shadow-lg relative flex md:flex-row flex-col w-full bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D]`}
     >
       <div
         className={`py-8 md:py-0 px-10 md:px-0 md:basis-[35%] md:bg-[#FFF4EA] ${
@@ -63,7 +63,7 @@ const ArrangeMeetingStep1 = ({
           <h3 className="text-lg text-white font-[500] py-[30px] px-[25px] hidden md:block">
             Select an option
           </h3>
-          <div className="md:absolute top-[25%] left-[20%]  w-full h-full">
+          <div className="md:absolute top-[25%] left-[20%] w-full h-full">
             <div className="relative my-5 w-[320px]  bg-gradient-to-r from-[#0A223A]  via-[#00182E] to-[#0A223A]   flex items-center rounded-md">
               <span
                 className={`absolute   h-full w-1 bg-yellow-500 border-0 rounded-md ${

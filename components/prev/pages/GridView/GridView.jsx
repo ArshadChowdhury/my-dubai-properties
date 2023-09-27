@@ -58,21 +58,21 @@ const GridView = (props) => {
       >
         <div className="mb-20">
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
-            {filterData?.map((property, idx) => (
-              <GridItem
-                id={idx + 1}
-                key={property.propertyName}
-                coverImage={property.images.filter((image) => {
-                  if (image.type === "cover") {
-                    return image.path;
-                  }
-                })}
-                propertyName={property.propertyName}
-                areaName={property.propertyArea.areaName}
-                developerName={property.developerType.name}
-                propertyType={property.propertyType.name}
-                unitSize={property.unitType.size}
-              />
+            {filterData?.map((property) => (
+              <>
+                <GridItem
+                  id={property._id}
+                  key={property._id}
+                  coverImage={property.images.filter(
+                    (image) => image.type === "cover"
+                  )}
+                  propertyName={property.propertyName}
+                  areaName={property.propertyArea.areaName}
+                  developerName={property.developerType.name}
+                  propertyType={property.propertyType.name}
+                  unitSize={property.unitType.size}
+                />
+              </>
             ))}
           </div>
         </div>

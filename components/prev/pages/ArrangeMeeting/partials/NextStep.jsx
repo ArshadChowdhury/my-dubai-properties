@@ -80,10 +80,6 @@ const NextStep = (props) => {
     }
   }, []);
 
-  console.log(disabled);
-  console.log(selectDate);
-  console.log(today);
-
   return (
     <div className="h-full border-0 rounded-lg shadow-lg relative w-full bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] outline-none focus:outline-none">
       <div className="flex w-full vector_background h-full">

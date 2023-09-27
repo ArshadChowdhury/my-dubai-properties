@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
 
 const planTitle = (plan) => {
+  if (!plan) return null;
   return plan.percentage
     ? plan.percentage
     : plan.installment
@@ -30,7 +31,7 @@ const PaymentPlan = (props) => {
     props?.singleProperty?.lang?.propertyDetails?.titlePaymentPlan;
 
   const [firstPlan, setFirstPlan] = useState({
-    title: planTitle(props?.paymentPlan[0]),
+    title: planTitle(props?.paymentPlan[0] || ""),
     description: props?.paymentPlan[0]?.milestone,
   });
   const [planList, setPlanList] = useState([
@@ -67,7 +68,7 @@ const PaymentPlan = (props) => {
         if (index === 0 && itemX > holder) {
           setFirstPlan({
             title: planTitle(props?.paymentPlan[0]),
-            description: props?.paymentPlan[0]?.milestone,
+            description: props?.paymentPlan[0].milestone,
           });
         }
 
@@ -113,7 +114,7 @@ const PaymentPlan = (props) => {
   };
 
   useEffect(() => {
-    if (mobileView) {
+    if (!mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().left;
@@ -145,7 +146,7 @@ const PaymentPlan = (props) => {
       className="relative mb-5 mt-16 md:mt-0  payment-section"
       ref={parentRef}
     >
-      <SkeletonSingleProperty className="px-5 flex-col ">
+      <SkeletonSingleProperty className="px-5 flex-col">
         <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
           <HeadingText
             innerText={heading}
@@ -156,7 +157,7 @@ const PaymentPlan = (props) => {
         <div className="w-full relative mt-20 z-10">
           {mobileView ? (
             <>
-              <div className="flex items-center mx-10">
+              <div className="flex items-center">
                 <div
                   className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                 >
@@ -165,9 +166,9 @@ const PaymentPlan = (props) => {
                   </div>
                 </div>
                 <div
-                  className={`flex justify-between items-center w-full ml-1 relative`}
+                  className={`flex justify-between items-center w-full gap-1 relative`}
                 >
-                  <p className="relative font-robotoCondensed text-[16px] text-white tracking-[0] mr-12">
+                  <p className="relative font-robotoCondensed text-[16px] text-white tracking-[0] gap-4">
                     {firstPlan.description}
                   </p>
                   <h1 className={`font-oswald uppercase text-white `}>
@@ -177,7 +178,7 @@ const PaymentPlan = (props) => {
               </div>
               {paymentPlan.map((item, idx) => {
                 return (
-                  <div key={idx} className="flex items-center mx-10">
+                  <div key={idx} className="flex items-center">
                     <div
                       className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                     >
@@ -186,7 +187,7 @@ const PaymentPlan = (props) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-between w-full ml-2 relative">
+                    <div className="flex gap-2 justify-between w-full relative">
                       <p className="text-center font-robotoCondensed text-[16px] text-white tracking-[0]">
                         {item.milestone}
                       </p>
@@ -200,7 +201,11 @@ const PaymentPlan = (props) => {
                           ? item.installment
                           : item.date}
                       </h1>
-                      <div className="absolute w-[1px] -top-[40px] -left-[31px]  h-[50px] bg-yellow-400"></div>
+                      {lang === "en" ? (
+                        <div className="absolute w-[1px] -top-[40px] -left-[24px] h-[50px] bg-yellow-400"></div>
+                      ) : (
+                        <div className="absolute w-[1px] -top-[40px] -right-6 h-[50px] bg-yellow-400"></div>
+                      )}
                     </div>
                   </div>
                 );
@@ -261,7 +266,7 @@ const PaymentPlan = (props) => {
           )}
         </div>
       </SkeletonSingleProperty>
-      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white fixed top-[180px] ml-[7%]">
+      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
         {planList.map((plan, index) => (
           <div key={index} className="flex items-center">
             <Image

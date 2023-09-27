@@ -56,11 +56,11 @@ const PrivacyContent = () => {
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar2
-        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
+        className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
         type="inline"
         homeData={homeData}
       />
-      <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24 -mx-2">
+      <div className="mt-4 -mx-2">
         <RouteLink
           homeData={homeData}
           locationName={pathname.slice(1)}
@@ -119,7 +119,7 @@ const PrivacyContent = () => {
               </p>
               <p className="pb-3 text-[13.5px] tracking-[2%] leading-[24px] font-extralight">
                 {privacyData?.p4}
-                <span className="text-[#FFD15F] font-medium">
+                <span className="text-[#FFD15F] font-medium break-words px-2">
                   {privacyData?.p5}
                 </span>
                 <br />

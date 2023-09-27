@@ -8,7 +8,7 @@ const Button = (props) => {
       <button
         className={`${
           props.btnClass && "!border-[#283646]"
-        } border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem]`}
+        } border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem] z-[1]`}
       >
         <div
           className={`w-full h-full flex justify-around items-center button-bg   text-white  text-xs md:text-sm font-robotoCondensed py-2 uppercase ${

@@ -52,14 +52,17 @@ const Amenities = (props) => {
                     </span>
                   </li>
                 ) : (
-                  <li className={`flex leading-8`} key={`features1-${index}`}>
+                  <li
+                    className={`flex gap-5 leading-8`}
+                    key={`features1-${index}`}
+                  >
                     <span className="font-montserrat text-white text-md">
                       {item}
                     </span>
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
-                      className="mr-5 w-[25px] h-[30px]"
+                      className="w-[25px] h-[30px]"
                     />
                   </li>
                 )

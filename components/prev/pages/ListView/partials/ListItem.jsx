@@ -180,7 +180,7 @@ const ListItem = (props) => {
               onClick={() => router.push(`/properties/${props.id}`)}
               width={900}
               height={500}
-              src={props.coverImage[0].path}
+              src={props.coverImage[0]?.path}
               alt="cover"
               className="h-full rounded-l-md cursor-pointer"
             />

@@ -4,8 +4,10 @@ import HeadingText from "./HeadingText";
 import tick from "../../../assets/images/property details page/icon-tick.svg";
 import HeadingText2 from "./HeadingText2";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const Highlights = (props) => {
+  const [{ lang }] = useStateValue();
   const highlights = props?.singleProperty?.property?.highlights?.split("#");
   const heading =
     props?.singleProperty?.lang?.propertyDetails?.titleIHighlights;
@@ -41,7 +43,9 @@ const Highlights = (props) => {
                   <Image
                     src={tick}
                     alt="tick"
-                    className="mr-5 w-[20px] h-[11.43px]"
+                    className={`mr-5 w-[20px] h-[11.43px] ${
+                      lang === "en" ? "" : "rotate-360"
+                    }`}
                   />
                   <span className="font-montserrat text-lg leading-2 text-white -mt-3">
                     {highlight}

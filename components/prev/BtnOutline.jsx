@@ -6,7 +6,7 @@ const BtnOutline = (props) => {
     <button
       className="border border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]"
       onMouseEnter={() => props.onMouseEnterEvent(true)}
-      onMouseLeave={() => props.onMouseEnterEvent(false)}
+      onMouseLeave={() => props.onMouseLeaveEvent(false)}
     >
       <div
         className={`w-full h-full flex justify-around items-center outLineBtn text-white rounded text-xs md:text-sm font-robotoCondensed py-2 uppercase ${props.className}`}

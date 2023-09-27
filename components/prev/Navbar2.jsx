@@ -52,7 +52,7 @@ const Navbar2 = (props) => {
     <section className={props.className}>
       <Skeleton className="justify-between items-center px-5">
         <div
-          className={`flex items-center z-50 ${
+          className={`flex items-center ${
             lang === "en" ? null : "justify-end"
           }`}
         >

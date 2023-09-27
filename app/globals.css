@@ -2844,7 +2844,7 @@ video {
 .vector_background_modal {
   background-image: url(../components/prev/assets/images/global/footer.png);
   /* Adjust the opacity here */
-  background-color: rgba(0, 24, 46, 0.7);
+  background-color: rgba(0, 24, 46, 0.8);
   background-blend-mode: multiply;
   background-repeat: repeat;
 }
@@ -3426,20 +3426,13 @@ video {
   transition: background-color 0.5s ease-in-out;
 }
 
-.filter-btn:before,
-.filter-btn:after {
-  width: 100%;
-  left: 0px;
-  right: 0px;
-}
-
 .filter-btn:before {
   position: absolute;
   height: 50%;
   width: 113%;
   content: "";
-  top: 0px;
-  left: -9px;
+  top: -0.5px;
+  left: -10px;
   background: transparent;
   transform: perspective(25px) rotateX(15deg);
   transition: background-color 0.5s ease-in-out;
@@ -3448,9 +3441,9 @@ video {
 .filter-btn:after {
   position: absolute;
   height: 60%;
-  width: 108%;
-  top: 54%;
-  left: -5px;
+  width: 107%;
+  top: 22.5px;
+  left: -6px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);

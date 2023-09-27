@@ -23,6 +23,7 @@ const RegisterForm = (props) => {
   const currentArrangeRef = useRef();
 
   const onSubmit = (data) => {
+    // reset();
     setSubsPopUp(true);
     return console.log(data);
     instance

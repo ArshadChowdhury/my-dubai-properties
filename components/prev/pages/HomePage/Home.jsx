@@ -107,7 +107,7 @@ const Home = () => {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <VerticalLine2 />
+      {/* <VerticalLine2 /> */}
       <div>
         <Navbar
           homeData={homeData}

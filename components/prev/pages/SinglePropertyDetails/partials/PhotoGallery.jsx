@@ -66,6 +66,22 @@ const PhotoGallery = (props) => {
     };
   }, []);
 
+  const onMouseEnterLeftHandler = () => {
+    setStrokeLeft("#FFD15F");
+  };
+
+  const onMouseLeaveLeftHandler = () => {
+    setStrokeLeft("#B4B4B4");
+  };
+
+  const onMouseEnterRightHandler = () => {
+    setStrokeRight("#FFD15F");
+  };
+
+  const onMouseLeaveRightHandler = () => {
+    setStrokeRight("#B4B4B4");
+  };
+
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slidePrev();
@@ -86,7 +102,7 @@ const PhotoGallery = (props) => {
       {isModalOpen && (
         <div
           onClick={handleCloseModalOnScroll}
-          className={`w-full h-screen md:px-24 md:pb-20 px-10 md:pl-72 flex justify-center items-center fixed bottom-5 left-0 z-50 bg-black bg-opacity-90`}
+          className={`w-full h-screen md:px-24 md:pb-20 px-10 md:pl-72 flex justify-center items-center fixed bottom-5 left-0 z-50 bg-black bg-opacity-75`}
         >
           <Swiper
             ref={sliderRef}
@@ -133,9 +149,9 @@ const PhotoGallery = (props) => {
             onClick={(e) => {
               e.stopPropagation();
               handlePrev();
-              setStrokeRight("#B4B4B4");
-              setStrokeLeft("#FFD15F");
             }}
+            onMouseEnter={onMouseEnterLeftHandler}
+            onMouseLeave={onMouseLeaveLeftHandler}
             className="absolute left-5 md:left-10 z-[200]"
           >
             <svg
@@ -164,9 +180,9 @@ const PhotoGallery = (props) => {
             onClick={(e) => {
               e.stopPropagation();
               handleNext();
-              setStrokeLeft("#B4B4B4");
-              setStrokeRight("#FFD15F");
             }}
+            onMouseEnter={onMouseEnterRightHandler}
+            onMouseLeave={onMouseLeaveRightHandler}
             className="absolute right-5 md:right-10 z-[200]"
           >
             <svg
@@ -216,7 +232,7 @@ const PhotoGallery = (props) => {
         className="mySwiper"
         onInit={(swiper) => (swiperRef.current = swiper)}
       >
-        {gallery.map((image, index) => (
+        {gallery?.map((image, index) => (
           <SwiperSlide key={`image-${index}`} className="rounded-xl">
             <Image
               height={500}
@@ -236,9 +252,9 @@ const PhotoGallery = (props) => {
           <button
             onClick={() => {
               swiperRef.current?.slidePrev();
-              setStrokeLeft("#FFD15F");
-              setStrokeRight("#B4B4B4");
             }}
+            onMouseEnter={onMouseEnterLeftHandler}
+            onMouseLeave={onMouseLeaveLeftHandler}
             className="absolute -left-[65px]"
           >
             <svg
@@ -266,9 +282,9 @@ const PhotoGallery = (props) => {
           <button
             onClick={() => {
               swiperRef.current?.slideNext();
-              setStrokeLeft("#B4B4B4");
-              setStrokeRight("#FFD15F");
             }}
+            onMouseEnter={onMouseEnterRightHandler}
+            onMouseLeave={onMouseLeaveRightHandler}
             className="absolute -right-[65px]"
           >
             <svg

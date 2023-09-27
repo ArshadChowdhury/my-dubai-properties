@@ -49,6 +49,8 @@ const ContactUsModal = ({ mobileView, homeData }) => {
     setCloseBtn(true);
   };
 
+  console.log(currentArrangeRef);
+
   //   const handleSubmitButton = (e) => {
   //     e.preventDefault();
   //     if (isMeetSelected || isZoomSelected || openMeetLink === "phone") {
@@ -71,15 +73,6 @@ const ContactUsModal = ({ mobileView, homeData }) => {
 
   useLayoutEffect(() => {
     let handle = (e) => {
-      const distanceFromTop = window.scrollY;
-      if (currentArrangeRef.current) {
-        const menuHeight = arrangeRef.current?.offsetHeight;
-        const menuOffsetTop = arrangeRef.current?.offsetTop;
-        if (distanceFromTop > menuHeight + menuOffsetTop) {
-          setSubsPopUp(false);
-          dispatch({ type: "setShowContactModal", item: false });
-        }
-      }
       if (!currentArrangeRef.current?.contains(e.target)) {
         setSubsPopUp(false);
         dispatch({ type: "setShowContactModal", item: false });
@@ -109,6 +102,7 @@ const ContactUsModal = ({ mobileView, homeData }) => {
               ></div>
             </div> */}
             <div
+              onClick={(e) => e.stopPropagation()}
               ref={arrangeRef}
               className={`w-full z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{

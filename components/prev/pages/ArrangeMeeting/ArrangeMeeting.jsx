@@ -101,25 +101,21 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
 
   useLayoutEffect(() => {
     let handle = (e) => {
-      const distanceFromTop = window.scrollY;
-      if (currentArrangeRef.current) {
-        const menuHeight = arrangeRef.current?.offsetHeight;
-        const menuOffsetTop = arrangeRef.current?.offsetTop;
-        if (distanceFromTop > menuHeight + menuOffsetTop) {
-          closeMeeting();
-        }
-      }
       if (!currentArrangeRef.current?.contains(e.target)) {
         closeMeeting();
       }
     };
 
     document.addEventListener("mousedown", handle);
-    window.addEventListener("scroll", handle);
+    if (!mobileView) {
+      document.addEventListener("scroll", handle);
+    }
 
     return () => {
       document.removeEventListener("mousedown", handle);
-      window.removeEventListener("scroll", handle);
+      if (!mobileView) {
+        document.removeEventListener("scroll", handle);
+      }
     };
   }, [showModal, currentArrangeRef]);
 
@@ -132,15 +128,17 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
               <div
                 className="absolute inset-0  bg-opacity-70 z-50"
                 style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  backgroundColor: "rgba(0, 0, 0, 0.6)",
                 }}
               ></div>
             </div>
             <div
               ref={arrangeRef}
-              className={`w-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+              className={`w-full ${
+                subsPopUp ? "h-screen" : ""
+              } justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.4)",
+                backgroundColor: "rgba(0, 0, 0, 0.9)",
               }}
             >
               {subsPopUp && (
@@ -194,7 +192,9 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
 
               <div
                 ref={currentArrangeRef}
-                className={`relative w-full h-[60vh] md:h-[390px] md:w-[800px] mx-auto max-w-3xl z-[100]`}
+                className={`relative w-full ${
+                  subsPopUp ? "h-fit" : "h-[60vh]"
+                } md:h-[390px] md:w-[800px] mx-auto max-w-3xl z-[100]`}
               >
                 <div>
                   <button

@@ -58,13 +58,13 @@ const ContactUs = () => {
       <div className="md:hidden">
         <Navbar2
           className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
-          type="inline"
           homeData={homeData}
+          type="inline"
         />
       </div>
       <div className="hidden md:block">
         <Navbar2
-          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
+          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
           homeData={homeData}
         />

@@ -59,18 +59,18 @@ const AboutUs = () => {
       <div className="md:hidden">
         <Navbar2
           homeData={homeData}
-          className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
+          className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
         />
       </div>
       <div className="hidden md:block">
         <Navbar2
           homeData={homeData}
-          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
+          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
         />
       </div>
-      <section className="w-full relative md:-mt-24 md:ml-5 ">
+      <section className="w-full relative md:-mt-24 md:ml-5">
         <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20  md:pt-28">
           <div className="about-overlay"></div>
           <div className="-mx-2">

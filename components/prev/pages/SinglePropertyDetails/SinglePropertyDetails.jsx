@@ -28,7 +28,7 @@ import Footer from "../../Footer";
 
 const SinglePropertyDetails = () => {
   const [nav, setNav] = useState(true);
-  const [{ lang }] = useStateValue();
+  const [{ lang, showModal }] = useStateValue();
   const pathname = usePathname();
   const propertiesUrl = pathname.split("/");
   const propertyId = propertiesUrl[propertiesUrl.length - 1];
@@ -146,6 +146,8 @@ const SinglePropertyDetails = () => {
 
   const singlePropertyDetails = singleProperty?.property;
 
+  console.log(showModal);
+
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {/* <VerticalLine /> */}
@@ -170,7 +172,7 @@ const SinglePropertyDetails = () => {
           <Navbar2
             homeData={homeData}
             filterListData={filterListData}
-            className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-20`}
+            className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-10`}
             type="inline"
           />
         )}
