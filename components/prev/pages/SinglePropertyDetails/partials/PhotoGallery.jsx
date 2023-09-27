@@ -135,7 +135,7 @@ const PhotoGallery = (props) => {
                   width={1000}
                   src={image.path}
                   alt={image.metaDescription}
-                  className={`rounded-md cursor-pointer md:h-5/6 md:w-10/12 md:ml-30 ${
+                  className={`rounded-md relative cursor-pointer md:h-5/6 md:w-10/12 md:ml-30 ${
                     isMobile ? "h-[350px] w-[450px]" : ""
                   }  `}
                   onClick={(e) => {

@@ -81,7 +81,7 @@ const Footer = ({ footerBg, home, homeData }) => {
         <div
           className={`flex justify-center  bg-repeat-x rounded-md w-full h-full relative before:absolute before:left-0 before:border before:w-[34%] md:before:w-[37%] before:rounded-l-md before:border-[#F1BF3F] before:top-0 after:top-0 before:border-r-0 before:h-full after:absolute after:right-0 after:border after:w-[37%] after:rounded-r-md after:border-[#F1BF3F] after:border-l-0 after:h-full`}
         >
-          <div className="footer_background_home2 absolute bottom-0 w-full h-full"></div>
+          <div className="footer_background_home2 absolute bottom-0 w-full h-full z-[1]"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">
             <div className="md:flex justify-between py-10">
               {uiElements.map((element, idx) => (
@@ -103,7 +103,11 @@ const Footer = ({ footerBg, home, homeData }) => {
                   </div>
                   <ul className="hidden lg:block font-montserrat leading-7">
                     {element.items.map((item, idx) => (
-                      <Link className="z-10" key={idx} href={"#"}>
+                      <Link
+                        className="z-10 hover:text-[#D6BB75]"
+                        key={idx}
+                        href={"#"}
+                      >
                         <li>{item}</li>
                       </Link>
                     ))}
