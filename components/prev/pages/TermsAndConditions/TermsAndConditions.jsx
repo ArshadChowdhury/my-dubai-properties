@@ -84,6 +84,7 @@ const TermsAndConditions = () => {
           <div className="about-overlay"></div>
           <div className="-mx-2">
             <RouteLink
+              homeData={homeData}
               locationName={pathname.slice(1)}
               buttonHide={"true"}
               marginBottom="mb-12 md:mb-0"

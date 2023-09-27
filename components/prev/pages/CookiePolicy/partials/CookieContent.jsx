@@ -58,7 +58,7 @@ const CookieContent = () => {
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <Navbar2
         homeData={homeData}
-        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50 md:!bg-transparent`}
+        className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
         type="inline"
       />
       <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-28 md:mt-10 lg:mt-0 -mx-2">

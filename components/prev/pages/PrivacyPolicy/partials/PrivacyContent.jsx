@@ -62,6 +62,7 @@ const PrivacyContent = () => {
       />
       <div className="bg-about h-full w-full bg-repeat bg-center relative pt-20 md:pt-36 lg:pt-24 -mx-2">
         <RouteLink
+          homeData={homeData}
           locationName={pathname.slice(1)}
           buttonHide={"true"}
           marginBottom="mb-12 md:mb-0"
