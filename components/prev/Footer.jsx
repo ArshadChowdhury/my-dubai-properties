@@ -113,17 +113,17 @@ const Footer = ({ footerBg, home, homeData }) => {
                     ))}
                   </ul>
                   {uiVisibility[idx] && (
-                    <ul className="md:hidden font-montserrat leading-7 mb-7">
+                    <ul className="flex flex-col md:hidden font-montserrat leading-7 mb-7">
                       {element.items.map((item, index) => (
-                        <Link
-                          className="hover:text-[#D6BB75]"
-                          key={idx}
-                          href={"#"}
-                        >
-                          <li className="z-10" key={index}>
+                        <li className="z-50" key={index}>
+                          <Link
+                            className="hover:text-[#D6BB75]"
+                            key={idx}
+                            href={"#"}
+                          >
                             {item}
-                          </li>
-                        </Link>
+                          </Link>
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -132,7 +132,7 @@ const Footer = ({ footerBg, home, homeData }) => {
             </div>
           </div>
         </div>
-        <div className="flex absolute bottom-[2.5%]">
+        <div className="flex absolute bottom-[2.5%] z-[10]">
           <Link
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/privacy-policy"}
