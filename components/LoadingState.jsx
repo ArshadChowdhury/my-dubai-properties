@@ -27,7 +27,7 @@ function LoadingState() {
           size={350}
           height={10}
           width={200}
-          speedMultiplier={0.5}
+          speedMultiplier={1}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

@@ -53,7 +53,7 @@ const PaymentPlan = (props) => {
   const scrollDiv = useRef(null);
 
   const checkHit = () => {
-    if (!mobileView) {
+    if (!props.mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().right;
@@ -114,7 +114,7 @@ const PaymentPlan = (props) => {
   };
 
   useEffect(() => {
-    if (!mobileView) {
+    if (!props.mobileView) {
       const holder = document
         ?.querySelector(".holder")
         ?.getBoundingClientRect().left;
@@ -142,16 +142,158 @@ const PaymentPlan = (props) => {
   }, []);
 
   return (
-    <section ref={parentRef} className="relative mb-5 mt-16 md:mt-0">
-      <SkeletonSingleProperty className="px-5 flex-col">
+    // <section ref={parentRef} className="relative mb-5 mt-16 md:mt-0">
+    //   <SkeletonSingleProperty className="px-5 flex-col">
+    //     <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
+    //       <HeadingText
+    //         innerText={heading}
+    //         className="items-start text-center w-full md:w-auto"
+    //         size="px-4"
+    //       />
+    //     </div>
+    //     <div className="w-full relative mt-20 z-10">
+    //       {mobileView ? (
+    //         <>
+    //           <div className="flex items-center">
+    //             <div
+    //               className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
+    //             >
+    //               <div className="w-[2rem] h-[2rem] bg-white-0 rounded-full flex justify-center items-center z-20">
+    //                 <div className="w-[.75rem] h-[.75rem] bg-[#FFD15F] rounded-full z-20"></div>
+    //               </div>
+    //             </div>
+    //             <div
+    //               className={`flex justify-between items-center w-full gap-1 relative`}
+    //             >
+    //               <p className="relative font-robotoCondensed text-[16px] px-2 text-white tracking-[0] gap-4">
+    //                 {firstPlan.description}
+    //               </p>
+    //               <h1 className={`font-oswald uppercase text-white `}>
+    //                 {firstPlan.title}
+    //               </h1>
+    //             </div>
+    //           </div>
+    //           {paymentPlan.map((item, idx) => {
+    //             return (
+    //               <div key={idx} className="flex items-center">
+    //                 <div
+    //                   className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
+    //                 >
+    //                   <div className="w-[2rem] h-[2rem] bg-white-0 rounded-full flex justify-center items-center z-20">
+    //                     <div className="w-[.75rem] h-[.75rem] bg-[#FFD15F] rounded-full z-20"></div>
+    //                   </div>
+    //                 </div>
+
+    //                 <div className="flex gap-2 justify-between w-full relative">
+    //                   <p className="text-center font-robotoCondensed text-[16px] px-2 text-white tracking-[0]">
+    //                     {item.milestone}
+    //                   </p>
+    //                   <h1
+    //                     className={`text-center font-oswald uppercase text-white text-[16px]
+    //             `}
+    //                   >
+    //                     {item.percentage
+    //                       ? item.percentage
+    //                       : item.installment
+    //                       ? item.installment
+    //                       : item.date}
+    //                   </h1>
+    //                   {lang === "en" ? (
+    //                     <div className="absolute w-[1px] -top-[40px] -left-[24px] h-[50px] bg-yellow-400"></div>
+    //                   ) : (
+    //                     <div className="absolute w-[1px] -top-[40px] -right-6 h-[50px] bg-yellow-400"></div>
+    //                   )}
+    //                 </div>
+    //               </div>
+    //             );
+    //           })}
+    //         </>
+    //       ) : (
+    //         <div
+    //           ref={scrollDiv}
+    //           className="flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
+    //         >
+    //           <div
+    //             className={`basis-1/2 flex justify-center items-center z-10 holder`}
+    //           >
+    //             <div className={`absolute -top-[25px] left-[5%] px-2 w-auto`}>
+    //               <h1
+    //                 className={`font-oswald uppercase text-white text-[75px]`}
+    //               >
+    //                 {firstPlan.title}
+    //               </h1>
+    //               <p className="font-robotoCondensed text-[16px] text-white tracking-[0]">
+    //                 {firstPlan.description}
+    //               </p>
+    //             </div>
+    //             <div className="w-[6rem] h-[6rem] bg-white-0 rounded-full flex justify-center items-center">
+    //               <div className="circle-border">
+    //                 <div className="circle-white">
+    //                   <p className="flex flex-col justify-center items-center">
+    //                     <Image src={upArrow2} alt="" />
+    //                     <Image src={upArrow} alt="" />
+    //                   </p>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           </div>
+
+    //           {paymentPlan.map((item, index) => (
+    //             <div
+    //               className={`mt-4 basis-1/2 flex justify-center items-center z-10 p-item p-item-${index} `}
+    //               key={`payment-${index}`}
+    //             >
+    //               <PaymentCircle
+    //                 title={
+    //                   item.percentage
+    //                     ? item.percentage
+    //                     : item.installment
+    //                     ? item.installment
+    //                     : item.date
+    //                 }
+    //                 description={item.milestone}
+    //                 id={index}
+    //                 refer={circleDivRef}
+    //                 setPanelRef={setPanelRef}
+    //               />
+    //             </div>
+    //           ))}
+    //           <div className="absolute w-full top-[7.6rem] md:top-[16.5rem] -right-[4.3rem] md:-right-32 h-[1px] md:h-[2px] bg-yellow-400"></div>
+    //         </div>
+    //       )}
+    //     </div>
+    //   </SkeletonSingleProperty>
+    //   <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
+    //     {planList.map((plan, index) => (
+    //       <div key={index} className="flex items-center">
+    //         <Image
+    //           src={tick}
+    //           alt="tick"
+    //           className="w-[20px] h-[11.43px] ml-10"
+    //         />
+    //         <div className="ml-2">
+    //           {plan.title} {plan.description}
+    //         </div>
+    //       </div>
+    //     ))}
+    //   </div>
+    //   <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
+    //     <h1 className="text-[60px]">Payment Plan</h1>
+    //   </div>
+    // </section>
+    <section
+      className="relative mb-5 mt-16 md:mt-0  payment-section"
+      ref={parentRef}
+    >
+      <SkeletonSingleProperty className="px-5 flex-col ">
         <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
           <HeadingText
-            innerText={heading}
+            innerText="Payment Plan"
             className="items-start text-center w-full md:w-auto"
             size="px-4"
           />
         </div>
-        <div className="w-full relative mt-20 z-10">
+        <div className="w-full relative mt-20">
           {mobileView ? (
             <>
               <div className="flex items-center">
@@ -210,13 +352,13 @@ const PaymentPlan = (props) => {
             </>
           ) : (
             <div
+              className="flex justify-center items-center w-3/4 pt-52 relative left-[25%]"
               ref={scrollDiv}
-              className="flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
             >
               <div
                 className={`basis-1/2 flex justify-center items-center z-10 holder`}
               >
-                <div className={`absolute -top-[25px] left-[5%] px-2 w-auto`}>
+                <div className={`absolute top-0 left-[60px] px-2 w-auto`}>
                   <h1
                     className={`font-oswald uppercase text-white text-[75px]`}
                   >
@@ -263,7 +405,7 @@ const PaymentPlan = (props) => {
           )}
         </div>
       </SkeletonSingleProperty>
-      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
+      <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white fixed top-[204px] ml-36">
         {planList.map((plan, index) => (
           <div key={index} className="flex items-center">
             <Image
@@ -278,7 +420,7 @@ const PaymentPlan = (props) => {
         ))}
       </div>
       <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
-        <h1 className="text-[60px]">Payment Plan</h1>
+        <h1 className="text-[60px] ">Payment Plan</h1>
       </div>
     </section>
   );
