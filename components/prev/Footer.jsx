@@ -86,8 +86,8 @@ const Footer = ({ footerBg, home, homeData }) => {
             <div className="md:flex justify-between py-10">
               {uiElements.map((element, idx) => (
                 <div key={idx} className="text-white">
-                  <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">
-                    <h1 className="font-montserrat  md:text-xl uppercase ">
+                  <div className="flex text-lg justify-between items-center mb-7 md:mb-4 md:font-bold">
+                    <h1 className="font-montserrat  md:text-xl uppercase">
                       {element.title}
                     </h1>
                     <span
@@ -101,7 +101,7 @@ const Footer = ({ footerBg, home, homeData }) => {
                       )}
                     </span>
                   </div>
-                  <ul className="hidden lg:block font-montserrat leading-7">
+                  <ul className="hidden md:flex flex-col font-montserrat leading-7">
                     {element.items.map((item, idx) => (
                       <Link
                         className="z-10 hover:text-[#D6BB75]"
@@ -113,9 +113,17 @@ const Footer = ({ footerBg, home, homeData }) => {
                     ))}
                   </ul>
                   {uiVisibility[idx] && (
-                    <ul className="md:hidden font-montserrat leading-7 mb-7">
+                    <ul className="flex flex-col md:hidden font-montserrat leading-7 mb-7">
                       {element.items.map((item, index) => (
-                        <li key={index}>{item}</li>
+                        <li className="z-50" key={index}>
+                          <Link
+                            className="hover:text-[#D6BB75]"
+                            key={idx}
+                            href={"#"}
+                          >
+                            {item}
+                          </Link>
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -124,7 +132,7 @@ const Footer = ({ footerBg, home, homeData }) => {
             </div>
           </div>
         </div>
-        <div className="flex absolute bottom-[2.5%]">
+        <div className="flex absolute bottom-[2.5%] z-[10]">
           <Link
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/privacy-policy"}

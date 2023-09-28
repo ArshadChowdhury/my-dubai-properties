@@ -73,7 +73,7 @@ const ArrangeMeetingStep1 = ({
                 }`}
               ></span>
               <button
-                className={`rounded-l-md flex-1 flex px-5 py-2 bg-white items-center transition-all duration-300 `}
+                className={`rounded-l-md flex-1 flex gap-4 px-5 py-2 bg-white items-center transition-all duration-300 `}
                 onClick={() => showMeetLink("phone")}
               >
                 <Image
@@ -83,7 +83,7 @@ const ArrangeMeetingStep1 = ({
                     openMeetLink === "phone" && "ml-[.25rem]"
                   } transition-all duration-300`}
                 />
-                <p className="text-[10px] font-[500] pl-5">
+                <p className="text-[10px] font-[500]">
                   {meetingData?.phone?.text}
                 </p>
               </button>

@@ -18,10 +18,7 @@ const ListView = (props) => {
   const hasNextPage = page < totalPages;
 
   useEffect(() => {
-    if (propertiesData?.page === 1) {
-      setFilterData([...firstFilterData]);
-    }
-    if (propertiesData.page === page) {
+    if (page > 1) {
       const uniqueIds = new Set(filterData.map((item) => item._id));
       const filteredPropertiesData = propertiesData?.data.filter((item) => {
         if (!uniqueIds.has(item._id)) {
@@ -31,15 +28,10 @@ const ListView = (props) => {
         return false;
       });
       setFilterData([...filterData, ...filteredPropertiesData]);
+    } else {
+      setFilterData([...firstFilterData]);
     }
-  }, [
-    propertiesData,
-    page,
-    lang,
-    filterParams.propertyAreaId,
-    filterParams.developmentTypeId,
-    filterParams.developerId,
-  ]);
+  }, [propertiesData, page, lang]);
 
   return (
     <>
