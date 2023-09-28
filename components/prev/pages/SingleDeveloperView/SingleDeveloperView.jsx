@@ -116,7 +116,7 @@ const SingleDeveloperView = (props) => {
   useEffect(() => {
     refetch();
     refetchSingleDev();
-  }, [lang, filterParams]);
+  }, [lang, propertyAreaId, propertyTypeId, completion, beds, page]);
 
   if (isLoadingHomeContent || isLoadingSingleDev) {
     return <LoadingState />;

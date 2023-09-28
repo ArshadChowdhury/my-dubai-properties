@@ -99,13 +99,13 @@ const PaymentPlan = (props) => {
 
           gsap.to(`.p-item-${index}`, {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.2,
           });
         }
       } else {
         gsap.to(`.p-item-${index}`, {
           opacity: 1,
-          duration: 0.5,
+          duration: 0.2,
         });
       }
     });
