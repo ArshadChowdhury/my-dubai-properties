@@ -1,81 +1,32 @@
 import { useEffect, useState } from "react";
-
 import GridItem from "./partials/GridItem";
-
-import downArrow from "../../assets/images/property details page/Group 360(2).png";
 import DownArrow from "../../DownArrow";
-
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useStateValue } from "../../states/StateProvider";
 
 const GridView = (props) => {
-  const { propertiesData, filterParams, fetchMoreData, page } = props;
-  const [{ lang }] = useStateValue();
+  const { propertiesData, fetchMoreData, page } = props;
   const [filterData, setFilterData] = useState([]);
   const dataLength = 6;
-  const firstFilterData = propertiesData?.data;
 
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
 
-  // Pagination works properly as intended in this version
-
-  // useEffect(() => {
-  //   if (propertiesData?.page == 1) {
-  //     setFilterData([...firstFilterData]);
-  //   }
-
-  //   if (propertiesData.page == page) {
-  //     const uniqueIds = new Set(filterData.map((item) => item._id));
-  //     const filteredPropertiesData = propertiesData?.data.filter((item) => {
-  //       if (!uniqueIds.has(item._id)) {
-  //         uniqueIds.add(item._id);
-  //         return true;
-  //       }
-  //       return false;
-  //     });
-  //     setFilterData([...filterData, ...filteredPropertiesData]);
-  //   }
-  // }, [
-  //   propertiesData,
-  //   page,
-  //   lang,
-  //   filterParams.propertyAreaId,
-  //   filterParams.developmentTypeId,
-  //   filterParams.developerId,
-  // ]);
-
-  // Filter works properly as intended
-
   useEffect(() => {
-    if (propertiesData.page === page) {
-      const uniqueIds = new Set(filterData.map((item) => item._id));
-      const filteredPropertiesData = propertiesData?.data.filter((item) => {
-        if (!uniqueIds.has(item._id)) {
-          uniqueIds.add(item._id);
-          return true;
-        }
-        return false;
-      });
-      setFilterData([...filterData, ...filteredPropertiesData]);
-    } else {
-      setFilterData([...firstFilterData]);
-    }
-    if (page === 1) {
-      setFilterData(propertiesData?.data);
-    }
-  }, [propertiesData, page, lang]);
+    if (propertiesData) {
+      if (page === 1) {
+        setFilterData(propertiesData.data);
+      } else {
+        const newArray = [...filterData, ...propertiesData.data];
+        const uniqueArray = newArray.filter((item, index, self) => {
+          return index === self.findIndex((i) => i._id === item._id);
+        });
 
-  useEffect(() => {
-    if (propertiesData?.page === 1) {
-      setFilterData([...firstFilterData]);
+        setFilterData(uniqueArray);
+      }
     }
-  }, [
-    filterParams.propertyAreaId,
-    filterParams.developmentTypeId,
-    filterParams.developerId,
-    lang,
-  ]);
+
+    return () => {};
+  }, [propertiesData, filterData, page]);
 
   return (
     <>
@@ -107,7 +58,7 @@ const GridView = (props) => {
         </div>
       </InfiniteScroll>
       {hasNextPage ? (
-        <button className="m-auto pt-5" onClick={props.handleShowAll}>
+        <button className="m-auto pt-5" onClick={fetchMoreData}>
           <DownArrow />
         </button>
       ) : null}
