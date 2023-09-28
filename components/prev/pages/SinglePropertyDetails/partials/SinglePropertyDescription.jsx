@@ -28,7 +28,7 @@ const SinglePropertyDescription = (props) => {
     propertyDetails?.propertyDescription?.split("\r\n\r\n");
 
   return (
-    <section className="mx-3">
+    <section className="scroll-smooth mx-3">
       <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0 ">
         <div className="xl:basis-[75%] xl:pr-8 text-justify lg:text-left">
           <h1

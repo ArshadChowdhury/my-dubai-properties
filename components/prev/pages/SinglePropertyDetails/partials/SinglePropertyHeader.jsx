@@ -68,35 +68,35 @@ const SinglePropertyHeader = (props) => {
               className="inner-shadow absolute bottom-0 left-0 w-full h-[5px]"
               style={{
                 background:
-                  "linear-gradient(to top, rgba(0, 24, 46, 0.5);, rgba(0, 24, 46, 0.6);",
+                  "linear-gradient(to top, rgba(0, 24, 46, 0.5), rgba(0, 24, 46, 0)",
               }}
             />
             <div
               className="inner-shadow absolute bottom-0 left-0 w-full h-[15px]"
               style={{
                 background:
-                  "linear-gradient(to top,rgba(0, 24, 46, 0.5);, rgba(0, 24, 46, 0.6);",
+                  "linear-gradient(to top,rgba(0, 24, 46, 0.5), rgba(0, 24, 46, 0)",
               }}
             />
             <div
               className="inner-shadow absolute bottom-0 left-0 w-full h-[30px]"
               style={{
                 background:
-                  "linear-gradient(to top, rgba(0, 24, 46, 0.5);, rgba(0, 24, 46, 0.6);",
+                  "linear-gradient(to top, rgba(0, 24, 46, 0.5), rgba(0, 24, 46, 0)",
               }}
             />
             <div
               className="inner-shadow absolute bottom-0 left-0 w-full h-[50px]"
               style={{
                 background:
-                  "linear-gradient(to top, rgba(0, 24, 46, 0.5);, rgba(0, 24, 46, 0.6);",
+                  "linear-gradient(to top, rgba(0, 24, 46, 0.5), rgba(0, 24, 46, 0)",
               }}
             />
             <div
               className="inner-shadow absolute bottom-0 left-0 w-full h-[70px]"
               style={{
                 background:
-                  "linear-gradient(to top, rgba(0, 24, 46, 0.5);, rgba(0, 24, 46, 0.6);",
+                  "linear-gradient(to top, rgba(0, 24, 46, 0.5), rgba(0, 24, 46, 0)",
               }}
             />
           </article>
