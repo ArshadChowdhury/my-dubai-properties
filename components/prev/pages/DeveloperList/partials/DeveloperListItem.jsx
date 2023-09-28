@@ -19,16 +19,18 @@ const DeveloperListItem = (props) => {
         />
       </div>
       <div className="flex gap-4 mt-5">
-        <BtnItem
-          to={`/developers/${props.id}`}
-          btnText="Project List"
-          className="basis-1/2"
-        />
-        <BtnItemOutline
-          to={`/developers/${props.id}`}
-          btnText="Details"
-          className="basis-1/2"
-        />
+        <Link
+          className="basis-1/2 rounded-md w-fullfont-montserrat flex justify-around items-center btnItem relative after:absolute after:inset-0 after:h-full after:w-full text-white  text-xs md:text-sm py-2 uppercase border border-[#a7893a] hover:border-[#283646]"
+          href={`/developers/${props.id}`}
+        >
+          Project List
+        </Link>
+        <Link
+          className="hover:bg-gradient-to-r btn-ourLine basis-1/2 rounded-md w-full font-montserrat flex justify-around items-center btnItem relative after:absolute after:inset-0 after:h-full after:w-full text-white  text-xs md:text-sm py-2 uppercase border border-[#283646] hover:border-[#283646]"
+          href={`/developers/${props.id}`}
+        >
+          Details
+        </Link>
       </div>
     </div>
   );

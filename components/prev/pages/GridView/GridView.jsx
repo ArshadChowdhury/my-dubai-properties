@@ -2,14 +2,20 @@ import { useEffect, useState } from "react";
 import GridItem from "./partials/GridItem";
 import DownArrow from "../../DownArrow";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useStateValue } from "../../states/StateProvider";
 
 const GridView = (props) => {
   const { propertiesData, fetchMoreData, page } = props;
   const [filterData, setFilterData] = useState([]);
+  const [{ viewType }] = useStateValue();
   const dataLength = 6;
 
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [viewType]);
 
   useEffect(() => {
     if (propertiesData) {

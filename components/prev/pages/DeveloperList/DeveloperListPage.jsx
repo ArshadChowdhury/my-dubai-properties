@@ -111,22 +111,22 @@ const DeveloperListPage = () => {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
+      <Navbar2
+        className={`fixed top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
+        type="inline"
+        filterListData={developersData}
+        homeData={homeData}
+      />
       <div className="relative w-full pt-20 md:pt-28 font-montserrat bg-payment mb-40">
-        <Navbar2
-          className={`absolute top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
-          type="inline"
-          filterListData={developersData}
-          homeData={homeData}
-        />
         <RouteLink
           buttonHide={"true"}
           homeData={homeData}
           locationName={heading}
         />
         <Skeleton className="px-5 mt-10 md:mt-0">
-          <div className="w-full z-50  flex flex-col md:flex-row justify-between items-center sticky pb-2 md:pb-0 px-2 -top-16 md:top-0 mt-5 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
-            <div className="w-full md:w-[20%] py-3">
-              <HeadingBox heading={heading} />
+          <div className="w-full z-10  flex flex-col md:flex-row justify-between items-center pb-2 md:pb-0 px-2 -top-16 md:top-0 mt-5 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
+            <div className="w-full md:w-[30%] py-3">
+              <HeadingBox className={"text-left"} heading={heading} />
             </div>
             {/*  <FilterModal
               setPage={setPage}

@@ -19,45 +19,32 @@ const DeveloperList = (props) => {
   );
   const hasNextPage = page < totalPages;
 
-  const firstDevData = developers?.developers?.data;
-
   useEffect(() => {
-    setAllDev(developers?.developers?.data);
-  }, []);
+    if (developers) {
+      if (page === 1) {
+        setAllDev(developers?.developers?.data);
+      } else {
+        const newArray = [...allDev, ...developers?.developers?.data];
+        const uniqueArray = newArray.filter((item, index, self) => {
+          return index === self.findIndex((i) => i._id === item._id);
+        });
 
-  useEffect(() => {
-    if (developers?.developers?.page === page) {
-      const uniqueIds = new Set(allDev?.map((item) => item._id));
-      const filteredDeveloperData = developers?.developers?.data.filter(
-        (item) => {
-          if (!uniqueIds.has(item._id)) {
-            uniqueIds.add(item._id);
-            return true;
-          }
-          return false;
-        }
-      );
-      setAllDev(allDev && [...allDev, ...filteredDeveloperData]);
-    } else {
-      setAllDev(firstDevData);
+        setAllDev(uniqueArray);
+      }
     }
-    if (page === 1) {
-      setAllDev(firstDevData);
-    }
-  }, [developers, page]);
+  }, [developers, allDev, page]);
 
   return (
     <section className="w-full">
-      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] pt-1 h-9 top-0 md:top-0"></div>
-      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[28px] md:top-[63px]"></div>
-      <InfiniteScroll dataLength={4} next={fetchMoreData} hasMore={hasNextPage}>
-        <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
+      <div className="sticky z-10 overflow-hidden w-full bg-gradient-to-r from-[#DFBF68] via-[#FFD670] to-[#DBA318] py-1 top-[80px] md:top-[88px]"></div>
+      <InfiniteScroll dataLength={9} next={fetchMoreData} hasMore={hasNextPage}>
+        <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev?.map((developer, index) => (
             <DeveloperListItem
-              key={developer._id}
+              key={index + 1}
               developerLogo={developer.logo}
               developerName={developer.name}
-              id={developer._id}
+              id={index + 1}
             />
           ))}
         </div>

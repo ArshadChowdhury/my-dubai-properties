@@ -10,7 +10,7 @@ const ListView = (props) => {
   const { propertiesData, filterParams, fetchMoreData, page } = props;
   const [filterData, setFilterData] = useState([]);
 
-  const [{ lang }] = useStateValue();
+  const [{ viewType }] = useStateValue();
   const dataLength = 6;
   const firstFilterData = propertiesData?.data;
 
@@ -18,21 +18,25 @@ const ListView = (props) => {
   const hasNextPage = page < totalPages;
 
   useEffect(() => {
-    if (page > 1) {
-      const uniqueIds = new Set(filterData.map((item) => item._id));
-      const filteredPropertiesData = propertiesData?.data.filter((item) => {
-        if (!uniqueIds.has(item._id)) {
-          uniqueIds.add(item._id);
-          return true;
-        }
-        return false;
-      });
-      setFilterData([...filterData, ...filteredPropertiesData]);
-    } else {
-      setFilterData([...firstFilterData]);
-    }
-  }, [propertiesData, page, lang]);
+    window.scrollTo(0, 0);
+  }, [viewType]);
 
+  useEffect(() => {
+    if (propertiesData) {
+      if (page === 1) {
+        setFilterData(propertiesData.data);
+      } else {
+        const newArray = [...filterData, ...propertiesData.data];
+        const uniqueArray = newArray.filter((item, index, self) => {
+          return index === self.findIndex((i) => i._id === item._id);
+        });
+
+        setFilterData(uniqueArray);
+      }
+    }
+
+    return () => {};
+  }, [propertiesData, filterData, page]);
   return (
     <>
       <InfiniteScroll

@@ -71,7 +71,7 @@ const Footer = ({ footerBg, home, homeData }) => {
   ];
 
   return (
-    <footer className="mb-20 z-10">
+    <footer className="mb-20">
       <div className="flex flex-col items-center px-3 lg:p-5 relative">
         <Image
           src={footerLogo}

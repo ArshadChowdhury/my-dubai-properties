@@ -3,11 +3,6 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import SingleDeveloperGridView from "@/components/SingleDeveloperGridView";
 
 const PropertyList = (props) => {
-  // const [showAll, setShowAll] = useState(false);
-  // const propertiesToShow = showAll
-  //   ? singleDevData?.data
-  //   : singleDevData?.data?.slice(0, 3);
-
   const handleShowAll = () => {
     props.setPage((page) => page + 1);
   };
@@ -18,6 +13,7 @@ const PropertyList = (props) => {
           page={props?.page}
           filterParams={props?.filterParams}
           singleDevData={props?.singleDevData}
+          fetchMoreData={props?.fetchMoreData}
           handleShowAll={handleShowAll}
         />
       </Skeleton>

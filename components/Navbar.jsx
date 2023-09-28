@@ -78,7 +78,7 @@ const Navbar = (props) => {
               props.type === "home" ? "hidden" : "block"
             }`}
           >
-            <Link href={"/"}>
+            <Link href="/">
               <Image src={logo} alt="logo" />
             </Link>
           </div>
