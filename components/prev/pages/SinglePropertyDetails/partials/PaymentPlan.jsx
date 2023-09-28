@@ -46,8 +46,6 @@ const PaymentPlan = (props) => {
     setMobileView(isMobileView);
   }, []);
 
-  console.log(mobileView);
-
   const [panelRef, setPanelRef] = useState(null);
   const paymentPlan = props?.paymentPlan?.slice(1);
   const circleDivRef = useRef(null);
@@ -55,95 +53,87 @@ const PaymentPlan = (props) => {
   const scrollDiv = useRef(null);
 
   const checkHit = () => {
-    if (!mobileView) {
-      const holder = document
-        ?.querySelector(".holder")
-        ?.getBoundingClientRect().right;
-      paymentPlan?.forEach((item, index) => {
-        const itemX =
-          (document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
-            .left +
-            document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
-              .right) /
-          2;
+    const holder = document
+      ?.querySelector(".holder")
+      ?.getBoundingClientRect().right;
+    paymentPlan?.forEach((item, index) => {
+      const itemX =
+        (document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
+          .left +
+          document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
+            .right) /
+        2;
 
-        if (index === 0 && itemX > holder) {
+      if (index === 0 && itemX > holder) {
+        setFirstPlan({
+          title: planTitle(props?.paymentPlan[0]),
+          description: props?.paymentPlan[0].milestone,
+        });
+      }
+
+      if (itemX < holder) {
+        const isDuplicate = paymentPlan?.some(
+          (plan) => plan.description === item.milestone
+        );
+        if (!isDuplicate) {
           setFirstPlan({
-            title: planTitle(props?.paymentPlan[0]),
-            description: props?.paymentPlan[0].milestone,
+            title: planTitle(item),
+            description: item.milestone,
           });
-        }
+          setPlanList((prevPlanList) => {
+            const isDuplicate = prevPlanList.some(
+              (plan) => plan.description === item.milestone
+            );
+            if (!isDuplicate) {
+              return [
+                ...prevPlanList,
+                {
+                  title: planTitle(item),
+                  description: item.milestone,
+                },
+              ];
+            } else {
+              return prevPlanList;
+            }
+          });
 
-        if (itemX < holder) {
-          const isDuplicate = paymentPlan?.some(
-            (plan) => plan.description === item.milestone
-          );
-          if (!isDuplicate) {
-            setFirstPlan({
-              title: planTitle(item),
-              description: item.milestone,
-            });
-            setPlanList((prevPlanList) => {
-              const isDuplicate = prevPlanList.some(
-                (plan) => plan.description === item.milestone
-              );
-              if (!isDuplicate) {
-                return [
-                  ...prevPlanList,
-                  {
-                    title: planTitle(item),
-                    description: item.milestone,
-                  },
-                ];
-              } else {
-                return prevPlanList;
-              }
-            });
-
-            gsap.to(`.p-item-${index}`, {
-              opacity: 0,
-              duration: 0.5,
-            });
-          }
-        } else {
           gsap.to(`.p-item-${index}`, {
-            opacity: 1,
+            opacity: 0,
             duration: 0.5,
           });
         }
-      });
-    }
+      } else {
+        gsap.to(`.p-item-${index}`, {
+          opacity: 1,
+          duration: 0.5,
+        });
+      }
+    });
   };
 
   useEffect(() => {
-    if (!mobileView) {
-      // const holder = document
-      //   ?.querySelector(".holder")
-      //   ?.getBoundingClientRect().left;
-      const ctx = gsap?.context(() => {
-        gsap?.to(".p-item", {
-          x: -800,
-          duration: 15,
-          stagger: 1,
-          onUpdate: checkHit,
-          scrollTrigger: {
-            trigger: ".payment-section",
-            // scrub: true,
-            scrub: 1,
-            ease: "linear",
-            markers: false,
-            start: "top 15%",
-            end: "bottom 20%",
-            pin: true,
-            pinType: "fixed",
-          },
-        });
+    const ctx = gsap?.context(() => {
+      gsap?.to(".p-item", {
+        x: -800,
+        duration: 25,
+        stagger: 1,
+        onUpdate: checkHit,
+        scrollTrigger: {
+          trigger: ".payment-section",
+          scrub: 1,
+          ease: "linear",
+          markers: false,
+          start: "top 15%",
+          end: "bottom 10%",
+          pin: true,
+          pinType: "fixed",
+        },
       });
+    });
 
-      return () => {
-        ctx.revert();
-      };
-    }
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
