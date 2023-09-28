@@ -8,7 +8,7 @@ const PropertyList = (props) => {
   };
   return (
     <section>
-      <Skeleton className="px-5">
+      <Skeleton className="px-5 my-5">
         <SingleDeveloperGridView
           page={props?.page}
           filterParams={props?.filterParams}

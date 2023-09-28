@@ -39,6 +39,8 @@ const GridItem = (props) => {
     setTimeout(() => setPulsing(false), 600);
   };
 
+  console.log(props.property);
+
   return (
     <div
       className={`link min-w-[90%] md:min-w-[50%] lg:min-w-[33%] md:basis-1/2 lg:basis-1/3 p-3 overflow-clip ${
@@ -67,13 +69,23 @@ const GridItem = (props) => {
             <div>
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconLocation} alt="building" />
-                {props.areaName}
+                <Link href={"#"}>
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.areaName}
+                  </span>
+                </Link>
               </p>
             </div>
             <div>
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconBuilding} alt="building" />
-                {props.developerName}
+                <Link
+                  href={`/developers/${props?.property?.developerType?.id}`}
+                >
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.developerName}
+                  </span>
+                </Link>
               </p>
             </div>
           </div>
@@ -81,7 +93,11 @@ const GridItem = (props) => {
             <div className="w-32">
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconVillas} alt="building" />
-                {props.propertyType}
+                <Link href={"#"}>
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.propertyType}
+                  </span>
+                </Link>
               </p>
             </div>
             <div className="flex gap-4 w-full">

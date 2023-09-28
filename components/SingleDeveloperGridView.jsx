@@ -42,35 +42,30 @@ const SingleDeveloperGridView = (props) => {
 
   return (
     <>
-      <InfiniteScroll
-        dataLength={dataLength}
-        next={props?.fetchMoreData}
-        hasMore={hasNextPage}
-      >
-        <div className="mb-20">
-          <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
-            {firstFilterData?.map((property, idx) => (
-              <GridItem
-                id={idx + 1}
-                key={property.propertyName}
-                coverImage={property.images.filter((image) => {
-                  if (image.type === "cover") {
-                    return image.path;
-                  }
-                })}
-                propertyName={property.propertyName}
-                areaName={property.propertyArea.areaName}
-                developerName={property.developerType.name}
-                propertyType={property.propertyType.name}
-                unitSize={property.unitType.size}
-              />
-            ))}
-          </div>
+      <div className="mb-20">
+        <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
+          {firstFilterData?.map((property, idx) => (
+            <GridItem
+              id={idx + 1}
+              key={property.propertyName}
+              coverImage={property.images.filter((image) => {
+                if (image.type === "cover") {
+                  return image.path;
+                }
+              })}
+              property={property}
+              propertyName={property.propertyName}
+              areaName={property.propertyArea.areaName}
+              developerName={property.developerType.name}
+              propertyType={property.propertyType.name}
+              unitSize={property.unitType.size}
+            />
+          ))}
         </div>
-      </InfiniteScroll>
+      </div>
 
       {hasNextPage ? (
-        <button className="m-auto pt-5" onClick={handleShowMore}>
+        <button onClick={props.fetchMoreData} className="m-auto pt-5">
           <DownArrow />
         </button>
       ) : null}

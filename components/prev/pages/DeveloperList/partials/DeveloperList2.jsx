@@ -44,7 +44,7 @@ const DeveloperList = (props) => {
               key={index + 1}
               developerLogo={developer.logo}
               developerName={developer.name}
-              id={index + 1}
+              id={developer._id}
             />
           ))}
         </div>

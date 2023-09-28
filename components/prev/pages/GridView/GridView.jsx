@@ -52,6 +52,7 @@ const GridView = (props) => {
                   coverImage={property.images.filter(
                     (image) => image.type === "cover"
                   )}
+                  property={property}
                   propertyName={property.propertyName}
                   areaName={property.propertyArea.areaName}
                   developerName={property.developerType.name}
