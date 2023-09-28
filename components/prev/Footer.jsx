@@ -86,8 +86,8 @@ const Footer = ({ footerBg, home, homeData }) => {
             <div className="md:flex justify-between py-10">
               {uiElements.map((element, idx) => (
                 <div key={idx} className="text-white">
-                  <div className="flex text-lg justify-between items-center  mb-7 md:mb-4 md:font-bold">
-                    <h1 className="font-montserrat  md:text-xl uppercase ">
+                  <div className="flex text-lg justify-between items-center mb-7 md:mb-4 md:font-bold">
+                    <h1 className="font-montserrat  md:text-xl uppercase">
                       {element.title}
                     </h1>
                     <span
@@ -101,7 +101,7 @@ const Footer = ({ footerBg, home, homeData }) => {
                       )}
                     </span>
                   </div>
-                  <ul className="hidden lg:block font-montserrat leading-7">
+                  <ul className="hidden md:flex flex-col font-montserrat leading-7">
                     {element.items.map((item, idx) => (
                       <Link
                         className="z-10 hover:text-[#D6BB75]"
@@ -115,7 +115,15 @@ const Footer = ({ footerBg, home, homeData }) => {
                   {uiVisibility[idx] && (
                     <ul className="md:hidden font-montserrat leading-7 mb-7">
                       {element.items.map((item, index) => (
-                        <li key={index}>{item}</li>
+                        <Link
+                          className="hover:text-[#D6BB75]"
+                          key={idx}
+                          href={"#"}
+                        >
+                          <li className="z-10" key={index}>
+                            {item}
+                          </li>
+                        </Link>
                       ))}
                     </ul>
                   )}

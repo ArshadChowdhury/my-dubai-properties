@@ -47,6 +47,9 @@ const GridView = (props) => {
 
   // Filter works properly as intended
 
+  console.log(propertiesData?.page);
+  console.log(page);
+
   useEffect(() => {
     if (propertiesData.page === page) {
       const uniqueIds = new Set(filterData.map((item) => item._id));

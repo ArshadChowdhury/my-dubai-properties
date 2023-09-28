@@ -103,6 +103,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     let handle = (e) => {
       if (!currentArrangeRef.current?.contains(e.target)) {
         closeMeeting();
+        setSelectDate(currentDate);
       }
     };
 
@@ -209,7 +210,9 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 <div className="flex justify-center items-center">
                   <span
                     onClick={closeMeeting}
-                    className="absolute md:hidden w-16 h-2 rounded-full bg-white top-3 z-50 opacity-30"
+                    className={`${
+                      subsPopUp ? "hidden" : "absolute"
+                    } md:hidden w-16 h-2 rounded-full bg-white top-3 z-50 opacity-30`}
                   ></span>
                 </div>
                 {closeFirststep && (

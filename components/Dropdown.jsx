@@ -90,16 +90,20 @@ const Dropdown = (props) => {
                       {navItem?.developers}
                     </h2>
                     <ul className="text-xs flex flex-col gap-1">
-                      {developersData?.map((developer) => (
-                        <Link
-                          href={`/developers/${developer._id}`}
-                          className="hover:text-[#ffd15f]"
-                          key={developer._id}
-                          onClick={handleClose}
-                        >
-                          <li className="leading-[15.3px]">{developer.name}</li>
-                        </Link>
-                      ))}
+                      {developersData
+                        ?.map((developer) => (
+                          <Link
+                            href={`/developers/${developer._id}`}
+                            className="hover:text-[#ffd15f]"
+                            key={developer._id}
+                            onClick={handleClose}
+                          >
+                            <li className="leading-[15.3px]">
+                              {developer.name}
+                            </li>
+                          </Link>
+                        ))
+                        .slice(0, 6)}
                       <Link
                         href={"/developers"}
                         onClick={handleClose}
@@ -277,16 +281,20 @@ const Dropdown = (props) => {
                       {navItem?.developers}
                     </h2>
                     <ul className="text-xs flex flex-col gap-1">
-                      {developersData?.map((developer) => (
-                        <Link
-                          href={`/developers/${developer._id}`}
-                          key={developer._id}
-                          onClick={handleClose}
-                          className="hover:text-[#ffd15f]"
-                        >
-                          <li className="leading-[15.3px]">{developer.name}</li>
-                        </Link>
-                      ))}
+                      {developersData
+                        ?.map((developer) => (
+                          <Link
+                            href={`/developers/${developer._id}`}
+                            key={developer._id}
+                            onClick={handleClose}
+                            className="hover:text-[#ffd15f]"
+                          >
+                            <li className="leading-[15.3px]">
+                              {developer.name}
+                            </li>
+                          </Link>
+                        ))
+                        .slice(0, 6)}
                       <Link
                         href={"/developers"}
                         onClick={handleClose}
@@ -416,15 +424,17 @@ const Dropdown = (props) => {
                     {navItem?.developers}
                   </h2>
                   <ul className="text-xs flex flex-col gap-1">
-                    {developersData?.map((developer) => (
-                      <Link
-                        href={`/developers/${developer._id}`}
-                        key={developer._id}
-                        onClick={handleClose}
-                      >
-                        <li className="leading-[15.3px]">{developer.name}</li>
-                      </Link>
-                    ))}
+                    {developersData
+                      ?.map((developer) => (
+                        <Link
+                          href={`/developers/${developer._id}`}
+                          key={developer._id}
+                          onClick={handleClose}
+                        >
+                          <li className="leading-[15.3px]">{developer.name}</li>
+                        </Link>
+                      ))
+                      .slice(0, 6)}
                     <Link
                       href={"/developers"}
                       onClick={handleClose}
@@ -569,17 +579,19 @@ const Dropdown = (props) => {
                     {navItem?.developers}
                   </h2>
                   <ul className="text-xs flex flex-col gap-1">
-                    {developersData?.map((developer) => (
-                      <Link
-                        href={`/developers/${developer._id}`}
-                        key={developer._id}
-                        onClick={handleClose}
-                      >
-                        <li className="leading-[15.3px] text-right">
-                          {developer.name}
-                        </li>
-                      </Link>
-                    ))}
+                    {developersData
+                      ?.map((developer) => (
+                        <Link
+                          href={`/developers/${developer._id}`}
+                          key={developer._id}
+                          onClick={handleClose}
+                        >
+                          <li className="leading-[15.3px] text-right">
+                            {developer.name}
+                          </li>
+                        </Link>
+                      ))
+                      .slice(0, 6)}
                     <Link
                       href={"/developers"}
                       onClick={handleClose}
