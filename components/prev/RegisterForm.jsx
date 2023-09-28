@@ -25,7 +25,7 @@ const RegisterForm = (props) => {
   const onSubmit = (data) => {
     // reset();
     setSubsPopUp(true);
-    return console.log(data);
+    return;
     instance
       .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
         headers: { "Content-Type": "application/json" },

@@ -49,8 +49,6 @@ const ContactUsModal = ({ mobileView, homeData }) => {
     setCloseBtn(true);
   };
 
-  console.log(currentArrangeRef);
-
   //   const handleSubmitButton = (e) => {
   //     e.preventDefault();
   //     if (isMeetSelected || isZoomSelected || openMeetLink === "phone") {

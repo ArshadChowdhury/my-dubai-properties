@@ -75,7 +75,6 @@ const ThirdStep = (props) => {
   };
 
   const handleSelectTimeClick = (btnText) => {
-    console.log(btnText);
     setActiveButton(btnText);
   };
 

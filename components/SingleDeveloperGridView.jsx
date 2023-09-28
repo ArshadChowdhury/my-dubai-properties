@@ -51,7 +51,7 @@ const SingleDeveloperGridView = (props) => {
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
             {firstFilterData?.map((property, idx) => (
               <GridItem
-                id={property._id}
+                id={idx + 1}
                 key={property.propertyName}
                 coverImage={property.images.filter((image) => {
                   if (image.type === "cover") {

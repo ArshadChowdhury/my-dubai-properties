@@ -44,10 +44,10 @@ const GridView = (props) => {
       >
         <div className="mb-20">
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">
-            {filterData?.map((property) => (
+            {filterData?.map((property, index) => (
               <>
                 <GridItem
-                  id={property._id}
+                  id={index + 1}
                   key={property._id}
                   coverImage={property.images.filter(
                     (image) => image.type === "cover"

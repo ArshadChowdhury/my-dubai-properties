@@ -2,19 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { getApiData } from "../../../services/apiFunctions";
 import { useStateValue } from "../../../states/StateProvider";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { instance } from "../../../services/apiFunctions";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const RegisterForm = (props) => {
+  const modalRef = useRef(null);
   const registerData = props?.homeData?.lang?.enquiryForm;
+  const [subsPopUp, setSubsPopUp] = useState(false);
   const { register, handleSubmit, formState, reset } = useForm();
-  const [{ lang }] = useStateValue();
+  const [{ lang }, dispatch] = useStateValue();
   const langList = props?.homeData?.langList;
   const { errors } = formState;
 
   const onSubmit = (data) => {
     instance
-      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+      .post(`submit-customer-interest/${props?.propertyId}`, data, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
@@ -23,12 +27,24 @@ const RegisterForm = (props) => {
       .catch((error) => {
         console.log(error.data);
       });
-    dispatch({ type: "setShowContactModal", item: false });
     setSubsPopUp(true);
     reset();
   };
 
-  console.log(errors);
+  useEffect(() => {
+    let handle = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setSubsPopUp(false);
+      }
+    };
+    window.addEventListener("scroll", handle);
+    window.addEventListener("mousedown", handle);
+
+    return () => {
+      window.removeEventListener("scroll", handle);
+      window.removeEventListener("mousedown", handle);
+    };
+  }, []);
 
   return (
     <div className="border-top-white bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md  text-center flex justify-center py-3 z-[20]">
@@ -147,6 +163,52 @@ const RegisterForm = (props) => {
                 : null}
             </p>
           </div>
+          {
+            <AnimatePresence>
+              {subsPopUp && (
+                <div
+                  className={`w-screen h-screen justify-center items-center flex overflow-x-hidden overflow-y-auto fixed top-0 left-0 md:-bottom-18 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+                  style={{
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: -200,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: -200,
+                    }}
+                    ref={modalRef}
+                    viewport={{ once: true }}
+                    className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
+                  >
+                    <Image
+                      height={150}
+                      width={150}
+                      src="/images/global/footer-logo.png"
+                      alt=""
+                      className="my-2 pb-2"
+                    />
+                    <h1 className="text-xl">Form Submitted!</h1>
+                    <p>
+                      We&apos;d like to show you notifictions for the latest
+                      news and updates
+                    </p>
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          }
           <div className="flex flex-col items-center">
             <textarea
               placeholder={registerData?.placeholderDescription}

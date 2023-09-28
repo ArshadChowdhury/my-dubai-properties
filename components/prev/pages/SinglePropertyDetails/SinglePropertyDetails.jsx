@@ -146,8 +146,6 @@ const SinglePropertyDetails = () => {
 
   const singlePropertyDetails = singleProperty?.property;
 
-  console.log(showModal);
-
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {/* <VerticalLine /> */}
@@ -180,6 +178,7 @@ const SinglePropertyDetails = () => {
         <SinglePropertyHeader header={singlePropertyDetails?.images} />
         <div className="my-2 md:my-8"></div>
         <SinglePropertyDescription
+          propertyId={propertyId}
           homeData={homeData}
           filterListData={filterListData}
           property={singlePropertyDetails}

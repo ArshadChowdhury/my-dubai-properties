@@ -98,7 +98,7 @@ const PhotoGallery = (props) => {
   };
 
   return (
-    <section className="!mt-20 md:mt-0 mb-5">
+    <section id="photogallery" className="!mt-20 md:mt-0 mb-5">
       {isModalOpen && (
         <div
           onClick={handleCloseModalOnScroll}

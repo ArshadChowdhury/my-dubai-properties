@@ -121,8 +121,6 @@ const FilterSelectMob = (props) => {
     props.setPage(1);
   };
 
-  console.log(singleDevFilterValuesMob);
-
   useEffect(() => {
     let handle = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {

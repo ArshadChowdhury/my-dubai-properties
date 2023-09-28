@@ -63,6 +63,7 @@ const FilterModal = (props) => {
 
   const handleReset = () => {
     router.push("/properties");
+    props?.setIsFilterModalOpen(false);
     dispatch({ type: "setFilterRoute", item: null });
   };
 
