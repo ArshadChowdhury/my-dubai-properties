@@ -18,6 +18,35 @@ const GridView = (props) => {
   const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
 
+  // Pagination works properly as intended in this version
+
+  // useEffect(() => {
+  //   if (propertiesData?.page == 1) {
+  //     setFilterData([...firstFilterData]);
+  //   }
+
+  //   if (propertiesData.page == page) {
+  //     const uniqueIds = new Set(filterData.map((item) => item._id));
+  //     const filteredPropertiesData = propertiesData?.data.filter((item) => {
+  //       if (!uniqueIds.has(item._id)) {
+  //         uniqueIds.add(item._id);
+  //         return true;
+  //       }
+  //       return false;
+  //     });
+  //     setFilterData([...filterData, ...filteredPropertiesData]);
+  //   }
+  // }, [
+  //   propertiesData,
+  //   page,
+  //   lang,
+  //   filterParams.propertyAreaId,
+  //   filterParams.developmentTypeId,
+  //   filterParams.developerId,
+  // ]);
+
+  // Filter works properly as intended
+
   useEffect(() => {
     if (propertiesData.page === page) {
       const uniqueIds = new Set(filterData.map((item) => item._id));

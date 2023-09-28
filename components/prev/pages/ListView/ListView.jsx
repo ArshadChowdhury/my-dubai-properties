@@ -10,7 +10,7 @@ const ListView = (props) => {
   const { propertiesData, filterParams, fetchMoreData, page } = props;
   const [filterData, setFilterData] = useState([]);
 
-  const [{ filterValues }] = useStateValue();
+  const [{ lang }] = useStateValue();
   const dataLength = 6;
   const firstFilterData = propertiesData?.data;
 
@@ -18,6 +18,9 @@ const ListView = (props) => {
   const hasNextPage = page < totalPages;
 
   useEffect(() => {
+    if (propertiesData?.page === 1) {
+      setFilterData([...firstFilterData]);
+    }
     if (propertiesData.page === page) {
       const uniqueIds = new Set(filterData.map((item) => item._id));
       const filteredPropertiesData = propertiesData?.data.filter((item) => {
@@ -28,20 +31,11 @@ const ListView = (props) => {
         return false;
       });
       setFilterData([...filterData, ...filteredPropertiesData]);
-    } else {
-      // Reset filterData to the initial data
-      setFilterData([...firstFilterData]);
-    }
-    if (page === 1) {
-      setFilterData(propertiesData?.data);
-    }
-  }, [propertiesData, page]);
-
-  useEffect(() => {
-    if (propertiesData?.page === 1) {
-      setFilterData([...firstFilterData]);
     }
   }, [
+    propertiesData,
+    page,
+    lang,
     filterParams.propertyAreaId,
     filterParams.developmentTypeId,
     filterParams.developerId,
