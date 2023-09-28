@@ -98,11 +98,17 @@ const GridItem = (props) => {
             "flex px-5 py-2 border-t-0 md:border-t gap-4 bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A]"
           }
         >
-          <BtnItem
+          <Link
+            className="basis-1/2 h-full font-montserrat flex justify-around items-center btnItem relative after:absolute after:inset-0 after:h-full after:w-full text-white  text-xs md:text-sm py-2 uppercase rounded-md border border-[#a7893a] hover:border-[#283646]"
+            href={`/properties/${props.id}`}
+          >
+            Details
+          </Link>
+          {/* <BtnItem
             btnText="Details"
             className="basis-1/2"
             to={`/properties/${props.id}`}
-          />
+          /> */}
           <button
             onClick={() => handleModalOpen(props.id, props.propertyName)}
             className={`border basis-1/2 border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem]`}

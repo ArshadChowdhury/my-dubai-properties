@@ -88,7 +88,7 @@ const SinglePropertyDescription = (props) => {
                   target="_blank"
                   className="!border-[#283646] h-full flex justify-around items-center button-bg text-white text-xs md:text-sm font-robotoCondensed py-2 uppercase border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem] z-[1] hover:border-transparent outLineBtn"
                 >
-                  {homeData?.titleDownloads}
+                  {/* {homeData?.titleDownloads} */} Download Brochure
                   <div className="w-[25px]">
                     <Image src={iconDownload} alt="btn image" />
                   </div>

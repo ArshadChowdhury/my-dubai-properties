@@ -31,18 +31,23 @@ const Downloads = (props) => {
               target="_blank"
               className="!border-[#283646] h-full flex justify-around items-center button-bg text-white text-xs md:text-sm font-robotoCondensed py-2 uppercase border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem] z-[1] hover:border-transparent outLineBtn"
             >
-              {heading}
+              Download Brochure
               <div className="w-[25px]">
                 <Image src={iconDownload} alt="btn image" />
               </div>
             </Link>
           </div>
           <div className="w-full p-3 xl:basis-1/2">
-            <Button
-              btnText="Download Brochure"
-              btnImage={iconDownload}
-              to="#"
-            />
+            <Link
+              href={brochureLink || "#"}
+              target="_blank"
+              className="!border-[#283646] h-full flex justify-around items-center button-bg text-white text-xs md:text-sm font-robotoCondensed py-2 uppercase border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem] z-[1] hover:border-transparent outLineBtn"
+            >
+              Download Brochure
+              <div className="w-[25px]">
+                <Image src={iconDownload} alt="btn image" />
+              </div>
+            </Link>
           </div>
         </div>
       </SkeletonSingleProperty>

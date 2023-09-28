@@ -142,10 +142,7 @@ const PaymentPlan = (props) => {
   }, []);
 
   return (
-    <section
-      className="relative mb-5 mt-16 md:mt-0  payment-section"
-      ref={parentRef}
-    >
+    <section ref={parentRef} className="relative mb-5 mt-16 md:mt-0">
       <SkeletonSingleProperty className="px-5 flex-col">
         <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
           <HeadingText
@@ -168,7 +165,7 @@ const PaymentPlan = (props) => {
                 <div
                   className={`flex justify-between items-center w-full gap-1 relative`}
                 >
-                  <p className="relative font-robotoCondensed text-[16px] text-white tracking-[0] gap-4">
+                  <p className="relative font-robotoCondensed text-[16px] px-2 text-white tracking-[0] gap-4">
                     {firstPlan.description}
                   </p>
                   <h1 className={`font-oswald uppercase text-white `}>
@@ -188,7 +185,7 @@ const PaymentPlan = (props) => {
                     </div>
 
                     <div className="flex gap-2 justify-between w-full relative">
-                      <p className="text-center font-robotoCondensed text-[16px] text-white tracking-[0]">
+                      <p className="text-center font-robotoCondensed text-[16px] px-2 text-white tracking-[0]">
                         {item.milestone}
                       </p>
                       <h1
@@ -213,8 +210,8 @@ const PaymentPlan = (props) => {
             </>
           ) : (
             <div
-              className="flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
               ref={scrollDiv}
+              className="flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
             >
               <div
                 className={`basis-1/2 flex justify-center items-center z-10 holder`}

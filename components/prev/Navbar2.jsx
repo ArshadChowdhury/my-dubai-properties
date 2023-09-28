@@ -52,12 +52,12 @@ const Navbar2 = (props) => {
     <section className={props.className}>
       <Skeleton className="justify-between items-center px-5">
         <div
-          className={`flex items-center ${
+          className={`flex gap-4 items-center ${
             lang === "en" ? null : "justify-end"
           }`}
         >
           <div
-            className={`flex flex-wrap mr-5 w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative`}
+            className={`flex flex-wrap w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative`}
             onClick={handleMenu}
           >
             <div className="absolute -right-1 -top-1 group-hover:top-7 group-hover:right-8 scale-110 w-1/2 h-1/2 p-1 transition-all ease-in-out duration-500">

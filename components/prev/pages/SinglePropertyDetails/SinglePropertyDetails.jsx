@@ -162,7 +162,7 @@ const SinglePropertyDetails = () => {
         {nav ? (
           <Navbar
             homeData={homeData}
-            className={`absolute top-0 left-0 w-full py-5 z-20`}
+            className={`absolute top-0 left-0 w-full py-5 z-50`}
             type="inline"
             filterListData={filterListData}
           />
@@ -170,7 +170,7 @@ const SinglePropertyDetails = () => {
           <Navbar2
             homeData={homeData}
             filterListData={filterListData}
-            className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-10`}
+            className={`fixed top-0 left-0 bg-[#000F1D] w-full py-5 z-50`}
             type="inline"
           />
         )}
