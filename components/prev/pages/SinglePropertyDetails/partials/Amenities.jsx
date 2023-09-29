@@ -41,29 +41,32 @@ const Amenities = (props) => {
             <ul className="text-left w-auto">
               {features1.map((item, index) =>
                 lang === "en" ? (
-                  <li className={`flex leading-8`} key={`features1-${index}`}>
+                  <li
+                    className={`flex ml-10 leading-8`}
+                    key={`features1-${index}`}
+                  >
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
                       className="mr-5 w-[25px] h-[30px]"
                     />
-                    <span className="font-montserrat text-white text-md">
+                    <span className="font-montserrat text-white text-md break-words">
                       {item}
                     </span>
                   </li>
                 ) : (
                   <li
-                    className={`flex gap-5 leading-8`}
+                    className={`flex gap-5 mr-10 leading-8`}
                     key={`features1-${index}`}
                   >
-                    <span className="font-montserrat text-white text-md">
-                      {item}
-                    </span>
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
-                      className="w-[25px] h-[30px]"
+                      className="mr-5 w-[25px] h-[30px] rotate-180"
                     />
+                    <span className="font-montserrat text-white text-md text-right break-words">
+                      {item}
+                    </span>
                   </li>
                 )
               )}
@@ -71,26 +74,32 @@ const Amenities = (props) => {
             <ul className="text-left w-auto">
               {features2.map((item, index) =>
                 lang === "en" ? (
-                  <li className="flex leading-8" key={`features2-${index}`}>
+                  <li
+                    className="flex ml-10 leading-8"
+                    key={`features2-${index}`}
+                  >
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
                       className="mr-5 w-[25px] h-[30px]"
                     />
-                    <span className="font-montserrat text-white text-md ">
+                    <span className="font-montserrat text-white text-md break-words">
                       {item}
                     </span>
                   </li>
                 ) : (
-                  <li className="flex leading-8" key={`features2-${index}`}>
-                    <span className="font-montserrat text-white text-md ">
-                      {item}
-                    </span>
+                  <li
+                    className="flex gap-5 mr-10 leading-8"
+                    key={`features2-${index}`}
+                  >
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
-                      className="mr-5 w-[25px] h-[30px]"
+                      className="mr-5 w-[25px] h-[30px] rotate-180"
                     />
+                    <span className="font-montserrat text-white text-md text-right break-words">
+                      {item}
+                    </span>
                   </li>
                 )
               )}

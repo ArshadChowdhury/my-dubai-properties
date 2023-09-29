@@ -597,7 +597,7 @@ const Dropdown = (props) => {
                     <Link
                       href={"/developers"}
                       onClick={handleClose}
-                      className="text-xs leading-[15.3px]"
+                      className="text-xs leading-[15.3px] text-right"
                     >
                       {navItem?.all}
                     </Link>

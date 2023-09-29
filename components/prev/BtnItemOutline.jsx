@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const BtnItemOutline = (props) => {
   return (
-    <Link href={props.to} className={`${props.className}`}>
+    <Link href={props.to || "#"} className={`${props.className}`}>
       <button
         className={` border border-[#283646] hover:border-transparent rounded w-full`}
       >

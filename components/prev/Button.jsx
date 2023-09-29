@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Button = (props) => {
   return (
-    <Link href={props.to}>
+    <Link href={props.to || "#"}>
       <button
         className={`${
           props.btnClass && "!border-[#283646]"

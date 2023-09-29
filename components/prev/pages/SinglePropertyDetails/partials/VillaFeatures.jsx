@@ -16,7 +16,7 @@ const VillaFeatures = (props) => {
   const [{ lang }] = useStateValue();
 
   return (
-    <section className=" relative mt-16 ">
+    <section className="relative mt-16">
       <div className="w-full md:w-[80%] h-auto flex justify-center  px-5">
         <HeadingText
           innerText={heading}
@@ -25,14 +25,43 @@ const VillaFeatures = (props) => {
         />
       </div>
       <SkeletonSingleProperty className={`px-5 !pt-0`}>
-        <div className="single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px] md:h-3/5 w-[85%] md:w-[40%]"></div>
-        <div className="border-right w-[65%] md:w-[45%] mt-[45px] md:mt-0 md:absolute -left-[4rem] top-[20%] skew-y-6 -skew-x-6 h-[132px] md:h-3/5 flex md:justify-center items-center">
-          <div className="md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
-            <Image src={mosqueGif} alt="" />
-          </div>
-          <div className="absolute right-[32px] md:right-0 top-[.9rem] md:top-[2.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
-            <Image src={frys} alt="" className="opacity-40" />
-          </div>{" "}
+        <div
+          className={`single-key-background absolute -left-2 md:top-[20%] -ml-5 skew-y-6 h-[132px] md:h-3/5 w-[85%] md:w-[40%]`}
+        ></div>
+        <div
+          className={`border-right w-[65%] md:w-[45%] mt-[45px] md:mt-0 md:absolute ${
+            lang === "ar"
+              ? "mr-auto left-[1rem] top-[24%]"
+              : "-left-[4rem] top-[20%]"
+          } skew-y-6 -skew-x-6 h-[132px] md:h-3/5 md:flex md:justify-center md:items-center`}
+        >
+          {lang === "ar" ? (
+            <>
+              <div
+                className={`absolute md:static ${
+                  lang === "ar" ? "left-[-0.25rem] top-0" : "right-[15px]"
+                } md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6`}
+              >
+                <Image src={mosqueGif} alt="" />
+              </div>
+              <div
+                className={`absolute ${
+                  lang === "ar" ? "left-[150px]" : "right-[15px]"
+                } md:right-0 top-[2.9rem] md:top-[5.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6`}
+              >
+                <Image src={frys} alt="" className="opacity-40" />
+              </div>{" "}
+            </>
+          ) : (
+            <>
+              <div className="md:ml-[5.8rem] h-[132px] md:h-[300px] w-[132px] md:w-[300px] -skew-y-6 skew-x-6">
+                <Image src={mosqueGif} alt="" />
+              </div>
+              <div className="absolute right-[15px] md:right-0 top-[2.9rem] md:top-[5.8rem] h-[68px] md:h-[150px] w-[68px] md:w-[150px] -skew-y-6 skew-x-6">
+                <Image src={frys} alt="" className="opacity-40" />
+              </div>{" "}
+            </>
+          )}
         </div>
         <div
           className={`w-full flex  ${

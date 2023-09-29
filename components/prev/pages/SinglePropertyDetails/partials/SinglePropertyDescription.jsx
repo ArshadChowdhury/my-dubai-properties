@@ -22,7 +22,7 @@ const SinglePropertyDescription = (props) => {
   const homeData = props?.homeData?.lang?.propertyDetails;
   const developerRoute = propertyDetails?.developerType?.id;
   const propertyAreaRoute = propertyDetails?.propertyArea?.id;
-  const brochureLink = propertyDetails.brochure;
+  const brochureLink = propertyDetails?.brochure;
 
   const propertyDescription =
     propertyDetails?.propertyDescription?.split("\r\n\r\n");
@@ -84,7 +84,7 @@ const SinglePropertyDescription = (props) => {
                   btnClass={btnHoverEffect ? "?bg-none" : ""}
                 /> */}
                 <Link
-                  href={brochureLink}
+                  href={brochureLink || "#"}
                   target="_blank"
                   className="!border-[#283646] h-full flex justify-around items-center button-bg text-white text-xs md:text-sm font-robotoCondensed py-2 uppercase border border-transparent hover:border hover:border-[#283646] rounded-[5px] w-full md:w-[15rem] z-[1] hover:border-transparent outLineBtn"
                 >
