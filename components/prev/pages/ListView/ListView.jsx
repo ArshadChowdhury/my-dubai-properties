@@ -40,7 +40,7 @@ const ListView = (props) => {
   return (
     <>
       <InfiniteScroll
-        dataLength={dataLength}
+        dataLength={propertiesData?.page * dataLength}
         next={fetchMoreData}
         hasMore={hasNextPage}
       >
@@ -49,7 +49,7 @@ const ListView = (props) => {
             {filterData?.map((property, idx) => (
               <ListItem
                 id={idx + 1}
-                key={property.propertyName}
+                key={property._id}
                 coverImage={property.images.filter((image) => {
                   if (image.type === "cover") {
                     return image.path;

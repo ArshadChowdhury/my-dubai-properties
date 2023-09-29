@@ -6,11 +6,13 @@ import close from "@/components/prev/assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
 import Image from "next/image";
 import { instance } from "@/components/prev/services/apiFunctions";
+import { useEffect } from "react";
 
-const ContactUsModal = ({ mobileView, homeData }) => {
+const ContactUsModal = ({ homeData }) => {
   const [{ showContactModal, contactModalInfo }, dispatch] = useStateValue();
-  const [subsPopUp, setSubsPopUp] = useState(false);
+  const [subsPopUpContact, setSubsPopUpContact] = useState(false);
   const [closeBtn, setCloseBtn] = useState(true);
+  const [isMobileView, setIsMobileView] = useState(false);
 
   const arrangeRef = useRef();
   const currentArrangeRef = useRef();
@@ -21,58 +23,51 @@ const ContactUsModal = ({ mobileView, homeData }) => {
   const langList = homeData?.langList;
   const { errors } = formState;
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   //   const closePopUp = () => {
   //     setSubsPopUp(true);
   //     setCloseBtn(false);
   //   };
 
   const onSubmit = (data) => {
-    instance
-      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
+    // instance
+    //   .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+    //     headers: { "Content-Type": "application/json" },
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.data);
+    //   });
+    setSubsPopUpContact(true);
     dispatch({ type: "setShowContactModal", item: false });
-    setSubsPopUp(true);
-    reset();
+    // reset();
   };
 
+  console.log(subsPopUpContact);
+
   const closeModal = (e) => {
-    setSubsPopUp(false);
+    // setSubsPopUp(false);
     dispatch({ type: "setShowContactModal", item: false });
     reset();
     setCloseBtn(true);
   };
 
-  //   const handleSubmitButton = (e) => {
-  //     e.preventDefault();
-  //     if (isMeetSelected || isZoomSelected || openMeetLink === "phone") {
-  //       setOpenNextStep(true);
-  //       setCloseFirststep(false);
-  //     }
-  //   };
-
-  //   useLayoutEffect(() => {
-  //     if (showModal) {
-  //       if (mobileView) {
-  //         gsap.to(arrangeRef.current, {
-  //           bottom: "60px",
-  //           duration: 1,
-  //           ease: "linear",
-  //         });
-  //       }
-  //     }
-  //   }, [showModal]);
-
   useLayoutEffect(() => {
     let handle = (e) => {
       if (!currentArrangeRef.current?.contains(e.target)) {
-        setSubsPopUp(false);
+        setSubsPopUpContact(false);
         dispatch({ type: "setShowContactModal", item: false });
       }
     };
@@ -91,48 +86,53 @@ const ContactUsModal = ({ mobileView, homeData }) => {
       <AnimatePresence>
         {showContactModal ? (
           <motion.div>
-            {/* <div className="absolute top-0 pointer-events-none w-full h-[100vh] z-[100]">
-              <div
-                className="absolute inset-0 z-50"
-                style={{
-                  backgroundColor: "rgba(0, 0, 0, 8)",
-                }}
-              ></div>
-            </div> */}
             <div
               onClick={(e) => e.stopPropagation()}
               ref={arrangeRef}
-              className={`w-full z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed -bottom-full md:-bottom-10 md:left-0 transition-all md:inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+              className={`w-full ${
+                subsPopUpContact ? "h-screen" : ""
+              } z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed  md:-bottom-10 left-0 transition-all inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0.7)",
               }}
             >
-              {subsPopUp && (
+              {subsPopUpContact && (
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: -500,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                  }}
+                  initial={
+                    !isMobileView
+                      ? {
+                          opacity: 0,
+                          x: -500,
+                        }
+                      : {
+                          opacity: 0,
+                          x: -200,
+                        }
+                  }
                   whileInView={{
                     opacity: 1,
                     x: 0,
                   }}
-                  exit={{
-                    opacity: 0,
-                    x: -500,
-                  }}
+                  exit={
+                    !isMobileView
+                      ? {
+                          opacity: 0,
+                          x: -500,
+                        }
+                      : {
+                          opacity: 0,
+                          x: -200,
+                        }
+                  }
                   viewport={{ once: true }}
-                  className={`cursor-pointer fixed flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-footer`}
+                  className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
                 >
                   <Image
                     height={150}
                     width={150}
                     src="/images/global/footer-logo.png"
                     alt=""
-                    className="h-[100px] my-2 pb-2"
+                    className="my-2 pb-2"
                   />
                   <h1 className="text-xl">Form Submitted!</h1>
                   <p>
@@ -144,9 +144,9 @@ const ContactUsModal = ({ mobileView, homeData }) => {
 
               <div
                 ref={currentArrangeRef}
-                className={`w-full h-[60vh] md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
+                className={`w-full h-screen md:mt-0 md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
               >
-                <div className="border-top-white relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]">
+                <div className="border-top-white mt-40 md:mt-0 mx-4 md:mx-0 relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]">
                   <div className="w-full h-auto">
                     <div>
                       <button

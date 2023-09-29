@@ -126,14 +126,14 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
       <AnimatePresence>
         {showModal ? (
           <motion.div>
-            <div className="absolute top-0 pointer-events-none w-full h-[100vh]">
+            {/* <div className="absolute top-0 pointer-events-none w-full h-[100vh]">
               <div
                 className="absolute inset-0  bg-opacity-70 z-50"
                 style={{
                   backgroundColor: "rgba(0, 0, 0, 0.6)",
                 }}
               ></div>
-            </div>
+            </div> */}
             <div
               ref={arrangeRef}
               className={`w-full ${

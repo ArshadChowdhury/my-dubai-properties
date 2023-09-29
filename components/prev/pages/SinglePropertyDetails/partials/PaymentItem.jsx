@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
 
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import paymentCircle from "../../../assets/images/property details page/payment-circle.png";
 import { IoIosArrowUp } from "react-icons/io";
@@ -10,7 +10,7 @@ import upArrow from "../../../assets/images/global/upArrow.png";
 import { useEffect } from "react";
 import { current } from "@reduxjs/toolkit";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const PaymentCircle = (props) => {
   const [index, setIndex] = useState(0);
@@ -59,12 +59,12 @@ const PaymentCircle = (props) => {
       <div className="">
         <div className="absolute -top-[100px]">
           <h1
-            className={`text-center font-oswald uppercase text-white text-[27px]
+            className={`text-center pr-4 font-oswald uppercase text-white text-[27px]
                 `}
           >
             {props.title}
           </h1>
-          <p className="text-center font-robotoCondensed text-[16px] text-white tracking-[0]">
+          <p className="text-center pr-4 font-robotoCondensed text-[16px] text-white tracking-[0]">
             {props.description}
           </p>
         </div>

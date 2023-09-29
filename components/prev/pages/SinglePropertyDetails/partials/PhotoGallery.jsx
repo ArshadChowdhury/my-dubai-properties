@@ -417,7 +417,7 @@ const PhotoGallery = (props) => {
               }}
               onMouseEnter={onMouseEnterLeftHandler}
               onMouseLeave={onMouseLeaveLeftHandler}
-              className="absolute left-1 pr-1 z-[200]"
+              className="absolute left-1 pr-1 z-[10]"
             >
               <svg
                 width="30"
@@ -449,7 +449,7 @@ const PhotoGallery = (props) => {
               }}
               onMouseEnter={onMouseEnterRightHandler}
               onMouseLeave={onMouseLeaveRightHandler}
-              className="absolute right-1 pl-1 z-[200]"
+              className="absolute right-1 pl-1 z-[10]"
             >
               <svg
                 width="30"

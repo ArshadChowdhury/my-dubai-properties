@@ -37,7 +37,7 @@ const GridView = (props) => {
   return (
     <>
       <InfiniteScroll
-        dataLength={dataLength}
+        dataLength={propertiesData?.page * dataLength}
         next={fetchMoreData}
         hasMore={hasNextPage}
         refreshFunction={fetchMoreData}

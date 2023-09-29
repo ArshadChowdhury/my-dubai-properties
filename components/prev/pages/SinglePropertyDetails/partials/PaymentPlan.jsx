@@ -274,7 +274,7 @@ const PaymentPlan = (props) => {
 
                 {paymentPlan.map((item, index) => (
                   <div
-                    className={`mt-4 basis-1/2 flex justify-center items-center z-10 p-item p-item-${index} `}
+                    className={`mt-4 basis-1/2 flex justify-center pr-10 items-center z-10 p-item p-item-${index}`}
                     key={`payment-${index}`}
                   >
                     <PaymentCircle
