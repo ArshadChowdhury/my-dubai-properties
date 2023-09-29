@@ -174,7 +174,7 @@ const SinglePropertyDetails = () => {
             type="inline"
           />
         )}
-        <ContactUsModal homeData={homeData} />
+        {/* <ContactUsModal homeData={homeData} /> */}
         <SinglePropertyHeader header={singlePropertyDetails?.images} />
         <div className="my-2 md:my-8"></div>
         <SinglePropertyDescription

@@ -44,7 +44,7 @@ const Highlights = (props) => {
                     src={tick}
                     alt="tick"
                     className={`mr-5 w-[20px] h-[11.43px] ${
-                      lang === "en" ? "" : "rotate-360"
+                      lang === "en" ? "" : "rotate-180 transform scale-y-[-1]"
                     }`}
                   />
                   <span className="font-montserrat text-lg leading-2 text-white -mt-3">

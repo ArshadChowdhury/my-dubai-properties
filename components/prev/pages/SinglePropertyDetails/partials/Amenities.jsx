@@ -62,7 +62,7 @@ const Amenities = (props) => {
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
-                      className="mr-5 w-[25px] h-[30px] rotate-180"
+                      className="mr-5 w-[25px] h-[30px] rotate-180 transform scale-y-[-1]"
                     />
                     <span className="font-montserrat text-white text-md text-right break-words">
                       {item}
@@ -95,7 +95,7 @@ const Amenities = (props) => {
                     <Image
                       src={returnDownForward}
                       alt="return-down-forward"
-                      className="mr-5 w-[25px] h-[30px] rotate-180"
+                      className="mr-5 w-[25px] h-[30px] rotate-180 transform scale-y-[-1]"
                     />
                     <span className="font-montserrat text-white text-md text-right break-words">
                       {item}

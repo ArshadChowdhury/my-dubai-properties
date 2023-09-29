@@ -6,11 +6,14 @@ import { useState, useRef, useEffect } from "react";
 import { instance } from "../../../services/apiFunctions";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const RegisterForm = (props) => {
   const modalRef = useRef(null);
   const registerData = props?.homeData?.lang?.enquiryForm;
   const [subsPopUp, setSubsPopUp] = useState(false);
+  const [value, setValue] = useState("");
   const { register, handleSubmit, formState, reset } = useForm();
   const [{ lang }, dispatch] = useStateValue();
   const langList = props?.homeData?.langList;
@@ -106,27 +109,36 @@ const RegisterForm = (props) => {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <input
+            <PhoneInput
+              id="phone"
+              name="phone"
+              placeholder={registerData?.placeholderPhoneNumber}
+              value={value}
+              onChange={setValue}
+              defaultCountry="FR"
+              className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+              // {...register("phone", {
+              //   required: {
+              //     value: true,
+              //     message: "Phone number is required",
+              //   },
+              //   pattern: {
+              //     value: /^[0-9]+$/,
+              //     message: "Please enter a number",
+              //   },
+              //   maxLength: {
+              //     value: 30,
+              //     message: "Phone number cannot be over 30 characters",
+              //   },
+              // })}
+            />
+            {/* <input
               type="tel"
               name="phone"
               id="phone"
               placeholder={registerData?.placeholderPhone}
               className="w-full px-5 py-2 rounded-md placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
-              {...register("phone", {
-                required: {
-                  value: true,
-                  message: "Phone number is required",
-                },
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Please enter a number",
-                },
-                maxLength: {
-                  value: 30,
-                  message: "Phone number cannot be over 30 characters",
-                },
-              })}
-            />
+            /> */}
             <p className="text-red-300 text-xs text-left w-full py-1">
               {errors.phone?.message?.length > 0 ? errors.phone?.message : null}
             </p>

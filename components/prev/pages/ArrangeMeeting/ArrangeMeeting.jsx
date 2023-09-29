@@ -40,6 +40,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   const [timeZone, setTimezone] = useState(
     Intl.DateTimeFormat().resolvedOptions().timeZone.split("/")
   );
+
   const timezones = moment.tz.names();
 
   const closeMeeting = (e) => {
