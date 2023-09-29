@@ -115,6 +115,7 @@ const PaymentPlan = (props) => {
     const holder = document
       ?.querySelector(".holder")
       ?.getBoundingClientRect().left;
+    console.log(holder);
     paymentPlan?.forEach((item, index) => {
       const itemX =
         (document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
@@ -123,6 +124,9 @@ const PaymentPlan = (props) => {
             .right) /
         2;
 
+      {
+        console.log(itemX);
+      }
       if (index === 0 && itemX < holder) {
         setFirstPlan({
           title: planTitle(props?.paymentPlan[0]),
@@ -334,14 +338,14 @@ const PaymentPlan = (props) => {
                   className={`basis-1/2 flex justify-start items-center z-10 holder`}
                 >
                   <div
-                    className={`absolute -top-[25px] left-[86%] px-2 w-auto`}
+                    className={`absolute -top-[25px] left-[78%] px-2 w-auto`}
                   >
                     <h1
                       className={`font-oswald uppercase text-white text-[75px]`}
                     >
                       {firstPlan.title}
                     </h1>
-                    <p className="font-robotoCondensed text-[16px] text-white tracking-[0]">
+                    <p className="font-robotoCondensed text-[16px] text-white tracking-[0] pr-4">
                       {firstPlan.description}
                     </p>
                   </div>
