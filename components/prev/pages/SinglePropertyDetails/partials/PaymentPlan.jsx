@@ -115,7 +115,7 @@ const PaymentPlan = (props) => {
     const holder = document
       ?.querySelector(".holder")
       ?.getBoundingClientRect().left;
-    console.log(holder);
+
     paymentPlan?.forEach((item, index) => {
       const itemX =
         (document?.querySelector(`.p-item-${index}`)?.getBoundingClientRect()
@@ -124,9 +124,6 @@ const PaymentPlan = (props) => {
             .right) /
         2;
 
-      {
-        console.log(itemX);
-      }
       if (index === 0 && itemX < holder) {
         setFirstPlan({
           title: planTitle(props?.paymentPlan[0]),

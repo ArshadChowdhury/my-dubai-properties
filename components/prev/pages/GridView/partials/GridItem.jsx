@@ -27,8 +27,6 @@ const GridItem = (props) => {
     dispatch({ type: "setContactModalInfo", item: { id, propertyName } });
   };
 
-  console.log(showContactModal);
-
   const onMouseLeaveHandler = () => {
     props.setIsHovered && props.setIsHovered(false);
     setIsHoveredCard(false);

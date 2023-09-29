@@ -114,7 +114,7 @@ const SignUpForm = (props) => {
             style={{ top: "0px", left: "28%" }}
           >
             <Image
-              height={150}
+              height={100}
               width={150}
               src="/images/global/footer-logo.png"
               alt=""

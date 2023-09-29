@@ -40,25 +40,23 @@ const ContactUsModal = ({ homeData }) => {
   //   };
 
   const onSubmit = (data) => {
-    // instance
-    //   .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.data);
-    //   });
+    instance
+      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
     setSubsPopUpContact(true);
-    dispatch({ type: "setShowContactModal", item: false });
-    // reset();
+    // dispatch({ type: "setShowContactModal", item: false });
+    reset();
   };
 
-  console.log(subsPopUpContact);
-
   const closeModal = (e) => {
-    // setSubsPopUp(false);
+    setSubsPopUp(false);
     dispatch({ type: "setShowContactModal", item: false });
     reset();
     setCloseBtn(true);
@@ -128,7 +126,7 @@ const ContactUsModal = ({ homeData }) => {
                   className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
                 >
                   <Image
-                    height={150}
+                    height={100}
                     width={150}
                     src="/images/global/footer-logo.png"
                     alt=""
@@ -144,7 +142,9 @@ const ContactUsModal = ({ homeData }) => {
 
               <div
                 ref={currentArrangeRef}
-                className={`w-full h-screen md:mt-0 md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
+                className={`w-full ${
+                  subsPopUpContact ? "hidden" : null
+                } h-screen md:mt-0 md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
               >
                 <div className="border-top-white mt-40 md:mt-0 mx-4 md:mx-0 relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]">
                   <div className="w-full h-auto">
