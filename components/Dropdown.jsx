@@ -45,7 +45,9 @@ const Dropdown = (props) => {
 
   return !isMobileView ? (
     lang === "en" ? (
-      <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+      <div
+        className={`font-extralight mt-[68px] text-[#ffff] md:mt-0 font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl`}
+      >
         <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
           <SkeletonSingleProperty className="w-full !pb-0">
             <div className="px-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
@@ -251,7 +253,7 @@ const Dropdown = (props) => {
 
         <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
           <SkeletonSingleProperty className="w-full !pb-0">
-            <div className="pr-5 flex flex-col gap-6 justify-center md:grid grid-cols-2 w-full md:justify-items-end">
+            <div className="flex flex-col px-5 gap-5 justify-center md:grid grid-cols-2 w-full md:justify-items-end">
               <div className="flex flex-col gap-5">
                 <div className="flex justify-end gap-3">
                   <div className="text-white">
@@ -549,7 +551,7 @@ const Dropdown = (props) => {
     <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
       <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
-          <div className="pr-[33px] flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
+          <div className="pr-[28px] my-2 flex flex-col gap-6 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 justify-end">
                 <div className="text-white ml-[10.5px] text-right">
@@ -609,7 +611,7 @@ const Dropdown = (props) => {
             <div>
               <div className="flex gap-2 justify-end mb-[22.5px] leading-[22px]">
                 <div className="text-white ml-[10.5px]">
-                  <h2 className="text-base font-[500] leading-[27px] mb-2">
+                  <h2 className="text-base font-[500] leading-[27px] mb-2 text-right">
                     {navItem?.projects}
                   </h2>
                   <ul className="flex flex-col gap-1">

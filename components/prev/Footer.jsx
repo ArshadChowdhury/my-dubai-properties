@@ -137,7 +137,9 @@ const Footer = ({ footerBg, home, homeData }) => {
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/privacy-policy"}
           >
-            privacy policy
+            <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+              privacy policy
+            </span>
           </Link>
           <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
             |
@@ -146,7 +148,9 @@ const Footer = ({ footerBg, home, homeData }) => {
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/terms-and-conditions"}
           >
-            terms & conditions
+            <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+              terms & conditions
+            </span>
           </Link>
           <span className="font-montserrat uppercase text-[#D6BB75] text-[10px] mx-2">
             |
@@ -155,7 +159,9 @@ const Footer = ({ footerBg, home, homeData }) => {
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/cookie-policy"}
           >
-            cookie policy
+            <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+              cookie policy
+            </span>
           </Link>
         </div>
       </div>

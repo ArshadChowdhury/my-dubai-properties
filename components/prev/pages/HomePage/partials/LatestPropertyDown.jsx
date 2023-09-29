@@ -67,7 +67,9 @@ const LatestPropertyDown = (props) => {
   //   }
   // }
 
-  return (
+  console.log(properties);
+
+  return properties.length > 0 ? (
     <div className="w-full flex flex-row-reverse relative z-20">
       <div className="w-full md:basis-[95%] md:mt-12">
         <div className="md:ml-[205px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-42 flex flex-col md:flex-row justify-between w-full md:pr-[155px]">
@@ -147,7 +149,7 @@ const LatestPropertyDown = (props) => {
         // }}
       ></div>
     </div>
-  );
+  ) : null;
 };
 
 export default LatestPropertyDown;

@@ -14,7 +14,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const Menu = (props) => {
-  const [{ isDropdownMenuOpen, showModal }, dispatch] = useStateValue();
+  const [{ isDropdownMenuOpen, showModal, lang }, dispatch] = useStateValue();
   const menuRef = useRef();
 
   // let location = useLocation();
@@ -81,7 +81,7 @@ const Menu = (props) => {
             // smooth: true,
           },
           {
-            top: "72px",
+            top: `${props?.pathname == "/" ? "72px" : "88px"}`,
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",
@@ -148,17 +148,28 @@ const Menu = (props) => {
       } `}
       ref={menuRef}
     >
-      <span
-        onClick={closeDropdown}
-        className="absolute top-5 right-5 md:hidden"
-      >
-        <Image src={backsapce} alt="backspace" />
-      </span>
+      {lang === "en" ? (
+        <span
+          onClick={closeDropdown}
+          className="absolute top-5 right-5 md:hidden"
+        >
+          <Image src={backsapce} alt="backspace" />
+        </span>
+      ) : (
+        <span
+          onClick={closeDropdown}
+          className="absolute top-5 left-5 rotate-180 md:hidden"
+        >
+          <Image src={backsapce} alt="backspace" />
+        </span>
+      )}
+
       <Dropdown
-        homeData={props.homeData}
-        filterListData={props.filterListData}
+        pathname={props?.pathname}
+        homeData={props?.homeData}
+        filterListData={props?.filterListData}
         // developersData={props.developersData}
-        isMobileView={props.mobileView}
+        isMobileView={props?.mobileView}
       />
     </div>
   );

@@ -9,10 +9,12 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "./prev/services/apiFunctions";
 import { useStateValue } from "./prev/states/StateProvider";
+import { usePathname } from "next/navigation";
 
 const OtherNecessaryComponents = () => {
   const [mobileView, setMobileView] = useState(false);
   const [{ lang }] = useStateValue();
+  const pathname = usePathname();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   // const getAllDevelopers = async () => {
@@ -89,6 +91,7 @@ const OtherNecessaryComponents = () => {
     <>
       <Menu
         homeData={homeData}
+        pathname={pathname}
         filterListData={filterListData}
         // developersData={developersData}
         mobileView={mobileView}
