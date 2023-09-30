@@ -86,13 +86,17 @@ const Home = () => {
     };
     window.addEventListener("scroll", handle);
     window.addEventListener("mousedown", handle);
-    refetch();
-    refetchHomeContent();
-    refetchPropertiesData();
+
     return () => {
       window.removeEventListener("scroll", handle);
       window.removeEventListener("mousedown", handle);
     };
+  }, []);
+
+  useEffect(() => {
+    refetch();
+    refetchHomeContent();
+    refetchPropertiesData();
   }, [lang]);
 
   if (isLoadingHomeContent || isLoadingPropertiesData || isLoadingFilterData) {
