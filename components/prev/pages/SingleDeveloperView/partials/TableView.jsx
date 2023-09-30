@@ -156,7 +156,13 @@ const TableView = (props) => {
                               </span>
                             </td>
                             <td className="text-sm whitespace-nowrap">
-                              {property.developerType.name}
+                              <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                                <Link
+                                  href={`/developers/${property.developerType.id}`}
+                                >
+                                  {property.developerType.name}
+                                </Link>
+                              </span>
                             </td>
                             <td className="pl-10 text-sm whitespace-nowrap">
                               {property.unitType.count}{" "}
@@ -165,7 +171,13 @@ const TableView = (props) => {
                               className="text-sm whitespace-nowrap"
                               style={{ width: "15%" }}
                             >
-                              {property.propertyType.name}{" "}
+                              <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                                <Link
+                                  href={`/developers/${property.developerType.id}`}
+                                >
+                                  {property.propertyType.name}{" "}
+                                </Link>
+                              </span>
                             </td>
                             <td
                               className="text-sm whitespace-nowrap"

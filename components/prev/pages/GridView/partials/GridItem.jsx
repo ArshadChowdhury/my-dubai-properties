@@ -54,7 +54,7 @@ const GridItem = (props) => {
           <Image
             width={700}
             height={700}
-            className="cursor-pointer w-full h-fit"
+            className="cursor-pointer aspect-[16/9]"
             src={props?.coverImage[0]?.path || "/placeholder-image.png"}
             alt="cover"
           />
