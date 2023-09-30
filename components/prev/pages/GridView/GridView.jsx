@@ -30,7 +30,7 @@ const GridView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-  }, [propertiesData, filterData, page]);
+  }, [propertiesData.data, page]);
 
   return (
     <>
