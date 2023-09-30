@@ -10,53 +10,32 @@ import FilterModal from "../../ViewProperty/partials/filterModal";
 import { useStateValue } from "../../../states/StateProvider";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 const TableView = (props) => {
-  const singleDevData = props.singleDevData;
+  const [{ lang }] = useStateValue();
   const devProjects = props.singleDevData?.developerProperty;
-  const [{ propertyToView, filterValues }] = useStateValue();
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [filterData, setFilterData] = useState([]);
   const [showCount, setShowCount] = useState(5);
   const dataLength = 6;
-  const firstFilterData = props.singleDevData?.developerProperty?.data;
   const totalPages = Math.ceil(devProjects?.count / dataLength);
   const hasNextPage = props.page < totalPages;
 
   useEffect(() => {
-    if (singleDevData?.developerProperty?.page === props.page) {
-      const uniqueIds = new Set(filterData.map((item) => item._id));
-      const filteredPropertiesData =
-        singleDevData?.developerProperty?.data.filter((item) => {
-          if (!uniqueIds.has(item._id)) {
-            uniqueIds.add(item._id);
-            return true;
-          }
-          return false;
+    if (devProjects?.data) {
+      if (devProjects.page === 1) {
+        setFilterData(devProjects?.data);
+      } else {
+        const newArray = [...filterData, ...devProjects?.data];
+        const uniqueArray = newArray.filter((item, index, self) => {
+          return index === self.findIndex((i) => i._id === item._id);
         });
-      setFilterData([...filterData, ...filteredPropertiesData]);
-    } else {
-      // Reset filterData to the initial data
-      setFilterData([...firstFilterData]);
+        setFilterData(uniqueArray);
+      }
     }
-    if (props.page === 1) {
-      setFilterData(props.singleDevData?.developerProperty?.data);
-    }
-  }, [props.singleDevData, props.page]);
-
-  useEffect(() => {
-    if (singleDevData?.developerProperty?.page === 1) {
-      setFilterData([...firstFilterData]);
-    }
-  }, [
-    props.filterParams.propertyAreaId,
-    props.filterParams.propertyTypeId,
-    props.filterParams.completion,
-    props.filterParams.beds,
-    props.filterParams.page,
-  ]);
+  }, [devProjects, filterData, props.page]);
 
   const increaseCount = () => {
     setShowCount((prev) => prev + 5);
@@ -100,144 +79,317 @@ const TableView = (props) => {
             /> */}
 
             <div className="mt-10 md:mt-0 overflow-x-scroll overflow-y-scroll max-h-[300px] md:max-h-full md:h-full scrollbar-thin md:scrollbar-hide scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#3374FF]/30">
-              <table className="min-w-full divide-y divide-gray-200 mt-5 ">
-                <thead className="bg-transparent ">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                    >
-                      IMAGE
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
-                    >
-                      Title
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                    >
-                      Dubai Area
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
-                    >
-                      Bed
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
-                    >
-                      Type
-                    </th>
-                    <th
-                      scope="col"
-                      className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
-                    >
-                      Completion
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
-                  {filterData?.map((property, idx) => {
-                    const { images } = property;
-                    const coverImage = images.filter((image) => {
-                      if (image.type === "cover") {
-                        return image;
-                      }
-                    });
+              {lang === "ar" ? (
+                <table className="min-w-full divide-y divide-gray-200 mt-5 ">
+                  <thead className="bg-transparent ">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="text-right py-3 text-xs font-bold text-gray-500 uppercase"
+                      >
+                        IMAGE
+                      </th>
+                      <th
+                        scope="col"
+                        className="pr-4 py-3 text-xs font-bold text-right text-gray-500 uppercase"
+                      >
+                        Title
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
+                      >
+                        Dubai Area
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
+                      >
+                        Bed
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
+                      >
+                        Type
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
+                      >
+                        Completion
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
+                    {filterData?.map((property, idx) => {
+                      const { images } = property;
+                      const coverImage = images.filter((image) => {
+                        if (image.type === "cover") {
+                          return image;
+                        }
+                      });
 
-                    if (idx < showCount && !showTableView) {
-                      return (
-                        <tr key={idx} className="text-white">
-                          <td
-                            className="text-sm font-medium whitespace-nowrap"
-                            style={{ width: "10%", height: "auto" }}
+                      if (idx < showCount && !showTableView) {
+                        return (
+                          <tr
+                            key={idx}
+                            className="text-white hover:bg-[rgba(0,0,0,0.2)]"
                           >
-                            <Image
-                              height={300}
-                              width={300}
-                              src={coverImage[0].path}
-                              alt="propertyImage"
-                              className="w-full h-full"
-                            />
-                          </td>
-                          <td className="text-sm  text-white whitespace-nowrap pl-6">
-                            {property.propertyName}{" "}
-                          </td>
-                          <td className="pl-6 text-sm whitespace-nowrap">
-                            {property.developerType.name}
-                          </td>
-                          <td className="pl-6 text-sm whitespace-nowrap">
-                            {property.unitType.count}{" "}
-                          </td>
-                          <td
-                            className="pl-6 text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}
+                            <td
+                              className="text-sm font-medium whitespace-nowrap"
+                              style={{ width: "10%", height: "auto" }}
+                            >
+                              <Image
+                                height={300}
+                                width={300}
+                                src={coverImage[0].path}
+                                alt="propertyImage"
+                                className="w-full h-full"
+                              />
+                            </td>
+                            <td className="text-sm text-white whitespace-nowrap pr-4">
+                              <span className="hover:text-[#ffd15f]">
+                                <Link href={`/properties/${property._id}`}>
+                                  {property.propertyName}
+                                </Link>
+                              </span>
+                            </td>
+                            <td className="text-sm whitespace-nowrap">
+                              {property.developerType.name}
+                            </td>
+                            <td className="pl-10 text-sm whitespace-nowrap">
+                              {property.unitType.count}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.propertyType.name}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.completion}{" "}
+                            </td>
+                          </tr>
+                        );
+                      }
+                      if (showTableView) {
+                        return (
+                          <tr
+                            key={idx}
+                            className="text-white hover:bg-[rgba(0,0,0,0.2)]"
                           >
-                            {property.propertyType.name}{" "}
-                          </td>
-                          <td
-                            className="pl-6 text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}
+                            <td
+                              className="text-sm font-medium whitespace-nowrap"
+                              style={{ width: "10%", height: "auto" }}
+                            >
+                              <Image
+                                src={coverImage[0].path}
+                                alt="propertyImage"
+                                className="w-full h-full"
+                              />
+                            </td>
+                            <td
+                              className="text-sm text-white whitespace-nowrap"
+                              style={{ width: "25%" }}
+                            >
+                              {property.propertyName}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.developerType.name}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "20%" }}
+                            >
+                              {property.unitType.size}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.propertyType.name}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.completion}{" "}
+                            </td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <table className="min-w-full divide-y divide-gray-200 mt-5">
+                  <thead className="bg-transparent">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                      >
+                        IMAGE
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
+                      >
+                        Title
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                      >
+                        Dubai Area
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                      >
+                        Bed
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                      >
+                        Type
+                      </th>
+                      <th
+                        scope="col"
+                        className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                      >
+                        Completion
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
+                    {filterData?.map((property, idx) => {
+                      const { images } = property;
+                      const coverImage = images.filter((image) => {
+                        if (image.type === "cover") {
+                          return image;
+                        }
+                      });
+
+                      if (idx < showCount && !showTableView) {
+                        return (
+                          <tr
+                            key={idx}
+                            className="text-white hover:bg-[rgba(0,0,0,0.2)]"
                           >
-                            {property.completion}{" "}
-                          </td>
-                        </tr>
-                      );
-                    }
-                    if (showTableView) {
-                      return (
-                        <tr key={idx} className="text-white">
-                          <td
-                            className="text-sm font-medium whitespace-nowrap"
-                            style={{ width: "10%", height: "auto" }}
+                            <td
+                              className="text-sm font-medium whitespace-nowrap"
+                              style={{ width: "10%", height: "auto" }}
+                            >
+                              <Image
+                                height={300}
+                                width={300}
+                                src={coverImage[0].path}
+                                alt="propertyImage"
+                                className="w-full h-full"
+                              />
+                            </td>
+                            <td className="text-sm  text-white whitespace-nowrap pl-6">
+                              <span className="hover:text-[#ffd15f]">
+                                <Link href={`/properties/${property._id}`}>
+                                  {property.propertyName}
+                                </Link>
+                              </span>
+                            </td>
+                            <td className="pl-6 text-sm whitespace-nowrap">
+                              <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                                <Link
+                                  href={`/developers/${property.developerType.id}`}
+                                >
+                                  {property.developerType.name}
+                                </Link>
+                              </span>
+                            </td>
+                            <td className="pl-6 text-sm whitespace-nowrap">
+                              {property.unitType.count}{" "}
+                            </td>
+                            <td
+                              className="pl-6 text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                                <Link
+                                  href={`/developers/${property.developerType.id}`}
+                                >
+                                  {property.propertyType.name}{" "}
+                                </Link>
+                              </span>
+                            </td>
+                            <td
+                              className="pl-6 text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.completion}{" "}
+                            </td>
+                          </tr>
+                        );
+                      }
+                      if (showTableView) {
+                        return (
+                          <tr
+                            key={idx}
+                            className="text-white hover:bg-[rgba(0,0,0,0.2)]"
                           >
-                            <Image
-                              src={coverImage[0].path}
-                              alt="propertyImage"
-                              className="w-full h-full"
-                            />
-                          </td>
-                          <td
-                            className="text-sm text-white whitespace-nowrap"
-                            style={{ width: "25%" }}
-                          >
-                            {property.propertyName}{" "}
-                          </td>
-                          <td
-                            className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}
-                          >
-                            {property.developerType.name}
-                          </td>
-                          <td
-                            className="text-sm whitespace-nowrap"
-                            style={{ width: "20%" }}
-                          >
-                            {property.unitType.size}{" "}
-                          </td>
-                          <td
-                            className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}
-                          >
-                            {property.propertyType.name}{" "}
-                          </td>
-                          <td
-                            className="text-sm whitespace-nowrap"
-                            style={{ width: "15%" }}
-                          >
-                            {property.completion}{" "}
-                          </td>
-                        </tr>
-                      );
-                    }
-                  })}
-                </tbody>
-              </table>
+                            <td
+                              className="text-sm font-medium whitespace-nowrap"
+                              style={{ width: "10%", height: "auto" }}
+                            >
+                              <Image
+                                src={coverImage[0].path}
+                                alt="propertyImage"
+                                className="w-full h-full"
+                              />
+                            </td>
+                            <td
+                              className="text-sm text-white whitespace-nowrap"
+                              style={{ width: "25%" }}
+                            >
+                              {property.propertyName}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.developerType.name}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "20%" }}
+                            >
+                              {property.unitType.size}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.propertyType.name}{" "}
+                            </td>
+                            <td
+                              className="text-sm whitespace-nowrap"
+                              style={{ width: "15%" }}
+                            >
+                              {property.completion}{" "}
+                            </td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </table>
+              )}
             </div>
             {hasNextPage && (
               <div

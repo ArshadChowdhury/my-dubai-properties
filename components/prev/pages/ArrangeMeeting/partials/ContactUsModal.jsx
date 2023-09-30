@@ -56,7 +56,7 @@ const ContactUsModal = ({ homeData }) => {
   };
 
   const closeModal = (e) => {
-    setSubsPopUp(false);
+    setSubsPopUpContact(false);
     dispatch({ type: "setShowContactModal", item: false });
     reset();
     setCloseBtn(true);
@@ -89,7 +89,7 @@ const ContactUsModal = ({ homeData }) => {
               ref={arrangeRef}
               className={`w-full ${
                 subsPopUpContact ? "h-screen" : ""
-              } z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed  md:-bottom-10 left-0 transition-all inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+              } z-[100] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed md:-bottom-10 left-0 transition-all inset-0 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0.7)",
               }}
@@ -141,12 +141,14 @@ const ContactUsModal = ({ homeData }) => {
               )}
 
               <div
-                ref={currentArrangeRef}
                 className={`w-full ${
                   subsPopUpContact ? "hidden" : null
                 } h-screen md:mt-0 md:h-[510px] md:w-[400px] mx-auto max-w-3xl z-[100]`}
               >
-                <div className="border-top-white mt-40 md:mt-0 mx-4 md:mx-0 relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]">
+                <div
+                  ref={currentArrangeRef}
+                  className="border-top-white mt-40 md:mt-0 mx-4 md:mx-0 relative bg-gradient-to-r from-[#0A223A] via-[#214265] to-[#0A223A] px-10 md:px-5 border border-[#373F48] rounded-md text-center flex justify-center py-3 z-[100]"
+                >
                   <div className="w-full h-auto">
                     <div>
                       <button

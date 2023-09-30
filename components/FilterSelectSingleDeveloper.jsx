@@ -29,7 +29,7 @@ const FilterSelect = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
-            ?.areaName || allItemsArray[0].areaName
+            ?.areaName || allItemsArray[0]?.areaName
         );
       case filterTexts?.dropdownPropertyType:
         allItemsArray?.unshift({
@@ -38,7 +38,7 @@ const FilterSelect = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
-          allItemsArray[0].name
+          allItemsArray[0]?.name
         );
       case filterTexts?.dropdownCompletion:
         allItemsArray?.unshift(filterTexts?.dropdownCompletion);

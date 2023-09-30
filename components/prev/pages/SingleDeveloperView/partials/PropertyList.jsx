@@ -3,9 +3,6 @@ import Skeleton from "@/components/prev/Skeleton/Skeleton";
 import SingleDeveloperGridView from "@/components/SingleDeveloperGridView";
 
 const PropertyList = (props) => {
-  const handleShowAll = () => {
-    props.setPage((page) => page + 1);
-  };
   return (
     <section>
       <Skeleton className="px-5 my-5">
@@ -14,7 +11,6 @@ const PropertyList = (props) => {
           filterParams={props?.filterParams}
           singleDevData={props?.singleDevData}
           fetchMoreData={props?.fetchMoreData}
-          handleShowAll={handleShowAll}
         />
       </Skeleton>
     </section>

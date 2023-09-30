@@ -30,8 +30,6 @@ const GridView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-
-    return () => {};
   }, [propertiesData, filterData, page]);
 
   return (

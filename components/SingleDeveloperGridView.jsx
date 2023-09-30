@@ -18,10 +18,6 @@ const SingleDeveloperGridView = (props) => {
   );
   const hasNextPage = page < totalPages;
 
-  const handleShowMore = () => {
-    setPage((page) => page + 1);
-  };
-
   useEffect(() => {
     if (singleDevData) {
       if (page === 1) {
