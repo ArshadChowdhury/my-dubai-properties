@@ -34,9 +34,8 @@ const ListView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-
-    return () => {};
   }, [propertiesData.data, page]);
+
   return (
     <>
       <InfiniteScroll

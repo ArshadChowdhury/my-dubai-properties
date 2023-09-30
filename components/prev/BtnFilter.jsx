@@ -6,7 +6,7 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const BtnFilter = (props) => {
   const [inputValue, setInputValue] = useState("");
-  const [{ filterValues }, dispatch] = useStateValue();
+  const [{ filterValues, filterOpen }, dispatch] = useStateValue();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const filterRef = useRef(null);
   const inputRef = useRef(null);
@@ -61,6 +61,7 @@ const BtnFilter = (props) => {
     <div className="flex justify-center h-[46px] md:w-[168px] items-center font-montserrat filter-btn p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative">
       <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] left-[-16px] border-r-0 border-t-0"></div>
       <div
+        ref={filterRef}
         className="flex justify-around hover:text-[#F1BF3F] text-[10px] items-center !h-full !w-full relative px-8 py-4"
         onClick={handleOnClick}
       >
@@ -84,7 +85,7 @@ const BtnFilter = (props) => {
 
         {isDropdownOpen && (
           <FilterDropdown
-            filterRef={filterRef}
+            // filterRef={filterRef}
             content={props.content}
             handleOptionSelect={handleOptionSelect}
             selectedValue={props.selectedValue}

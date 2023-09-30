@@ -99,7 +99,7 @@ const Menu = (props) => {
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",
-            smooth: true,
+            // smooth: true,
           },
           {
             right: "-100%",
@@ -107,7 +107,7 @@ const Menu = (props) => {
             opacity: 0,
             duration: 0.7,
             ease: "power1.out",
-            smooth: true,
+            // smooth: true,
           }
         );
       } else {
@@ -118,14 +118,14 @@ const Menu = (props) => {
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",
-            smooth: true,
+            // smooth: true,
           },
           {
             top: "0",
             opacity: 0,
             duration: 0.3,
             ease: "power1.out",
-            smooth: true,
+            // smooth: true,
           }
         );
       }

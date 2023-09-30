@@ -177,6 +177,7 @@ const ListItem = (props) => {
         <div className="flex flex-wrap border border-[#D9D9D9] rounded-lg overflow-clip p-1">
           <div className="w-[40%] rounded-md overflow-hidden">
             <Image
+              priority
               onClick={() => router.push(`/properties/${props.id}`)}
               width={900}
               height={500}

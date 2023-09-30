@@ -52,6 +52,7 @@ const GridItem = (props) => {
       >
         <Link href={`/properties/${props.id}`}>
           <Image
+            priority
             width={700}
             height={700}
             className="cursor-pointer aspect-[16/9]"

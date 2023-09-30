@@ -63,10 +63,10 @@ const HeroSection = (props) => {
               <div className="w-full md:hidden mt-10">
                 <button
                   onClick={handleFilterbtn}
-                  className="border rounded-md px-6 py-2 font-semibold text-[12px] flex m-auto bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]"
+                  className="border rounded-md px-6 py-2 font-semibold text-[12px] gap-2 flex m-auto bg-gradient-to-r from-[#A7893A] via-[#BFA04B] to-[#A7893A]"
                 >
                   <Image src={filter} alt="filter logo" />
-                  <span className="ml-2">Filter</span>
+                  <span>Filter</span>
                 </button>
               </div>
               <div

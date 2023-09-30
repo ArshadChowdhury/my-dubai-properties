@@ -15,9 +15,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import LoadingState from "@/components/LoadingState";
+import { useRef } from "react";
 
 const Home = () => {
   const [{ filterOpen, lang }, dispatch] = useStateValue();
+  const modalRef = useRef();
 
   const getAllHomeContent = async () => {
     const data = await instance
@@ -44,10 +46,6 @@ const Home = () => {
       })
       .then((data) => data?.data?.data);
     return data;
-  };
-
-  const handleScroll = () => {
-    dispatch({ type: "setFilterOpen", item: false });
   };
 
   const {
@@ -80,14 +78,20 @@ const Home = () => {
   });
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    // window.addEventListener("mousedown", handleScroll);
+    let handle = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        dispatch({ type: "setFilterOpen", item: false });
+        dispatch({ type: "setFilterValues", item: false });
+      }
+    };
+    window.addEventListener("scroll", handle);
+    window.addEventListener("mousedown", handle);
     refetch();
     refetchHomeContent();
     refetchPropertiesData();
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      // window.removeEventListener("mousedown", handleScroll);
+      window.removeEventListener("scroll", handle);
+      window.removeEventListener("mousedown", handle);
     };
   }, [lang]);
 
@@ -118,6 +122,7 @@ const Home = () => {
         <section className="bg-[#000F1D] relative">
           <HeroSection homeData={homeData} sliders={sliders} />
           <div
+            ref={modalRef}
             className={`${
               filterOpen
                 ? "flex justify-center items-center"

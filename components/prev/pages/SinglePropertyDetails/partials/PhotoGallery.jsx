@@ -213,7 +213,7 @@ const PhotoGallery = (props) => {
                 width="28"
                 height="28"
                 fill="#B4B4B4"
-                class="bi bi-x"
+                className="bi bi-x"
                 viewBox="0 0 16 16"
               >
                 {" "}

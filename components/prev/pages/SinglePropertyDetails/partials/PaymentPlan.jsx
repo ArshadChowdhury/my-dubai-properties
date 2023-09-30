@@ -407,8 +407,12 @@ const PaymentPlan = (props) => {
               size="px-4"
             />
           </div>
-          <div className="w-full relative mt-20 z-10">
-            <div className="flex items-center">
+          <div className="w-full relative mt-10 z-10">
+            <div
+              className={`flex items-center ${
+                lang === "ar" ? "mr-4 ml-6" : "ml-4 mr-6"
+              }`}
+            >
               <div
                 className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
               >
@@ -428,7 +432,12 @@ const PaymentPlan = (props) => {
               </div>
             </div>
             {paymentPlan.map((item, idx) => (
-              <div key={idx} className="flex items-center">
+              <div
+                key={idx}
+                className={`flex items-center ${
+                  lang === "ar" ? "mr-4 ml-6" : "ml-4 mr-6"
+                }`}
+              >
                 <div
                   className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                 >

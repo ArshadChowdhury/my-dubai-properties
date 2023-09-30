@@ -160,8 +160,11 @@ const ContactUsModal = ({ homeData }) => {
                         <Image src={close} alt="close btn" />
                       </button>
                     </div>
-                    <h1 className="font-montserrat text-[14px] leading-[150%] text-white">
-                      {contactModalInfo.propertyName} <br />
+                    <h1 className="font-montserrat text-white text-[14px] leading-[150%]">
+                      <span className="text-[16px] text-[#ffd15f]">
+                        {contactModalInfo.propertyName}
+                      </span>
+                      <br />
                       {registerData?.register}
                     </h1>
                     <form

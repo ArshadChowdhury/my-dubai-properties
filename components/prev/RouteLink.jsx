@@ -42,7 +42,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
         </Skeleton>
 
         {lang === "en" ? (
-          <div className="flex -top-[100px] md:top-0 md:hidden z-10 pt-2 px-[26px]">
+          <div className="flex -top-[100px] md:top-0 md:hidden z-10 pt-2 px-[27px]">
             <span
               className={`hover:scale-125 transition duration-300 cursor-pointer ${
                 buttonHide ? "hidden" : ""
@@ -58,7 +58,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
               >
                 <path
                   d="M0 2C0 0.89543 0.895431 0 2 0H32.8099C33.986 0 34.9082 1.00984 34.8017 2.18107L31.9835 33.1811C31.8899 34.2112 31.0262 35 29.9918 35H2C0.895431 35 0 34.1046 0 33V2Z"
-                  fill={viewType === "list" ? "#DFBF68" : "#373F48"}
+                  fill={viewType === "list" ? "#000F1D" : "#818181"}
                 />
                 <g clipPath="url(#clip0_280_14885)">
                   <path
@@ -133,23 +133,23 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop
-                      stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.234375"
-                      stopColor={viewType === "grid" ? "#C0A457" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.491997"
-                      stopColor={viewType === "grid" ? "#BFA04B" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.807292"
-                      stopColor={viewType === "grid" ? "#C8AA5A" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="1"
-                      stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                   </linearGradient>
                 </defs>
@@ -157,7 +157,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
             </span>
           </div>
         ) : (
-          <div className="flex -top-[100px] md:top-0 md:hidden z-10 pt-2 px-3">
+          <div className="flex -top-[100px] md:top-0 md:hidden z-10 pt-2 px-[27px]">
             <span
               className={`hover:scale-125 transition duration-300 cursor-pointer ${
                 buttonHide ? "hidden" : ""
@@ -189,23 +189,24 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
                     gradientUnits="userSpaceOnUse"
                   >
                     <stop
-                      stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.234375"
-                      stopColor={viewType === "grid" ? "#C0A457" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.491997"
-                      stopColor={viewType === "grid" ? "#BFA04B" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                     <stop
                       offset="0.807292"
-                      stopColor={viewType === "grid" ? "#C8AA5A" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
+                    {/* "#373F48" */}
                     <stop
                       offset="1"
-                      stopColor={viewType === "grid" ? "#DFBF68" : "#373F48"}
+                      stopColor={viewType === "grid" ? "#000F1D" : "#818181"}
                     />
                   </linearGradient>
                 </defs>
@@ -226,7 +227,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
               >
                 <path
                   d="M0 2C0 0.89543 0.895431 0 2 0H32.8099C33.986 0 34.9082 1.00984 34.8017 2.18107L31.9835 33.1811C31.8899 34.2112 31.0262 35 29.9918 35H2C0.895431 35 0 34.1046 0 33V2Z"
-                  fill={viewType === "list" ? "#DFBF68" : "#373F48"}
+                  fill={viewType === "list" ? "#000F1D" : "#818181"}
                 />
                 <g clipPath="url(#clip0_280_14885)">
                   <path

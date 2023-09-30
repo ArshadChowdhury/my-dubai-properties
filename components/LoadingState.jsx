@@ -15,6 +15,7 @@ function LoadingState() {
     <div className="sweet-loading h-screen flex justify-center items-center">
       <div className="flex flex-col items-center gap-8 mb-20">
         <Image
+          priority
           src={"/images/global/footer-logo.png"}
           height={150}
           width={150}

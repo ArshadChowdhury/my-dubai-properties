@@ -2777,6 +2777,26 @@ video {
   border-image-slice: 1;
   border-radius: 0.375rem !important;
 }
+
+.border-left {
+  border-width: 2px;
+  border-style: solid;
+  -o-border-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    #dcb558
+  );
+  border-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    #dcb558
+  );
+  border-image-slice: 1;
+  border-radius: 0.375rem !important;
+}
+
 .border-top {
   border-width: 1px;
   border-style: solid;

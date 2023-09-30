@@ -7,7 +7,7 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import Link from "next/link";
 import BtnSearch2 from "@/components/prev/BtnSearch2";
 
-const Filter = ({ filterLists, homeData }) => {
+const Filter = ({ filterLists, homeData, modalRef }) => {
   const filterTexts = homeData?.lang?.filterHomepage;
   // const [animate, setAnimate] = useState(false);
   const [{ filterValues, filterOpen }] = useStateValue();
