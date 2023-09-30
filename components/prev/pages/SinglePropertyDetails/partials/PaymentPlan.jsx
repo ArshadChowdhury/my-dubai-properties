@@ -99,13 +99,13 @@ const PaymentPlan = (props) => {
 
           gsap.to(`.p-item-${index}`, {
             opacity: 0,
-            duration: 0.2,
+            duration: 0.1,
           });
         }
       } else {
         gsap.to(`.p-item-${index}`, {
           opacity: 1,
-          duration: 0.2,
+          duration: 0.1,
         });
       }
     });
@@ -159,13 +159,13 @@ const PaymentPlan = (props) => {
 
           gsap.to(`.p-item-${index}`, {
             opacity: 0,
-            duration: 0.2,
+            duration: 0.1,
           });
         }
       } else {
         gsap.to(`.p-item-${index}`, {
           opacity: 1,
-          duration: 0.2,
+          duration: 0.1,
         });
       }
     });
@@ -176,17 +176,17 @@ const PaymentPlan = (props) => {
       ? () => {
           const ctx = gsap?.context(() => {
             gsap?.to(".p-item", {
-              x: -800,
-              duration: 25,
+              x: -900,
+              duration: 15,
               stagger: 1,
               onUpdate: checkHit,
               scrollTrigger: {
                 trigger: ".payment-section",
                 scrub: 1,
                 ease: "linear",
-                markers: false,
-                start: "top 15%",
-                end: "bottom 10%",
+                markers: true,
+                start: "top 10%",
+                end: "bottom -600%",
                 pin: true,
                 pinType: "fixed",
               },
@@ -200,7 +200,7 @@ const PaymentPlan = (props) => {
       : () => {
           const ctx = gsap?.context(() => {
             gsap?.to(".p-item", {
-              x: 800,
+              x: 900,
               duration: 25,
               stagger: 1,
               onUpdate: checkHitRight,
@@ -209,8 +209,8 @@ const PaymentPlan = (props) => {
                 scrub: 1,
                 ease: "linear",
                 markers: false,
-                start: "15% top",
-                end: "10% bottom",
+                start: "top 10%",
+                end: "bottom -400%",
                 pin: true,
                 pinType: "fixed",
               },
