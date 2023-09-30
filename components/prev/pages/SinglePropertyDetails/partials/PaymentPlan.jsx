@@ -184,7 +184,7 @@ const PaymentPlan = (props) => {
                 trigger: ".payment-section",
                 scrub: 1,
                 ease: "linear",
-                markers: true,
+                markers: false,
                 start: "top 10%",
                 end: "bottom -600%",
                 pin: true,
