@@ -2608,6 +2608,7 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -3446,6 +3447,41 @@ video {
   transition: background-color 0.5s ease-in-out;
 }
 
+.filter-btn-selected {
+  display: flex;
+  background: transparent;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected:before {
+  position: absolute;
+  height: 50%;
+  width: 113%;
+  content: "";
+  top: -0.5px;
+  left: -10px;
+  background: transparent;
+  transform: perspective(25px) rotateX(15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected:after {
+  position: absolute;
+  height: 60%;
+  width: 107%;
+  top: 22.5px;
+  left: -6px;
+  content: "";
+  background: transparent;
+  transform: perspective(25px) rotateX(-15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected:before,
+.filter-btn-selected:after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .filter-btn:before {
   position: absolute;
   height: 50%;
@@ -3740,6 +3776,15 @@ article.nextSlide {
   scrollbar-width: none;
 }
 
+.mb-flex {
+  display: flex;
+  overflow: visible;
+  animation: animateContainer 8s linear forwards infinite;
+  animation-play-state: paused;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes animateContainer {
   0% {
     transform: translateX(0);
@@ -3751,9 +3796,17 @@ article.nextSlide {
 
 .l-flex {
   display: flex;
-
   overflow: visible;
   animation: leftAni 30s linear forwards infinite;
+  animation-play-state: paused;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.lmb-flex {
+  display: flex;
+  overflow: visible;
+  animation: leftAni 8s linear forwards infinite;
   animation-play-state: paused;
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -9,9 +9,11 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import BtnElore2 from "@/components/prev/BtnElore2";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const LatestPropertyDown = (props) => {
   const [animationState, setPlay] = useState("paused");
+  const [{ lang }] = useStateValue();
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -74,7 +76,11 @@ const LatestPropertyDown = (props) => {
           <div className="mb-12 md:mb-0">
             <HomeHeading heading={props?.homeData?.lang?.slider?.titleReady} />
           </div>
-          <div className="w-1/4 mx-auto md:mr-[13rem]">
+          <div
+            className={`w-1/4 ${
+              lang === "ar" ? "mr-auto ml-24" : "ml-auto mr-24"
+            } md:mr-[13rem]`}
+          >
             <BtnElore2
               route={
                 "properties/ready?developmentTypes=63feffa56023b40ac4385fec"
@@ -86,7 +92,9 @@ const LatestPropertyDown = (props) => {
 
         <div className="block my-20 md:my-0 relative overflow-hidden md:left-[260px]">
           <div
-            className="l-flex my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2"
+            className={`${
+              isMobileView ? "lmb-flex" : "l-flex"
+            } my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2`}
             ref={cardBoxRef}
             style={{
               animationPlayState: isHovered ? "paused" : animationState,

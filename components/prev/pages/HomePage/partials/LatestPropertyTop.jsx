@@ -8,10 +8,12 @@ import { useRef, useEffect, useState } from "react";
 import BtnElore2 from "@/components/prev/BtnElore2";
 import Link from "next/link";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const LatestPropertyTop = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
+  const [{ lang }] = useStateValue();
   // const properties = props.properties;
   const repeats = 10;
   const properties = Array(repeats)
@@ -56,7 +58,11 @@ const LatestPropertyTop = (props) => {
           <div className="mb-12 md:mb-0">
             <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
           </div>
-          <div className="w-1/4 md:mr-[260px]">
+          <div
+            className={`${
+              lang === "ar" ? "ml-auto" : "mr-auto"
+            } w-1/4 md:mr-[260px]`}
+          >
             <BtnElore2
               route={
                 "properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
@@ -68,7 +74,9 @@ const LatestPropertyTop = (props) => {
 
         <div className="block md:right-[290px] mt-20 md:mt-0 w-full relative overflow-hidden scrollbar-hide">
           <div
-            className="d-flex my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2"
+            className={`${
+              isMobileView ? "mb-flex" : "d-flex"
+            } my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2`}
             style={{
               animationPlayState: isHovered ? "paused" : animationState,
             }}

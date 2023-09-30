@@ -34,7 +34,7 @@ const SingleDeveloperGridView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-  }, [singleDevData, filterData, page]);
+  }, [singleDevData?.developerProperty?.data, page]);
 
   return (
     <>

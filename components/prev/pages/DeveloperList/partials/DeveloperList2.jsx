@@ -32,7 +32,7 @@ const DeveloperList = (props) => {
         setAllDev(uniqueArray);
       }
     }
-  }, [developers, allDev, page]);
+  }, [developers?.developers?.data, page]);
 
   return (
     <section className="w-full">

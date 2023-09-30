@@ -24,6 +24,7 @@ const SignUpForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setEmail("");
+    setSubsPopUp(true);
   };
 
   const handleChange = (event) => {
@@ -92,7 +93,7 @@ const SignUpForm = (props) => {
         </Skeleton>
       </section>
       <AnimatePresence>
-        {subsPopUp && (
+        {/* {subsPopUp && (
           <motion.div
             initial={{
               opacity: 0,
@@ -122,6 +123,54 @@ const SignUpForm = (props) => {
             />
             <h1 className="text-xl">{homeData?.submitTextTitle}</h1>
             <p>{homeData?.submitTextSubTitle}</p>
+          </motion.div>
+        )} */}
+        {subsPopUp && (
+          <motion.div
+            initial={
+              !isMobileView
+                ? {
+                    opacity: 0,
+                    x: -500,
+                  }
+                : {
+                    opacity: 0,
+                    x: -200,
+                  }
+            }
+            transition={{
+              duration: 0.3,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            exit={
+              !isMobileView
+                ? {
+                    opacity: 0,
+                    x: -500,
+                  }
+                : {
+                    opacity: 0,
+                    x: -200,
+                  }
+            }
+            viewport={{ once: true }}
+            className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
+          >
+            <Image
+              height={150}
+              width={150}
+              src="/images/global/footer-logo.png"
+              alt=""
+              className="my-2 pb-2"
+            />
+            <h1 className="text-xl">Form Submitted!</h1>
+            <p>
+              We&apos;d like to show you notifictions for the latest news and
+              updates
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
