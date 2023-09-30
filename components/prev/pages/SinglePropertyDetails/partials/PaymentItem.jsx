@@ -9,11 +9,13 @@ import upArrow2 from "../../../assets/images/global/upArrow2.png";
 import upArrow from "../../../assets/images/global/upArrow.png";
 import { useEffect } from "react";
 import { current } from "@reduxjs/toolkit";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 
 // gsap.registerPlugin(ScrollTrigger);
 
 const PaymentCircle = (props) => {
   const [index, setIndex] = useState(0);
+  const [{ lang }] = useStateValue();
   // useEffect(() => {
   //   let panels = gsap.utils.toArray(".panel");
   //   props.setPanelRef(panels);
@@ -59,12 +61,18 @@ const PaymentCircle = (props) => {
       <div className="">
         <div className="absolute -top-[100px]">
           <h1
-            className={`text-center pr-4 font-oswald uppercase text-white text-[27px]
+            className={`text-center ${
+              lang === "ar" ? "pl-4" : "pr-4"
+            } font-oswald uppercase text-white text-[27px]
                 `}
           >
             {props.title}
           </h1>
-          <p className="text-center pr-4 font-robotoCondensed text-[16px] text-white tracking-[0]">
+          <p
+            className={`text-center ${
+              lang === "ar" ? "pl-4" : "pr-4"
+            } font-robotoCondensed text-[16px] text-white tracking-[0]`}
+          >
             {props.description}
           </p>
         </div>

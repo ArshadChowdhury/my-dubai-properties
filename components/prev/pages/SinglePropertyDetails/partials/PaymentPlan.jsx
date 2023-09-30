@@ -176,7 +176,7 @@ const PaymentPlan = (props) => {
       ? () => {
           const ctx = gsap?.context(() => {
             gsap?.to(".p-item", {
-              x: -900,
+              x: -800,
               duration: 15,
               stagger: 1,
               onUpdate: checkHit,
@@ -200,8 +200,8 @@ const PaymentPlan = (props) => {
       : () => {
           const ctx = gsap?.context(() => {
             gsap?.to(".p-item", {
-              x: 900,
-              duration: 25,
+              x: 800,
+              duration: 15,
               stagger: 1,
               onUpdate: checkHitRight,
               scrollTrigger: {
@@ -271,7 +271,9 @@ const PaymentPlan = (props) => {
 
                 {paymentPlan.map((item, index) => (
                   <div
-                    className={`mt-4 basis-1/2 flex justify-center pr-10 items-center z-10 p-item p-item-${index}`}
+                    className={`mt-4 basis-1/2 flex justify-center ${
+                      lang === "ar" ? "pl-10" : "pr-10"
+                    } items-center z-10 p-item p-item-${index}`}
                     key={`payment-${index}`}
                   >
                     <PaymentCircle
