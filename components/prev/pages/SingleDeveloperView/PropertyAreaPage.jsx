@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import DeveloperDetailsRouteLink from "../../DeveloperDetailsRouteLink";
 import { usePathname, useSearchParams } from "next/navigation";
 import EmmarProperties from "./partials/Properties";
-import PropertyList from "./partials/PropertyList";
-import TableView from "./partials/TableView";
+import PropertiesForArea from "./partials/PropertiesForArea";
+import TableViewForArea from "./partials/TableViewForArea";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
 import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDeveloper";
@@ -18,6 +18,7 @@ import Image from "next/image";
 import { instance } from "../../services/apiFunctions";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
 import LoadingState from "@/components/LoadingState";
+import PropertyListForArea from "./partials/PropertyListForArea";
 
 const PropertyAreaPage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
@@ -46,7 +47,7 @@ const PropertyAreaPage = (props) => {
     setPage((page) => page + 1);
     return async () => {
       const data = await instance
-        .get(`/${lang}/developers/${developerId}`, {
+        .get(`/${lang}/property-area/${developerId}`, {
           timeout: 5000,
           params: filterParams,
         })
@@ -55,9 +56,9 @@ const PropertyAreaPage = (props) => {
     };
   };
 
-  const getSingleDeveloperData = async () => {
+  const getSinglePropertyAreaData = async () => {
     const data = await instance
-      .get(`/${lang}/developers/${developerId}`, {
+      .get(`/${lang}/property-area/${developerId}`, {
         timeout: 5000,
         params: filterParams,
       })
@@ -109,7 +110,7 @@ const PropertyAreaPage = (props) => {
     refetch: refetchSingleDev,
   } = useQuery({
     queryKey: ["get-single-dev", developerId],
-    queryFn: getSingleDeveloperData,
+    queryFn: getSinglePropertyAreaData,
     enabled: !!developerId,
   });
 
@@ -144,18 +145,18 @@ const PropertyAreaPage = (props) => {
       <div className="hidden md:block">
         <Navbar2
           homeData={homeData}
-          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
+          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
         />
       </div>
+
       <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
         <DeveloperDetailsRouteLink
+          locationName={singleDevData?.propertyArea?.areaName}
           homeData={homeData}
-          locationName={singleDevData?.developer?.name}
-          buttonHide={"true"}
         />
         <ContactUsModal homeData={homeData} />
-        <EmmarProperties developerDetails={singleDevData} />
+        <PropertiesForArea developerDetails={singleDevData} />
         <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
             <div className="py-4">
@@ -164,13 +165,22 @@ const PropertyAreaPage = (props) => {
           </div>
           <div className="hidden md:flex sm:px-12 md:px-[4.5rem] lg:px-28 xl:px-0 2xl:px-[29px] flex-wrap">
             <div className="w-full md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
+              {/* <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
                 <FilterSelectSingleDeveloper
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
                   searchBy={filterTexts?.dropdownDubaiArea}
                   selectBy={filterListData?.propertyAreas}
+                />
+              </div> */}
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
+                <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
+                  developerId={developerId}
+                  setPage={setPage}
+                  searchBy={filterTexts?.dropdownDubaiArea}
+                  selectBy={filterListData?.developers}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
@@ -235,14 +245,14 @@ const PropertyAreaPage = (props) => {
             setIsFilterModalOpen={setIsFilterModalOpen}
           />
         </div>
-        <TableView
+        <TableViewForArea
           fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}
           singleDevData={singleDevData}
         />
 
-        <PropertyList
+        <PropertyListForArea
           filterParams={filterParams}
           page={page}
           setPage={setPage}

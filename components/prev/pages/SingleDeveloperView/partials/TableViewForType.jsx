@@ -12,9 +12,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
-const TableView = (props) => {
+const TableViewForType = (props) => {
   const [{ lang }] = useStateValue();
-  const devProjects = props.singleDevData?.developerProperty;
+  const devProjects = props.singleDevData?.propertiesByPropertyType;
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
   const [filterData, setFilterData] = useState([]);
@@ -252,19 +252,19 @@ const TableView = (props) => {
                     <tr>
                       <th
                         scope="col"
-                        className="py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
                         IMAGE
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
                       >
                         Title
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
                         Dubai Area
                       </th>
@@ -432,4 +432,4 @@ const TableView = (props) => {
   );
 };
 
-export default TableView;
+export default TableViewForType;

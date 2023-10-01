@@ -4,9 +4,9 @@ import HeadingBox from "@/components/prev/HeadingBox";
 import FilterSelect from "@/components/prev/FilterSelect";
 import Image from "next/image";
 
-const EmmarProperties = (props) => {
-  const developerDetails = props?.developerDetails?.developer;
-  const heading = props?.developerDetails?.developer.name;
+const PropertiesForArea = (props) => {
+  const description = props?.developerDetails?.propertyType?.description;
+  const heading = props?.developerDetails?.propertyType?.name;
 
   return (
     <section className="z-10">
@@ -16,27 +16,27 @@ const EmmarProperties = (props) => {
         </div>
 
         <div className="py-4 flex gap-4">
-          <Image
+          {/* <Image
             height={225}
             width={500}
             src={developerDetails?.logo}
             alt={developerDetails?.name}
             className="hidden md:block rgba-white-10 border border-[#bea04e] bg-white bg-opacity-20"
-          />
+          /> */}
 
           <div className="text-[15px] font-montserrat text-white">
             <p className="font-extralight">
-              {developerDetails?.description ||
-                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime in quas expedita natus consequuntur! Amet accusantium veniam unde veritatis officia, magnam in suscipit repellat repellendus iure et vel molestias aperiam nostrum assumenda odio deleniti consectetur labore mollitia optio, sed dolor quod sit? Hic similique iure ea impedit iusto iste nam."}{" "}
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolore dolor delectus repudiandae, nisi illo, tempore corporis ratione ut soluta libero porro quas aliquam voluptas ab dolorum nihil. Placeat quasi quibusdam omnis quos ratione repellendus, fuga natus obcaecati optio quisquam illum fugit voluptates, id doloremque corporis voluptatem inventore est quam?"}{" "}
             </p>
             <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
-              <Image
+              {/* <Image
                 height={400}
                 width={400}
                 className="mb-2"
                 src={developerDetails?.logo}
                 alt={developerDetails?.name}
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -45,4 +45,4 @@ const EmmarProperties = (props) => {
   );
 };
 
-export default EmmarProperties;
+export default PropertiesForArea;

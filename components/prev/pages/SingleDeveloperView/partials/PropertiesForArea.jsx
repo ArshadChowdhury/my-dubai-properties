@@ -4,9 +4,9 @@ import HeadingBox from "@/components/prev/HeadingBox";
 import FilterSelect from "@/components/prev/FilterSelect";
 import Image from "next/image";
 
-const EmmarProperties = (props) => {
-  const developerDetails = props?.developerDetails?.developer;
-  const heading = props?.developerDetails?.developer.name;
+const PropertiesForArea = (props) => {
+  const description = props?.developerDetails?.propertyArea?.description;
+  const heading = props?.developerDetails?.propertyArea?.areaName;
 
   return (
     <section className="z-10">
@@ -16,20 +16,20 @@ const EmmarProperties = (props) => {
         </div>
 
         <div className="py-4 flex gap-4">
-          <Image
+          {/* <Image
             height={225}
             width={500}
             src={developerDetails?.logo}
             alt={developerDetails?.name}
             className="hidden md:block rgba-white-10 border border-[#bea04e] bg-white bg-opacity-20"
-          />
+          /> */}
 
           <div className="text-[15px] font-montserrat text-white">
             <p className="font-extralight">
-              {developerDetails?.description ||
-                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime in quas expedita natus consequuntur! Amet accusantium veniam unde veritatis officia, magnam in suscipit repellat repellendus iure et vel molestias aperiam nostrum assumenda odio deleniti consectetur labore mollitia optio, sed dolor quod sit? Hic similique iure ea impedit iusto iste nam."}{" "}
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio soluta optio natus quia libero   reprehenderit, mollitia similique aspernatur unde iure labore repellendus, blanditiis, perferendis officiis iusto magnam             laborum. Accusantium quis officia deserunt animi nihil illo             soluta, quam suscipit, unde eaque harum pariatur saepe voluptate              ipsa, impedit odit. Voluptate, nulla molestiae!"}
             </p>
-            <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
+            {/* <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
               <Image
                 height={400}
                 width={400}
@@ -37,7 +37,7 @@ const EmmarProperties = (props) => {
                 src={developerDetails?.logo}
                 alt={developerDetails?.name}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </Skeleton>
@@ -45,4 +45,4 @@ const EmmarProperties = (props) => {
   );
 };
 
-export default EmmarProperties;
+export default PropertiesForArea;

@@ -5,7 +5,7 @@ import DeveloperDetailsRouteLink from "../../DeveloperDetailsRouteLink";
 import { usePathname, useSearchParams } from "next/navigation";
 import EmmarProperties from "./partials/Properties";
 import PropertyList from "./partials/PropertyList";
-import TableView from "./partials/TableView";
+import TableViewForType from "./partials/TableViewForType";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
 import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDeveloper";
@@ -18,6 +18,8 @@ import Image from "next/image";
 import { instance } from "../../services/apiFunctions";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
 import LoadingState from "@/components/LoadingState";
+import PropertiesForType from "../SingleDeveloperView/partials/PropertiesForType";
+import PropertyListForType from "./partials/PropertyListForType";
 
 const PropertyTypePage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
@@ -46,18 +48,19 @@ const PropertyTypePage = (props) => {
     setPage((page) => page + 1);
     return async () => {
       const data = await instance
-        .get(`/${lang}/developers/${developerId}`, {
+        .get(`/${lang}/property-type/${developerId}`, {
           timeout: 5000,
           params: filterParams,
+          enabled: !!developerId,
         })
         .then((data) => data.data.data.properties);
       return data;
     };
   };
 
-  const getSingleDeveloperData = async () => {
+  const getSinglePropertyTypeData = async () => {
     const data = await instance
-      .get(`/${lang}/developers/${developerId}`, {
+      .get(`/${lang}/property-type/${developerId}`, {
         timeout: 5000,
         params: filterParams,
       })
@@ -109,7 +112,7 @@ const PropertyTypePage = (props) => {
     refetch: refetchSingleDev,
   } = useQuery({
     queryKey: ["get-single-dev", developerId],
-    queryFn: getSingleDeveloperData,
+    queryFn: getSinglePropertyTypeData,
     enabled: !!developerId,
   });
 
@@ -151,11 +154,11 @@ const PropertyTypePage = (props) => {
       <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
         <DeveloperDetailsRouteLink
           homeData={homeData}
-          locationName={singleDevData?.developer?.name}
+          locationName={singleDevData?.propertyType?.name}
           buttonHide={"true"}
         />
         <ContactUsModal homeData={homeData} />
-        <EmmarProperties developerDetails={singleDevData} />
+        <PropertiesForType developerDetails={singleDevData} />
         <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
             <div className="py-4">
@@ -173,13 +176,22 @@ const PropertyTypePage = (props) => {
                   selectBy={filterListData?.propertyAreas}
                 />
               </div>
-              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+              {/* <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
                 <FilterSelectSingleDeveloper
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
                   searchBy={filterTexts?.dropdownPropertyType}
                   selectBy={filterListData?.propertyTypes}
+                />
+              </div> */}
+              <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
+                <FilterSelectSingleDeveloper
+                  filterTexts={filterTexts}
+                  developerId={developerId}
+                  setPage={setPage}
+                  searchBy={filterTexts?.dropdownPropertyType}
+                  selectBy={filterListData?.developers}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
@@ -235,14 +247,14 @@ const PropertyTypePage = (props) => {
             setIsFilterModalOpen={setIsFilterModalOpen}
           />
         </div>
-        <TableView
+        <TableViewForType
           fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}
           singleDevData={singleDevData}
         />
 
-        <PropertyList
+        <PropertyListForType
           filterParams={filterParams}
           page={page}
           setPage={setPage}

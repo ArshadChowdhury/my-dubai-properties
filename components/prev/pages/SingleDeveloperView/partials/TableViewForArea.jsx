@@ -12,9 +12,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
-const TableView = (props) => {
+const TableViewForArea = (props) => {
   const [{ lang }] = useStateValue();
-  const devProjects = props.singleDevData?.developerProperty;
+  const devProjects = props.singleDevData?.propertiesByArea;
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
   const [filterData, setFilterData] = useState([]);
@@ -24,8 +24,8 @@ const TableView = (props) => {
   const hasNextPage = props.page < totalPages;
 
   useEffect(() => {
-    if (devProjects?.data) {
-      if (devProjects.page === 1) {
+    if (props.singleDevData?.propertiesByArea?.data) {
+      if (props.page === 1) {
         setFilterData(devProjects?.data);
       } else {
         const newArray = [...filterData, ...devProjects?.data];
@@ -35,7 +35,23 @@ const TableView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-  }, [devProjects, filterData, props.page]);
+    console.log(devProjects?.data);
+  }, [devProjects?.data, props.page]);
+
+  //   useEffect(() => {
+  //     if (propertiesData) {
+  //       if (page === 1) {
+  //         setFilterData(propertiesData.data);
+  //       } else {
+  //         const newArray = [...filterData, ...propertiesData.data];
+  //         const uniqueArray = newArray.filter((item, index, self) => {
+  //           return index === self.findIndex((i) => i._id === item._id);
+  //         });
+
+  //         setFilterData(uniqueArray);
+  //       }
+  //     }
+  //   }, [propertiesData.data, page]);
 
   const increaseCount = () => {
     setShowCount((prev) => prev + 5);
@@ -252,19 +268,19 @@ const TableView = (props) => {
                     <tr>
                       <th
                         scope="col"
-                        className="py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
                         IMAGE
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
                       >
                         Title
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
                         Dubai Area
                       </th>
@@ -432,4 +448,4 @@ const TableView = (props) => {
   );
 };
 
-export default TableView;
+export default TableViewForArea;
