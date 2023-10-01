@@ -186,7 +186,7 @@ const PaymentPlan = (props) => {
                 ease: "linear",
                 markers: false,
                 start: "top 10%",
-                end: "bottom -600%",
+                end: "bottom -280%",
                 pin: true,
                 pinType: "fixed",
               },
@@ -210,7 +210,7 @@ const PaymentPlan = (props) => {
                 ease: "linear",
                 markers: false,
                 start: "top 10%",
-                end: "bottom -400%",
+                end: "bottom -280%",
                 pin: true,
                 pinType: "fixed",
               },
@@ -272,7 +272,7 @@ const PaymentPlan = (props) => {
                 {paymentPlan.map((item, index) => (
                   <div
                     className={`mt-4 basis-1/2 flex justify-center ${
-                      lang === "ar" ? "pl-10" : "pr-10"
+                      lang === "ar" ? "pl-10" : "pr-12"
                     } items-center z-10 p-item p-item-${index}`}
                     key={`payment-${index}`}
                   >

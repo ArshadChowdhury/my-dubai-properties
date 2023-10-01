@@ -48,7 +48,7 @@ const Dropdown = (props) => {
       <div
         className={`font-extralight mt-[68px] text-[#ffff] md:mt-0 font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl`}
       >
-        <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
+        <div className={`md:mt-0 dropdown_background w-full h-full`}>
           <SkeletonSingleProperty className="w-full !pb-0">
             <div className="px-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
               <div className="flex flex-col gap-5">
@@ -251,7 +251,7 @@ const Dropdown = (props) => {
           </div>
         </div>
 
-        <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
+        <div className={`md:mt-0 dropdown_background w-full h-full`}>
           <SkeletonSingleProperty className="w-full !pb-0">
             <div className="flex flex-col px-5 gap-5 justify-center md:grid grid-cols-2 w-full md:justify-items-end">
               <div className="flex flex-col gap-5">
@@ -390,7 +390,7 @@ const Dropdown = (props) => {
     )
   ) : lang === "en" ? (
     <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
+      <div className={`md:mt-0 dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="px-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">
@@ -549,7 +549,7 @@ const Dropdown = (props) => {
     </div>
   ) : (
     <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div className={`md:mt-0 md:dropdown_background w-full h-full`}>
+      <div className={`md:mt-0 dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
           <div className="pr-[28px] my-2 flex flex-col gap-6 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">

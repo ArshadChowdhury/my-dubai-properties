@@ -59,10 +59,10 @@ const PaymentCircle = (props) => {
       ref={props.refer}
     >
       <div className="">
-        <div className="absolute -top-[100px]">
+        <div className="absolute flex flex-col items-center justify-center -top-[100px]">
           <h1
             className={`text-center ${
-              lang === "ar" ? "pl-4" : "pr-4"
+              lang === "ar" ? "pl-4" : "pr-10"
             } font-oswald uppercase text-white text-[27px]
                 `}
           >
@@ -70,8 +70,8 @@ const PaymentCircle = (props) => {
           </h1>
           <p
             className={`text-center ${
-              lang === "ar" ? "pl-4" : "pr-4"
-            } font-robotoCondensed text-[16px] text-white tracking-[0]`}
+              lang === "ar" ? "pl-4" : "pr-10"
+            } font-robotoCondensed text-[12px] text-white tracking-[0]`}
           >
             {props.description}
           </p>

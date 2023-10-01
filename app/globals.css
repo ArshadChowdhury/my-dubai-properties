@@ -2905,7 +2905,7 @@ video {
   /* Adjust the opacity here */
   background-color: rgba(0, 24, 46, 0.7);
   background-blend-mode: multiply;
-  background-repeat: repeat-x;
+  background-repeat: repeat;
 }
 
 .white_background {
@@ -3863,7 +3863,7 @@ article.nextSlide {
   background-image: url(../components/prev/assets/images/global/single-bg.png);
   /* background-color: rgba(0, 24, 46, 0.7); */
   background-blend-mode: multiply;
-  background-repeat: repeat-x;
+  background-repeat: repeat;
 }
 
 .filter-background {
