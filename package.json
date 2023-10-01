@@ -6,6 +6,8 @@
     "dev": "next -p 80",
     "build": "next build",
     "start": "next start -p 80",
+    "start-pods": "forever start ./node_modules/.bin/next start -p 80",
+    "stop-pods": "forever stop ./node_modules/.bin/next start -p 80",
     "lint": "next lint"
   },
   "dependencies": {
