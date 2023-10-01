@@ -22,6 +22,7 @@ const TableViewForArea = (props) => {
   const dataLength = 6;
   const totalPages = Math.ceil(devProjects?.count / dataLength);
   const hasNextPage = props.page < totalPages;
+  const tableTexts = props.singleDevData?.lang?.developerDetails;
 
   useEffect(() => {
     if (props.singleDevData?.propertiesByArea?.data) {
@@ -103,37 +104,37 @@ const TableViewForArea = (props) => {
                         scope="col"
                         className="text-right py-3 text-xs font-bold text-gray-500 uppercase"
                       >
-                        IMAGE
+                        {tableTexts?.columnImage}
                       </th>
                       <th
                         scope="col"
                         className="pr-4 py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Title
+                        {tableTexts?.columnTitle}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Dubai Area
+                        {tableTexts?.columnArea}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Bed
+                        {tableTexts?.columnBeds}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Type
+                        {tableTexts?.columnPropertyType}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Completion
+                        {tableTexts?.columnCompletion}
                       </th>
                     </tr>
                   </thead>
@@ -268,39 +269,39 @@ const TableViewForArea = (props) => {
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                        className="text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        IMAGE
+                        {tableTexts?.columnImage}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase "
                       >
-                        Title
+                        {tableTexts?.columnTitle}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                       >
-                        Dubai Area
+                        {tableTexts?.columnArea}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Bed
+                        {tableTexts?.columnBeds}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Type
+                        {tableTexts?.columnPropertyType}
                       </th>
                       <th
                         scope="col"
                         className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Completion
+                        {tableTexts?.columnCompletion}
                       </th>
                     </tr>
                   </thead>
@@ -437,8 +438,8 @@ const TableViewForArea = (props) => {
                 onClick={props?.fetchMoreData}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
-                <Image src={downOption} alt="" />
-                <span>Show More</span>
+                <Image className="cursor-pointer" src={downOption} alt="" />
+                <span className="cursor-pointer">Show More</span>
               </div>
             )}
           </div>

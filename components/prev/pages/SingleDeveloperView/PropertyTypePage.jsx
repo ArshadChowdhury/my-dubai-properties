@@ -51,7 +51,6 @@ const PropertyTypePage = (props) => {
         .get(`/${lang}/property-type/${developerId}`, {
           timeout: 5000,
           params: filterParams,
-          enabled: !!developerId,
         })
         .then((data) => data.data.data.properties);
       return data;

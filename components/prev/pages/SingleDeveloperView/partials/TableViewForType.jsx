@@ -35,7 +35,7 @@ const TableViewForType = (props) => {
         setFilterData(uniqueArray);
       }
     }
-  }, [devProjects, filterData, props.page]);
+  }, [devProjects?.data, props.page]);
 
   const increaseCount = () => {
     setShowCount((prev) => prev + 5);
@@ -421,8 +421,8 @@ const TableViewForType = (props) => {
                 onClick={props?.fetchMoreData}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
-                <Image src={downOption} alt="" />
-                <span>Show More</span>
+                <Image className="cursor-pointer" src={downOption} alt="" />
+                <span className="cursor-pointer">Show More</span>
               </div>
             )}
           </div>

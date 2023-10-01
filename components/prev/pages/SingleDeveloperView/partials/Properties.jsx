@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const EmmarProperties = (props) => {
   const developerDetails = props?.developerDetails?.developer;
-  const heading = props?.developerDetails?.developer.name;
+  const heading = props?.developerDetails?.developer?.name;
 
   return (
     <section className="z-10">
