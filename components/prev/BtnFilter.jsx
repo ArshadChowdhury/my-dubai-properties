@@ -14,10 +14,10 @@ const BtnFilter = (props) => {
 
   const handleOptionSelect = (value) => {
     let updatedFilterValue;
-    console.log(props.cat);
+
     if (props.cat === "completions") {
       updatedFilterValue = Object.values(value)[1] || value;
-      setInputValue(updatedFilterValue);
+      setInputValue(updatedFilterValue.toString());
     } else {
       updatedFilterValue = [
         Object.values(value)[1]._id || value._id,

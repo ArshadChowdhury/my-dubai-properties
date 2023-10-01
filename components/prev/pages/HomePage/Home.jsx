@@ -81,7 +81,7 @@ const Home = () => {
     let handle = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
         dispatch({ type: "setFilterOpen", item: false });
-        dispatch({ type: "setFilterValues", item: false });
+        // dispatch({ type: "setFilterValues", item: false });
       }
     };
     window.addEventListener("scroll", handle);
@@ -115,7 +115,7 @@ const Home = () => {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      {/* <VerticalLine2 /> */}
+      <VerticalLine2 />
       <div>
         <Navbar
           homeData={homeData}
@@ -141,7 +141,7 @@ const Home = () => {
           <SignUpForm homeData={homeData} popup={true} />
         </section>
       </div>
-      <div className="relative bg-[#000f1d]">
+      <div className="relative bg-[#000f1d] z-10">
         <Footer homeData={homeData} home={true} />
       </div>
     </section>

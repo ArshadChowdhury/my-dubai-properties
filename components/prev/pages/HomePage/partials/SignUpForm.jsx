@@ -92,88 +92,51 @@ const SignUpForm = (props) => {
           </div>
         </Skeleton>
       </section>
-      <AnimatePresence>
-        {/* {subsPopUp && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -500,
-            }}
-            transition={{
-              duration: 0.5,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            exit={{
-              opacity: 0,
-              x: -500,
-            }}
-            viewport={{ once: true }}
-            className={`cursor-pointer absolute flex flex-col items-center justify-center py-4 px-10 rounded-lg font-montserrat text-white border p-3 z-50 bg-[#000f1d]`}
-            style={{ top: "0px", left: "28%" }}
-          >
-            <Image
-              height={100}
-              width={150}
-              src="/images/global/footer-logo.png"
-              alt=""
-              className="h-[100px] my-2 pb-2 "
-            />
-            <h1 className="text-xl">{homeData?.submitTextTitle}</h1>
-            <p>{homeData?.submitTextSubTitle}</p>
-          </motion.div>
-        )} */}
-        {subsPopUp && (
-          <motion.div
-            initial={
-              !isMobileView
-                ? {
-                    opacity: 0,
-                    x: -500,
-                  }
-                : {
-                    opacity: 0,
-                    x: -200,
-                  }
-            }
-            transition={{
-              duration: 0.3,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            exit={
-              !isMobileView
-                ? {
-                    opacity: 0,
-                    x: -500,
-                  }
-                : {
-                    opacity: 0,
-                    x: -200,
-                  }
-            }
-            viewport={{ once: true }}
-            className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
-          >
-            <Image
-              height={150}
-              width={150}
-              src="/images/global/footer-logo.png"
-              alt=""
-              className="my-2 pb-2"
-            />
-            <h1 className="text-xl">Form Submitted!</h1>
-            <p>
-              We&apos;d like to show you notifictions for the latest news and
-              updates
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {
+        <AnimatePresence>
+          {subsPopUp && (
+            <div
+              className={`w-screen h-screen justify-center items-center flex overflow-x-hidden overflow-y-auto fixed top-0 left-0 md:-bottom-18 md:left-0 transition-all md:inset-0 z-50 outline-none focus:outline-none rounded-t-[2.5rem] md:rounded-none`}
+              style={{
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
+              }}
+            >
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: -200,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: -200,
+                }}
+                viewport={{ once: true }}
+                className={`cursor-pointer fixed flex flex-col items-center justify-center mx-2 md:mx-0 md:py-4 md:px-10 rounded-lg font-montserrat text-white border p-3 z-50 vector_background_modal`}
+              >
+                <Image
+                  height={100}
+                  width={150}
+                  src="/images/global/footer-logo.png"
+                  alt=""
+                  className="my-2 pb-2"
+                />
+                <h1 className="text-xl">Form Submitted!</h1>
+                <p>
+                  We&apos;d like to show you notifictions for the latest news
+                  and updates
+                </p>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      }
     </div>
   );
 };

@@ -165,24 +165,24 @@ export default function ViewProperty(props) {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      <VerticalLine />
-      <div className="md:hidden">
+      {/* <VerticalLine /> */}
+      <div className="z-50 md:hidden">
         <Navbar2
           homeData={homeData}
-          className={` w-full py-5 bg-[#000F1D] z-50 `}
+          className={`w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
         />
       </div>
-      <div className="hidden md:block">
+      <div className="z-50 hidden md:block">
         <Navbar2
           homeData={homeData}
           filterListData={filterListData}
-          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50 `}
+          className={`sticky top-0 left-0 w-full py-5 bg-[#000F1D] z-50`}
           type="inline"
         />
       </div>
 
-      <section className="min-h-screen w-full mt-0 md:mt-4 bg-payment">
+      <section className="min-h-screen w-full mt-0 md:mt-4 bg-payment z-20">
         <RouteLink
           setPage={setPage}
           homeData={homeData}
@@ -204,6 +204,7 @@ export default function ViewProperty(props) {
             <div className="flex items-center">
               <div className="md:hidden">
                 <FilterSearchInput
+                  homeData={homeData}
                   setIsFilterModalOpen={setIsFilterModalOpen}
                 />
               </div>
@@ -236,7 +237,9 @@ export default function ViewProperty(props) {
           )}
         </Skeleton>
       </section>
-      <Footer homeData={homeData} footerBg={"footer_background"} />
+      <div className="z-10">
+        <Footer homeData={homeData} footerBg={"footer_background"} />
+      </div>
     </section>
   );
 }

@@ -79,7 +79,7 @@ const Footer = ({ footerBg, home, homeData }) => {
           className="absolute z-10 -top-[63px] md:-top-[75px] w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
         />
         <div
-          className={`flex justify-center  bg-repeat-x rounded-md w-full h-full relative before:absolute before:left-0 before:border before:w-[34%] md:before:w-[37%] before:rounded-l-md before:border-[#F1BF3F] before:top-0 after:top-0 before:border-r-0 before:h-full after:absolute after:right-0 after:border after:w-[37%] after:rounded-r-md after:border-[#F1BF3F] after:border-l-0 after:h-full`}
+          className={`flex justify-center bg-repeat-x rounded-md w-full h-full relative before:absolute before:left-0 before:border before:w-[34%] md:before:w-[37%] before:rounded-l-md before:border-[#F1BF3F] before:top-0 after:top-0 before:border-r-0 before:h-full after:absolute after:right-0 after:border after:w-[37%] after:rounded-r-md after:border-[#F1BF3F] after:border-l-0 after:h-full`}
         >
           <div className="footer_background_home2 absolute bottom-0 w-full h-full z-[1]"></div>
           <div className="justify-center w-3/4 pt-16 pb-6">

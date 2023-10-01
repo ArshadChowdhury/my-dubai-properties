@@ -38,7 +38,7 @@ const FilterDropdown = (props) => (
                 key={idx}
                 onClick={() => props.handleOptionSelect(content)}
               >
-                {content.name || content.areaName || content}
+                {content.name || content.areaName || content.toString()}
               </p>
             );
           })}

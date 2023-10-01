@@ -35,7 +35,7 @@ const RouteLink = ({ homeData, locationName, buttonHide, marginBottom }) => {
                 <Image src={arrow} alt="Arrow icon" className="rotate-180" />
               )}
             </p>
-            <p className="text-[15px] md:text-[9px] text-[#ffffff] md:text-[#626262] capitalize font-semibold md:font-normal">
+            <p className="text-right text-[15px] md:text-[9px] text-[#ffffff] md:text-[#626262] capitalize font-semibold md:font-normal">
               {locationName}
             </p>
           </div>
