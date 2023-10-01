@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import SingleDevFilterSearch from "./prev/SingleDevFilterSearch";
+import SinglePropertyAreaFilterSearch from "./prev/SinglePropertyAreaFilterSearch";
 import BtnItem from "@/components/prev/BtnItem";
 import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import { useStateValue } from "@/components/prev/states/StateProvider";
@@ -15,19 +15,21 @@ const SinglePropertyAreaFilterModal = (props) => {
   } = props;
   const router = useRouter();
   const [{ singleDevFilterValuesMob }, dispatch] = useStateValue();
-  const propertyAreaId = singleDevFilterValuesMob?.propertyAreas;
+  const developers = singleDevFilterValuesMob?.developers;
   const propertyTypeId = singleDevFilterValuesMob?.propertyTypes;
   const completions = singleDevFilterValuesMob?.completions;
   const beds = singleDevFilterValuesMob?.beds;
 
   const queryParams = [];
 
+  console.log(singleDevFilterValuesMob);
+
   if (propertyTypeId) {
     queryParams.push(`propertyTypes=${propertyTypeId}`);
   }
 
-  if (propertyAreaId) {
-    queryParams.push(`propertyAreas=${propertyAreaId}`);
+  if (developers) {
+    queryParams.push(`developers=${developers}`);
   }
 
   if (completions) {
@@ -66,13 +68,21 @@ const SinglePropertyAreaFilterModal = (props) => {
         type: "setFilterRoute",
         item: null,
       });
+      dispatch({
+        type: "setSingleDevFilterValuesMob",
+        item: null,
+      });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
   const handleReset = () => {
     router.push(`/property-area/${singleDeveloperId}`);
-    props.setIsFilterModalOpen(false);
     dispatch({ type: "setFilterRoute", item: null });
+    dispatch({
+      type: "setSingleDevFilterValuesMob",
+      item: null,
+    });
+    props.setIsFilterModalOpen(false);
   };
 
   const hadleSubmit = () => {
@@ -89,7 +99,7 @@ const SinglePropertyAreaFilterModal = (props) => {
   return props.isFilterModalOpen ? (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900 z-[100]">
       <div className="w-[75%] h-[310px] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
-        <SingleDevFilterSearch
+        <SinglePropertyAreaFilterSearch
           singleDeveloperId={singleDeveloperId}
           singleDevData={singleDevData}
           homeData={homeData}

@@ -222,7 +222,7 @@ const SingleDeveloperView = (props) => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="md:hidden">
           <SingleDevFilterModal
             developerId={developerId}
             setPage={setPage}

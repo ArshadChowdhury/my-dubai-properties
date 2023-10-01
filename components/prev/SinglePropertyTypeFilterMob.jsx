@@ -11,8 +11,8 @@ const FilterSelectMob = (props) => {
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
+  const developerId = searchParams.get("developers");
   const propertyAreaId = searchParams.get("propertyAreas");
-  const propertyTypeId = searchParams.get("propertyTypes");
   const beds = searchParams.get("beds");
   const completions = searchParams.get("completions");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
@@ -23,6 +23,15 @@ const FilterSelectMob = (props) => {
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
+      case "Developers":
+        allItemsArray?.unshift({
+          id: null,
+          name: "Developers",
+        });
+        return (
+          props?.selectBy?.find((item) => item._id === developerId)?.name ||
+          allItemsArray[0].name
+        );
       case filterTexts?.dropdownDubaiArea:
         allItemsArray?.unshift({
           id: null,
@@ -31,15 +40,6 @@ const FilterSelectMob = (props) => {
         return (
           props?.selectBy?.find((item) => item._id === propertyAreaId)
             ?.areaName || allItemsArray[0].areaName
-        );
-      case filterTexts?.dropdownPropertyType:
-        allItemsArray?.unshift({
-          id: null,
-          name: filterTexts?.dropdownPropertyType,
-        });
-        return (
-          props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
-          allItemsArray[0].name
         );
       case filterTexts?.dropdownCompletion:
         allItemsArray?.unshift(filterTexts?.dropdownCompletion);
@@ -77,17 +77,17 @@ const FilterSelectMob = (props) => {
         });
         setSelectedValue(content);
       }
-    } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
-      if (content.areaName === filterTexts?.dropdownDubaiArea) {
-        urlParams.delete("propertyAreas");
-        setSelectedValue(content.areaName);
-      } else if (content.areaName) {
+    } else if (props.searchBy === "Developers") {
+      if (content.name === "Developers") {
+        urlParams.delete("developers");
+        setSelectedValue(content.name);
+      } else if (content.name) {
         dispatch({
           type: "setSingleDevFilterValuesMob",
-          item: { ...singleDevFilterValuesMob, propertyAreas: content._id },
+          item: { ...singleDevFilterValuesMob, developers: content._id },
         });
-        urlParams.set("propertyAreas", content._id);
-        setSelectedValue(content.areaName);
+        urlParams.set("developers", content._id);
+        setSelectedValue(content.name);
       }
     } else if (props.searchBy === filterTexts?.dropdownCompletion) {
       if (content === filterTexts?.dropdownCompletion) {
@@ -101,23 +101,23 @@ const FilterSelectMob = (props) => {
         urlParams.set("completions", content);
         setSelectedValue(content);
       }
-    } else if (props.searchBy === filterTexts?.dropdownPropertyType) {
-      if (content.name === filterTexts?.dropdownPropertyType) {
-        urlParams.delete("propertyTypes");
-        setSelectedValue(content.name);
-      } else if (content.name) {
+    } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
+      if (content.areaName === filterTexts?.dropdownDubaiArea) {
+        urlParams.delete("propertyAreas");
+        setSelectedValue(content.areaName);
+      } else if (content.areaName) {
         dispatch({
           type: "setSingleDevFilterValuesMob",
-          item: { ...singleDevFilterValuesMob, propertyTypes: content._id },
+          item: { ...singleDevFilterValuesMob, propertyAreas: content._id },
         });
-        urlParams.set("propertyTypes", content._id);
-        setSelectedValue(content.name);
+        urlParams.set("propertyAreas", content._id);
+        setSelectedValue(content.areaName);
       }
     }
     const updatedQueryString = urlParams.toString();
     const updatedUrl = updatedQueryString
-      ? `/developers/${props?.singleDeveloperId}?${updatedQueryString}`
-      : `/developers/${props?.singleDeveloperId}`;
+      ? `/property-type/${props?.singleDeveloperId}?${updatedQueryString}`
+      : `/property-type/${props?.singleDeveloperId}`;
     props.setPage(1);
   };
 

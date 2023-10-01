@@ -11,7 +11,7 @@ const PropertiesForArea = (props) => {
   return (
     <section className="z-10">
       <Skeleton className="mt-5 md:mt-10 px-5">
-        <div className="w-full md:w-[25%] mt-10 md:mt-0">
+        <div className="w-full md:w-[25%] mt-14 md:mt-0">
           <HeadingBox heading={heading} />
         </div>
 

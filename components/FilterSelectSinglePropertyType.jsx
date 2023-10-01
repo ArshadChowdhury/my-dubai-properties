@@ -169,6 +169,8 @@ const FilterSelect = (props) => {
     };
   }, []);
 
+  console.log(allItemsArray);
+
   return (
     <>
       <div
@@ -176,7 +178,14 @@ const FilterSelect = (props) => {
         className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-sm items-center !h-full !w-[230px] relative px-6 py-2 z-[100]"
         onClick={handleOnClick}
       >
-        {selectedValue}
+        {selectedValue ===
+        (allItemsArray[0].areaName ||
+          allItemsArray[0].name ||
+          allItemsArray[0]) ? (
+          <span className="truncate">{selectedValue}</span>
+        ) : (
+          <span className="text-[#F1BF3F] truncate">{selectedValue}</span>
+        )}
         <span className="group-hover:text-[#F1BF3F]">
           <BsFillCaretDownFill />
         </span>

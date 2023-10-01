@@ -158,14 +158,15 @@ const PropertyAreaPage = (props) => {
         <DeveloperDetailsRouteLink
           locationName={singleDevData?.propertyArea?.areaName}
           homeData={homeData}
+          buttonHide={true}
         />
         <ContactUsModal homeData={homeData} />
         <PropertiesForArea developerDetails={singleDevData} />
         <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
-            <div className="py-4">
-              <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
-            </div>
+            {/* <div className="py-4"> */}
+            <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
+            {/* </div> */}
           </div>
           <div className="hidden md:flex sm:px-12 md:px-[4.5rem] lg:px-28 xl:px-0 2xl:px-[29px] flex-wrap">
             <div className="w-full md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
@@ -237,7 +238,7 @@ const PropertyAreaPage = (props) => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="md:hidden">
           <SinglePropertyAreaFilterModal
             developerId={developerId}
             setPage={setPage}

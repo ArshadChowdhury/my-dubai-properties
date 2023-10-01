@@ -11,7 +11,7 @@ const PropertiesForArea = (props) => {
   return (
     <section className="z-10">
       <Skeleton className="mt-5 md:mt-10 px-5">
-        <div className="w-full md:w-[25%] mt-10 md:mt-0">
+        <div className="w-full md:w-[25%] mt-14 md:mt-0">
           <HeadingBox heading={heading} />
         </div>
 
@@ -29,15 +29,15 @@ const PropertiesForArea = (props) => {
               {description ||
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolore dolor delectus repudiandae, nisi illo, tempore corporis ratione ut soluta libero porro quas aliquam voluptas ab dolorum nihil. Placeat quasi quibusdam omnis quos ratione repellendus, fuga natus obcaecati optio quisquam illum fugit voluptates, id doloremque corporis voluptatem inventore est quam?"}{" "}
             </p>
-            <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 ">
-              {/* <Image
+            {/* <div className="mt-6 md:hidden pt-3 lg:p-8 rgba-white-10 w-2/4 m-auto border border-[#bea04e] flex justify-center items-center bg-white bg-opacity-20 "> */}
+            {/* <Image
                 height={400}
                 width={400}
                 className="mb-2"
                 src={developerDetails?.logo}
                 alt={developerDetails?.name}
               /> */}
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </Skeleton>

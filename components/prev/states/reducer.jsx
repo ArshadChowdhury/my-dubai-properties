@@ -20,6 +20,7 @@ export const initialState = {
     propertyTypes: null,
     completions: null,
     beds: null,
+    developers: null,
   },
 
   filterValues: {

@@ -11,7 +11,7 @@ const FilterSelectMob = (props) => {
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
-  const propertyAreaId = searchParams.get("propertyAreas");
+  const developerId = searchParams.get("developers");
   const propertyTypeId = searchParams.get("propertyTypes");
   const beds = searchParams.get("beds");
   const completions = searchParams.get("completions");
@@ -23,14 +23,14 @@ const FilterSelectMob = (props) => {
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
-      case filterTexts?.dropdownDubaiArea:
+      case "Developers":
         allItemsArray?.unshift({
           id: null,
-          areaName: filterTexts?.dropdownDubaiArea,
+          name: "Developers",
         });
         return (
-          props?.selectBy?.find((item) => item._id === propertyAreaId)
-            ?.areaName || allItemsArray[0].areaName
+          props?.selectBy?.find((item) => item._id === developerId)?.name ||
+          allItemsArray[0].name
         );
       case filterTexts?.dropdownPropertyType:
         allItemsArray?.unshift({
@@ -77,17 +77,17 @@ const FilterSelectMob = (props) => {
         });
         setSelectedValue(content);
       }
-    } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
-      if (content.areaName === filterTexts?.dropdownDubaiArea) {
-        urlParams.delete("propertyAreas");
-        setSelectedValue(content.areaName);
-      } else if (content.areaName) {
+    } else if (props.searchBy === "Developers") {
+      if (content.name === "Developers") {
+        urlParams.delete("developers");
+        setSelectedValue(content.name);
+      } else if (content.name) {
         dispatch({
           type: "setSingleDevFilterValuesMob",
-          item: { ...singleDevFilterValuesMob, propertyAreas: content._id },
+          item: { ...singleDevFilterValuesMob, developers: content._id },
         });
-        urlParams.set("propertyAreas", content._id);
-        setSelectedValue(content.areaName);
+        urlParams.set("developers", content._id);
+        setSelectedValue(content.name);
       }
     } else if (props.searchBy === filterTexts?.dropdownCompletion) {
       if (content === filterTexts?.dropdownCompletion) {

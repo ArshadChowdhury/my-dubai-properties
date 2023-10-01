@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import SingleDevFilterSearch from "./prev/SingleDevFilterSearch";
+import SinglePropertyTypeFilterSearch from "./prev/SinglePropertyTypeFilterSearch";
 import BtnItem from "@/components/prev/BtnItem";
 import BtnItemOutline from "@/components/prev/BtnItemOutline";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import { useRouter } from "next/navigation";
 
-const FilterModal = (props) => {
+const SinglePropertyTypeFilterModal = (props) => {
   const {
     filterListData,
     setPage,
@@ -16,14 +16,14 @@ const FilterModal = (props) => {
   const router = useRouter();
   const [{ singleDevFilterValuesMob }, dispatch] = useStateValue();
   const propertyAreaId = singleDevFilterValuesMob?.propertyAreas;
-  const propertyTypeId = singleDevFilterValuesMob?.propertyTypes;
+  const developerId = singleDevFilterValuesMob?.developers;
   const completions = singleDevFilterValuesMob?.completions;
   const beds = singleDevFilterValuesMob?.beds;
 
   const queryParams = [];
 
-  if (propertyTypeId) {
-    queryParams.push(`propertyTypes=${propertyTypeId}`);
+  if (developerId) {
+    queryParams.push(`developers=${developerId}`);
   }
 
   if (propertyAreaId) {
@@ -70,7 +70,7 @@ const FilterModal = (props) => {
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
   const handleReset = () => {
-    router.push(`/developers/${singleDeveloperId}`);
+    router.push(`/property-type/${singleDeveloperId}`);
     props.setIsFilterModalOpen(false);
     dispatch({ type: "setFilterRoute", item: null });
   };
@@ -78,7 +78,7 @@ const FilterModal = (props) => {
   const hadleSubmit = () => {
     const updatedUrl = queryParametersString
       ? `?${queryParametersString}`
-      : `/developers/${singleDeveloperId}`;
+      : `/property-type/${singleDeveloperId}`;
     props.setPage(1);
     router.push(updatedUrl);
     if (props.isFilterModalOpen) {
@@ -89,7 +89,7 @@ const FilterModal = (props) => {
   return props.isFilterModalOpen ? (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-900 z-[100]">
       <div className="w-[75%] h-[310px] p-[25px] flex flex-col gap-[20px] rounded-[10px] border-2 border-[#c4c4c4] filter-modal-bg filter-modal-content">
-        <SingleDevFilterSearch
+        <SinglePropertyTypeFilterSearch
           singleDeveloperId={singleDeveloperId}
           singleDevData={singleDevData}
           homeData={homeData}
@@ -113,4 +113,4 @@ const FilterModal = (props) => {
   ) : null;
 };
 
-export default FilterModal;
+export default SinglePropertyTypeFilterModal;
