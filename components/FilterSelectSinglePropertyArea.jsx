@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 
-const FilterSelect = (props) => {
+const FilterSelectSinglePropertyArea = (props) => {
   const { developerId, filterTexts, setPage } = props;
   const router = useRouter();
   const filterRef = useRef(null);
@@ -20,54 +20,54 @@ const FilterSelect = (props) => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
 
-  // const getSelectedValue = () => {
-  //   switch (props?.searchBy) {
-  //     case filterTexts?.dropdownDubaiArea:
-  //       allItemsArray?.unshift({
-  //         id: null,
-  //         areaName: filterTexts?.dropdownDubaiArea,
-  //       });
-  //       return (
-  //         props?.selectBy?.find((item) => item._id === propertyAreaId)
-  //           ?.areaName || allItemsArray[0]?.areaName
-  //       );
-  //     case filterTexts?.dropdownPropertyType:
-  //       allItemsArray?.unshift({
-  //         id: null,
-  //         name: filterTexts?.dropdownPropertyType,
-  //       });
-  //       return (
-  //         props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
-  //         allItemsArray[0]?.name
-  //       );
-  //     case filterTexts?.dropdownCompletion:
-  //       allItemsArray?.unshift(filterTexts?.dropdownCompletion);
-  //       return (
-  //         props?.selectBy?.find((item) => item == completions) ||
-  //         allItemsArray[0]
-  //       );
-  //     case filterTexts?.dropdownBeds:
-  //       allItemsArray?.unshift(filterTexts?.dropdownBeds);
-  //       return (
-  //         props?.selectBy?.find((item) => item == beds) || allItemsArray[0]
-  //       );
-  //     default:
-  //       return null;
-  //   }
-  // };
+  //   const getSelectedValue = () => {
+  //     switch (props?.searchBy) {
+  //       case "Developers":
+  //         allItemsArray?.unshift({
+  //           id: null,
+  //           name: "Developers",
+  //         });
+  //         return (
+  //           props?.selectBy?.find((item) => item._id === propertyAreaId)?.name ||
+  //           allItemsArray[0]?.name
+  //         );
+  //       case filterTexts?.dropdownPropertyType:
+  //         allItemsArray?.unshift({
+  //           id: null,
+  //           name: filterTexts?.dropdownPropertyType,
+  //         });
+  //         return (
+  //           props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
+  //           allItemsArray[0]?.name
+  //         );
+  //       case filterTexts?.dropdownCompletion:
+  //         allItemsArray?.unshift(filterTexts?.dropdownCompletion);
+  //         return (
+  //           props?.selectBy?.find((item) => item == completions) ||
+  //           allItemsArray[0]
+  //         );
+  //       case filterTexts?.dropdownBeds:
+  //         allItemsArray?.unshift(filterTexts?.dropdownBeds);
+  //         return (
+  //           props?.selectBy?.find((item) => item == beds) || allItemsArray[0]
+  //         );
+  //       default:
+  //         return null;
+  //     }
+  //   };
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
-      case filterTexts?.dropdownDubaiArea:
+      case "Developers":
         if (allItemsArray && allItemsArray.length > 0) {
           allItemsArray.unshift({
             id: null,
-            areaName: filterTexts?.dropdownDubaiArea,
+            name: "Developers",
           });
           const selectedItem = props?.selectBy?.find(
             (item) => item._id === propertyAreaId
           );
-          return selectedItem?.areaName || allItemsArray[0]?.areaName;
+          return selectedItem?.name || allItemsArray[0]?.name;
         }
         return null;
       case filterTexts?.dropdownPropertyType:
@@ -120,13 +120,13 @@ const FilterSelect = (props) => {
         urlParams.set("beds", content);
         setSelectedValue(content);
       }
-    } else if (props.searchBy === filterTexts?.dropdownDubaiArea) {
-      if (content.areaName === filterTexts?.dropdownDubaiArea) {
-        urlParams.delete("propertyAreas");
-        setSelectedValue(content.areaName);
-      } else if (content.areaName) {
-        urlParams.set("propertyAreas", content._id);
-        setSelectedValue(content.areaName);
+    } else if (props.searchBy === "Developers") {
+      if (content.name === "Developers") {
+        urlParams.delete("developers");
+        setSelectedValue(content.name);
+      } else if (content.name) {
+        urlParams.set("developers", content._id);
+        setSelectedValue(content.name);
       }
     } else if (props.searchBy === filterTexts?.dropdownCompletion) {
       if (content === filterTexts?.dropdownCompletion) {
@@ -148,7 +148,7 @@ const FilterSelect = (props) => {
     const updatedQueryString = urlParams.toString();
     const updatedUrl = updatedQueryString
       ? `?${updatedQueryString}`
-      : `/developers/${developerId}`;
+      : `/property-area/${developerId}`;
     props.setPage(1);
     router.push(updatedUrl);
   };
@@ -204,4 +204,4 @@ const FilterSelect = (props) => {
   );
 };
 
-export default FilterSelect;
+export default FilterSelectSinglePropertyArea;

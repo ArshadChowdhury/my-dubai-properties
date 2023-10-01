@@ -22,6 +22,7 @@ import LoadingState from "@/components/LoadingState";
 const SingleDeveloperView = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
   const pathname = usePathname();
+  const [showCount, setShowCount] = useState(5);
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
   const [page, setPage] = useState(1);
@@ -122,7 +123,7 @@ const SingleDeveloperView = (props) => {
     return <LoadingState />;
   }
 
-  if (isErrorHomeContent || isErrorSingleDev) {
+  if (isErrorHomeContent || isErrorSingleDev || isLoadingFilterData) {
     return (
       <p className="h-screen text-xl md:text-4xl flex justify-center items-center text-white">
         Something Went Wrong...
@@ -158,9 +159,7 @@ const SingleDeveloperView = (props) => {
         <EmmarProperties developerDetails={singleDevData} />
         <div className="sticky z-[50] top-0 left-0 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120] ml-4 mr-4 md:ml-[130px] md:mr-[130px] md:py-2">
           <div className="md:hidden">
-            <div className="py-4">
-              <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
-            </div>
+            <FilterSearchInput setIsFilterModalOpen={setIsFilterModalOpen} />
           </div>
           <div className="hidden md:flex sm:px-12 md:px-[4.5rem] lg:px-28 xl:px-0 2xl:px-[29px] flex-wrap">
             <div className="w-full md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
@@ -236,6 +235,8 @@ const SingleDeveloperView = (props) => {
           />
         </div>
         <TableView
+          showCount={showCount}
+          setShowCount={setShowCount}
           fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}

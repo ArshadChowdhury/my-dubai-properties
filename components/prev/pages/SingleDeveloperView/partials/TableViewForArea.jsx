@@ -14,18 +14,18 @@ import Link from "next/link";
 
 const TableViewForArea = (props) => {
   const [{ lang }] = useStateValue();
+  const [showCount, setShowCount] = useState(5);
   const devProjects = props.singleDevData?.propertiesByArea;
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
   const [filterData, setFilterData] = useState([]);
-  const [showCount, setShowCount] = useState(5);
   const dataLength = 6;
   const totalPages = Math.ceil(devProjects?.count / dataLength);
   const hasNextPage = props.page < totalPages;
   const tableTexts = props.singleDevData?.lang?.developerDetails;
 
   useEffect(() => {
-    if (props.singleDevData?.propertiesByArea?.data) {
+    if (devProjects) {
       if (props.page === 1) {
         setFilterData(devProjects?.data);
       } else {
@@ -36,8 +36,7 @@ const TableViewForArea = (props) => {
         setFilterData(uniqueArray);
       }
     }
-    console.log(devProjects?.data);
-  }, [devProjects?.data, props.page]);
+  }, [props.singleDevData?.propertiesByArea, props.page]);
 
   //   useEffect(() => {
   //     if (propertiesData) {
@@ -53,10 +52,6 @@ const TableViewForArea = (props) => {
   //       }
   //     }
   //   }, [propertiesData.data, page]);
-
-  const increaseCount = () => {
-    setShowCount((prev) => prev + 5);
-  };
 
   const handleShowButton = (e) => {
     setShowTableView(true);
@@ -147,7 +142,7 @@ const TableViewForArea = (props) => {
                         }
                       });
 
-                      if (idx < showCount && !showTableView) {
+                      if (idx < props.showCount && !showTableView) {
                         return (
                           <tr
                             key={idx}
@@ -307,6 +302,7 @@ const TableViewForArea = (props) => {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
                     {filterData?.map((property, idx) => {
+                      console.log(property);
                       const { images } = property;
                       const coverImage = images.filter((image) => {
                         if (image.type === "cover") {
@@ -314,7 +310,7 @@ const TableViewForArea = (props) => {
                         }
                       });
 
-                      if (idx < showCount && !showTableView) {
+                      if (idx < props.showCount && !showTableView) {
                         return (
                           <tr
                             key={idx}
@@ -324,7 +320,6 @@ const TableViewForArea = (props) => {
                               className="text-sm font-medium whitespace-nowrap"
                               style={{ width: "10%", height: "auto" }}
                             >
-                              {console.log(property)}
                               <Image
                                 height={300}
                                 width={300}
@@ -435,7 +430,10 @@ const TableViewForArea = (props) => {
             </div>
             {hasNextPage && (
               <div
-                onClick={props?.fetchMoreData}
+                onClick={() => {
+                  props?.fetchMoreData();
+                  props?.setShowCount((prev) => prev + 5);
+                }}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
                 <Image className="cursor-pointer" src={downOption} alt="" />

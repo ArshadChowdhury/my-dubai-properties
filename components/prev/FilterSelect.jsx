@@ -21,35 +21,85 @@ const FilterSelect = (props) => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
 
+  // const getSelectedValue = () => {
+  //   switch (props?.searchBy) {
+  //     case filterTexts?.textBoxPropertyArea:
+  //       allItemsArray?.unshift({
+  //         id: null,
+  //         areaName: filterTexts?.textBoxPropertyArea,
+  //       });
+  //       return (
+  //         props?.selectBy?.find((item) => item._id === propertyAreaId)
+  //           ?.areaName || allItemsArray[0].areaName
+  //       );
+  //     case filterTexts?.textBoxDevelopmentType:
+  //       allItemsArray?.unshift({
+  //         id: null,
+  //         name: filterTexts?.textBoxDevelopmentType,
+  //       });
+  //       return (
+  //         props?.selectBy?.find((item) => item._id === developmentTypeId)
+  //           ?.name || allItemsArray[0].name
+  //       );
+  //     case filterTexts?.textBoxDubaiDeveloper:
+  //       allItemsArray?.unshift({
+  //         id: null,
+  //         name: filterTexts?.textBoxDubaiDeveloper,
+  //       });
+  //       return (
+  //         props?.selectBy?.find((item) => item._id === developerId)?.name ||
+  //         allItemsArray[0].name
+  //       );
+  //     default:
+  //       return null;
+  //   }
+  // };
+
   const getSelectedValue = () => {
     switch (props?.searchBy) {
       case filterTexts?.textBoxPropertyArea:
-        allItemsArray?.unshift({
-          id: null,
-          areaName: filterTexts?.textBoxPropertyArea,
-        });
-        return (
-          props?.selectBy?.find((item) => item._id === propertyAreaId)
-            ?.areaName || allItemsArray[0].areaName
-        );
+        if (allItemsArray && allItemsArray.length > 0) {
+          allItemsArray.unshift({
+            id: null,
+            areaName: filterTexts?.textBoxPropertyArea,
+          });
+          const selectedItem = props?.selectBy?.find(
+            (item) => item._id === propertyAreaId
+          );
+          return (
+            selectedItem?.areaName ||
+            (allItemsArray[0] && allItemsArray[0].areaName)
+          );
+        }
+        return null;
       case filterTexts?.textBoxDevelopmentType:
-        allItemsArray?.unshift({
-          id: null,
-          name: filterTexts?.textBoxDevelopmentType,
-        });
-        return (
-          props?.selectBy?.find((item) => item._id === developmentTypeId)
-            ?.name || allItemsArray[0].name
-        );
+        if (allItemsArray && allItemsArray.length > 0) {
+          allItemsArray.unshift({
+            id: null,
+            name: filterTexts?.textBoxDevelopmentType,
+          });
+          const selectedItem = props?.selectBy?.find(
+            (item) => item._id === developmentTypeId
+          );
+          return (
+            selectedItem?.name || (allItemsArray[0] && allItemsArray[0].name)
+          );
+        }
+        return null;
       case filterTexts?.textBoxDubaiDeveloper:
-        allItemsArray?.unshift({
-          id: null,
-          name: filterTexts?.textBoxDubaiDeveloper,
-        });
-        return (
-          props?.selectBy?.find((item) => item._id === developerId)?.name ||
-          allItemsArray[0].name
-        );
+        if (allItemsArray && allItemsArray.length > 0) {
+          allItemsArray.unshift({
+            id: null,
+            name: filterTexts?.textBoxDubaiDeveloper,
+          });
+          const selectedItem = props?.selectBy?.find(
+            (item) => item._id === developerId
+          );
+          return (
+            selectedItem?.name || (allItemsArray[0] && allItemsArray[0].name)
+          );
+        }
+        return null;
       default:
         return null;
     }

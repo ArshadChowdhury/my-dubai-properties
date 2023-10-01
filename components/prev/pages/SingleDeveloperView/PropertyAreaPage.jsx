@@ -9,9 +9,11 @@ import TableViewForArea from "./partials/TableViewForArea";
 import { useStateValue } from "../../states/StateProvider";
 import { useQuery } from "@tanstack/react-query";
 import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDeveloper";
+import FilterSelectSinglePropertyArea from "@/components/FilterSelectSinglePropertyArea";
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
-import SingleDevFilterModal from "../../../SingleDevFilterModal";
+// import SingleDevFilterModal from "../../../SingleDevFilterModal";
+import SinglePropertyAreaFilterModal from "../../../SinglePropertyAreaFilterModal";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import Image from "next/image";
@@ -22,6 +24,7 @@ import PropertyListForArea from "./partials/PropertyListForArea";
 
 const PropertyAreaPage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
+  const [showCount, setShowCount] = useState(5);
   const pathname = usePathname();
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
@@ -45,6 +48,7 @@ const PropertyAreaPage = (props) => {
 
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
+    setShowCount((prev) => prev + 5);
     return async () => {
       const data = await instance
         .get(`/${lang}/property-area/${developerId}`, {
@@ -175,16 +179,16 @@ const PropertyAreaPage = (props) => {
                 />
               </div> */}
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyArea
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy={filterTexts?.dropdownDubaiArea}
+                  searchBy={"Developers"}
                   selectBy={filterListData?.developers}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyArea
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -193,7 +197,7 @@ const PropertyAreaPage = (props) => {
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyArea
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -202,7 +206,7 @@ const PropertyAreaPage = (props) => {
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyArea
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -234,7 +238,7 @@ const PropertyAreaPage = (props) => {
           </div>
         </div>
         <div className="">
-          <SingleDevFilterModal
+          <SinglePropertyAreaFilterModal
             developerId={developerId}
             setPage={setPage}
             homeData={homeData}
@@ -246,6 +250,8 @@ const PropertyAreaPage = (props) => {
           />
         </div>
         <TableViewForArea
+          showCount={showCount}
+          setShowCount={setShowCount}
           fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}

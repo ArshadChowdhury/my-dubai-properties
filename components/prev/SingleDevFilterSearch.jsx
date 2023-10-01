@@ -43,7 +43,7 @@ const FilterSearch = (props) => {
             setPage={setPage}
             homeData={homeData}
             searchBy={filterTexts?.dropdownPropertyType}
-            selectBy={filterListData?.developmentTypes}
+            selectBy={filterListData?.propertyTypes}
           />
         </div>
         <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">

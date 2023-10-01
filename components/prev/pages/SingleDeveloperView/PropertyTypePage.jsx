@@ -12,6 +12,7 @@ import FilterSelectSingleDeveloper from "@/components/FilterSelectSingleDevelope
 import home from "../../assets/images/global/icon-search.png";
 import FilterSearchInput from "../ViewProperty/partials/filterSearch";
 import SingleDevFilterModal from "../../../SingleDevFilterModal";
+import FilterSelectSinglePropertyType from "../../../FilterSelectSinglePropertyType";
 import Navbar2 from "../../Navbar2";
 import Footer from "../../Footer";
 import Image from "next/image";
@@ -24,6 +25,7 @@ import PropertyListForType from "./partials/PropertyListForType";
 const PropertyTypePage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
   const pathname = usePathname();
+  const [showCount, setShowCount] = useState(5);
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
   const [page, setPage] = useState(1);
@@ -46,6 +48,7 @@ const PropertyTypePage = (props) => {
 
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
+    setShowCount((prev) => prev + 5);
     return async () => {
       const data = await instance
         .get(`/${lang}/property-type/${developerId}`, {
@@ -167,7 +170,7 @@ const PropertyTypePage = (props) => {
           <div className="hidden md:flex sm:px-12 md:px-[4.5rem] lg:px-28 xl:px-0 2xl:px-[29px] flex-wrap">
             <div className="w-full md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F]">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyType
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -176,7 +179,7 @@ const PropertyTypePage = (props) => {
                 />
               </div>
               {/* <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyType
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -185,16 +188,16 @@ const PropertyTypePage = (props) => {
                 />
               </div> */}
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyType
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
-                  searchBy={filterTexts?.dropdownPropertyType}
+                  searchBy={"Developers"}
                   selectBy={filterListData?.developers}
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyType
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -203,7 +206,7 @@ const PropertyTypePage = (props) => {
                 />
               </div>
               <div className="mt-2 md:mt-0 w-[220px] md:auto relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10 md:mx-1 text-white hover:text-[#FFD15F] ">
-                <FilterSelectSingleDeveloper
+                <FilterSelectSinglePropertyType
                   filterTexts={filterTexts}
                   developerId={developerId}
                   setPage={setPage}
@@ -235,7 +238,7 @@ const PropertyTypePage = (props) => {
           </div>
         </div>
         <div className="">
-          <SingleDevFilterModal
+          <FilterSelectSinglePropertyType
             developerId={developerId}
             setPage={setPage}
             homeData={homeData}
@@ -247,6 +250,8 @@ const PropertyTypePage = (props) => {
           />
         </div>
         <TableViewForType
+          showCount={showCount}
+          setShowCount={setShowCount}
           fetchMoreData={fetchMoreData}
           filterParams={filterParams}
           page={page}

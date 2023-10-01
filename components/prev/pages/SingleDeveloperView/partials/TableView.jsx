@@ -15,10 +15,11 @@ import Link from "next/link";
 const TableView = (props) => {
   const [{ lang }] = useStateValue();
   const devProjects = props.singleDevData?.developerProperty;
+  const tableTexts = props.singleDevData?.lang?.developerDetails;
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
   const [filterData, setFilterData] = useState([]);
-  const [showCount, setShowCount] = useState(5);
+
   const dataLength = 6;
   const totalPages = Math.ceil(devProjects?.count / dataLength);
   const hasNextPage = props.page < totalPages;
@@ -35,15 +36,7 @@ const TableView = (props) => {
         setFilterData(uniqueArray);
       }
     }
-  }, [devProjects, filterData, props.page]);
-
-  const increaseCount = () => {
-    setShowCount((prev) => prev + 5);
-  };
-
-  const handleShowButton = (e) => {
-    setShowTableView(true);
-  };
+  }, [props.singleDevData?.developerProperty, props.page]);
 
   return (
     <Skeleton className={"px-5"}>
@@ -87,37 +80,37 @@ const TableView = (props) => {
                         scope="col"
                         className="text-right py-3 text-xs font-bold text-gray-500 uppercase"
                       >
-                        IMAGE
+                        {tableTexts?.columnImage}
                       </th>
                       <th
                         scope="col"
                         className="pr-4 py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Title
+                        {tableTexts?.columnTitle}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Dubai Area
+                        {tableTexts?.columnArea}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Bed
+                        {tableTexts?.columnBeds}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Type
+                        {tableTexts?.columnPropertyType}
                       </th>
                       <th
                         scope="col"
                         className="py-3 text-xs font-bold text-right text-gray-500 uppercase"
                       >
-                        Completion
+                        {tableTexts?.columnCompletion}
                       </th>
                     </tr>
                   </thead>
@@ -130,7 +123,7 @@ const TableView = (props) => {
                         }
                       });
 
-                      if (idx < showCount && !showTableView) {
+                      if (idx < props?.showCount && !showTableView) {
                         return (
                           <tr
                             key={idx}
@@ -254,37 +247,37 @@ const TableView = (props) => {
                         scope="col"
                         className="py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        IMAGE
+                        {tableTexts?.columnImage}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left  text-gray-500 uppercase"
                       >
-                        Title
+                        {tableTexts?.columnTitle}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Dubai Area
+                        {tableTexts?.columnArea}{" "}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Bed
+                        {tableTexts?.columnBeds}
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Type
+                        {tableTexts?.columnPropertyType}
                       </th>
                       <th
                         scope="col"
                         className="flex px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                       >
-                        Completion
+                        {tableTexts?.columnCompletion}
                       </th>
                     </tr>
                   </thead>
@@ -297,7 +290,7 @@ const TableView = (props) => {
                         }
                       });
 
-                      if (idx < showCount && !showTableView) {
+                      if (idx < props?.showCount && !showTableView) {
                         return (
                           <tr
                             key={idx}
@@ -307,7 +300,6 @@ const TableView = (props) => {
                               className="text-sm font-medium whitespace-nowrap"
                               style={{ width: "10%", height: "auto" }}
                             >
-                              {console.log(property)}
                               <Image
                                 height={300}
                                 width={300}
@@ -418,7 +410,10 @@ const TableView = (props) => {
             </div>
             {hasNextPage && (
               <div
-                onClick={props?.fetchMoreData}
+                onClick={() => {
+                  props?.fetchMoreData();
+                  props?.setShowCount((prev) => prev + 5);
+                }}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
                 <Image src={downOption} alt="" />
