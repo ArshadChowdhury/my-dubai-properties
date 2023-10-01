@@ -30,7 +30,7 @@ const PhotoGallery = (props) => {
   const [controlledSwiper, setControlledSwiper] = useState(null);
   const [strokeLeft, setStrokeLeft] = useState("#B4B4B4");
   const [strokeRight, setStrokeRight] = useState("#B4B4B4");
-  const [crossColor, setCrossColor] = useState("white");
+  const [crossStroke, setCrossStroke] = useState("#B4B4B4");
   const gallery = props?.singleProperty?.property?.images;
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,11 +75,11 @@ const PhotoGallery = (props) => {
   };
 
   const onMouseEnterCrossHandler = () => {
-    setCrossColor("#FFD15F");
+    setCrossStroke("#FFD15F");
   };
 
   const onMouseOutCrossHandler = () => {
-    setCrossColor("#B4B4B4");
+    setCrossStroke("#B4B4B4");
   };
 
   const onMouseLeaveLeftHandler = () => {
@@ -198,6 +198,7 @@ const PhotoGallery = (props) => {
               onClick={(e) => {
                 e.stopPropagation();
                 setIsModalOpen(false);
+                setCrossStroke("#B4B4B4");
               }}
               onMouseEnter={onMouseEnterCrossHandler}
               onMouseLeave={onMouseOutCrossHandler}
@@ -205,21 +206,21 @@ const PhotoGallery = (props) => {
             >
               <svg
                 style={{
-                  color: crossColor,
+                  // color: crossColor,
                   borderRadius: "999px",
                   backgroundColor: "gray",
                 }}
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
                 height="28"
-                fill="#B4B4B4"
+                fill={crossStroke}
                 className="bi bi-x"
                 viewBox="0 0 16 16"
               >
                 {" "}
                 <path
                   d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                  fill="white"
+                  fill={crossStroke}
                 ></path>{" "}
               </svg>
             </button>

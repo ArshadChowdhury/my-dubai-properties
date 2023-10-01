@@ -74,8 +74,8 @@ const LatestPropertyTop = (props) => {
 
         <div className="block md:right-[290px] mt-20 md:mt-0 w-full relative overflow-hidden scrollbar-hide">
           <div
-            className={`${
-              isMobileView ? "mb-flex" : "d-flex"
+            className={`${isMobileView ? "mb-flex" : "d-flex"} ${
+              lang === "ar" ? "rtl-flex" : ""
             } my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2`}
             style={{
               animationPlayState: isHovered ? "paused" : animationState,

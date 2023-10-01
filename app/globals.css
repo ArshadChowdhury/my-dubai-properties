@@ -3785,6 +3785,24 @@ article.nextSlide {
   scrollbar-width: none;
 }
 
+.rtl-flex {
+  display: flex;
+  overflow: visible;
+  animation: animateContainerRTL 30s linear forwards infinite;
+  animation-play-state: paused;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes animateContainerRTL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @keyframes animateContainer {
   0% {
     transform: translateX(0);

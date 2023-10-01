@@ -31,7 +31,7 @@ const PaymentPlan = (props) => {
     props?.singleProperty?.lang?.propertyDetails?.titlePaymentPlan;
 
   const [firstPlan, setFirstPlan] = useState({
-    title: planTitle(props?.paymentPlan[0] || ""),
+    title: planTitle(props?.paymentPlan[0]),
     description: props?.paymentPlan[0]?.milestone,
   });
   const [planList, setPlanList] = useState([
@@ -440,6 +440,7 @@ const PaymentPlan = (props) => {
                   lang === "ar" ? "mr-4 ml-6" : "ml-4 mr-6"
                 }`}
               >
+                {console.log(item)}
                 <div
                   className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                 >

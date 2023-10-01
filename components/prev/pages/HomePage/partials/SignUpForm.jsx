@@ -4,8 +4,10 @@ import BtnHexagon from "@/components/prev/BtnHexagon";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useStateValue } from "@/components/prev/states/StateProvider";
 const SignUpForm = (props) => {
   const homeData = props?.homeData?.lang?.newsletter;
+  const [{ lang }] = useStateValue();
   const [email, setEmail] = useState("");
   const [subsPopUp, setSubsPopUp] = useState(false);
   const [isMobileView, setIsMobileView] = useState(true);
@@ -127,8 +129,14 @@ const SignUpForm = (props) => {
                   alt=""
                   className="my-2 pb-2"
                 />
-                <h1 className="text-xl">Form Submitted!</h1>
-                <p>
+                <h1
+                  className={`text-xl ${
+                    lang === "ar" ? "text-right" : "text-left"
+                  }`}
+                >
+                  Form Submitted !
+                </h1>
+                <p className={`text-center`}>
                   We&apos;d like to show you notifictions for the latest news
                   and updates
                 </p>
