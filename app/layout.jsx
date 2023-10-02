@@ -1,9 +1,6 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import Providers from "@/components/Providers";
 import OtherNecessaryComponents from "@/components/OtherNecessaryComponents";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "My Dubai Properties",
@@ -14,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={inter.className}>
+      <body suppressHydrationWarning={true}>
         <Providers>
           <main className="relative flow-root bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] overflow-x-clip">
             {children}

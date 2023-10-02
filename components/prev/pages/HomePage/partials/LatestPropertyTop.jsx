@@ -54,7 +54,24 @@ const LatestPropertyTop = (props) => {
   return (
     <div className="w-full flex pt-[3rem] md:pt-0">
       <div className="w-full basis-[95%] z-10">
-        <div className="px-5 sm:pl-12 md:pl-20 lg:pl-[130px] md:py-[-4px] xl:pl-[148px] 2xl:pl-[178px] flex flex-col md:flex-row items-center justify-between w-full md:pr-[155px]">
+        <div className="md:ml-[15px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-42 flex flex-col md:flex-row justify-between w-full md:pr-[155px]">
+          <div className="mb-12 md:mb-0">
+            <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
+          </div>
+          <div
+            className={`w-1/4 ${
+              lang === "ar" ? "ml-auto" : "mr-auto"
+            } md:mr-[13rem]`}
+          >
+            <BtnElore2
+              route={
+                "properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+              }
+              title={props?.homeData?.lang?.slider?.buttonExplore}
+            />
+          </div>
+        </div>
+        {/* <div className="px-5 sm:pl-12 md:pl-20 lg:pl-[130px] md:py-[-4px] xl:pl-[148px] 2xl:pl-[178px] flex flex-col md:flex-row items-center justify-between w-full md:pr-[155px]">
           <div className="mb-12 md:mb-0">
             <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
           </div>
@@ -70,7 +87,7 @@ const LatestPropertyTop = (props) => {
               title={props.homeData.lang.slider.buttonExplore}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="block md:right-[290px] mt-20 md:mt-0 w-full relative overflow-hidden scrollbar-hide">
           <div

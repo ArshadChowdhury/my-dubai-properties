@@ -51,13 +51,19 @@ const HeroSection = (props) => {
               style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             ></div>
             <div className="w-[605px] flex flex-col justify-center items-center text-center px-5 md:px-0 z-10">
-              <h2 className="font-fuemen text-[#f1bf3f] text-[24px] lg:text-[38px]">
+              <h2
+                className={
+                  "font-fuemen text-[#f1bf3f] text-[24px] lg:text-[38px]"
+                }
+              >
                 {slider.description1}
               </h2>
-              <h1 className="font-expleteusSans text-[28px] lg:text-[44px] font-bold text-white text-center">
+              <h1
+                className={`font-expleteusSans text-[28px] lg:text-[44px] font-semibold text-white text-center`}
+              >
                 {slider.description2}
               </h1>
-              <p className="text-white font-saira text-[14px]">
+              <p className={`text-white font-saira text-[16px] pt-1`}>
                 {slider.description3}
               </p>
               <div className="w-full md:hidden mt-10">
