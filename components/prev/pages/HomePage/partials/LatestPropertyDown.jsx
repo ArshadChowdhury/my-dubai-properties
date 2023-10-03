@@ -103,7 +103,7 @@ const LatestPropertyDown = (props) => {
             {properties.map((property, idx) => (
               <GridItemForSlider
                 id={idx + 1}
-                key={idx + 2}
+                key={idx + 1}
                 coverImage={property.images.filter((image) => {
                   if (image.type === "cover") {
                     return image.path;
