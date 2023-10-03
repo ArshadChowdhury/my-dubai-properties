@@ -142,7 +142,11 @@ const LatestPropertyDown = (props) => {
       </div>
       <div className="absolute left-0 top-[20%] md:top-[0%] w-[450px] h-[300px] md:w-[700px] md:h-[500px] opacity-70 flex items-center -z-10">
         <div>
-          <Image className="md:mt-[155px]" src={ProptyOffPlan} alt="" />
+          <Image
+            className="md:mt-[155px]"
+            src={ProptyOffPlan || "/placeholder-image.png"}
+            alt=""
+          />
         </div>
       </div>
       <div

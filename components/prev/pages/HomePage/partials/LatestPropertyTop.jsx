@@ -140,7 +140,7 @@ const LatestPropertyTop = (props) => {
         <div className="overlay"></div>
         <div className="">
           <Image
-            src={ProptyOffPlan}
+            src={ProptyOffPlan || "/placeholder-image.png"}
             alt=""
             className="opacity-70 md:ml-[100px] md:mt-[150px]"
           />
