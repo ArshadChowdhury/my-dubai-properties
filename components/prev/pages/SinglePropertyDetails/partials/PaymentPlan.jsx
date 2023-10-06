@@ -171,58 +171,43 @@ const PaymentPlan = (props) => {
     });
   };
 
-  useEffect(
-    lang === "en"
-      ? () => {
-          const ctx = gsap?.context(() => {
-            gsap?.to(".p-item", {
-              x: -800,
-              duration: 15,
-              stagger: 1,
-              onUpdate: checkHit,
-              scrollTrigger: {
-                trigger: ".payment-section",
-                scrub: 1,
-                ease: "linear",
-                markers: false,
-                start: "top 10%",
-                end: "bottom -280%",
-                pin: true,
-                pinType: "fixed",
-              },
-            });
-          });
+  const animatePaymentSection = (xValue, onUpdateCallback) => {
+    gsap?.to(".p-item", {
+      x: xValue,
+      duration: 15,
+      stagger: 1,
+      onUpdate: onUpdateCallback,
+      scrollTrigger: {
+        trigger: ".payment-section",
+        scrub: 1,
+        ease: "linear",
+        markers: false,
+        start: "top 10%",
+        end: "bottom -280%",
+        pin: true,
+        pinType: "fixed",
+      },
+    });
+  };
 
-          return () => {
-            ctx.revert();
-          };
+  const animatePaymentSectionBasedOnLanguage = (lang) => {
+    return lang === "en"
+      ? () => {
+          animatePaymentSection(-800, checkHit);
         }
       : () => {
-          const ctx = gsap?.context(() => {
-            gsap?.to(".p-item", {
-              x: 800,
-              duration: 15,
-              stagger: 1,
-              onUpdate: checkHitRight,
-              scrollTrigger: {
-                trigger: ".payment-section",
-                scrub: 1,
-                ease: "linear",
-                markers: false,
-                start: "top 10%",
-                end: "bottom -280%",
-                pin: true,
-                pinType: "fixed",
-              },
-            });
-          });
+          animatePaymentSection(800, checkHitRight);
+        };
+  };
 
-          return () => {
-            ctx.revert();
-          };
-        },
-    []
-  );
+  useEffect(() => {
+    const animationCallback = animatePaymentSectionBasedOnLanguage(lang);
+    const animationContext = gsap?.context(animationCallback);
+
+    return () => {
+      animationContext.revert();
+    };
+  }, [lang]);
 
   return (
     <>
