@@ -52,6 +52,8 @@ const PaymentPlan = (props) => {
   const parentRef = useRef(null);
   const scrollDiv = useRef(null);
 
+  const [visiblePlans, setVisiblePlans] = useState([]);
+
   const checkHit = () => {
     const holder = document
       ?.querySelector(".holder")
@@ -135,6 +137,7 @@ const PaymentPlan = (props) => {
         const isDuplicate = paymentPlan?.some(
           (plan) => plan.description === item.milestone
         );
+
         if (!isDuplicate) {
           setFirstPlan({
             title: planTitle(item),
@@ -174,7 +177,7 @@ const PaymentPlan = (props) => {
   const animatePaymentSection = (xValue, onUpdateCallback) => {
     gsap?.to(".p-item", {
       x: xValue,
-      duration: 15,
+      duration: 10,
       stagger: 1,
       onUpdate: onUpdateCallback,
       scrollTrigger: {
@@ -191,12 +194,12 @@ const PaymentPlan = (props) => {
   };
 
   const animatePaymentSectionBasedOnLanguage = (lang) => {
-    return lang === "en"
+    return lang === "ar"
       ? () => {
-          animatePaymentSection(-800, checkHit);
+          animatePaymentSection(1400, checkHitRight);
         }
       : () => {
-          animatePaymentSection(800, checkHitRight);
+          animatePaymentSection(-1400, checkHit);
         };
   };
 
@@ -209,98 +212,11 @@ const PaymentPlan = (props) => {
     };
   }, [lang]);
 
+  console.log(paymentPlan.length);
+
   return (
     <>
-      {lang === "en" ? (
-        <section
-          ref={parentRef}
-          className={`hidden md:block md:relative mb-5 mt-16 md:mt-0 payment-section`}
-        >
-          <SkeletonSingleProperty className="px-5 flex-col">
-            <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
-              <HeadingText
-                innerText={heading}
-                className="items-start text-center w-full md:w-auto"
-                size="px-4"
-              />
-            </div>
-            <div className="w-full relative mt-20 z-10">
-              <div
-                ref={scrollDiv}
-                className="hidden md:flex justify-end items-center w-3/4 pt-52 relative left-[36%]"
-              >
-                <div
-                  className={`basis-1/2 flex justify-center items-center z-10 holder`}
-                >
-                  <div className={`absolute -top-[25px] left-[5%] px-2 w-auto`}>
-                    <h1
-                      className={`font-oswald uppercase text-white text-[75px]`}
-                    >
-                      {firstPlan.title}
-                    </h1>
-                    <p className="font-robotoCondensed text-[16px] text-white tracking-[0]">
-                      {firstPlan.description}
-                    </p>
-                  </div>
-                  <div className="w-[6rem] h-[6rem] bg-white-0 rounded-full flex justify-center items-center">
-                    <div className="circle-border">
-                      <div className="circle-white">
-                        <p className="flex flex-col justify-center items-center">
-                          <Image src={upArrow2} alt="" />
-                          <Image src={upArrow} alt="" />
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {paymentPlan.map((item, index) => (
-                  <div
-                    className={`mt-4 basis-1/2 flex justify-center ${
-                      lang === "ar" ? "pl-10" : "pr-12"
-                    } items-center z-10 p-item p-item-${index}`}
-                    key={`payment-${index}`}
-                  >
-                    <PaymentCircle
-                      title={
-                        item.percentage
-                          ? item.percentage
-                          : item.installment
-                          ? item.installment
-                          : item.date
-                      }
-                      description={item.milestone}
-                      id={index}
-                      refer={circleDivRef}
-                      setPanelRef={setPanelRef}
-                    />
-                  </div>
-                ))}
-                <div className="absolute w-full top-[7.6rem] md:top-[16.5rem] -right-[4.3rem] md:-right-32 h-[1px] md:h-[2px] bg-yellow-400"></div>
-              </div>
-            </div>
-          </SkeletonSingleProperty>
-          <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
-            {planList.map((plan, index) => (
-              <div key={index} className="flex items-center">
-                <Image
-                  src={tick}
-                  alt="tick"
-                  className="w-[20px] h-[11.43px] ml-10"
-                />
-                <div className="ml-2">
-                  {plan.title} {plan.description}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
-            <h1 className="text-[60px]">Payment Plan</h1>
-          </div>
-        </section>
-      ) : (
-        // RTL desktop
-
+      {lang === "ar" ? (
         <section
           ref={parentRef}
           className={`hidden md:block md:relative mb-5 mt-16 md:mt-0 payment-section`}
@@ -373,6 +289,93 @@ const PaymentPlan = (props) => {
             {planList.map((plan, index) => (
               <div key={index} className="flex gap-3 items-center">
                 <Image src={tick} alt="tick" className="w-[20px] h-[11.43px]" />
+                <div className="ml-2">
+                  {plan.title} {plan.description}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
+            <h1 className="text-[60px]">Payment Plan</h1>
+          </div>
+        </section>
+      ) : (
+        // RTL desktop
+        <section
+          ref={parentRef}
+          className={`hidden md:block md:relative mb-5 mt-16 md:mt-0 payment-section`}
+        >
+          <SkeletonSingleProperty className="px-5 flex-col">
+            <div className="w-full md:w-[80%] h-auto ml-0 md:ml-2">
+              <HeadingText
+                innerText={heading}
+                className="items-start text-center w-full md:w-auto"
+                size="px-4"
+              />
+            </div>
+            <div className="w-full relative mt-20 z-10">
+              <div
+                ref={scrollDiv}
+                className="hidden md:flex justify-end items-center w-[1700px] pt-52 relative left-[36%]"
+              >
+                <div
+                  className={`basis-1/2 flex justify-center items-center z-10 holder`}
+                >
+                  <div className={`absolute -top-[25px] left-[3%] px-2 w-auto`}>
+                    <h1
+                      className={`font-oswald uppercase text-white text-[75px]`}
+                    >
+                      {firstPlan.title}
+                    </h1>
+                    <p className="font-robotoCondensed text-[16px] text-white tracking-[0]">
+                      {firstPlan.description}
+                    </p>
+                  </div>
+                  <div className="w-[6rem] h-[6rem] bg-white-0 rounded-full flex justify-center items-center">
+                    <div className="circle-border">
+                      <div className="circle-white">
+                        <p className="flex flex-col justify-center items-center">
+                          <Image src={upArrow2} alt="" />
+                          <Image src={upArrow} alt="" />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {paymentPlan.map((item, index) => (
+                  <div
+                    className={`mt-4 basis-1/2 flex justify-center ${
+                      lang === "ar" ? "pl-10" : "pr-12"
+                    } items-center z-10 p-item p-item-${index}`}
+                    key={`payment-${index}`}
+                  >
+                    <PaymentCircle
+                      title={
+                        item.percentage
+                          ? item.percentage
+                          : item.installment
+                          ? item.installment
+                          : item.date
+                      }
+                      description={item.milestone}
+                      id={index}
+                      refer={circleDivRef}
+                      setPanelRef={setPanelRef}
+                    />
+                  </div>
+                ))}
+                <div className="absolute w-screen top-[7.6rem] md:top-[16.5rem] -right-[4.3rem] md:-right-[320px] h-[1px] md:h-[2px] bg-yellow-400"></div>
+              </div>
+            </div>
+          </SkeletonSingleProperty>
+          <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
+            {planList.map((plan, index) => (
+              <div key={index} className="flex items-center">
+                <Image
+                  src={tick}
+                  alt="tick"
+                  className="w-[20px] h-[11.43px] ml-10"
+                />
                 <div className="ml-2">
                   {plan.title} {plan.description}
                 </div>
