@@ -54,7 +54,7 @@ const GridItemForSlider = (props) => {
           <Image
             width={700}
             height={700}
-            className="cursor-pointer cursor-pointer w-full h-fit aspect-[16/9]"
+            className="cursor-pointer w-full h-fit aspect-[16/9]"
             src={props.coverImage[0]?.path || "/placeholder-image.png"}
             alt="cover"
           />
@@ -65,15 +65,24 @@ const GridItemForSlider = (props) => {
           </h1>
           <div className="grid grid-cols-2 w-full">
             <div>
+              {console.log(props.property)}
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconLocation} alt="building" />
-                {props.areaName}
+                <Link href={`/property-area/${props?.propertyAreaId}`}>
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.areaName}
+                  </span>
+                </Link>
               </p>
             </div>
             <div>
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconBuilding} alt="building" />
-                {props.developerName}
+                <Link href={`/developers/${props?.developerId}`}>
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.developerName}
+                  </span>
+                </Link>
               </p>
             </div>
           </div>
@@ -81,7 +90,11 @@ const GridItemForSlider = (props) => {
             <div className="w-32">
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconVillas} alt="building" />
-                {props.propertyType}
+                <Link href={`/property-type/${props?.propertyTypeId}`}>
+                  <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                    {props.propertyType}
+                  </span>
+                </Link>
               </p>
             </div>
             <div className="flex gap-4 w-full">

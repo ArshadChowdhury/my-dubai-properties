@@ -111,8 +111,11 @@ const LatestPropertyDown = (props) => {
                 })}
                 propertyName={property.propertyName}
                 areaName={property.propertyArea.areaName}
+                propertyAreaId={property.propertyArea.id}
                 developerName={property.developerType.name}
+                developerId={property.developerType.id}
                 propertyType={property.propertyType.name}
+                propertyTypeId={property.propertyType.id}
                 unitSize={property.unitType.size}
                 type="home"
                 setIsHoveredCard={() => setHoveredCard(idx)}

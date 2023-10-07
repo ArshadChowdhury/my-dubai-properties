@@ -34,7 +34,19 @@ const PaymentPlan = (props) => {
     title: planTitle(props?.paymentPlan[0]),
     description: props?.paymentPlan[0]?.milestone,
   });
+  const [planListEn, setPlanListEn] = useState([
+    {
+      title: planTitle(props?.paymentPlan[0]),
+      description: props?.paymentPlan[0]?.milestone,
+    },
+  ]);
   const [planList, setPlanList] = useState([
+    {
+      title: planTitle(props?.paymentPlan[0]),
+      description: props?.paymentPlan[0]?.milestone,
+    },
+  ]);
+  const [planListAr, setPlanListAr] = useState([
     {
       title: planTitle(props?.paymentPlan[0]),
       description: props?.paymentPlan[0]?.milestone,
@@ -51,8 +63,7 @@ const PaymentPlan = (props) => {
   const circleDivRef = useRef(null);
   const parentRef = useRef(null);
   const scrollDiv = useRef(null);
-
-  const [visiblePlans, setVisiblePlans] = useState([]);
+  const yellowBar = useRef(null);
 
   const checkHit = () => {
     const holder = document
@@ -82,7 +93,7 @@ const PaymentPlan = (props) => {
             title: planTitle(item),
             description: item.milestone,
           });
-          setPlanList((prevPlanList) => {
+          setPlanListEn((prevPlanList) => {
             const isDuplicate = prevPlanList.some(
               (plan) => plan.description === item.milestone
             );
@@ -143,7 +154,7 @@ const PaymentPlan = (props) => {
             title: planTitle(item),
             description: item.milestone,
           });
-          setPlanList((prevPlanList) => {
+          setPlanListAr((prevPlanList) => {
             const isDuplicate = prevPlanList.some(
               (plan) => plan.description === item.milestone
             );
@@ -177,12 +188,12 @@ const PaymentPlan = (props) => {
   const animatePaymentSection = (xValue, onUpdateCallback) => {
     gsap?.to(".p-item", {
       x: xValue,
-      duration: 10,
+      duration: 25,
       stagger: 1,
       onUpdate: onUpdateCallback,
       scrollTrigger: {
         trigger: ".payment-section",
-        scrub: 1,
+        scrub: 0.8,
         ease: "linear",
         markers: false,
         start: "top 10%",
@@ -196,10 +207,10 @@ const PaymentPlan = (props) => {
   const animatePaymentSectionBasedOnLanguage = (lang) => {
     return lang === "ar"
       ? () => {
-          animatePaymentSection(1400, checkHitRight);
+          animatePaymentSection(paymentPlan.length * 230, checkHitRight);
         }
       : () => {
-          animatePaymentSection(-1400, checkHit);
+          animatePaymentSection(-(paymentPlan.length * 230), checkHit);
         };
   };
 
@@ -207,12 +218,29 @@ const PaymentPlan = (props) => {
     const animationCallback = animatePaymentSectionBasedOnLanguage(lang);
     const animationContext = gsap?.context(animationCallback);
 
+    setFirstPlan({
+      title: planTitle(props?.paymentPlan[0]),
+      description: props?.paymentPlan[0]?.milestone,
+    });
+    setPlanList([
+      {
+        title: planTitle(props?.paymentPlan[0]),
+        description: props?.paymentPlan[0]?.milestone,
+      },
+    ]);
     return () => {
       animationContext.revert();
     };
   }, [lang]);
 
-  console.log(paymentPlan.length);
+  useEffect(() => {
+    if (scrollDiv.current) {
+      let newWidth = paymentPlan.length * 300 - 100;
+      newWidth = Math.max(newWidth, 900);
+
+      scrollDiv.current.style.width = `${newWidth}px`;
+    }
+  }, [paymentPlan]);
 
   return (
     <>
@@ -235,17 +263,17 @@ const PaymentPlan = (props) => {
                 className="hidden md:flex justify-end items-center w-3/4 pt-52 relative right-[37%]"
               >
                 <div
-                  className={`basis-1/2 flex justify-start items-center z-10 holder`}
+                  className={`basis-1/2 flex justify-center items-center z-10 holder`}
                 >
                   <div
-                    className={`absolute -top-[25px] left-[78%] px-2 w-auto`}
+                    className={`absolute -top-[25px] left-[76%] px-2 w-auto`}
                   >
                     <h1
-                      className={`font-oswald uppercase text-white text-[75px]`}
+                      className={`font-oswald uppercase text-right text-white text-[75px]`}
                     >
                       {firstPlan.title}
                     </h1>
-                    <p className="font-robotoCondensed text-[16px] text-white tracking-[0] pr-4">
+                    <p className="font-robotoCondensed text-[16px] text-right text-white tracking-[0] pr-4">
                       {firstPlan.description}
                     </p>
                   </div>
@@ -260,7 +288,6 @@ const PaymentPlan = (props) => {
                     </div>
                   </div>
                 </div>
-
                 {paymentPlan.map((item, index) => (
                   <div
                     className={`mt-4 basis-1/2 flex justify-center items-center z-10 p-item p-item-${index} `}
@@ -281,12 +308,13 @@ const PaymentPlan = (props) => {
                     />
                   </div>
                 ))}
-                <div className="absolute w-full top-[7.6rem] md:top-[16.5rem] -right-[4.3rem] md:right-2 h-[1px] md:h-[2px] bg-yellow-400"></div>
+                <div className="absolute w-screen top-[7.6rem] md:top-[16.5rem] right-[90px] h-[1px] md:h-[2px] bg-yellow-400"></div>
+                {/* <div className="absolute w-full top-[7.6rem] md:top-[16.5rem] right-96 md:h-[2px] bg-yellow-400"></div> */}
               </div>
             </div>
           </SkeletonSingleProperty>
           <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] mr-[10%]">
-            {planList.map((plan, index) => (
+            {planListAr.map((plan, index) => (
               <div key={index} className="flex gap-3 items-center">
                 <Image src={tick} alt="tick" className="w-[20px] h-[11.43px]" />
                 <div className="ml-2">
@@ -300,7 +328,7 @@ const PaymentPlan = (props) => {
           </div>
         </section>
       ) : (
-        // RTL desktop
+        // English desktop
         <section
           ref={parentRef}
           className={`hidden md:block md:relative mb-5 mt-16 md:mt-0 payment-section`}
@@ -316,12 +344,12 @@ const PaymentPlan = (props) => {
             <div className="w-full relative mt-20 z-10">
               <div
                 ref={scrollDiv}
-                className="hidden md:flex justify-end items-center w-[1700px] pt-52 relative left-[36%]"
+                className={`hidden md:flex justify-end items-center pt-52 relative left-[35%]`}
               >
                 <div
                   className={`basis-1/2 flex justify-center items-center z-10 holder`}
                 >
-                  <div className={`absolute -top-[25px] left-[3%] px-2 w-auto`}>
+                  <div className={`absolute -top-[25px] left-[4%] px-2 w-auto`}>
                     <h1
                       className={`font-oswald uppercase text-white text-[75px]`}
                     >
@@ -364,12 +392,12 @@ const PaymentPlan = (props) => {
                     />
                   </div>
                 ))}
-                <div className="absolute w-screen top-[7.6rem] md:top-[16.5rem] -right-[4.3rem] md:-right-[320px] h-[1px] md:h-[2px] bg-yellow-400"></div>
+                <div className="absolute w-screen top-[7.6rem] md:top-[16.5rem] left-[102px] h-[1px] md:h-[2px] bg-yellow-400"></div>
               </div>
             </div>
           </SkeletonSingleProperty>
           <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
-            {planList.map((plan, index) => (
+            {planListEn.map((plan, index) => (
               <div key={index} className="flex items-center">
                 <Image
                   src={tick}
@@ -428,7 +456,6 @@ const PaymentPlan = (props) => {
                   lang === "ar" ? "mr-4 ml-6" : "ml-4 mr-6"
                 }`}
               >
-                {console.log(item)}
                 <div
                   className={`panel flex justify-center items-center w-[3.5rem] h-[3.5rem] bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D] rounded-full `}
                 >
@@ -461,7 +488,7 @@ const PaymentPlan = (props) => {
             ))}
           </div>
         </SkeletonSingleProperty>
-        <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
+        {/* <div className="hidden md:flex md:gap-2 md:flex-col justify-center text-white absolute top-[184px] ml-[7%]">
           {planList.map((plan, index) => (
             <div key={index} className="flex items-center">
               <Image
@@ -477,7 +504,7 @@ const PaymentPlan = (props) => {
         </div>
         <div className="-rotate-90 hidden md:absolute -right-[150px] top-[9rem] opacity-20 text-white mix-blend-overlay font-turretRoad">
           <h1 className="text-[60px]">Payment Plan</h1>
-        </div>
+        </div> */}
       </section>
     </>
   );

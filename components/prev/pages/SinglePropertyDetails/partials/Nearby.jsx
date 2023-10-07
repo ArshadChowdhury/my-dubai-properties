@@ -20,7 +20,7 @@ const Nearby = (props) => {
         <div className="w-full md:w-3/4 flex flex-col ml-auto">
           <HeadingText2
             innerText={heading}
-            className="items-start w-full md:w-1/3"
+            className="items-center w-full md:w-1/3"
           />
         </div>
 
