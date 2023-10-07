@@ -25,7 +25,7 @@ import PropertyListForType from "./partials/PropertyListForType";
 const PropertyTypePage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
   const pathname = usePathname();
-  const [showCount, setShowCount] = useState(5);
+  const [showCount, setShowCount] = useState(6);
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
   const [page, setPage] = useState(1);

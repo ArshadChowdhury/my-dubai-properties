@@ -24,7 +24,7 @@ import PropertyListForArea from "./partials/PropertyListForArea";
 
 const PropertyAreaPage = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
-  const [showCount, setShowCount] = useState(5);
+  const [showCount, setShowCount] = useState(6);
   const pathname = usePathname();
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];

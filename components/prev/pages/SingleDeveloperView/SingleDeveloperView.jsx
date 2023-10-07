@@ -22,7 +22,7 @@ import LoadingState from "@/components/LoadingState";
 const SingleDeveloperView = (props) => {
   const [{ lang, propertyToView }] = useStateValue();
   const pathname = usePathname();
-  const [showCount, setShowCount] = useState(5);
+  const [showCount, setShowCount] = useState(6);
   const parts = pathname.split("/");
   const developerId = parts[parts.length - 1];
   const [page, setPage] = useState(1);
@@ -45,6 +45,7 @@ const SingleDeveloperView = (props) => {
 
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
+    setShowCount((prev) => prev + 6);
     return async () => {
       const data = await instance
         .get(`/${lang}/developers/${developerId}`, {

@@ -69,8 +69,6 @@ const Navbar = (props) => {
     };
   }, [isDropdownMenuOpen, buttonRef]);
 
-  console.log(dropDown);
-
   const langList = filterListData?.langList;
 
   return (

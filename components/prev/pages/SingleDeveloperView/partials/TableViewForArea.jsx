@@ -14,7 +14,6 @@ import Link from "next/link";
 
 const TableViewForArea = (props) => {
   const [{ lang }] = useStateValue();
-  const [showCount, setShowCount] = useState(5);
   const devProjects = props.singleDevData?.propertiesByArea;
   const selectBy = ["text", "text-2", "text-3"];
   const [showTableView, setShowTableView] = useState(false);
@@ -432,7 +431,7 @@ const TableViewForArea = (props) => {
               <div
                 onClick={() => {
                   props?.fetchMoreData();
-                  props?.setShowCount((prev) => prev + 5);
+                  props?.setShowCount((prev) => prev + 6);
                 }}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
