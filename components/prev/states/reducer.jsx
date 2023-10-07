@@ -1,5 +1,13 @@
+"use client";
+
+let language;
+
+if (typeof sessionStorage !== "undefined" && sessionStorage !== null) {
+  language = sessionStorage.getItem("language");
+}
+
 export const initialState = {
-  lang: "en",
+  lang: language || "en",
   viewType: "grid",
   planList: [],
   showModal: false,

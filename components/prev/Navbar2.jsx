@@ -6,6 +6,7 @@ import { useStateValue } from "./states/StateProvider";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useRef, useLayoutEffect } from "react";
 
 const Navbar2 = (props) => {
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
@@ -13,6 +14,7 @@ const Navbar2 = (props) => {
   const [dropDown, setDropDown] = useState(true);
   const [isMobileView, setIsMobileView] = useState(false);
   const pathname = usePathname();
+  const buttonRef = useRef();
 
   const navData = homeData?.lang?.navber;
 
@@ -30,6 +32,7 @@ const Navbar2 = (props) => {
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
+    sessionStorage.setItem("language", language);
   };
 
   const handleArrangeMeeting = (e) => {
@@ -46,6 +49,28 @@ const Navbar2 = (props) => {
     }
   };
 
+  useLayoutEffect(() => {
+    let handle = (e) => {
+      const distanceFromTop = window.scrollY;
+
+      if (distanceFromTop > 0) {
+        setDropDown(!dropDown);
+      }
+
+      if (!buttonRef.current?.contains(e.target)) {
+        setDropDown(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("scroll", handle);
+
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("scroll", handle);
+    };
+  }, [isDropdownMenuOpen, buttonRef]);
+
   const langList = homeData?.langList;
 
   return (
@@ -57,6 +82,7 @@ const Navbar2 = (props) => {
           }`}
         >
           <div
+            ref={buttonRef}
             className={`flex flex-wrap w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative`}
             onClick={handleMenu}
           >

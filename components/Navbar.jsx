@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 
 import Skeleton from "./prev/Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
@@ -14,9 +14,11 @@ const Navbar = (props) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [dropDown, setDropDown] = useState(true);
   const [navPoint, setNavPoint] = useState(false);
+  const buttonRef = useRef();
 
   const switchLang = (language) => {
     dispatch({ type: "setLang", item: language });
+    sessionStorage.setItem("language", language);
   };
 
   const handleArrangeMeeting = (e) => {
@@ -36,6 +38,7 @@ const Navbar = (props) => {
 
   const handleMenu = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (isMobileView) {
       dispatch({ type: "setDropdownOpen", item: !isDropdownMenuOpen });
     } else {
@@ -44,6 +47,30 @@ const Navbar = (props) => {
     }
   };
 
+  useLayoutEffect(() => {
+    let handle = (e) => {
+      const distanceFromTop = window.scrollY;
+
+      if (distanceFromTop > 0) {
+        setDropDown(!dropDown);
+      }
+
+      if (!buttonRef.current?.contains(e.target)) {
+        setDropDown(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("scroll", handle);
+
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("scroll", handle);
+    };
+  }, [isDropdownMenuOpen, buttonRef]);
+
+  console.log(dropDown);
+
   const langList = filterListData?.langList;
 
   return (
@@ -51,6 +78,7 @@ const Navbar = (props) => {
       <Skeleton className="justify-between items-center px-5">
         <div className="flex gap-5 items-center z-50">
           <div
+            ref={buttonRef}
             className="flex flex-wrap w-[2.5rem] h-[2.5rem] md:w-12 md:h-12 group cursor-pointer transition duration-500 relative group"
             onClick={handleMenu}
           >

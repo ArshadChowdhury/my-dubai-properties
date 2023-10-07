@@ -19,6 +19,7 @@ import { useRef } from "react";
 
 const Home = () => {
   const [{ filterOpen, lang }, dispatch] = useStateValue();
+
   const modalRef = useRef();
 
   const getAllHomeContent = async () => {

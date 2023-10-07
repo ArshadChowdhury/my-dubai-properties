@@ -65,7 +65,6 @@ const GridItemForSlider = (props) => {
           </h1>
           <div className="grid grid-cols-2 w-full">
             <div>
-              {console.log(props.property)}
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconLocation} alt="building" />
                 <Link href={`/property-area/${props?.propertyAreaId}`}>
