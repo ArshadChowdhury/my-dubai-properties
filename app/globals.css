@@ -3431,10 +3431,10 @@ video {
 
 .filter-btn-selected:after {
   position: absolute;
-  height: 60%;
-  width: 107%;
+  height: 54%;
+  width: 114%;
   top: 22.5px;
-  left: -6px;
+  left: -13px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);
@@ -3460,10 +3460,10 @@ video {
 
 .filter-btn:after {
   position: absolute;
-  height: 60%;
-  width: 107%;
+  height: 54%;
+  width: 114%;
   top: 22.5px;
-  left: -6px;
+  left: -13px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);
