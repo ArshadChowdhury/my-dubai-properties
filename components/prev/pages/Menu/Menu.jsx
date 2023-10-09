@@ -81,7 +81,11 @@ const Menu = (props) => {
             // smooth: true,
           },
           {
-            top: `${props?.pathname == "/" ? "72px" : "88px"}`,
+            top: `${
+              props?.pathname == "/" || props?.pathname.includes("/properties/")
+                ? "72px"
+                : "88px"
+            }`,
             opacity: 1,
             duration: 0.7,
             ease: "power1.out",

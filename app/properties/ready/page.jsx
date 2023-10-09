@@ -9,7 +9,7 @@ export default function AllProperties() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("ready?developmentTypes=63feffa56023b40ac4385fec");
+    router.push("ready?developmentTypes=6519855e79fcdc27efbf85cd");
   }, []);
 
   return <ViewProperty heading={"Ready Properties"} />;

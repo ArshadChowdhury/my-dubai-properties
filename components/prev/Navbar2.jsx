@@ -49,6 +49,8 @@ const Navbar2 = (props) => {
     }
   };
 
+  console.log(dropDown);
+  console.log(isDropdownMenuOpen);
   useLayoutEffect(() => {
     let handle = (e) => {
       const distanceFromTop = window.scrollY;

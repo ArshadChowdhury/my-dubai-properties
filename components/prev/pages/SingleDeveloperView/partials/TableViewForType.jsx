@@ -415,7 +415,7 @@ const TableViewForType = (props) => {
               <div
                 onClick={() => {
                   props?.fetchMoreData();
-                  props?.setShowCount((prev) => prev + 5);
+                  props?.setShowCount((prev) => prev + 6);
                 }}
                 className="w-full hidden md:flex flex-col text-white justify-center items-center mt-5"
               >
