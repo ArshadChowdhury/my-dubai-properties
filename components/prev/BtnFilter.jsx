@@ -8,6 +8,7 @@ const BtnFilter = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [{ filterValues, filterOpen }, dispatch] = useStateValue();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
   const filterRef = useRef(null);
   const inputRef = useRef(null);
   // const [resetData, setResetData] = useState(true);
@@ -41,6 +42,17 @@ const BtnFilter = (props) => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     let handle = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {
         setIsDropdownOpen(false);
@@ -67,7 +79,7 @@ const BtnFilter = (props) => {
       onClick={handleOnClick}
       className={`flex justify-center h-[46px] md:w-[168px] group items-center font-montserrat ${
         inputValue.length > 0 ? "filter-btn-selected" : "filter-btn"
-      }  p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative`}
+      } p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative`}
     >
       <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] left-[-16px] border-r-0 border-t-0"></div>
       <div className="flex justify-around text-[10px] items-center !h-full !w-full relative px-8 py-4">

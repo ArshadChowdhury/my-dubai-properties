@@ -10,7 +10,7 @@ const LatestProperty = (props) => {
   const readyProperties = [];
   {
     properties?.data?.map((property) =>
-      property.developmentType.name === "READY"
+      property.developmentType.name === "Ready  "
         ? readyProperties.push(property)
         : offPlanProperties.push(property)
     );
