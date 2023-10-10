@@ -188,17 +188,17 @@ export default function Map() {
 
   const getAllProperties = async () => {
     await axios
-      .get(`http://52.77.121.171:3008/api/v1/${lang}/properties`, {
+      .get(`http://my-dubaiproperties.com:3000/api/v1/${lang}/properties`, {
         timeout: 5000,
-        params: {
-          size: 10000,
-        },
+        // params: {
+        //   size: 10000,
+        // },
       })
       .then((data) => setAllPlaces(data.data.data.properties.data));
   };
 
   useEffect(() => {
-    router.push(`?propertyId=${propertyId}`, { scroll: false });
+    router.push(`?propertyId=${propertyId || 1}`, { scroll: false });
   }, [propertyId]);
 
   useEffect(() => {
@@ -389,7 +389,8 @@ export default function Map() {
           onClick={() => handleFilterClick("All")}
           className={`features-div ${
             selectedFeature === "All" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div>All</div>
         </div>
 
@@ -397,7 +398,8 @@ export default function Map() {
           onClick={() => handleFilterClick("Feature Launch")}
           className={`features-div ${
             selectedFeature === "Feature Launch" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div className="feature bg-[#c7057c]"></div>
           <div className="w-36 md:w-34 "> Feature Launch</div>
         </div>
@@ -406,7 +408,8 @@ export default function Map() {
           onClick={() => handleFilterClick("Newly Launched")}
           className={`features-div ${
             selectedFeature === "Newly Launched" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div className="feature bg-green-700"></div>
           <div className="w-36 md:w-34">Newly Launched</div>
         </div>
@@ -415,7 +418,8 @@ export default function Map() {
           onClick={() => handleFilterClick("High Demand")}
           className={`features-div ${
             selectedFeature === "High Demand" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div className="feature bg-blue-800"></div>
           <div className="w-32 md:w-30"> High Demand</div>
         </div>
@@ -424,7 +428,8 @@ export default function Map() {
           onClick={() => handleFilterClick("Last Units")}
           className={`features-div ${
             selectedFeature === "Last Units" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div className="feature bg-yellow-400"></div>
           <div className="w-24 md:w-22"> Last Units</div>
         </div>
@@ -433,7 +438,8 @@ export default function Map() {
           onClick={() => handleFilterClick("Out Of Stocks")}
           className={`features-div ${
             selectedFeature === "Out Of Stocks" ? "active" : ""
-          }`}>
+          }`}
+        >
           <div className="feature bg-red-600"></div>
           <div className="w-32 md:w-30"> Out Of Stocks</div>
         </div>
