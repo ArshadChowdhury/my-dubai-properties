@@ -58,6 +58,8 @@ const PaymentPlan = (props) => {
     setMobileView(isMobileView);
   }, []);
 
+  console.log(props.paymentPlan);
+
   const [panelRef, setPanelRef] = useState(null);
   const paymentPlan = props?.paymentPlan?.slice(1);
   const circleDivRef = useRef(null);
@@ -197,7 +199,7 @@ const PaymentPlan = (props) => {
         ease: "linear",
         markers: false,
         start: "top 10%",
-        end: "bottom -280%",
+        end: `bottom ${paymentPlan.length * -250}%`,
         pin: true,
         pinType: "fixed",
       },
@@ -347,7 +349,11 @@ const PaymentPlan = (props) => {
                 className={`hidden md:flex justify-end items-center pt-52 relative left-[35%]`}
               >
                 <div
-                  className={`basis-1/2 flex justify-center items-center z-10 holder`}
+                  className={`${
+                    paymentPlan.length > 0 ? "basis-1/2" : "basis-[95%]"
+                  } flex ${
+                    paymentPlan.length > 0 ? "justify-center" : "justify-start"
+                  } items-center z-10 holder`}
                 >
                   <div className={`absolute -top-[25px] left-[4%] px-2 w-auto`}>
                     <h1

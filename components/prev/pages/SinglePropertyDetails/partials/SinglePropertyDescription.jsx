@@ -116,7 +116,7 @@ const SinglePropertyDescription = (props) => {
             <div className="md:flex justify-evenly">
               <div className="xl:pl-16 pt-5">
                 <Link
-                  href={"#downloads"}
+                  href={`/map?propertyId=${props?.propertyId}`}
                   className="border border-[#283646] hover:border-transparent rounded-[5px] w-full md:w-[15rem] h-full flex justify-around items-center outLineBtn text-white text-xs md:text-sm font-robotoCondensed py-2 uppercase"
                 >
                   {homeData?.titleDownloads}

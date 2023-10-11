@@ -65,8 +65,10 @@
   @apply !w-9 !h-10 !hidden md:!block;
 }
 
+
 .mapboxgl-ctrl-top-right {
   @apply !z-10;
+  @apply !top-14;
 }
 
 /* Map custom tailwind css classes End */

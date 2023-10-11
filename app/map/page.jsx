@@ -28,8 +28,11 @@ export default function Map() {
   const [markers, setMarkers] = useState([]);
   const [propertyName, setPorpertyName] = useState("");
   const [areaName, setAreaName] = useState("");
+  const [areaId, setAreaId] = useState("");
   const [developerName, setDeveloperName] = useState("");
+  const [developerId, setDeveloperId] = useState("");
   const [propertyType, setPropertyType] = useState("");
+  const [propertyTypeId, setPropertyTypeId] = useState("");
   const [unitSize, setUnitSize] = useState("");
   const [description, setDescription] = useState("");
   const [propertyId, setPropertyId] = useState(propertyIdParam);
@@ -197,9 +200,9 @@ export default function Map() {
       .then((data) => setAllPlaces(data.data.data.properties.data));
   };
 
-  useEffect(() => {
-    router.push(`?propertyId=${propertyId || 1}`, { scroll: false });
-  }, [propertyId]);
+  // useEffect(() => {
+  //   router.push(`?propertyId=${propertyId || 1}`, { scroll: false });
+  // }, [propertyId]);
 
   useEffect(() => {
     if (map.current) {
@@ -284,8 +287,11 @@ export default function Map() {
 
         let popUpPropertyName = item?.propertyName;
         let popUpAreaName = item?.propertyArea.areaName;
+        let popUpAreaId = item?.propertyArea.id;
         let popUpDeveloperName = item?.developerType.name;
+        let popUpDeveloperId = item?.developerType.id;
         let popUpPropertyType = item?.propertyType.name;
+        let popUpPropertyTypeId = item?.propertyType.id;
         let popUpUnitSize = item?.unitType.size;
         let popUpDescription = item?.amenities.description;
         let id = item?.propertyNo;
@@ -293,11 +299,13 @@ export default function Map() {
         customMarkerElement.addEventListener("click", (e) => {
           e.stopPropagation();
           setPropertyId(id);
-          console.log(`working`);
           setPorpertyName(popUpPropertyName);
           setAreaName(popUpAreaName);
           setDeveloperName(popUpDeveloperName);
           setPropertyType(popUpPropertyType);
+          setAreaId(popUpAreaId);
+          setDeveloperId(popUpDeveloperId);
+          setPropertyTypeId(popUpPropertyTypeId);
           setUnitSize(popUpUnitSize);
           setDescription(popUpDescription);
           setPopUpImg(img);
@@ -324,6 +332,9 @@ export default function Map() {
 
         if (propertyIdParam == id) {
           function click(e) {
+            setAreaId(popUpAreaId);
+            setDeveloperId(popUpDeveloperId);
+            setPropertyTypeId(popUpPropertyTypeId);
             setPorpertyName(popUpPropertyName);
             setAreaName(popUpAreaName);
             setDeveloperName(popUpDeveloperName);
@@ -380,7 +391,7 @@ export default function Map() {
   return (
     <>
       <div className="w-full flex items-center overflow-x-scroll no-scrollbar mt-5 absolute z-10">
-        <div className="back-button">
+        <div onClick={() => router.back()} className="back-button">
           <ArrowBackIcon />
           <div className="ml-2">Back</div>
         </div>
@@ -421,7 +432,7 @@ export default function Map() {
           }`}
         >
           <div className="feature bg-blue-800"></div>
-          <div className="w-32 md:w-30"> High Demand</div>
+          <div className="w-32 md:w-30">High Demand</div>
         </div>
 
         <div
@@ -431,7 +442,7 @@ export default function Map() {
           }`}
         >
           <div className="feature bg-yellow-400"></div>
-          <div className="w-24 md:w-22"> Last Units</div>
+          <div className="w-24 md:w-22">Last Units</div>
         </div>
 
         <div
@@ -441,7 +452,7 @@ export default function Map() {
           }`}
         >
           <div className="feature bg-red-600"></div>
-          <div className="w-32 md:w-30"> Out Of Stocks</div>
+          <div className="w-32 md:w-30">Out Of Stocks</div>
         </div>
       </div>
 
@@ -453,6 +464,10 @@ export default function Map() {
 
       <div id="popup" className="w-full absolute bottom-16 hidden">
         <PopUpView
+          areaId={areaId}
+          developerId={developerId}
+          propertyTypeId={propertyTypeId}
+          propertyId={propertyId}
           coverImage={popUpImg}
           propertyName={propertyName}
           areaName={areaName}
