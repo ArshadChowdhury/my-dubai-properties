@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 const FilterSelect = (props) => {
   const { filterTexts } = props;
+  const [{ lang }] = useStateValue();
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -21,39 +22,9 @@ const FilterSelect = (props) => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
 
-  // const getSelectedValue = () => {
-  //   switch (props?.searchBy) {
-  //     case filterTexts?.textBoxPropertyArea:
-  //       allItemsArray?.unshift({
-  //         id: null,
-  //         areaName: filterTexts?.textBoxPropertyArea,
-  //       });
-  //       return (
-  //         props?.selectBy?.find((item) => item._id === propertyAreaId)
-  //           ?.areaName || allItemsArray[0].areaName
-  //       );
-  //     case filterTexts?.textBoxDevelopmentType:
-  //       allItemsArray?.unshift({
-  //         id: null,
-  //         name: filterTexts?.textBoxDevelopmentType,
-  //       });
-  //       return (
-  //         props?.selectBy?.find((item) => item._id === developmentTypeId)
-  //           ?.name || allItemsArray[0].name
-  //       );
-  //     case filterTexts?.textBoxDubaiDeveloper:
-  //       allItemsArray?.unshift({
-  //         id: null,
-  //         name: filterTexts?.textBoxDubaiDeveloper,
-  //       });
-  //       return (
-  //         props?.selectBy?.find((item) => item._id === developerId)?.name ||
-  //         allItemsArray[0].name
-  //       );
-  //     default:
-  //       return null;
-  //   }
-  // };
+  useEffect(() => {
+    router.push("/properties");
+  }, [lang]);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {

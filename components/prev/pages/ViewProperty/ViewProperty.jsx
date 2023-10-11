@@ -165,7 +165,7 @@ export default function ViewProperty(props) {
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
-      {/* <VerticalLine /> */}
+      <VerticalLine />
       <div className="z-50 md:hidden">
         <Navbar2
           homeData={homeData}
