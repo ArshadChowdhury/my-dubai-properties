@@ -2927,12 +2927,11 @@ video {
 }
 
 .dropdown_background {
-  /* background-image: url(../components/prev/assets/images/global/menubg.png);*/
   background-image: url(../components/prev/assets/images/global/vector-bg-png.png);
   /* Adjust the opacity here */
-  background-color: rgba(0, 24, 46, 0.2);
-  background-blend-mode: normal;
-  background-size: cover;
+  background-color: rgba(0, 24, 46, -0.3);
+  background-blend-mode: hard-light;
+  background-size: contain;
 }
 
 .white_background {
