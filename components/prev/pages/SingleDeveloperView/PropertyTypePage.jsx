@@ -137,8 +137,6 @@ const PropertyTypePage = (props) => {
 
   const filterTexts = singleDevData?.lang?.developerDetails;
 
-  console.log(filterListData);
-
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       <div className="md:hidden">

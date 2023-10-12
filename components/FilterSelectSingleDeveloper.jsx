@@ -3,10 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./prev/states/StateProvider";
 
 const FilterSelect = (props) => {
   const { developerId, filterTexts, setPage } = props;
   const router = useRouter();
+  const [{ lang }] = useStateValue();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
@@ -19,6 +21,10 @@ const FilterSelect = (props) => {
   useEffect(() => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
+
+  useEffect(() => {
+    router.push(`/developers/${developerId}`);
+  }, [lang]);
 
   // const getSelectedValue = () => {
   //   switch (props?.searchBy) {

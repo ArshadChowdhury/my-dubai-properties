@@ -65,7 +65,6 @@
   @apply !w-9 !h-10 !hidden md:!block;
 }
 
-
 .mapboxgl-ctrl-top-right {
   @apply !z-10;
   @apply !top-14;
@@ -3497,7 +3496,37 @@ video {
   height: 54%;
   width: 114%;
   top: 22.5px;
-  left: -13px;
+  left: -12px;
+  content: "";
+  background: transparent;
+  transform: perspective(25px) rotateX(-15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected-mob {
+  display: flex;
+  background: transparent;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected-mob:before {
+  position: absolute;
+  height: 50%;
+  width: 113%;
+  content: "";
+  top: -0.5px;
+  left: -10px;
+  background: transparent;
+  transform: perspective(25px) rotateX(15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-selected-mob:after {
+  position: absolute;
+  height: 54%;
+  width: 114%;
+  top: 22.5px;
+  left: -12px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);
@@ -3526,7 +3555,31 @@ video {
   height: 54%;
   width: 114%;
   top: 22.5px;
-  left: -13px;
+  left: -12px;
+  content: "";
+  background: transparent;
+  transform: perspective(25px) rotateX(-15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-mob:before {
+  position: absolute;
+  height: 50%;
+  width: 113%;
+  content: "";
+  top: -0.5px;
+  left: -10px;
+  background: transparent;
+  transform: perspective(25px) rotateX(15deg);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.filter-btn-mob:after {
+  position: absolute;
+  height: 54%;
+  width: 114%;
+  top: 22.5px;
+  left: -12px;
   content: "";
   background: transparent;
   transform: perspective(25px) rotateX(-15deg);

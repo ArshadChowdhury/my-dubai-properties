@@ -3,9 +3,11 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./prev/states/StateProvider";
 
 const FilterSelect = (props) => {
   const { developerId, filterTexts, setPage } = props;
+  const [{ lang }] = useStateValue();
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,6 +21,10 @@ const FilterSelect = (props) => {
   useEffect(() => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
+
+  useEffect(() => {
+    router.push(`/property-type/${developerId}`);
+  }, [lang]);
 
   //   const getSelectedValue = () => {
   //     switch (props?.searchBy) {
@@ -179,8 +185,8 @@ const FilterSelect = (props) => {
         onClick={handleOnClick}
       >
         {selectedValue ===
-        (allItemsArray[0].areaName ||
-          allItemsArray[0].name ||
+        (allItemsArray[0]?.areaName ||
+          allItemsArray[0]?.name ||
           allItemsArray[0]) ? (
           <span className="truncate">{selectedValue}</span>
         ) : (

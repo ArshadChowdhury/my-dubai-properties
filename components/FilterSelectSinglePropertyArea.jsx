@@ -3,14 +3,15 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
+import { useStateValue } from "./prev/states/StateProvider";
 
 const FilterSelectSinglePropertyArea = (props) => {
   const { developerId, filterTexts, setPage } = props;
+  const [{ lang }] = useStateValue();
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
-  const propertyAreaId = searchParams.get("propertyAreas");
   const propertyTypeId = searchParams.get("propertyTypes");
   const completions = searchParams.get("completions");
   const beds = searchParams.get("beds");
@@ -19,6 +20,10 @@ const FilterSelectSinglePropertyArea = (props) => {
   useEffect(() => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
+
+  useEffect(() => {
+    router.push(`/property-area/${developerId}`);
+  }, [lang]);
 
   //   const getSelectedValue = () => {
   //     switch (props?.searchBy) {
