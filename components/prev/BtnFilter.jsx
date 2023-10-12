@@ -73,12 +73,21 @@ const BtnFilter = (props) => {
     setInputValue(e.target.value);
   };
 
+  console.log(isMobileView);
+  console.log(inputValue.length);
+
   return (
     <div
       ref={filterRef}
       onClick={handleOnClick}
       className={`flex justify-center h-[46px] md:w-[168px] group items-center font-montserrat ${
-        inputValue.length > 0 ? "filter-btn-selected" : "filter-btn"
+        inputValue.length > 0
+          ? isMobileView
+            ? "filter-btn-selected-mob"
+            : "filter-btn-selected"
+          : isMobileView
+          ? "filter-btn-mob"
+          : "filter-btn"
       } p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative`}
     >
       <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] left-[-16px] border-r-0 border-t-0"></div>
