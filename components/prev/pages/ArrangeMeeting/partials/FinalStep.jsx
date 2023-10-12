@@ -10,6 +10,7 @@ import ForwordIcon from "../../../assets/images/global/chevron-forward.png";
 import close from "../../../assets/images/global/close-outline.png";
 import { useEffect } from "react";
 import PhoneInput from "react-phone-number-input";
+import { useForm, Controller } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import BtnTime from "@/components/prev/BtnTime";
@@ -26,6 +27,9 @@ const FinalStep = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [isVisible, setIsVisible] = useState(true);
+  const { register, handleSubmit, formState, reset, control } = useForm();
+
+  const { errors } = formState;
 
   const handleInVisible = () => {
     phoneValue.length > 0 &&
@@ -87,9 +91,9 @@ const FinalStep = (props) => {
   const handleAddGuestEmailsClick = () => {
     setShowGuestEmails(true);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
 
   return (
     <div
@@ -106,27 +110,51 @@ const FinalStep = (props) => {
             <h1 className="font-montserrat text-lg leading-6 text-white">
               {meetingData?.enterDetails}
             </h1>
-            <form action="" className="mt-5" onSubmit={handleSubmit}>
-              <div className="flex items-center w-full text-[#bfa04b]">
+            <form className="mt-5" onSubmit={handleSubmit(props?.onSubmit)}>
+              <div className="flex flex-col items-center w-full text-[#bfa04b]">
                 <input
                   type="text"
                   id="name"
-                  value={nameValue}
-                  onChange={(e) => setNameValue(e.target.value)}
                   placeholder={meetingData?.placeholderName}
                   className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
-                  required
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Name is required",
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: "Name cannot be over 30 characters",
+                    },
+                  })}
                 />
+                <p className="text-red-300 text-xs text-left w-full py-1">
+                  {errors.name?.message?.length > 0
+                    ? errors.name?.message
+                    : null}
+                </p>
               </div>
-              <div className="flex items-center w-full text-[#bfa04b]">
+              <div className="flex flex-col items-center w-full text-[#bfa04b]">
                 <input
                   type="email"
                   id="email"
-                  value={emailValue}
-                  onChange={(e) => setEmailValue(e.target.value)}
                   placeholder={meetingData?.placeholderEmail}
                   className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
-                  required
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Email is required",
+                    },
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: "Invalid email",
+                    },
+                    maxLength: {
+                      value: 40,
+                      message: "Email cannot be over 40 characters",
+                    },
+                  })}
                 />
               </div>
               {/* <div className="flex items-center w-full text-[#bfa04b]">
@@ -140,13 +168,37 @@ const FinalStep = (props) => {
               </div> */}
               <div className="flex items-center mb-3">
                 <div className="w-full h-full">
-                  <PhoneInput
-                    placeholder={meetingData?.placeholderPhoneNumber}
-                    value={phoneValue}
-                    onChange={setPhoneValue}
-                    defaultCountry="BD"
-                    className="border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
+                  <Controller
+                    {...register("phone", {
+                      required: {
+                        value: true,
+                        message: "Phone number is required",
+                      },
+
+                      maxLength: {
+                        value: 30,
+                        message: "Phone number cannot be over 30 characters",
+                      },
+                    })}
+                    name="phone"
+                    id="phone"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <PhoneInput
+                        value={value}
+                        onChange={onChange}
+                        defaultCountry="TH"
+                        // placeholder={registerData?.placeholderPhone}
+                        placeholder="Your Phone Number"
+                        className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+                      />
+                    )}
                   />
+                  <p className="text-red-300 text-xs text-left w-full py-1">
+                    {errors.phone?.message?.length > 0
+                      ? errors.phone?.message
+                      : null}
+                  </p>
                 </div>
               </div>
 
@@ -223,12 +275,17 @@ const FinalStep = (props) => {
           className="absolute md:top-[90%] top-[75%] w-full flex left-[41%] md:left-[45%]"
           onClick={props.closePopUp}
         >
-          <BtnTime
+          <button
+            className="py-1 h-full flex justify-around items-center bg-gradient-custom relative text-white text-[10px] font-robotoCondensed uppercase border-round w-[80px] mt-8 md:mt-0"
+            type="submit"
+          >
+            {meetingData?.button}
+          </button>
+          {/* <BtnTime
             type="submit"
             onClick={handleInVisible}
-            btnText={meetingData?.button}
             className="border-round w-[80px] mt-8 md:mt-0"
-          />
+          /> */}
         </div>
         {emailLength && (
           <div className="fixed text-gray-600 text-md rounded-md top-[740px] left-[115px]  md:left-[620px] md:top-[640px] border px-10 py-[5px] bg-white">

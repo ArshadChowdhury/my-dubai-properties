@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { instance } from "../../../services/apiFunctions";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const RegisterForm = (props) => {

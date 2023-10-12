@@ -35,6 +35,22 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     setCloseBtn(false);
   };
 
+  const onSubmit = (data) => {
+    instance
+      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+    setSubsPopUpContact(true);
+    // dispatch({ type: "setShowContactModal", item: false });
+    reset();
+  };
+
   const meetingData = homeData?.lang?.meetings;
 
   const [timeZone, setTimezone] = useState(
@@ -259,6 +275,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 )}
                 {openFinalStep && (
                   <FinalStep
+                    onSubmit={onSubmit}
                     meetingData={meetingData}
                     closePopUp={closePopUp}
                   />
