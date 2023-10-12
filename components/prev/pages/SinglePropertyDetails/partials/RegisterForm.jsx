@@ -1,12 +1,12 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { getApiData } from "../../../services/apiFunctions";
 import { useStateValue } from "../../../states/StateProvider";
 import { useState, useRef, useEffect } from "react";
 import { instance } from "../../../services/apiFunctions";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const RegisterForm = (props) => {
@@ -14,7 +14,7 @@ const RegisterForm = (props) => {
   const registerData = props?.homeData?.lang?.enquiryForm;
   const [subsPopUp, setSubsPopUp] = useState(false);
   const [value, setValue] = useState("");
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState, reset, control } = useForm();
   const [{ lang }, dispatch] = useStateValue();
   const langList = props?.homeData?.langList;
   const { errors } = formState;
@@ -109,40 +109,37 @@ const RegisterForm = (props) => {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <PhoneInput
-              id="phone"
+            <Controller
+              {...register("phone", {
+                required: {
+                  value: true,
+                  message: "Phone number is required",
+                },
+
+                maxLength: {
+                  value: 30,
+                  message: "Phone number cannot be over 30 characters",
+                },
+              })}
               name="phone"
-              placeholder={registerData?.placeholderPhoneNumber}
-              value={value}
-              onChange={setValue}
-              defaultCountry="FR"
-              className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
-              // {...register("phone", {
-              //   required: {
-              //     value: true,
-              //     message: "Phone number is required",
-              //   },
-              //   pattern: {
-              //     value: /^[0-9]+$/,
-              //     message: "Please enter a number",
-              //   },
-              //   maxLength: {
-              //     value: 30,
-              //     message: "Phone number cannot be over 30 characters",
-              //   },
-              // })}
+              id="phone"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <PhoneInput
+                  value={value}
+                  onChange={onChange}
+                  defaultCountry="TH"
+                  placeholder={registerData?.placeholderPhone}
+                  className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+                />
+              )}
             />
-            {/* <input
-              type="tel"
-              name="phone"
-              id="phone"
-              placeholder={registerData?.placeholderPhone}
-              className="w-full px-5 py-2 rounded-md placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
-            /> */}
-            <p className="text-red-300 text-xs text-left w-full py-1">
-              {errors.phone?.message?.length > 0 ? errors.phone?.message : null}
-            </p>
           </div>
+
+          <p className="text-red-300 text-xs text-left w-full py-1">
+            {errors.phone?.message?.length > 0 ? errors.phone?.message : null}
+          </p>
+
           <div className="flex flex-col items-center">
             <select
               name="preferedLang"

@@ -58,8 +58,6 @@ const PaymentPlan = (props) => {
     setMobileView(isMobileView);
   }, []);
 
-  console.log(props.paymentPlan);
-
   const [panelRef, setPanelRef] = useState(null);
   const paymentPlan = props?.paymentPlan?.slice(1);
   const circleDivRef = useRef(null);

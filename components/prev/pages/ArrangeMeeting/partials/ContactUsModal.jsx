@@ -1,12 +1,13 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import close from "@/components/prev/assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
 import Image from "next/image";
 import { instance } from "@/components/prev/services/apiFunctions";
 import { useEffect } from "react";
+import PhoneInput from "react-phone-number-input";
 
 const ContactUsModal = ({ homeData }) => {
   const [{ showContactModal, contactModalInfo }, dispatch] = useStateValue();
@@ -17,7 +18,7 @@ const ContactUsModal = ({ homeData }) => {
   const arrangeRef = useRef();
   const currentArrangeRef = useRef();
 
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState, reset, control } = useForm();
 
   const registerData = homeData?.lang?.enquiryForm;
   const langList = homeData?.langList;
@@ -160,7 +161,7 @@ const ContactUsModal = ({ homeData }) => {
                         <Image src={close} alt="close btn" />
                       </button>
                     </div>
-                    <h1 className="font-montserrat text-white text-[14px] leading-[150%]">
+                    <h1 className="font-montserrat text-white text-[14px] leading-[150%] break-words px-4">
                       <span className="text-[16px] text-[#ffd15f]">
                         {contactModalInfo.propertyName}
                       </span>
@@ -168,7 +169,6 @@ const ContactUsModal = ({ homeData }) => {
                       {registerData?.register}
                     </h1>
                     <form
-                      action=""
                       className="mt-3"
                       onSubmit={handleSubmit(onSubmit)}
                       noValidate
@@ -224,28 +224,33 @@ const ContactUsModal = ({ homeData }) => {
                             : null}
                         </p>
                       </div>
+
                       <div className="flex flex-col items-center">
-                        <input
-                          type="tel"
-                          name="phone"
-                          id="phone"
-                          placeholder={registerData?.placeholderPhone}
-                          className="w-full px-5 py-2 rounded-md placeholder:font-montserrat placeholder:text-[9.5px] custom-shadow bg-white bg-opacity-10  focus:outline-none text-[#f1bf3f]"
+                        <Controller
                           {...register("phone", {
                             required: {
                               value: true,
                               message: "Phone number is required",
                             },
-                            pattern: {
-                              value: /^[0-9]+$/,
-                              message: "Please enter a number",
-                            },
+
                             maxLength: {
                               value: 30,
                               message:
                                 "Phone number cannot be over 30 characters",
                             },
                           })}
+                          name="phone"
+                          id="phone"
+                          control={control}
+                          render={({ field: { onChange, value } }) => (
+                            <PhoneInput
+                              value={value}
+                              onChange={onChange}
+                              defaultCountry="TH"
+                              placeholder={registerData?.placeholderPhone}
+                              className="my-phone-input bg-blue w-full px-5 py-3 rounded-sm placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-gray-400 outline-none text-[#f1bf3f]"
+                            />
+                          )}
                         />
                         <p className="text-red-300 text-xs text-left w-full py-1">
                           {errors.phone?.message?.length > 0
@@ -253,6 +258,7 @@ const ContactUsModal = ({ homeData }) => {
                             : null}
                         </p>
                       </div>
+
                       <div className="flex flex-col items-center">
                         <select
                           name="preferedLang"

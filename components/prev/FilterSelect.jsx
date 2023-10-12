@@ -22,9 +22,9 @@ const FilterSelect = (props) => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
 
-  useEffect(() => {
-    router.push("/properties");
-  }, [lang]);
+  // useEffect(() => {
+  //   router.push("/properties");
+  // }, [lang]);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
