@@ -9,25 +9,23 @@ import world from "../../../assets/images/arrang-meeting/globe-outline.png";
 import ForwordIcon from "../../../assets/images/global/chevron-forward.png";
 import close from "../../../assets/images/global/close-outline.png";
 import { useEffect } from "react";
-import PhoneInput from "react-phone-number-input";
-import { useForm, Controller } from "react-hook-form";
-import "react-phone-number-input/style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import BtnTime from "@/components/prev/BtnTime";
 import BtnAdd from "@/components/prev/BtnAdd";
 
 const FinalStep = (props) => {
   const meetingData = props?.meetingData;
+  const { Controller, PhoneInput, setEmails, emails } = props;
+  const { register, handleSubmit, formState, reset, control } =
+    props?.useForm();
   const [showGuestEmails, setShowGuestEmails] = useState(false);
-  const [emails, setEmails] = useState([]);
+
   const [emailLength, setEmailLength] = useState(false);
   const [input, setInput] = useState("");
-
   const [phoneValue, setPhoneValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [isVisible, setIsVisible] = useState(true);
-  const { register, handleSubmit, formState, reset, control } = useForm();
 
   const { errors } = formState;
 
@@ -110,13 +108,16 @@ const FinalStep = (props) => {
             <h1 className="font-montserrat text-lg leading-6 text-white">
               {meetingData?.enterDetails}
             </h1>
-            <form className="mt-5" onSubmit={handleSubmit(props?.onSubmit)}>
-              <div className="flex flex-col items-center w-full text-[#bfa04b]">
+            <form
+              className="mt-5 flex flex-col gap-3"
+              onSubmit={handleSubmit(props?.onSubmit)}
+            >
+              <div className="flex flex-col gap-1 items-center w-full text-[#bfa04b]">
                 <input
                   type="text"
                   id="name"
                   placeholder={meetingData?.placeholderName}
-                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
+                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                   {...register("name", {
                     required: {
                       value: true,
@@ -139,7 +140,7 @@ const FinalStep = (props) => {
                   type="email"
                   id="email"
                   placeholder={meetingData?.placeholderEmail}
-                  className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
+                  className=" border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white phoneNumberInput"
                   {...register("email", {
                     required: {
                       value: true,
@@ -156,6 +157,11 @@ const FinalStep = (props) => {
                     },
                   })}
                 />
+                <p className="text-red-300 text-xs text-left w-full py-1">
+                  {errors.email?.message?.length > 0
+                    ? errors.email?.message
+                    : null}
+                </p>
               </div>
               {/* <div className="flex items-center w-full text-[#bfa04b]">
                 <input
@@ -163,10 +169,10 @@ const FinalStep = (props) => {
                   required
                   id="phone"
                   placeholder="Your Phone Number"
-                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
+                  className="border-[0.5px]  border-[#798A9C] w-full px-5 py-3 rounded-[2px] placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white"
                 />
               </div> */}
-              <div className="flex items-center mb-3">
+              <div className="flex items-center">
                 <div className="w-full h-full">
                   <Controller
                     {...register("phone", {
@@ -203,7 +209,7 @@ const FinalStep = (props) => {
               </div>
 
               {showGuestEmails && (
-                <div className="pb-20 border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] mb-3 placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white">
+                <div className="pb-20 border-[0.5px] border-[#798A9C] w-full px-5 py-3 rounded-[2px] placeholder:font-montserrat text-xs custom-shadow bg-white bg-opacity-10 placeholder:text-white">
                   <div className="flex flex-wrap items-center">
                     {emails.map((email, index) => (
                       <div
@@ -239,13 +245,38 @@ const FinalStep = (props) => {
                   showGuestEmails ? "hidden" : ""
                 }`}
               >
-                <BtnAdd
-                  type={meetingData?.button}
+                <button
+                  type="button"
+                  className="w-[105px] border-top-white z-10 py-1 h-full flex justify-around items-center bg-gradient-custom relative text-white text-[10px] font-robotoCondensed uppercase border-round mt-8 md:mt-0"
+                  onClick={handleAddGuestEmailsClick}
+                >
+                  {meetingData?.buttonAddGuests}
+                </button>
+                {/* <BtnAdd
+                  // type={meetingData?.button}
                   btnText={meetingData?.buttonAddGuests}
-                  className="w-[105px] border-top-white z-10"
+                  className=""
                   handleAddGuestEmailsClick={handleAddGuestEmailsClick}
-                />
+                /> */}
               </div>
+              <div className="absolute md:top-[92%] top-[75%] w-full flex left-[41%] md:left-[45%]">
+                <button
+                  className="py-1 h-full flex justify-around items-center bg-gradient-custom relative text-white text-[10px] font-robotoCondensed uppercase border-round w-[80px] mt-8 md:mt-0"
+                  type="submit"
+                >
+                  {meetingData?.button}
+                </button>
+                {/* <BtnTime
+            type="submit"
+            onClick={handleInVisible}
+            className="border-round w-[80px] mt-8 md:mt-0"
+          /> */}
+              </div>
+              {emailLength && (
+                <div className="fixed text-gray-600 text-md rounded-md top-[740px] left-[115px]  md:left-[620px] md:top-[640px] border px-10 py-[5px] bg-white">
+                  Max limit exceed
+                </div>
+              )}
             </form>
           </div>
           {/**
@@ -271,27 +302,6 @@ const FinalStep = (props) => {
           </div>
          */}
         </div>
-        <div
-          className="absolute md:top-[90%] top-[75%] w-full flex left-[41%] md:left-[45%]"
-          onClick={props.closePopUp}
-        >
-          <button
-            className="py-1 h-full flex justify-around items-center bg-gradient-custom relative text-white text-[10px] font-robotoCondensed uppercase border-round w-[80px] mt-8 md:mt-0"
-            type="submit"
-          >
-            {meetingData?.button}
-          </button>
-          {/* <BtnTime
-            type="submit"
-            onClick={handleInVisible}
-            className="border-round w-[80px] mt-8 md:mt-0"
-          /> */}
-        </div>
-        {emailLength && (
-          <div className="fixed text-gray-600 text-md rounded-md top-[740px] left-[115px]  md:left-[620px] md:top-[640px] border px-10 py-[5px] bg-white">
-            Max limit exceed
-          </div>
-        )}
       </div>
     </div>
   );

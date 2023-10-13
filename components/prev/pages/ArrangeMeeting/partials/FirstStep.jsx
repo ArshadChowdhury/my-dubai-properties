@@ -18,6 +18,7 @@ const ArrangeMeetingStep1 = ({
   showMeetLink,
   handleSubmitButton,
   meetingData,
+  setZoomGoogleMeet,
 }) => {
   const [activeBtn, setActiveBtn] = useState("");
   const [mobileView, setMobileView] = useState(null);
@@ -134,7 +135,10 @@ const ArrangeMeetingStep1 = ({
           {openMeetLink === "video" && (
             <div className="md:absolute top-[60%] left-[35%] flex justify-center gap-2 items-center">
               <div
-                onClick={() => setActiveBtn("zoom")}
+                onClick={() => {
+                  setActiveBtn("zoom");
+                  setZoomGoogleMeet("zoom");
+                }}
                 className={`px-1 cursor-pointer border-0 rounded-[.25rem] ${
                   activeBtn === "zoom" ? "border-x border-x-[#dcb558]" : ""
                 }`}
@@ -144,7 +148,10 @@ const ArrangeMeetingStep1 = ({
               </div>
               {/* w-[40px] md:w-[45px] */}
               <div
-                onClick={() => setActiveBtn("meet")}
+                onClick={() => {
+                  setActiveBtn("meet");
+                  setZoomGoogleMeet("meet");
+                }}
                 className={`py-[5px] px-2 cursor-pointer border-0 rounded-[.25rem] ${
                   activeBtn === "meet" ? "border-x border-x-[#dcb558]" : ""
                 }`}

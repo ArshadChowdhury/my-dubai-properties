@@ -73,9 +73,6 @@ const BtnFilter = (props) => {
     setInputValue(e.target.value);
   };
 
-  console.log(isMobileView);
-  console.log(inputValue.length);
-
   return (
     <div
       ref={filterRef}

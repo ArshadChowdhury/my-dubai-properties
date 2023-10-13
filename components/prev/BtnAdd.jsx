@@ -3,7 +3,6 @@ import React from "react";
 const BtnAdd = (props) => {
   return (
     <button
-      type="submit"
       className={`${props.className}`}
       onClick={props.handleAddGuestEmailsClick}
     >

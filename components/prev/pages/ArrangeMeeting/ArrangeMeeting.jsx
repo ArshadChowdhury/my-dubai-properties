@@ -9,7 +9,11 @@ import close from "../../assets/images/global/close-outline.png";
 import { AnimatePresence, color, motion } from "framer-motion";
 import Image from "next/image";
 import FinalStep from "./partials/FinalStep";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { useForm, Controller } from "react-hook-form";
 import dayjs from "dayjs";
+import { instance } from "../../services/apiFunctions";
 
 const ArrangeMeeting = ({ mobileView, homeData }) => {
   const [
@@ -20,24 +24,38 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   const [closeFirststep, setCloseFirststep] = useState(true);
   const [openThirdStep, setOpenThirdStep] = useState(false);
   const [openFinalStep, setOpenFinalStep] = useState(false);
+  const [emails, setEmails] = useState([]);
   const [isTimezonePopupOpen, setIsTimezonePopupOpen] = useState(false);
   const [subsPopUp, setSubsPopUp] = useState(false);
   const [closeBtn, setCloseBtn] = useState(true);
   const currentDate = dayjs();
   const [selectDate, setSelectDate] = useState(currentDate);
+  const [phoneVideo, setPhoneVideo] = useState("");
+  const [zoomGoogleMeet, setZoomGoogleMeet] = useState("");
+  const [time, setTime] = useState("");
 
   const arrangeRef = useRef();
   const currentArrangeRef = useRef();
 
-  const closePopUp = () => {
-    setSubsPopUp(true);
-    setOpenFinalStep(false);
-    setCloseBtn(false);
-  };
-
   const onSubmit = (data) => {
+    const selectedFormattedDate = `${selectDate.year()}-${selectDate.month()}-${selectDate.date()}`;
+    const payload = {
+      phoneCall: phoneVideo === "phone",
+      videoCall: phoneVideo === "video",
+      zoom: zoomGoogleMeet === "zoom",
+      googleMeet: zoomGoogleMeet === "meet",
+      meetingDate: selectedFormattedDate,
+      meetingTime: time.slice(0, -3),
+      timeZone: timeZone[0],
+      organizer: {
+        name: data.name,
+        phoneNumber: data.phone,
+        email: data.email,
+      },
+      guestEmails: emails,
+    };
     instance
-      .post(`submit-customer-interest/${contactModalInfo.id}`, data, {
+      .post(`submit-arrange-meeting`, payload, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
@@ -46,9 +64,12 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
       .catch((error) => {
         console.log(error.data);
       });
-    setSubsPopUpContact(true);
+    setSubsPopUp(true);
+    setOpenFinalStep(false);
+    setCloseBtn(false);
+    // setSubsPopUpContact(true);
     // dispatch({ type: "setShowContactModal", item: false });
-    reset();
+    // reset();
   };
 
   const meetingData = homeData?.lang?.meetings;
@@ -70,6 +91,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
   };
 
   const showMeetLink = (name) => {
+    setPhoneVideo(name);
     dispatch({ type: "selectVideoMeeting", item: name });
   };
 
@@ -136,6 +158,14 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
       }
     };
   }, [showModal, currentArrangeRef]);
+
+  console.log(phoneVideo);
+  console.log(zoomGoogleMeet);
+  console.log(selectDate.year());
+  console.log(selectDate.month());
+  console.log(selectDate.date());
+  console.log(time);
+  console.log(timeZone);
 
   return (
     <>
@@ -234,6 +264,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 </div>
                 {closeFirststep && (
                   <FirstStep
+                    setZoomGoogleMeet={setZoomGoogleMeet}
                     meetingData={meetingData}
                     openMeetLink={openMeetLink}
                     showMeetLink={showMeetLink}
@@ -244,6 +275,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 )}
                 {openNextStep && (
                   <NextStep
+                    setTime={setTime}
                     selectDate={selectDate}
                     setSelectDate={setSelectDate}
                     meetingData={meetingData}
@@ -275,9 +307,13 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 )}
                 {openFinalStep && (
                   <FinalStep
+                    emails={emails}
+                    setEmails={setEmails}
+                    PhoneInput={PhoneInput}
+                    Controller={Controller}
+                    useForm={useForm}
                     onSubmit={onSubmit}
                     meetingData={meetingData}
-                    closePopUp={closePopUp}
                   />
                 )}
               </div>

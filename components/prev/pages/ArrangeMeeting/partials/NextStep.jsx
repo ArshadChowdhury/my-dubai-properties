@@ -12,7 +12,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 
 const NextStep = (props) => {
-  const { setSelectDate, selectDate } = props;
+  const { setSelectDate, selectDate, setTime } = props;
   const meetingData = props.meetingData;
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
@@ -31,6 +31,7 @@ const NextStep = (props) => {
 
   const handleSelectTimeClick = (btnText) => {
     setActiveButton(btnText);
+    setTime(btnText);
   };
   const btnTimeData = [
     { btnText: "9.00 AM" },
