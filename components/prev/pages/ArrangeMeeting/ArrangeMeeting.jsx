@@ -45,7 +45,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
       zoom: zoomGoogleMeet === "zoom",
       googleMeet: zoomGoogleMeet === "meet",
       meetingDate: selectedFormattedDate,
-      meetingTime: time.slice(0, -3),
+      meetingTime: time,
       timeZone: timeZone[0],
       organizer: {
         name: data.name,

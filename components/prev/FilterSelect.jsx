@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 const FilterSelect = (props) => {
   const { filterTexts } = props;
-  const [{ lang }] = useStateValue();
+  const [{ lang, filterValues }] = useStateValue();
   const router = useRouter();
   const filterRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,14 +17,15 @@ const FilterSelect = (props) => {
   const developmentTypeId = searchParams.get("developmentTypes");
   const developerId = searchParams.get("developers");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
+  console.log(router);
 
   useEffect(() => {
     setSelectedValue(getSelectedValue());
   }, [filterTexts]);
 
-  // useEffect(() => {
-  //   router.push("/properties");
-  // }, [lang]);
+  useEffect(() => {
+    if (!filterValues) router.push("/properties");
+  }, [lang]);
 
   const getSelectedValue = () => {
     switch (props?.searchBy) {
