@@ -159,13 +159,13 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
     };
   }, [showModal, currentArrangeRef]);
 
-  console.log(phoneVideo);
-  console.log(zoomGoogleMeet);
-  console.log(selectDate.year());
-  console.log(selectDate.month());
-  console.log(selectDate.date());
-  console.log(time);
-  console.log(timeZone);
+  // console.log(phoneVideo);
+  // console.log(zoomGoogleMeet);
+  // console.log(selectDate.year());
+  // console.log(selectDate.month());
+  // console.log(selectDate.date());
+  // console.log(time);
+  // console.log(timeZone);
 
   return (
     <>
@@ -292,6 +292,7 @@ const ArrangeMeeting = ({ mobileView, homeData }) => {
                 )}
                 {openThirdStep && (
                   <ThirdStep
+                    setTime={setTime}
                     selectDate={selectDate}
                     meetingData={meetingData}
                     handleTimezonePopup={handleTimezonePopup}

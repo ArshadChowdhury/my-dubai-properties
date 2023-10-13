@@ -18,7 +18,7 @@ import Image from "next/image";
 import BtnNextStep from "@/components/prev/BtnNextStep";
 
 const ThirdStep = (props) => {
-  const { selectDate } = props;
+  const { selectDate, setTime } = props;
   const meetingData = props?.meetingData;
   const [showGuestEmails, setShowGuestEmails] = useState(false);
   const [emails, setEmails] = useState([]);
@@ -75,6 +75,7 @@ const ThirdStep = (props) => {
   };
 
   const handleSelectTimeClick = (btnText) => {
+    setTime(btnText);
     setActiveButton(btnText);
   };
 

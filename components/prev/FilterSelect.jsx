@@ -17,7 +17,6 @@ const FilterSelect = (props) => {
   const developmentTypeId = searchParams.get("developmentTypes");
   const developerId = searchParams.get("developers");
   const allItemsArray = props?.selectBy && [...props?.selectBy];
-  console.log(router);
 
   useEffect(() => {
     setSelectedValue(getSelectedValue());
