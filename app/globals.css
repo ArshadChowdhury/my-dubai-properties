@@ -3541,7 +3541,7 @@ video {
 .filter-btn-selected-mob:before {
   position: absolute;
   height: 53%;
-  width: 106%;
+  width: 107%;
   content: "";
   top: -1.5px;
   left: -9px;
@@ -3552,7 +3552,7 @@ video {
 
 .filter-btn-selected-mob:after {
   position: absolute;
-  height: 55%;
+  height: 59%;
   width: 106%;
   top: 21.5px;
   left: -9px;
@@ -3592,7 +3592,7 @@ video {
 
 .filter-btn-mob:after {
   position: absolute;
-  height: 55%;
+  height: 59%;
   width: 106%;
   top: 21.5px;
   left: -9px;

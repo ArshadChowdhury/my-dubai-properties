@@ -48,19 +48,19 @@ const PaymentCircle = () => {
   //   // Play the animation
   //   tl.play();
 
-  const path = `M${x} ${y} L${x + 100} ${y} L${x + 100} ${y + 100} L${x} ${
-    y + 100
-  } Z`;
+  // const path = `M${x} ${y} L${x + 100} ${y} L${x + 100} ${y + 100} L${x} ${
+  //   y + 100
+  // } Z`;
 
-  gsap.to(element, {
-    duration: 2,
-    ease: "power1.inOut",
-    motionPath: {
-      path: path,
-      align: path,
-      autoRotate: true,
-    },
-  });
+  // gsap.to(element, {
+  //   duration: 2,
+  //   ease: "power1.inOut",
+  //   motionPath: {
+  //     path: path,
+  //     align: path,
+  //     autoRotate: true,
+  //   },
+  // });
 
   return (
     <div

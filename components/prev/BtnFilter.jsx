@@ -100,7 +100,7 @@ const BtnFilter = (props) => {
             ref={inputRef}
             value={inputValue}
             onChange={inputChange}
-            className={`bg-transparent text-[#dcb558] focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]`}
+            className={`bg-transparent text-[12px] text-[#dcb558] focus:outline-none group-hover:placeholder-[#F1BF3F] group-focus:placeholder-[#F1BF3F]`}
           />
           <span
             onClick={(e) => {

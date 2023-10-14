@@ -28,7 +28,7 @@ const HeroSection = (props) => {
 
   return (
     <section
-      className={`relative w-[100vw] h-[90vh] lg:h-screen overflow-hidden flex z-10`}
+      className={`relative w-[100vw] h-[90vh] lg:h-screen overflow-hidden flex z-20`}
     >
       {sliders?.map((slider, idx) => {
         let position = "nextSlide";
