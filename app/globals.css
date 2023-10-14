@@ -3752,13 +3752,13 @@ video {
 .nav .start-home,
 .first-en:hover ~ .animation2 {
   width: 73px;
-  left: 0px;
+  left: -1px;
 }
 
 .nav .start-home,
 .second-en:hover ~ .animation2 {
   width: 53px;
-  left: 100px;
+  left: 102px;
 }
 
 .nav .start-home,

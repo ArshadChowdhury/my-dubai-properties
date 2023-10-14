@@ -213,6 +213,7 @@ export default function ViewProperty(props) {
                   homeData={homeData}
                   setPage={setPage}
                   filterListData={filterListData}
+                  filterParams={filterParams}
                 />
               </div>
             </div>

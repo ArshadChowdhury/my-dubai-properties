@@ -7,10 +7,11 @@ import { useStateValue } from "./states/StateProvider";
 import { useEffect } from "react";
 
 const FilterSelect = (props) => {
-  const { filterTexts } = props;
+  const { filterTexts, filterParams } = props;
   const [{ lang, filterValues }] = useStateValue();
   const router = useRouter();
   const filterRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
@@ -23,7 +24,11 @@ const FilterSelect = (props) => {
   }, [filterTexts]);
 
   useEffect(() => {
-    if (!filterValues) router.push("/properties");
+    if (isMounted) {
+      router.push("/properties");
+    } else {
+      setIsMounted(true);
+    }
   }, [lang]);
 
   const getSelectedValue = () => {

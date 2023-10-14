@@ -6,7 +6,7 @@ import HeadingBox from "./HeadingBox";
 import FilterSelectMob from "./FilterSelectMob";
 
 const FilterSearch = (props) => {
-  const { filterListData, setPage, homeData } = props;
+  const { filterListData, setPage, homeData, filterParams } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
   const filterTexts = homeData?.lang?.filterHomepage;
@@ -29,6 +29,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterParams={filterParams}
             filterTexts={filterTexts}
             setPage={setPage}
             searchBy={filterTexts?.textBoxDevelopmentType}
@@ -44,6 +45,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterParams={filterParams}
             filterTexts={filterTexts}
             setPage={setPage}
             searchBy={filterTexts?.textBoxDubaiDeveloper}
@@ -59,6 +61,7 @@ const FilterSearch = (props) => {
           }}
         >
           <FilterSelect
+            filterParams={filterParams}
             filterTexts={filterTexts}
             setPage={setPage}
             searchBy={filterTexts?.textBoxPropertyArea}
