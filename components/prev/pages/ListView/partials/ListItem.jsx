@@ -109,7 +109,7 @@ import iconLocation from "../../../assets/images/property details page/icon-loca
 import iconVillas from "../../../assets/images/property details page/icon-villas.svg";
 import iconBed from "../../../assets/images/property details page/icon-bed.svg";
 import ButtonOutline from "@/components/prev/ButtonOutline";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
 import BtnItem from "@/components/prev/BtnItem";
 import ButtonOutline2 from "@/components/prev/ButtonOutline2";
 import Image from "next/image";
@@ -192,24 +192,35 @@ const ListItem = (props) => {
             // onMouseEnter={handleMouseEnter}
             // onMouseLeave={handleMouseLeave}
           >
-            <h1
-              onClick={() => router.push(`/properties/${props.id}`)}
-              className="font-roboto text-[15px] md:text-xl text-white cursor-pointer w-fit"
-            >
-              {props.propertyName} at {props.developerName}
+            <h1 className="font-roboto text-[15px] md:text-xl text-white cursor-pointer w-fit hover:text-[#F1BF3F]">
+              <Link href={`/properties/${props.id}`}>
+                {props.propertyName} at {props.developerName}
+              </Link>
             </h1>
             <div className="flex gap-6 w-full items-center md:mt-2">
               <div className="md:flex gap-6">
                 <div>
                   <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconLocation} alt="building" />
-                    {props.areaName}
+                    <Link
+                      href={`/property-area/${props.property.propertyArea.id}`}
+                    >
+                      <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                        {props.areaName}
+                      </span>
+                    </Link>
                   </p>
                 </div>
                 <div>
                   <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconBuilding} alt="building" className="mr-1" />
-                    {props.developerName}
+                    <Link
+                      href={`/developers/${props?.property?.developerType?.id}`}
+                    >
+                      <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                        {props.developerName}
+                      </span>
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -217,7 +228,13 @@ const ListItem = (props) => {
                 <div>
                   <p className="flex gap-1 font-montserrat text-white text-[9px] md:text-sm leading-4 my-2">
                     <Image src={iconVillas} alt="building" className="mr-1" />
-                    {props.propertyType}
+                    <Link
+                      href={`/property-type/${props.property.propertyType.id}`}
+                    >
+                      <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
+                        {props.propertyType}
+                      </span>
+                    </Link>
                   </p>
                 </div>
                 <div>

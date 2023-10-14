@@ -11,6 +11,7 @@ import { instance } from "@/components/prev/services/apiFunctions";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import LoadingState from "@/components/LoadingState";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYXZpaml0c2FoYTI5OTciLCJhIjoiY2xjcDM4ZWpiMXEzYjNybXFlN2ExNWtjYSJ9.l0lzw0rJpo-uIh3v7-NFdQ";
@@ -187,22 +188,26 @@ export default function Map() {
       __v: 6,
     },
   ]);
-  const [{ lang, viewType }, dispatch] = useStateValue();
+  const [{ lang }] = useStateValue();
 
   const getAllProperties = async () => {
-    await axios
-      .get(`http://my-dubaiproperties.com:3000/api/v1/${lang}/properties`, {
-        timeout: 5000,
-        // params: {
-        //   size: 10000,
-        // },
-      })
-      .then((data) => setAllPlaces(data.data.data.properties.data));
-  };
+    let records = [];
+    let page = 0;
+    let totalPages = 0;
 
-  // useEffect(() => {
-  //   router.push(`?propertyId=${propertyId || 1}`, { scroll: false });
-  // }, [propertyId]);
+    await axios
+      .get(`http://my-dubaiproperties.com:3000/api/v1/${lang}/properties`)
+      .then((data) => setAllPlaces(data.data.data.properties.data));
+
+    do {
+      let { data: response } = await instance.get(`${lang}/properties`, {
+        params: { page: ++page },
+      });
+      totalPages = Math.ceil(response.data.properties.count / 6);
+      records = records.concat(response.data.properties.data);
+      setAllPlaces(records);
+    } while (page < totalPages);
+  };
 
   useEffect(() => {
     if (map.current) {

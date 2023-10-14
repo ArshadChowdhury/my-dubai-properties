@@ -54,6 +54,7 @@ const ListView = (props) => {
                     return image.path;
                   }
                 })}
+                property={property}
                 propertyName={property.propertyName}
                 areaName={property.propertyArea.areaName}
                 developerName={property.developerType.name}

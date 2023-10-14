@@ -68,7 +68,6 @@ const GridItem = (props) => {
             <div>
               <p className="font-montserrat text-white text-xs flex items-center gap-1 my-2">
                 <Image src={iconLocation} alt="building" />
-
                 <Link href={`/property-area/${props.property.propertyArea.id}`}>
                   <span className="hover:border-b-[0.5px] hover:border-b-[#ffd15f]">
                     {props.areaName}

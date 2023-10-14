@@ -40,7 +40,7 @@ const SinglePropertyDescription = (props) => {
           </h1>
           <div className="flex gap-4 items-center mx-2">
             <Link
-              href={`/properties/${propertyAreaRoute}`}
+              href={`/property-area/${propertyAreaRoute}`}
               className="flex gap-2 font-montserrat text-white text-[12px] leading-4 items-center my-2 hover:text-[#ffd15f]"
             >
               <Image src={iconLocationBlack} alt="Location" />{" "}
