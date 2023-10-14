@@ -263,17 +263,23 @@ const PaymentPlan = (props) => {
                 className="hidden md:flex justify-end items-center w-3/4 pt-52 relative right-[37%]"
               >
                 <div
-                  className={`basis-1/2 flex justify-center items-center z-10 holder`}
+                  className={`${
+                    paymentPlan.length > 0 ? "basis-1/2" : "basis-[95%]"
+                  } flex ${
+                    paymentPlan.length > 0 ? "justify-center" : "justify-start"
+                  } items-center z-10 holder`}
                 >
                   <div
-                    className={`absolute -top-[25px] left-[76%] px-2 w-auto`}
+                    className={`absolute -top-[25px] ${
+                      paymentPlan.length > 0 ? "left-[89%]" : "left-[85%]"
+                    } px-2 w-auto`}
                   >
                     <h1
                       className={`font-oswald uppercase text-right text-white text-[75px]`}
                     >
                       {firstPlan.title}
                     </h1>
-                    <p className="font-robotoCondensed text-[16px] text-right text-white tracking-[0] pr-4">
+                    <p className="font-robotoCondensed text-[16px] text-right text-white tracking-[0]">
                       {firstPlan.description}
                     </p>
                   </div>
