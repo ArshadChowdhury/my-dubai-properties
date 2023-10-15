@@ -80,6 +80,7 @@ const Home = () => {
 
   useEffect(() => {
     let handle = (e) => {
+      console.log(e);
       if (modalRef.current && !modalRef.current.contains(e.target)) {
         dispatch({ type: "setFilterOpen", item: false });
         // dispatch({ type: "setFilterValues", item: false });

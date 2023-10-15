@@ -54,6 +54,8 @@ const BtnFilter = (props) => {
 
   useEffect(() => {
     let handle = (e) => {
+      console.log(e.target);
+      console.log(filterRef.current);
       if (filterRef.current && !filterRef.current.contains(e.target)) {
         setIsDropdownOpen(false);
       }
