@@ -38,6 +38,7 @@ const TermsAndConditions = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

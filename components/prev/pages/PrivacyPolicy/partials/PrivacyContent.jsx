@@ -33,6 +33,7 @@ const PrivacyContent = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

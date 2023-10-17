@@ -24,9 +24,7 @@ import LoadingState from "@/components/LoadingState";
 export default function ViewProperty(props) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const pathname = usePathname();
-
   const [page, setPage] = useState(1);
-
   const [{ lang, viewType }, dispatch] = useStateValue();
   const searchParams = useSearchParams();
   const propertyAreaId = searchParams.get("propertyAreas");
@@ -73,6 +71,7 @@ export default function ViewProperty(props) {
         params: filterParams,
       })
       .then((data) => data.data.data.properties);
+    console.log(data);
     return data;
   };
 
@@ -91,6 +90,7 @@ export default function ViewProperty(props) {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -102,6 +102,7 @@ export default function ViewProperty(props) {
     queryKey: ["property-list"],
     queryFn: getAllProperties,
     enabled: !!filterParams,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -111,6 +112,7 @@ export default function ViewProperty(props) {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -134,12 +136,7 @@ export default function ViewProperty(props) {
     setPage(1);
   }, [lang, viewType]);
 
-  if (
-    isLoadingPropertiesData ||
-    isLoadingFilterData ||
-    isLoadingFilterData ||
-    isLoadingHomeContent
-  ) {
+  if (isLoadingPropertiesData || isLoadingFilterData || isLoadingHomeContent) {
     return <LoadingState />;
   }
 

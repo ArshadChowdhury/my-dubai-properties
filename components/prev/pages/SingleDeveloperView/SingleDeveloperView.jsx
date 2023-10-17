@@ -92,6 +92,7 @@ const SingleDeveloperView = (props) => {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -102,6 +103,7 @@ const SingleDeveloperView = (props) => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -113,6 +115,7 @@ const SingleDeveloperView = (props) => {
     queryKey: ["get-single-dev", developerId],
     queryFn: getSingleDeveloperData,
     enabled: !!developerId,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

@@ -95,6 +95,7 @@ const PropertyAreaPage = (props) => {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -105,6 +106,7 @@ const PropertyAreaPage = (props) => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -116,6 +118,7 @@ const PropertyAreaPage = (props) => {
     queryKey: ["get-single-dev", developerId],
     queryFn: getSinglePropertyAreaData,
     enabled: !!developerId,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

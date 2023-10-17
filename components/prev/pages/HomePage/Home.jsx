@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import SignUpForm from "./partials/SignUpForm";
 import PropertyInvestment from "./partials/PropertyInvestment";
@@ -16,9 +16,11 @@ import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import LoadingState from "@/components/LoadingState";
 import { useRef } from "react";
+import axios from "axios";
 
 const Home = () => {
   const [{ filterOpen, lang }, dispatch] = useStateValue();
+  const [allPlaces, setAllPlaces] = useState([]);
 
   const modalRef = useRef();
 
@@ -32,13 +34,38 @@ const Home = () => {
   };
 
   const getAllProperties = async () => {
-    const data = await instance
-      .get(`/${lang}/properties`, {
-        timeout: 5000,
+    return await instance
+      .get(`${lang}/properties`)
+      .then((data) => {
+        setAllPlaces(data.data.data.properties.data);
+        return data.data.data.properties.data;
       })
-      .then((data) => data?.data?.data?.properties);
-    return data;
+      .then(getOtherProperties);
   };
+
+  const getOtherProperties = async () => {
+    let records = [];
+    let page = 1;
+    let totalPages = 0;
+    do {
+      let { data: response } = await instance.get(`${lang}/properties`, {
+        params: { page: ++page },
+      });
+      totalPages = Math.ceil(response.data.properties.count / 6);
+      records = records.concat(response.data.properties.data);
+      setAllPlaces(records);
+    } while (page < totalPages);
+    return records;
+  };
+
+  // const getAllProperties = async () => {
+  //   const data = await instance
+  //     .get(`/${lang}/properties`, {
+  //       timeout: 5000,
+  //     })
+  //     .then((data) => data?.data?.data?.properties);
+  //   return data;
+  // };
 
   const getAllFilter = async () => {
     const data = await instance
@@ -57,16 +84,17 @@ const Home = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   const {
     isLoading: isLoadingPropertiesData,
-    data: propertiesData,
     isError: isErrorPropertiesData,
     refetch: refetchPropertiesData,
   } = useQuery({
-    queryKey: ["property-list"],
+    queryKey: ["property-list-all"],
     queryFn: getAllProperties,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -76,6 +104,7 @@ const Home = () => {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -136,7 +165,7 @@ const Home = () => {
           >
             <Filter homeData={homeData} filterLists={filterListData} />
           </div>
-          <LatestProperty homeData={homeData} properties={propertiesData} />
+          <LatestProperty homeData={homeData} allPlaces={allPlaces} />
           <PropertyInvestment homeData={homeData} />
           <Payment homeData={homeData} />
           <SignUpForm homeData={homeData} popup={true} />

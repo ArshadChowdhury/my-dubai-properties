@@ -51,6 +51,7 @@ const OtherNecessaryComponents = () => {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -61,6 +62,7 @@ const OtherNecessaryComponents = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   // const {
@@ -79,7 +81,7 @@ const OtherNecessaryComponents = () => {
     setMobileView(isMobileView);
   }, [lang]);
 
-  if (isLoadingHomeContent) {
+  if (isLoadingHomeContent || isLoadingFilterData) {
     return;
   }
 

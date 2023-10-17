@@ -87,28 +87,16 @@ const HeroSection = (props) => {
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
     handleWindowSizeChange();
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
-  useEffect(() => {
     if (language === "ar") {
       sliderRef.current.dir = "rtl";
     } else {
       sliderRef.current.dir = "ltr";
     }
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, []);
 
-  // useEffect(() => {
-  //   if (isMounted) {
-  //     window.location.reload();
-  //   } else {
-  //     setIsMounted(true);
-  //   }
-  // }, [language]);
-
-  // language === "ar" ?
   return (
     <section
       className={`relative w-[100vw] h-[90vh] lg:h-screen overflow-hidden flex`}
@@ -120,11 +108,6 @@ const HeroSection = (props) => {
           delay: 2500,
           disableOnInteraction: false,
           reverseDirection: language === "ar",
-        }}
-        onSlideChange={(swiperCore) => {
-          const { activeIndex, snapIndex, previousIndex, realIndex } =
-            swiperCore;
-          console.log({ activeIndex, snapIndex, previousIndex, realIndex });
         }}
         centeredSlides={false}
         slidesPerView={1}

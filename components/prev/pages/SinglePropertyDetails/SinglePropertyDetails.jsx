@@ -77,6 +77,7 @@ const SinglePropertyDetails = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -87,6 +88,7 @@ const SinglePropertyDetails = () => {
   } = useQuery({
     queryKey: ["single-property-details", propertyId],
     queryFn: getSingleProperty,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -97,6 +99,7 @@ const SinglePropertyDetails = () => {
   } = useQuery({
     queryKey: ["property-list"],
     queryFn: getAllProperties,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -106,6 +109,7 @@ const SinglePropertyDetails = () => {
   } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

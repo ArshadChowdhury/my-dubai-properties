@@ -73,11 +73,13 @@ const DeveloperListPage = () => {
   } = useQuery({
     queryKey: ["get-home"],
     queryFn: getAllHomeContent,
+    refetchOnWindowFocus: false,
   });
 
   const { data: filterListData } = useQuery({
     queryKey: ["filter-list"],
     queryFn: getAllFilter,
+    refetchOnWindowFocus: false,
   });
 
   const {
@@ -88,6 +90,7 @@ const DeveloperListPage = () => {
   } = useQuery({
     queryKey: ["get-developers"],
     queryFn: getAllDevelopers,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

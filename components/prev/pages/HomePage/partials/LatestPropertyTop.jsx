@@ -21,8 +21,6 @@ const LatestPropertyTop = (props) => {
     .flatMap(() => props.properties)
     .slice(0, 10);
 
-  // props?.properties;
-
   const [animationState, setPlay] = useState("paused");
   const [hoveredCard, setHoveredCard] = useState(null);
 
