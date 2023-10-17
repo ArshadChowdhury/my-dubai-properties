@@ -23,6 +23,8 @@ const SinglePropertyHeader = (props) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const header = props.header;
   const sliderRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const language = sessionStorage.getItem("language");
 
   // useEffect(() => {
   //   const lastIndex = header.length - 1;
@@ -58,6 +60,14 @@ const SinglePropertyHeader = (props) => {
   //   }
   // }, [sliderRef.current]);
 
+  useEffect(() => {
+    if (language === "ar") {
+      sliderRef.current.dir = "rtl";
+    } else {
+      sliderRef.current.dir = "ltr";
+    }
+  }, []);
+
   return (
     <section className="relative w-[100vw] h-[70vh] lg:h-screen overflow-hidden flex">
       <Swiper
@@ -66,6 +76,7 @@ const SinglePropertyHeader = (props) => {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+          reverseDirection: language === "ar",
         }}
         onSlideChange={(swiperCore) => {
           const { activeIndex, snapIndex, previousIndex, realIndex } =
@@ -85,14 +96,14 @@ const SinglePropertyHeader = (props) => {
         initialSlide={selectedImageIndex}
         className="mySwiper swiper"
       >
-        {props?.header?.map((img, idx) => (
+        {header.map((img, idx) => (
           <SwiperSlide
             key={`image-${idx + 1}`}
             className="rounded-xl autoplay-progress"
           >
             <article
               // className={`relative top-0 left-0 article h-full w-full`}
-              className={`relative top-0 left-0 article transition-all duration-500 h-full w-full bg-cover bg-no-repeat flex justify-center items-center flex-shrink-0`}
+              className={`relative top-0 left-0 article transition-all duration-500 h-screen w-screen flex justify-center items-center flex-shrink-0`}
               style={{
                 backgroundImage: `url(${img.path})`,
                 backgroundRepeat: "no-repeat",
@@ -100,6 +111,7 @@ const SinglePropertyHeader = (props) => {
                 backgroundPosition: "center",
               }}
             >
+              {/* <Image src={img.path} height={300} width={300} alt="" /> */}
               <div
                 className="inner-shadow absolute bottom-0 left-0 w-full h-[5px]"
                 style={{

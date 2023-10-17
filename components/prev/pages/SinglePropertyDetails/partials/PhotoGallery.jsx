@@ -32,6 +32,7 @@ const PhotoGallery = (props) => {
   const [strokeRight, setStrokeRight] = useState("#B4B4B4");
   const [crossStroke, setCrossStroke] = useState("#B4B4B4");
   const gallery = props?.singleProperty?.property?.images;
+  const language = sessionStorage.getItem("language");
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imgPath, setImgPath] = useState();
@@ -108,6 +109,14 @@ const PhotoGallery = (props) => {
     setIsModalOpen(true);
     setSelectedImageIndex(index);
   };
+
+  useEffect(() => {
+    if (language === "ar") {
+      sliderRef.current.dir = "rtl";
+    } else {
+      sliderRef.current.dir = "ltr";
+    }
+  }, []);
 
   return (
     <>

@@ -29,7 +29,7 @@ const SinglePropertyDescription = (props) => {
 
   return (
     <section className="scroll-smooth mx-3">
-      <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0 ">
+      <SkeletonSingleProperty className="relative flex-col md:flex-row h-auto z-0">
         <div className="xl:basis-[75%] xl:pr-8 text-justify lg:text-left">
           <h1
             className={`font-robotoCondensed font-medium text-white text-[30px] mx-2 ${

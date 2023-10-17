@@ -3850,7 +3850,7 @@ video {
 .bg-white-0 {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
+/*
 article.activeSlide {
   opacity: 1 !important ;
   transform: translateX(0);
@@ -3862,6 +3862,7 @@ article.lastSlide {
 article.nextSlide {
   transform: translateX(100%);
 }
+*/
 
 .d-flex {
   display: flex;

@@ -150,7 +150,7 @@ const SinglePropertyDetails = () => {
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
       {/* <VerticalLine /> */}
       <ContactUsModal homeData={homeData} />
-      <div className="single_background mb-20 z-[100]">
+      <div className="single_background mb-20 z-[10]">
         {/* <div className="md:hidden">
           <Navbar2
             filterListData={filterListData}
