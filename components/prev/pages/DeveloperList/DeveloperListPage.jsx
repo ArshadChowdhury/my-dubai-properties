@@ -95,8 +95,12 @@ const DeveloperListPage = () => {
 
   useEffect(() => {
     refetch();
+  }, [page]);
+
+  useEffect(() => {
+    refetch();
     refetchHomeData();
-  }, [lang, page]);
+  }, [lang]);
 
   if (isLoadingDevelopersData || isLoadingHomeContent) {
     return <LoadingState />;

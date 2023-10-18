@@ -184,8 +184,8 @@ const FilterSelectSinglePropertyArea = (props) => {
         onClick={handleOnClick}
       >
         {selectedValue ===
-        (allItemsArray[0].areaName ||
-          allItemsArray[0].name ||
+        (allItemsArray[0]?.areaName ||
+          allItemsArray[0]?.name ||
           allItemsArray[0]) ? (
           <span className="truncate">{selectedValue}</span>
         ) : (

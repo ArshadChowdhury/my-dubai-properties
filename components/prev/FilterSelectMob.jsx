@@ -41,7 +41,7 @@ const FilterSelectMob = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === developmentTypeId)
-            ?.name || allItemsArray[0].name
+            ?.name || allItemsArray[0]?.name
         );
       case "Developer Type":
         allItemsArray?.unshift({
@@ -50,7 +50,7 @@ const FilterSelectMob = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === developerId)?.name ||
-          allItemsArray[0].name
+          allItemsArray[0]?.name
         );
       default:
         return null;
@@ -127,7 +127,7 @@ const FilterSelectMob = (props) => {
       onClick={handleOnClick}
     >
       {selectedValue ===
-      (allItemsArray[0].areaName || allItemsArray[0].name) ? (
+      (allItemsArray[0]?.areaName || allItemsArray[0]?.name) ? (
         <span>{selectedValue}</span>
       ) : (
         <span className="text-[#F1BF3F]">{selectedValue}</span>

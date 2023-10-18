@@ -9,15 +9,8 @@ const GridView = (props) => {
   const [filterData, setFilterData] = useState([]);
   const [{ viewType }] = useStateValue();
   const dataLength = 6;
-  const totalData = propertiesData.count;
-
-  const totalPages = Math.ceil(totalData / dataLength);
+  const totalPages = Math.ceil(propertiesData?.count / dataLength);
   const hasNextPage = page < totalPages;
-
-  console.log(totalPages);
-
-  console.log(hasNextPage);
-  console.log(page);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,10 +34,9 @@ const GridView = (props) => {
   return (
     <>
       <InfiniteScroll
-        dataLength={totalPages * dataLength}
+        dataLength={propertiesData?.page * dataLength}
         next={fetchMoreData}
-        hasMore={false}
-        refreshFunction={fetchMoreData}
+        hasMore={hasNextPage}
       >
         <div className="mb-20">
           <div className="w-full overflow-scroll scrollbar-hide grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 my-3 md:my-10 md:px-1">

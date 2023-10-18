@@ -30,7 +30,7 @@ const FilterSelectMob = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === developerId)?.name ||
-          allItemsArray[0].name
+          allItemsArray[0]?.name
         );
       case filterTexts?.dropdownPropertyType:
         allItemsArray?.unshift({
@@ -39,7 +39,7 @@ const FilterSelectMob = (props) => {
         });
         return (
           props?.selectBy?.find((item) => item._id === propertyTypeId)?.name ||
-          allItemsArray[0].name
+          allItemsArray[0]?.name
         );
       case filterTexts?.dropdownCompletion:
         allItemsArray?.unshift(filterTexts?.dropdownCompletion);
@@ -144,8 +144,8 @@ const FilterSelectMob = (props) => {
       onClick={handleOnClick}
     >
       {selectedValue ===
-      (allItemsArray[0].areaName ||
-        allItemsArray[0].name ||
+      (allItemsArray[0]?.areaName ||
+        allItemsArray[0]?.name ||
         allItemsArray[0]) ? (
         <span>{selectedValue}</span>
       ) : (

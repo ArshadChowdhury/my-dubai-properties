@@ -44,7 +44,7 @@ const FilterSelect = (props) => {
           );
           return (
             selectedItem?.areaName ||
-            (allItemsArray[0] && allItemsArray[0].areaName)
+            (allItemsArray[0] && allItemsArray[0]?.areaName)
           );
         }
         return null;
@@ -58,7 +58,7 @@ const FilterSelect = (props) => {
             (item) => item._id === developmentTypeId
           );
           return (
-            selectedItem?.name || (allItemsArray[0] && allItemsArray[0].name)
+            selectedItem?.name || (allItemsArray[0] && allItemsArray[0]?.name)
           );
         }
         return null;
@@ -72,7 +72,7 @@ const FilterSelect = (props) => {
             (item) => item._id === developerId
           );
           return (
-            selectedItem?.name || (allItemsArray[0] && allItemsArray[0].name)
+            selectedItem?.name || (allItemsArray[0] && allItemsArray[0]?.name)
           );
         }
         return null;
