@@ -4,10 +4,12 @@ import HeadingBox from "./HeadingBox";
 
 import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
+import { usePathname } from "next/navigation";
 
 const FilterSearch = (props) => {
   const { filterListData, homeData, handleFilterFieldsReset, page } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
+  const pathname = usePathname();
 
   const beds = [1, 2, 3, 4, 5];
 
@@ -27,15 +29,17 @@ const FilterSearch = (props) => {
             selectBy={filterListData?.propertyAreas}
           />
         </div>
-        <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
-          <FilterSelectMob
-            page={page}
-            handleFilterFieldsReset={handleFilterFieldsReset}
-            homeData={homeData}
-            searchBy="Development Type"
-            selectBy={filterListData?.developmentTypes}
-          />
-        </div>
+        {pathname === "/properties" ? (
+          <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
+            <FilterSelectMob
+              page={page}
+              handleFilterFieldsReset={handleFilterFieldsReset}
+              homeData={homeData}
+              searchBy="Development Type"
+              selectBy={filterListData?.developmentTypes}
+            />
+          </div>
+        ) : null}
         {/* <div className="mt-2 md:mt-0 pl-[25px] md:auto relative px-3 md:px-0 md:pl-2 md:pr-5 rounded-md bg-white bg-opacity-10 border-t-2 border-[#DDE5EB] md:mx-1 text-white hover:text-[#FFD15F] ">
           <FilterSelectMob setPage={setPage} searchBy="Beds" selectBy={beds} />
         </div> */}
