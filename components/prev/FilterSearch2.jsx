@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import FilterSelect from "./FilterSelect";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 import HeadingBox from "./HeadingBox";
+import { usePathname } from "next/navigation";
 
 import FilterSelectMob from "./FilterSelectMob";
 
@@ -9,6 +10,7 @@ const FilterSearch = (props) => {
   const { filterListData, setPage, homeData, filterParams } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const filterRef = useRef();
+  const pathname = usePathname();
   const filterTexts = homeData?.lang?.filterHomepage;
 
   const beds = [1, 2, 3, 4, 5];
@@ -20,22 +22,24 @@ const FilterSearch = (props) => {
   return (
     <section className="w-full md:flex justify-between">
       <div className="w-full lg:w-auto gap-[5px] md:flex items-center my-2 md:my-0">
-        <div
-          className="mt-2 md:mt-0 relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
-          style={{
-            borderLeft: "2px solid gray",
-            borderRight: "2px solid gray",
-            borderTop: "3px solid gray",
-          }}
-        >
-          <FilterSelect
-            filterParams={filterParams}
-            filterTexts={filterTexts}
-            setPage={setPage}
-            searchBy={filterTexts?.textBoxDevelopmentType}
-            selectBy={filterListData?.developmentTypes}
-          />
-        </div>
+        {pathname === "/properties" ? (
+          <div
+            className="mt-2 md:mt-0 relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
+            style={{
+              borderLeft: "2px solid gray",
+              borderRight: "2px solid gray",
+              borderTop: "3px solid gray",
+            }}
+          >
+            <FilterSelect
+              filterParams={filterParams}
+              filterTexts={filterTexts}
+              setPage={setPage}
+              searchBy={filterTexts?.textBoxDevelopmentType}
+              selectBy={filterListData?.developmentTypes}
+            />
+          </div>
+        ) : null}
         <div
           className="mt-2 md:mt-0 relative px-3 md:px-0 md:pl-0 rounded-md bg-white bg-opacity-10  md:mx-1 text-white hover:text-[#FFD15F] "
           style={{

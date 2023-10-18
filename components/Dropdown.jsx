@@ -13,15 +13,23 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import calender from "./prev/assets/images/global/calendar-outline.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import backsapce from "../public/images/global/backspace-outline.png";
 
 const Dropdown = (props) => {
   const developersData = props.filterListData?.developers;
   const homeData = props.homeData;
-  const [{ lang }, dispatch] = useStateValue();
+  const [{ lang, isDropdownMenuOpen, showModal }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(false);
   const navItem = homeData?.lang?.menu;
   const propertySelection = homeData?.lang?.propertySelection;
   const router = useRouter();
+
+  const closeDropdown = () => {
+    dispatch({
+      type: "setDropdownOpen",
+      item: false,
+    });
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -224,7 +232,7 @@ const Dropdown = (props) => {
         </div>
       </div>
     ) : (
-      <div className="font-extralight mt-[68px] text-right md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+      <div className="font-extralight text-right mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
         {/** left side */}
         <div className="w-full h-full relative hidden md:block bg-cover">
           <Image src={investment} alt="" className="h-full w-full" />
@@ -389,9 +397,15 @@ const Dropdown = (props) => {
       </div>
     )
   ) : lang === "en" ? (
-    <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div className={`md:mt-0 dropdown_background w-full h-full`}>
+    <div className="font-extralight mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+      <div className={`pt-[68px] md:mt-0 dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
+          <span
+            onClick={closeDropdown}
+            className="absolute top-5 right-5 md:hidden"
+          >
+            <Image src={backsapce} alt="backspace" />
+          </span>
           <div className="px-5 flex flex-col gap-5 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">
               <div className="flex">
@@ -548,9 +562,15 @@ const Dropdown = (props) => {
       </div>
     </div>
   ) : (
-    <div className="font-extralight mt-[68px] md:mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
-      <div className={`md:mt-0 dropdown_background w-full h-full`}>
+    <div className="font-extralight mt-0 text-[#ffff] font-montserrat flex flex-col md:flex-row justify-between items-center w-full h-full shadow-2xl">
+      <div className={`pt-[68px] md:mt-0 dropdown_background w-full h-full`}>
         <SkeletonSingleProperty className="w-full !pb-0">
+          <span
+            onClick={closeDropdown}
+            className="absolute top-5 left-5 rotate-180 md:hidden"
+          >
+            <Image src={backsapce} alt="backspace" />
+          </span>
           <div className="pr-[28px] my-2 flex flex-col gap-6 justify-center md:grid grid-cols-2 w-full">
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 justify-end">

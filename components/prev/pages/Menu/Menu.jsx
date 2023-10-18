@@ -7,8 +7,6 @@ import { useStateValue } from "../../states/StateProvider";
 import Dropdown from "@/components/Dropdown";
 import { instance } from "../../services/apiFunctions";
 import { useQuery } from "@tanstack/react-query";
-
-import backsapce from "../../assets/images/global/backspace-outline.png";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,6 +16,13 @@ const Menu = (props) => {
   const menuRef = useRef();
 
   // let location = useLocation();
+
+  const closeDropdown = () => {
+    dispatch({
+      type: "setDropdownOpen",
+      item: false,
+    });
+  };
 
   useEffect(() => {
     closeDropdown();
@@ -136,13 +141,6 @@ const Menu = (props) => {
     }
   }, [isDropdownMenuOpen]);
 
-  const closeDropdown = () => {
-    dispatch({
-      type: "setDropdownOpen",
-      item: false,
-    });
-  };
-
   return (
     <div
       className={`${
@@ -152,7 +150,7 @@ const Menu = (props) => {
       } `}
       ref={menuRef}
     >
-      {lang === "en" ? (
+      {/* {lang === "en" ? (
         <span
           onClick={closeDropdown}
           className="absolute top-5 right-5 md:hidden"
@@ -166,7 +164,7 @@ const Menu = (props) => {
         >
           <Image src={backsapce} alt="backspace" />
         </span>
-      )}
+      )} */}
 
       <Dropdown
         pathname={props?.pathname}
