@@ -118,7 +118,7 @@ const LatestPropertyDown = (props) => {
                 propertyTypeId={property.propertyType.id}
                 unitSize={property.unitType.size}
                 type="home"
-                setIsHoveredCard={() => setHoveredCard(idx)}
+                // setIsHoveredCard={() => setHoveredCard(idx)}
                 isHoveredCard={hoveredCard === idx}
                 isHovered={isHovered}
                 setIsHovered={setIsHovered}
