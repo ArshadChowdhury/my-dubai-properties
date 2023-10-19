@@ -108,7 +108,7 @@ const Navbar2 = (props) => {
           <div
             className={`w-[100px] md:w-auto ${
               props.type === "home" ? "hidden" : "block"
-            }`}
+            } z-50`}
           >
             <Link href={"/"}>
               <Image src={logo} alt="logo" />
