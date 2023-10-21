@@ -147,7 +147,9 @@ const Navbar2 = (props) => {
                 }`}
               >
                 <Link
-                  href={"off-plan?developmentTypes=651984de79fcdc27efbf859b"}
+                  href={
+                    "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                  }
                 >
                   {navData?.offPlan}
                 </Link>

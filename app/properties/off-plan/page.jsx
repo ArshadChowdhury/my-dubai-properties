@@ -9,7 +9,9 @@ export default function AllProperties() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("off-plan?developmentTypes=651984de79fcdc27efbf859b");
+    router.push(
+      "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+    );
   }, []);
 
   return <ViewProperty heading={"Off Plan Properties"} />;
