@@ -123,20 +123,22 @@ const FilterSelectMob = (props) => {
   return (
     <div
       ref={filterRef}
-      className="flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-xs items-center !h-full !w-[230px] relative px-6 py-2"
+      className={`flex cursor-pointer justify-between gap-6 hover:text-[#F1BF3F] text-xs items-center !h-full !w-full px-4 py-2`}
       onClick={handleOnClick}
     >
       {selectedValue ===
       (allItemsArray[0]?.areaName || allItemsArray[0]?.name) ? (
-        <span>{selectedValue}</span>
+        <span className="truncate">{selectedValue}</span>
       ) : (
-        <span className="text-[#F1BF3F]">{selectedValue}</span>
+        <span className="text-[#F1BF3F] truncate">{selectedValue}</span>
       )}
       <span className="group-hover:text-[#F1BF3F]">
         <BsFillCaretDownFill />
       </span>
       {isDropdownOpen && (
-        <div className="absolute top-[33px] right-1 outline-none w-[238px] rounded-md md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[180px] md:h-[220px] z-[100] text-md font-[300]">
+        <div
+          className={`absolute top-[33px] right-0 outline-none rounded-md w-full md:w-[230px] px-3 bg-gradient-to-r from-[#000F1D]  via-[#00182E] to-[#000F1D] h-[180px] md:h-[220px] z-[100] text-md font-[300]`}
+        >
           <div className="w-full h-full text-start text-[10.6px] text-white overflow-y-scroll scrollbar-thin  scrollbar-thumb-rounded scrollbar-track-gray-500/10 scrollbar-thumb-[#FFFF]/30">
             <div className="p-3 space-y-2">
               {allItemsArray?.map((content, idx) => {

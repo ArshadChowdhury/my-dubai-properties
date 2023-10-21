@@ -5,12 +5,12 @@ import HeadingBox from "./HeadingBox";
 import { useLocation } from "react-router-dom";
 import FilterSelectMob from "./FilterSelectMob";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
 
 const FilterSearch = (props) => {
   const { filterListData, homeData, handleFilterFieldsReset, page } = props;
   const [{ lang, viewType, query }, dispatch] = useStateValue();
   const pathname = usePathname();
-
   const beds = [1, 2, 3, 4, 5];
 
   const switchViewType = (viewType) => {

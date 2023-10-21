@@ -88,7 +88,7 @@ const BtnFilter = (props) => {
       } p-[9px] mb-2 hover:text-[#F1BF3F] text-white border-t-2 border-b-2 relative`}
     >
       <div className="z-0 absolute w-8 h-8 border-2 border-white rotate-45 top-[5px] left-[-16px] border-r-0 border-t-0"></div>
-      <div className="flex justify-around text-[10px] items-center !h-full !w-full relative px-8 py-4">
+      <div className="flex justify-around text-[10px] items-center !h-full !w-full px-8 py-4">
         <form
           id="Form"
           action=""
