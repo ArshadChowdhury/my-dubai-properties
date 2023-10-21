@@ -15,7 +15,7 @@ const DeveloperListItem = (props) => {
           width={400}
           src={props.developerLogo}
           alt={props.developerName}
-          className="group-hover:scale-125 transition-all ease-in-out duration-500 w-full"
+          className="group-hover:scale-105 transition-all ease-in-out duration-500 w-full"
         />
       </div>
       <div className="flex gap-4 mt-5">

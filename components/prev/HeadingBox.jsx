@@ -17,8 +17,8 @@ const HeadingBox = (props) => {
       <h1
         className={`font-roboto text-xl xl:text-2xl text-white px-4 py-1 ${
           lang === "ar"
-            ? "text-right lg:pr-8 lg:pl-[160px]"
-            : "text-left lg:pl-8 lg:pr-[160px]"
+            ? "text-right md:pr-8 md:pl-[160px]"
+            : "text-left md:pl-8 md:pr-[160px]"
         } ${props.textPosition}`}
       >
         {props.heading}

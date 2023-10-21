@@ -42,7 +42,7 @@ const DeveloperList = (props) => {
         next={fetchMoreData}
         hasMore={hasNextPage}
       >
-        <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
+        <div className="relative overflow-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 w-full footer_background bg-repeat bg-opacity-10 justify-center items-center gap-[50px]">
           {allDev?.map((developer, index) => (
             <DeveloperListItem
               key={index + 1}
