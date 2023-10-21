@@ -301,7 +301,6 @@ const TableViewForArea = (props) => {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white bg-opacity-5">
                     {filterData?.map((property, idx) => {
-                      console.log(property);
                       const { images } = property;
                       const coverImage = images.filter((image) => {
                         if (image.type === "cover") {

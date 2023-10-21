@@ -64,9 +64,7 @@ const LatestPropertyTop = (props) => {
             } md:mr-[13rem]`}
           >
             <BtnElore2
-              route={
-                "properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
-              }
+              route={"properties/off-plan"}
               title={props?.homeData?.lang?.slider?.buttonExplore}
             />
           </div>
@@ -82,7 +80,7 @@ const LatestPropertyTop = (props) => {
           >
             <BtnElore2
               route={
-                "properties/off-plan"
+                "properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
               }
               title={props.homeData.lang.slider.buttonExplore}
             />

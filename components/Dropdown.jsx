@@ -136,14 +136,21 @@ const Dropdown = (props) => {
                       {navItem?.projects}
                     </h2>
                     <ul className="flex flex-col gap-1">
-                      <Link href={"/properties/ready"} onClick={handleClose}>
+                      <Link
+                        href={
+                          "/properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+                        }
+                        onClick={handleClose}
+                      >
                         <li className="text-xs leading-[15.3px] hover:text-[#ffd15f]">
                           {" "}
                           {navItem?.ready}
                         </li>
                       </Link>
                       <Link
-                        href={"/properties/off-plan"}
+                        href={
+                          "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                        }
                         onClick={handleClose}
                         className="hover:text-[#ffd15f]"
                       >
@@ -319,13 +326,23 @@ const Dropdown = (props) => {
                       {navItem?.projects}
                     </h2>
                     <ul className="flex flex-col gap-1">
-                      <Link href={"/properties/ready"} onClick={handleClose}>
+                      <Link
+                        href={
+                          "/properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+                        }
+                        onClick={handleClose}
+                      >
                         <li className="text-xs leading-[15.3px] hover:text-[#ffd15f]">
                           {" "}
                           {navItem?.ready}
                         </li>
                       </Link>
-                      <Link href={"/properties/off-plan"} onClick={handleClose}>
+                      <Link
+                        href={
+                          "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                        }
+                        onClick={handleClose}
+                      >
                         <li className="text-xs leading-[15.3px] hover:text-[#ffd15f]">
                           {" "}
                           {navItem?.offPlan}
@@ -456,13 +473,23 @@ const Dropdown = (props) => {
                     {navItem?.projects}
                   </h2>
                   <ul className="flex flex-col gap-1">
-                    <Link href={"/properties/ready"} onClick={handleClose}>
+                    <Link
+                      href={
+                        "/properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="text-xs leading-[15.3px]">
                         {" "}
                         {navItem?.ready}
                       </li>
                     </Link>
-                    <Link href={"/properties/off-plan"} onClick={handleClose}>
+                    <Link
+                      href={
+                        "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="text-xs leading-[15.3px]">
                         {" "}
                         {navItem?.offPlan}
@@ -608,13 +635,23 @@ const Dropdown = (props) => {
                     {navItem?.projects}
                   </h2>
                   <ul className="flex flex-col gap-1">
-                    <Link href={"/properties/ready"} onClick={handleClose}>
+                    <Link
+                      href={
+                        "/properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="text-xs leading-[15.3px] text-right">
                         {" "}
                         {navItem?.ready}
                       </li>
                     </Link>
-                    <Link href={"/properties/off-plan"} onClick={handleClose}>
+                    <Link
+                      href={
+                        "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                      }
+                      onClick={handleClose}
+                    >
                       <li className="text-xs leading-[15.3px] text-right">
                         {" "}
                         {navItem?.offPlan}

@@ -147,7 +147,11 @@ const Navbar = (props) => {
                 }`}
                 onMouseEnter={() => setNavPoint(true)}
               >
-                <Link href={"/properties/off-plan"}>
+                <Link
+                  href={
+                    "/properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
+                  }
+                >
                   {homeData?.lang?.navber?.offPlan}
                 </Link>
               </h1>
@@ -157,7 +161,11 @@ const Navbar = (props) => {
                 }`}
                 onMouseEnter={() => setNavPoint(true)}
               >
-                <Link href={"/properties/ready"}>
+                <Link
+                  href={
+                    "/properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+                  }
+                >
                   {homeData?.lang?.navber?.ready}
                 </Link>
               </h1>

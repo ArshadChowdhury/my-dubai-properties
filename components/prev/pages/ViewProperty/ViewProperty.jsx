@@ -71,7 +71,6 @@ export default function ViewProperty(props) {
         params: filterParams,
       })
       .then((data) => data.data.data.properties);
-    console.log(data);
     return data;
   };
 
@@ -99,9 +98,9 @@ export default function ViewProperty(props) {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["property-list"],
+    queryKey: [`property-list ${pathname}`],
     queryFn: getAllProperties,
-    enabled: !!filterParams,
+    enabled: !!filterParams.developmentTypeId,
     refetchOnWindowFocus: false,
   });
 
@@ -131,8 +130,6 @@ export default function ViewProperty(props) {
     lang,
     page,
   ]);
-
-  console.log(developmentTypeId);
 
   useEffect(() => {
     setPage(1);

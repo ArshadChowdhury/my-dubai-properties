@@ -82,7 +82,9 @@ const LatestPropertyDown = (props) => {
             } md:mr-[13rem]`}
           >
             <BtnElore2
-              route={"properties/ready"}
+              route={
+                "properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
+              }
               title={props?.homeData?.lang?.slider?.buttonExplore}
             />
           </div>

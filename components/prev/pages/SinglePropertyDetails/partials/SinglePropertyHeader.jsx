@@ -81,7 +81,6 @@ const SinglePropertyHeader = (props) => {
         onSlideChange={(swiperCore) => {
           const { activeIndex, snapIndex, previousIndex, realIndex } =
             swiperCore;
-          console.log({ activeIndex, snapIndex, previousIndex, realIndex });
         }}
         centeredSlides={false}
         slidesPerView={1}
