@@ -175,8 +175,6 @@ const FilterSelect = (props) => {
     };
   }, []);
 
-  console.log(allItemsArray);
-
   return (
     <>
       <div

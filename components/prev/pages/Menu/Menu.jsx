@@ -145,7 +145,7 @@ const Menu = (props) => {
     <div
       className={`${
         isDropdownMenuOpen
-          ? "w-[100vw] h-[100vh] z-[100] md:h-[315px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-0 transition-all"
+          ? "w-[100vw] h-[100vh] z-[100] md:h-[330px] bg-gradient-to-r from-[#000F1D] to-[#0B233A] fixed right-0 top-0 transition-all"
           : "hidden"
       } `}
       ref={menuRef}

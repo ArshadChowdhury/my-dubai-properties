@@ -52,7 +52,7 @@ export default function Map() {
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
@@ -225,8 +225,6 @@ export default function Map() {
     getAllProperties();
   }, []);
 
-  console.log(allPlaces);
-
   useEffect(() => {
     markers.forEach((marker) => {
       marker.remove();
@@ -366,8 +364,6 @@ export default function Map() {
         const marker = new mapboxgl.Marker({ element: customMarkerElement })
           .setLngLat([item.location.position[1], item.location.position[0]])
           .addTo(map.current);
-
-        console.log(`This is the position ${item.location.position[1]}`);
 
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
       }

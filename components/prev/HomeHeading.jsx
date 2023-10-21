@@ -5,7 +5,7 @@ const HomeHeading = (props) => {
   const [{ lang }] = useStateValue();
   return lang === "ar" ? (
     <div className="w-full md:px-5 py-1 bg-[#042C51] relative">
-      <h1 className="font-roboto text-2xl text-white pr-4 pl-[160px]">
+      <h1 className="font-roboto text-2xl text-white pr-4 pl-[58px]">
         {props.heading}
       </h1>
       <div className="h-full w-1 bg-[#F1BF3F] absolute right-0 top-0 pulse5"></div>

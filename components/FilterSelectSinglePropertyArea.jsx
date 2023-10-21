@@ -174,8 +174,6 @@ const FilterSelectSinglePropertyArea = (props) => {
     };
   }, []);
 
-  console.log(allItemsArray);
-
   return (
     <>
       <div

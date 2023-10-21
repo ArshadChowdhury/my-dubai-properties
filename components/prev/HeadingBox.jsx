@@ -3,9 +3,7 @@ import { useStateValue } from "./states/StateProvider";
 const HeadingBox = (props) => {
   const [{ lang }] = useStateValue();
   return (
-    <div
-      className={`px-4 xl:px-8 py-1 bg-[#042C51] relative ${props.className}`}
-    >
+    <div className={`bg-[#042C51] relative ${props.className}`}>
       {lang === "ar" ? (
         <div
           className={`h-full w-1 bg-[#F1BF3F] absolute right-0 top-0 animate-pulse ${props.hidden}`}
@@ -17,8 +15,10 @@ const HeadingBox = (props) => {
       )}
 
       <h1
-        className={`font-roboto text-xl xl:text-2xl text-white ${
-          lang === "ar" ? "text-right" : "text-left"
+        className={`font-roboto text-xl xl:text-2xl text-white px-4 py-1 ${
+          lang === "ar"
+            ? "text-right lg:pr-8 lg:pl-[160px]"
+            : "text-left lg:pl-8 lg:pr-[160px]"
         } ${props.textPosition}`}
       >
         {props.heading}

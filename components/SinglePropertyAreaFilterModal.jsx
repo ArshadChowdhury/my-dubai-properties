@@ -22,8 +22,6 @@ const SinglePropertyAreaFilterModal = (props) => {
 
   const queryParams = [];
 
-  console.log(singleDevFilterValuesMob);
-
   if (propertyTypeId) {
     queryParams.push(`propertyTypes=${propertyTypeId}`);
   }
