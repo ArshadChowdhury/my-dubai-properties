@@ -65,7 +65,7 @@ const LatestPropertyTop = (props) => {
           >
             <BtnElore2
               route={
-                "properties/ready?developmentTypes=63feffa56023b40ac4385fec"
+                "properties/off-plan?developmentTypes=651984de79fcdc27efbf859b"
               }
               title={props?.homeData?.lang?.slider?.buttonExplore}
             />
@@ -82,7 +82,7 @@ const LatestPropertyTop = (props) => {
           >
             <BtnElore2
               route={
-                "properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
+                "properties/off-plan"
               }
               title={props.homeData.lang.slider.buttonExplore}
             />

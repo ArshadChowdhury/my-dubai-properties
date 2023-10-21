@@ -12,7 +12,7 @@ import Image from "next/image";
 import { useStateValue } from "@/components/prev/states/StateProvider";
 
 const LatestPropertyDown = (props) => {
-  const [animationState, setPlay] = useState("paused");
+  const [animationState, setPlay] = useState("running");
   const [{ lang }] = useStateValue();
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -39,11 +39,11 @@ const LatestPropertyDown = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (cardBoxRef.current) {
-      setPlay("running");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (cardBoxRef.current) {
+  //     setPlay("running");
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   gsap.to(cardBoxRef.current, {
@@ -82,9 +82,7 @@ const LatestPropertyDown = (props) => {
             } md:mr-[13rem]`}
           >
             <BtnElore2
-              route={
-                "properties/ready?developmentTypes=63feffa56023b40ac4385fec"
-              }
+              route={"properties/ready"}
               title={props?.homeData?.lang?.slider?.buttonExplore}
             />
           </div>

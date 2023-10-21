@@ -146,13 +146,7 @@ const Navbar2 = (props) => {
                     : "text-white"
                 }`}
               >
-                <Link
-                  href={
-                    "/properties/off-plan?developmentTypes=63feff816023b40ac4385fba"
-                  }
-                >
-                  {navData?.offPlan}
-                </Link>
+                <Link href={"/properties/off-plan"}>{navData?.offPlan}</Link>
               </h1>
               <h1
                 className={`uppercase cursor-pointer font-openSans mx-4 hover:text-[#F1BF3F] ${
@@ -161,13 +155,7 @@ const Navbar2 = (props) => {
                     : "text-white"
                 }`}
               >
-                <Link
-                  href={
-                    "/properties/ready?developmentTypes=63feffa56023b40ac4385fec"
-                  }
-                >
-                  {navData?.ready}
-                </Link>
+                <Link href={"/properties/ready"}>{navData?.ready}</Link>
               </h1>
 
               <h1

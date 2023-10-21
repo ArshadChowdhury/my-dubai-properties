@@ -132,6 +132,8 @@ export default function ViewProperty(props) {
     page,
   ]);
 
+  console.log(developmentTypeId);
+
   useEffect(() => {
     setPage(1);
   }, [lang, viewType]);

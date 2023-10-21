@@ -15,7 +15,7 @@ export const places = [
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
@@ -166,7 +166,7 @@ export const places = [
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
@@ -318,7 +318,7 @@ export const places = [
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
@@ -469,7 +469,7 @@ export const places = [
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
@@ -620,7 +620,7 @@ export const places = [
         areaName: "Abu Dhabi",
       },
       developmentType: {
-        id: "63feff816023b40ac4385fba",
+        id: "651984de79fcdc27efbf859b",
         name: "OFF PLAN",
       },
       developerType: {
