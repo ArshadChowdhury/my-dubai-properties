@@ -23,7 +23,7 @@ const Amenities = (props) => {
   return (
     <section className="!mt-20 md:mt-10  mb-5 z-50">
       <SkeletonSingleProperty className="flex-col px-5">
-        <div className="items-start w-full md:w-1/4 ml-2 pr-2">
+        <div className="items-start w-full md:w-1/4">
           <HeadingText innerText={heading} className="text-center " />
         </div>
 

@@ -17,7 +17,7 @@ const VillaFeatures = (props) => {
 
   return (
     <section className="relative mt-16">
-      <div className="w-full md:w-[80%] h-auto flex justify-center  px-5">
+      <div className="w-full md:w-[80%] h-auto flex justify-center text-center px-5">
         <HeadingText
           innerText={heading}
           className="md:items-center md:mr-3"

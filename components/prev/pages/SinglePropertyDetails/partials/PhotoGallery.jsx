@@ -268,7 +268,7 @@ const PhotoGallery = (props) => {
           </div>
         )}
         <SkeletonSingleProperty className="px-5">
-          <div className="items-start w-full md:w-1/4 ml-2 pr-2">
+          <div className="items-start w-full md:w-1/4">
             <HeadingText innerText={heading} className="text-center" size="" />
           </div>
         </SkeletonSingleProperty>
@@ -372,7 +372,7 @@ const PhotoGallery = (props) => {
       </section>
       <section className="md:hidden">
         <SkeletonSingleProperty className="px-5">
-          <div className="flex items-start w-full md:w-1/4 ml-2 pr-2">
+          <div className="flex items-start w-full md:w-1/4">
             <HeadingText innerText={heading} className="text-center" size="" />
           </div>
           <div

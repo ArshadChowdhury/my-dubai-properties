@@ -67,7 +67,7 @@ const FilterModal = (props) => {
     dispatch({ type: "setFilterRoute", item: null });
   };
 
-  const hadleSubmit = () => {
+  const handleSubmit = () => {
     const updatedUrl = queryParametersString
       ? `?${queryParametersString}`
       : "/properties";
@@ -93,7 +93,7 @@ const FilterModal = (props) => {
             "flex gap-4 px-4 py-2 border-t justify-between items-center"
           }
         >
-          <div onClick={hadleSubmit} className="basis-1/2">
+          <div onClick={handleSubmit} className="basis-1/2">
             <BtnItem btnText={buttonSearchText} to="#" />
           </div>
           <div onClick={handleReset} className="basis-1/2">

@@ -153,7 +153,7 @@ const SingleDeveloperView = (props) => {
           type="inline"
         />
       </div>
-      <div className="mt-[15px] md:mt-0 mb-20 md:mb-0">
+      <div className="mt-0 md:mt-[10px] mb-20 md:mb-0">
         <DeveloperDetailsRouteLink
           homeData={homeData}
           locationName={singleDevData?.developer?.name}

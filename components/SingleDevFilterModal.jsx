@@ -63,7 +63,7 @@ const FilterModal = (props) => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
       dispatch({
-        type: "setFilterRoute",
+        type: "setSingleDevFilterValuesMob",
         item: null,
       });
     };
@@ -72,7 +72,7 @@ const FilterModal = (props) => {
   const handleReset = () => {
     router.push(`/developers/${singleDeveloperId}`);
     props.setIsFilterModalOpen(false);
-    dispatch({ type: "setFilterRoute", item: null });
+    dispatch({ type: "setSingleDevFilterValuesMob", item: null });
   };
 
   const hadleSubmit = () => {

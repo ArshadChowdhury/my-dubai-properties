@@ -13,9 +13,9 @@ const Downloads = (props) => {
   const brochureLink = props?.singleProperty?.property?.brochure;
 
   return (
-    <section id="downloads" className="mt-16 md:mt-5  mb-5 z-10">
+    <section id="downloads" className="mt-16 md:mt-5 mb-5 z-10">
       <SkeletonSingleProperty className="flex-col px-5">
-        <div className="items-start w-full md:w-1/4 ml-2 pr-2">
+        <div className="items-start w-full md:w-1/4">
           <HeadingText innerText={heading} className="text-center " />
         </div>
 
