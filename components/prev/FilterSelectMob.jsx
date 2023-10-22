@@ -68,6 +68,10 @@ const FilterSelectMob = (props) => {
     if (props.searchBy === "Developer Type") {
       if (content.name === filterTexts?.textBoxDubaiDeveloper) {
         urlParams.delete("developers");
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, developers: null },
+        });
         setSelectedValue(content.name);
       } else if (content.name) {
         urlParams.set("developers", content._id);
@@ -80,6 +84,10 @@ const FilterSelectMob = (props) => {
     } else if (props.searchBy === "Property Areas") {
       if (content.areaName === filterTexts?.textBoxPropertyArea) {
         urlParams.delete("propertyAreas");
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, propertyAreas: null },
+        });
         setSelectedValue(content.areaName);
       } else if (content.areaName) {
         urlParams.set("propertyAreas", content._id);
@@ -92,6 +100,10 @@ const FilterSelectMob = (props) => {
     } else if (props.searchBy === "Development Type") {
       if (content.name === filterTexts?.textBoxDevelopmentType) {
         urlParams.delete("developmentTypes");
+        dispatch({
+          type: "setFilterRoute",
+          item: { ...filterRoute, developmentTypes: null },
+        });
         setSelectedValue(content.name);
       } else if (content.name) {
         urlParams.set("developmentTypes", content._id);

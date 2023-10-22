@@ -62,10 +62,6 @@ const FilterModal = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
-      dispatch({
-        type: "setSingleDevFilterValuesMob",
-        item: null,
-      });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 

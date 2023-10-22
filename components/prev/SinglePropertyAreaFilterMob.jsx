@@ -68,6 +68,10 @@ const FilterSelectMob = (props) => {
     if (props.searchBy === filterTexts?.dropdownBeds) {
       if (content === filterTexts?.dropdownBeds) {
         urlParams.delete("beds");
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, beds: null },
+        });
         setSelectedValue(content);
       } else if (content) {
         urlParams.set("beds", content);
@@ -80,6 +84,10 @@ const FilterSelectMob = (props) => {
     } else if (props.searchBy === "Developers") {
       if (content.name === "Developers") {
         urlParams.delete("developers");
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, developers: null },
+        });
         setSelectedValue(content.name);
       } else if (content.name) {
         dispatch({
@@ -92,6 +100,10 @@ const FilterSelectMob = (props) => {
     } else if (props.searchBy === filterTexts?.dropdownCompletion) {
       if (content === filterTexts?.dropdownCompletion) {
         urlParams.delete("completions");
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, completions: null },
+        });
         setSelectedValue(content);
       } else if (content) {
         dispatch({
@@ -104,6 +116,10 @@ const FilterSelectMob = (props) => {
     } else if (props.searchBy === filterTexts?.dropdownPropertyType) {
       if (content.name === filterTexts?.dropdownPropertyType) {
         urlParams.delete("propertyTypes");
+        dispatch({
+          type: "setSingleDevFilterValuesMob",
+          item: { ...singleDevFilterValuesMob, propertyTypes: null },
+        });
         setSelectedValue(content.name);
       } else if (content.name) {
         dispatch({

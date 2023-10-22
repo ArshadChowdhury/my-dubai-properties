@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SinglePropertyTypeFilterSearch from "./prev/SinglePropertyTypeFilterSearch";
 import BtnItem from "@/components/prev/BtnItem";
 import BtnItemOutline from "@/components/prev/BtnItemOutline";
@@ -15,6 +15,7 @@ const SinglePropertyTypeFilterModal = (props) => {
   } = props;
   const router = useRouter();
   const [{ singleDevFilterValuesMob }, dispatch] = useStateValue();
+  const [isMounted, setIsMounted] = useState(false);
   const propertyAreaId = singleDevFilterValuesMob?.propertyAreas;
   const developerId = singleDevFilterValuesMob?.developers;
   const completions = singleDevFilterValuesMob?.completions;
@@ -62,9 +63,16 @@ const SinglePropertyTypeFilterModal = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
-      dispatch({ type: "setSingleDevFilterValuesMob", item: null });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
+
+  useEffect(() => {
+    if (isMounted) {
+      dispatch({ type: "setSingleDevFilterValuesMob", item: null });
+    } else {
+      setIsMounted(true);
+    }
+  }, []);
 
   const handleReset = () => {
     router.push(`/property-type/${singleDeveloperId}`);

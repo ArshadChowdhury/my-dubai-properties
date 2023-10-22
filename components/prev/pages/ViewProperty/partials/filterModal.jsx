@@ -52,10 +52,6 @@ const FilterModal = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
-      dispatch({
-        type: "setFilterRoute",
-        item: null,
-      });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 

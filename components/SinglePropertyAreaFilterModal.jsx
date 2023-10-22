@@ -62,20 +62,12 @@ const SinglePropertyAreaFilterModal = (props) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("scroll", handleScroll);
-      dispatch({
-        type: "setFilterRoute",
-        item: null,
-      });
-      dispatch({
-        type: "setSingleDevFilterValuesMob",
-        item: null,
-      });
     };
   }, [props.isFilterModalOpen, props.setIsFilterModalOpen]);
 
   const handleReset = () => {
     router.push(`/property-area/${singleDeveloperId}`);
-    dispatch({ type: "setFilterRoute", item: null });
+
     dispatch({
       type: "setSingleDevFilterValuesMob",
       item: null,
