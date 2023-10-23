@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "@/components/prev/services/apiFunctions";
 import { useStateValue } from "@/components/prev/states/StateProvider";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import SignUpForm from "./partials/SignUpForm";
 import PropertyInvestment from "./partials/PropertyInvestment";
@@ -15,8 +15,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "../../Footer";
 import VerticalLine2 from "../../VerticalLine2";
 import LoadingState from "@/components/LoadingState";
-import { useRef } from "react";
-import axios from "axios";
 
 const Home = () => {
   const [{ filterOpen, lang }, dispatch] = useStateValue();
@@ -58,15 +56,6 @@ const Home = () => {
     return records;
   };
 
-  // const getAllProperties = async () => {
-  //   const data = await instance
-  //     .get(`/${lang}/properties`, {
-  //       timeout: 5000,
-  //     })
-  //     .then((data) => data?.data?.data?.properties);
-  //   return data;
-  // };
-
   const getAllFilter = async () => {
     const data = await instance
       .get(`/${lang}/data/filter-list`, {
@@ -100,6 +89,7 @@ const Home = () => {
   const {
     isLoading: isLoadingFilterData,
     data: filterListData,
+    isError,
     refetch,
   } = useQuery({
     queryKey: ["filter-list"],
@@ -133,7 +123,7 @@ const Home = () => {
     return <LoadingState />;
   }
 
-  if (isErrorHomeContent || isErrorPropertiesData) {
+  if (isErrorHomeContent || isErrorPropertiesData || isError) {
     return (
       <p className="h-screen text-4xl flex justify-center items-center text-white">
         Something Went Wrong...
