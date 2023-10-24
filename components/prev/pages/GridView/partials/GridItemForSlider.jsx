@@ -61,7 +61,11 @@ const GridItemForSlider = (props) => {
         </Link>
         <div className="p-5 group-hover:bg-gradient-to-r from-[#000F1D] via-[#00182E] to-[#000F1D]">
           <h1 className="font-roboto text-[16px] text-white cursor-pointer w-fit hover:text-[#F1BF3F]">
-            <Link href={`/properties/${props.id}`}>{props.propertyName}</Link>
+            <Link href={`/properties/${props.id}`}>
+              {props.propertyName.length < 38
+                ? props.propertyName
+                : props.propertyName.slice(0, 38).concat("...")}
+            </Link>
           </h1>
           <div className="grid grid-cols-2 w-full">
             <div>

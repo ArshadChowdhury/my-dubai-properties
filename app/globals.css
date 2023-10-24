@@ -3541,7 +3541,7 @@ video {
 .filter-btn-selected-mob:before {
   position: absolute;
   height: 22px;
-  width: 108%;
+  width: 107%;
   content: "";
   top: -0.5px;
   left: -9px;
@@ -3553,7 +3553,7 @@ video {
 .filter-btn-selected-mob:after {
   position: absolute;
   height: 19.6px;
-  width: 108%;
+  width: 107%;
   top: 22.5px;
   left: -9px;
   content: "";
@@ -3581,7 +3581,7 @@ video {
 .filter-btn-mob:before {
   position: absolute;
   height: 22px;
-  width: 108%;
+  width: 107%;
   content: "";
   top: -0.5px;
   left: -9px;
@@ -3593,7 +3593,7 @@ video {
 .filter-btn-mob:after {
   position: absolute;
   height: 19.6px;
-  width: 108%;
+  width: 107%;
   top: 22.5px;
   left: -9px;
   content: "";

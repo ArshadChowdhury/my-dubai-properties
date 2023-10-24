@@ -101,7 +101,7 @@
 
 // export default ListItem;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import iconBuilding from "../../../assets/images/property details page/icon-building.svg";
@@ -119,11 +119,23 @@ import { useRouter } from "next/navigation";
 const ListItem = (props) => {
   const router = useRouter();
   const [isHoveredCard, setIsHoveredCard] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
   const [{ showContactModal }, dispatch] = useStateValue();
   const onMouseEnterHandler = () => {
     props.setIsHovered && props.setIsHovered(true);
     setIsHoveredCard(true);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleModalOpen = (id, propertyName) => {
     dispatch({ type: "setShowContactModal", item: true });
@@ -194,7 +206,13 @@ const ListItem = (props) => {
           >
             <h1 className="font-roboto text-[15px] md:text-xl text-white cursor-pointer w-fit hover:text-[#F1BF3F]">
               <Link href={`/properties/${props.id}`}>
-                {props.propertyName} at {props.developerName}
+                {isMobileView
+                  ? props.propertyName.length < 20
+                    ? props.propertyName
+                    : props.propertyName.slice(0, 20).concat("...")
+                  : props.propertyName.length < 60
+                  ? props.propertyName
+                  : props.propertyName.slice(0, 60).concat("...")}
               </Link>
             </h1>
             <div className="flex gap-6 w-full items-center md:mt-2">
@@ -248,7 +266,10 @@ const ListItem = (props) => {
             <p
               className={`font-montserrat text-white leading-7 my-4 hidden md:block`}
             >
-              {props.description}
+              {props.description.length < 380
+                ? props.description
+                : props.description.slice(0, 380).concat("...")}
+              {/* {props.description} */}
             </p>
             <div className="flex w-full md:w-[450px] gap-2 md:gap-10">
               <BtnItem
