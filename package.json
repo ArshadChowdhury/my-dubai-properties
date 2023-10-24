@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next -p 80",
+    "dev": "next -p 3010",
     "build": "next build",
-    "start": "next start -p 80",
-    "start-pods": "forever start ./node_modules/.bin/next start -p 80",
-    "stop-pods": "forever stop ./node_modules/.bin/next start -p 80",
+    "start": "next start -p 3010",
+    "start-pods": "forever start ./node_modules/.bin/next start -p 3010",
+    "stop-pods": "forever stop ./node_modules/.bin/next start -p 3010",
     "lint": "next lint"
   },
   "dependencies": {
