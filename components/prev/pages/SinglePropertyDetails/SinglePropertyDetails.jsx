@@ -194,7 +194,7 @@ const SinglePropertyDetails = () => {
           paymentPlan={singlePropertyDetails?.paymentPlan}
         />
         <PhotoGallery singleProperty={singleProperty} />
-        <PropertyVideo url={singlePropertyDetails.videos[0].path} />
+        <PropertyVideo url={singlePropertyDetails?.videos[0]?.path} />
         <Amenities singleProperty={singleProperty} />
         <Nearby singleProperty={singleProperty} />
         <Downloads singleProperty={singleProperty} />
