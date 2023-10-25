@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const BottomMenu = () => {
   return (
-    <div className="h-[75px] w-full bg-[#00182E] fixed left-0 bottom-0 z-50">
+    <div className="h-[55px] w-full bg-[#00182E] fixed left-0 bottom-0 z-50">
       <Skeleton className="h-full px-5">
         <ul className="flex justify-between items-center w-full h-full">
           <li className="flex flex-col justify-center items-center text-[8px] text-[#FFD15F]">

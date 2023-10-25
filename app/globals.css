@@ -3752,36 +3752,36 @@ video {
 .nav .start-home,
 .first-en:hover ~ .animation2 {
   width: 75px;
-  left: -2px;
+  left: 0px;
 }
 
 .nav .start-home,
 .second-en:hover ~ .animation2 {
   width: 53px;
-  left: 101px;
+  left: 104px;
 }
 
 .nav .start-home,
 .third-en:hover ~ .animation2 {
   width: 104px;
-  left: 182px;
+  left: 185px;
 }
 
 .nav .start-home-ar,
 .first-ar:hover ~ .animation2 {
   width: 38px;
-  left: 190px;
+  left: 166px;
 }
 
 .nav .start-home-ar,
 .second-ar:hover ~ .animation2 {
   width: 41px;
-  left: 125px;
+  left: 106px;
 }
 
 .nav .start-home-ar,
 .third-ar:hover ~ .animation2 {
-  width: 103px;
+  width: 84px;
   left: -3px;
 }
 

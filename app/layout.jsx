@@ -35,7 +35,7 @@ const asul = Asul({
 const grechenFuemen = Grechen_Fuemen({
   weight: ["400"],
   subsets: ["latin"],
-  // display: "swap",
+  display: "swap",
   variable: "--font-grechen-fuemen",
 });
 
