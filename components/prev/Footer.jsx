@@ -71,8 +71,8 @@ const Footer = ({ footerBg, home, homeData }) => {
   ];
 
   return (
-    <footer className="mb-20">
-      <div className="flex flex-col items-center px-3 lg:p-5 relative">
+    <footer className="mb-14">
+      <div className="flex flex-col items-center px-3 lg:px-5 lg:pb-5 relative">
         <Image
           src={footerLogo}
           alt="my dubai logo"
@@ -132,7 +132,7 @@ const Footer = ({ footerBg, home, homeData }) => {
             </div>
           </div>
         </div>
-        <div className="flex absolute bottom-[2.5%] z-[10]">
+        <div className="flex absolute bottom-[3.5%] z-[10]">
           <Link
             className="font-montserrat uppercase text-[#D6BB75] text-[10px]"
             href={"/privacy-policy"}
