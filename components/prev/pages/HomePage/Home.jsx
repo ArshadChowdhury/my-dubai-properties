@@ -119,19 +119,57 @@ const Home = () => {
     refetchPropertiesData();
   }, [lang]);
 
-  if (isLoadingHomeContent || isLoadingPropertiesData || isLoadingFilterData) {
-    return <LoadingState />;
-  }
+  // if (isLoadingHomeContent || isLoadingPropertiesData || isLoadingFilterData) {
+  //   return <LoadingState />;
+  // }
 
-  if (isErrorHomeContent || isErrorPropertiesData || isError) {
-    return (
-      <p className="h-screen text-4xl flex justify-center items-center text-white">
-        Something Went Wrong...
-      </p>
-    );
-  }
+  // if (isErrorHomeContent || isErrorPropertiesData || isError) {
+  //   return (
+  //     <p className="h-screen text-4xl flex justify-center items-center text-white">
+  //       Something Went Wrong...
+  //     </p>
+  //   );
+  // }
 
-  const sliders = homeData?.sliders;
+  // const sliders = homeData?.sliders;
+
+  const sliders = [
+    {
+      _id: "1",
+      image: "https://via.placeholder.com/1920x1080/FF5733/FFFFFF?text=Slide+1",
+      description1: "Welcome to Our Collection",
+      description2: "Explore the Latest Trends",
+      description3: "Discover unique designs and exceptional quality.",
+    },
+    {
+      _id: "2",
+      image: "https://via.placeholder.com/1920x1080/33C1FF/FFFFFF?text=Slide+2",
+      description1: "Crafted with Precision",
+      description2: "Handmade for Your Home",
+      description3: "Every piece is a work of art, crafted with love.",
+    },
+    {
+      _id: "3",
+      image: "https://via.placeholder.com/1920x1080/FF33B5/FFFFFF?text=Slide+3",
+      description1: "Luxury Redefined",
+      description2: "Elevate Your Space",
+      description3: "Transform your home into a sanctuary of style.",
+    },
+    {
+      _id: "4",
+      image: "https://via.placeholder.com/1920x1080/85FF33/FFFFFF?text=Slide+4",
+      description1: "Sustainability at Heart",
+      description2: "Eco-Friendly Choices",
+      description3: "Make a positive impact with sustainable designs.",
+    },
+    {
+      _id: "5",
+      image: "https://via.placeholder.com/1920x1080/FF8333/FFFFFF?text=Slide+5",
+      description1: "Timeless Elegance",
+      description2: "Classic and Contemporary",
+      description3: "Experience the fusion of tradition and modernity.",
+    },
+  ];
 
   return (
     <section dir={lang === "ar" ? "rtl" : "ltr"}>
