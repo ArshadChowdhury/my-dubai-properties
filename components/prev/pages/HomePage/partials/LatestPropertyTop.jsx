@@ -56,7 +56,7 @@ const LatestPropertyTop = (props) => {
       <div className="w-full basis-[95%] z-10">
         <div className="md:ml-[15px] px-5 sm:pl-12 md:pl-20 lg:pl-28 xl:pl-32 2xl:pl-42 flex flex-col md:flex-row justify-between w-full md:pr-[155px]">
           <div className="mb-12 md:mb-0">
-            <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} />
+            {/* <HomeHeading heading={props.homeData.lang.slider.titleOffPlan} /> */}
           </div>
           <div
             className={`w-1/4 ${

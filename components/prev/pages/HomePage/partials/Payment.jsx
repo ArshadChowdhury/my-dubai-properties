@@ -7,7 +7,7 @@ import paymentBottom from "../../../assets/images/global/payment-bottom.png";
 import Image from "next/image";
 
 const Payment = (props) => {
-  const homeData = props.homeData.lang.paymentMethod;
+  // const homeData = props.homeData.lang.paymentMethod;
   const [isMobileView, setIsMobileView] = useState(true);
 
   useEffect(() => {
@@ -29,17 +29,17 @@ const Payment = (props) => {
         </div>
         <div className="w-full md:w-1/2 px-5 md:mt-20">
           <p className="text-white text-[16.5px] font-montserrat font-extralight -mt-[15px]">
-            {homeData?.text}
+            Home Data Text Payment
           </p>
           <div className="w-full mt-10">
             <div className="w-full flex mt-10">
-              <PaymentHeading title={homeData?.cash} />
+              <PaymentHeading title={"Cash"} />
             </div>
             <div className="w-full flex justify-end md:justify-center mt-10">
-              <PaymentHeading title={homeData?.crypto} />
+              <PaymentHeading title={"Crypto"} />
             </div>
             <div className="w-full flex md:justify-end mt-10">
-              <PaymentHeading title={homeData?.mortgage} />
+              <PaymentHeading title={"Mortgage"} />
             </div>
           </div>
         </div>

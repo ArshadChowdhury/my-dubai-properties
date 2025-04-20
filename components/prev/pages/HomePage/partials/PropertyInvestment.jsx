@@ -8,7 +8,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 const PropertyInvestment = (props) => {
-  const homeData = props.homeData.lang.propertySelection;
+  // const homeData = props.homeData.lang.propertySelection;
   const handleClick = () => {};
   const [isMobileView, setIsMobileView] = useState(true);
 
@@ -29,10 +29,10 @@ const PropertyInvestment = (props) => {
         <div className="z-10 -mb-5 w-full md:flex justify-center items-center">
           <div className="md:basis-[65%] md:py-10">
             <h1 className="text-white font-expleteusSans text-2xl md:text-3xl mb-3 px-5">
-              {homeData?.title}
+              Homedata
             </h1>
             <p className="text-white  px-5 font-montserrat font-extralight">
-              {homeData?.subTitle}
+            Homedata Subtitle
             </p>
             <div className="p-5 lg:px-32 py-24 md:h-[314px] bg-fit bg-center bg-no-repeat transition-all duration-500  my-5 rounded-md relative overflow-hidden">
               <div className="absolute rounded-md bg-investment bg-fit bg-center bg-no-repeat scale-110 hover:scale-100 transition-all duration-500  top-0 left-0 w-full h-full overflow-hidden cursor-pointer"></div>
@@ -40,14 +40,13 @@ const PropertyInvestment = (props) => {
 
               <div className="relative mt-[10px] md:mt-auto h-full md:h-[210px] p-5 bg-black bg-opacity-60 rounded-md w-full">
                 <h1 className="uppercase text-[#D4B970] text-sm font-roboto">
-                  {homeData?.insideTitle}
-                </h1>
+                Homedata Insidetitle                </h1>
                 <p className="font-montserrat text-xs text-white my-5 text-justify">
-                  {homeData?.insideSubTitle}
+                Homedata Inside subtitle  
                 </p>
                 <BtnHome
                   onClick={handleClick}
-                  btnText={homeData?.insideButton}
+                  btnText={"Click Home"}
                 />
               </div>
             </div>
@@ -55,7 +54,7 @@ const PropertyInvestment = (props) => {
           <div className="md:basis-[35%] flex md:flex-col justify-between md:items-center md:justify-center gap-5 md:gap-0 items-center md:h-full md:p-5 pt-16 md:pt-0 px-5">
             <div className="text-center flex flex-col justify-start md:justify-center md:items-center md:my-4">
               <h1 className="uppercase font-montserrat text-lg mb-5 text-white">
-                {homeData?.offPlan}
+              Homedata Offplan 
               </h1>
               <div className="border border-white hover:border-[#DBA318] border-dashed p-7">
                 <Image
@@ -67,7 +66,7 @@ const PropertyInvestment = (props) => {
             </div>
             <div className="text-center flex flex-col justify-end md:justify-center md:items-center">
               <h1 className="uppercase font-montserrat text-lg mb-5 text-white">
-                {homeData?.ready}
+              Homedata Ready 
               </h1>
               <div className="border border-white hover:border-[#DBA318] border-dashed p-7">
                 <Image
