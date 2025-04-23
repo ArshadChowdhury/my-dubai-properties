@@ -34,7 +34,7 @@ const Footer = ({ footerBg, home, homeData }) => {
   const uiElements = [
     {
       id: homeDatas?.whyUs,
-      title: homeDatas?.whyUs,
+      title: "Why Us",
       items: [homeDatas?.aboutUs, homeDatas?.contactUs],
     },
     {
