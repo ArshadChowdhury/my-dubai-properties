@@ -26,8 +26,10 @@ const HeroSection = (props) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [index, setIndex] = useState(0);
+    const [language, setLanguage] = useState("en"); // Initialize as null
+
   const sliders = props?.sliders;
-  const language = sessionStorage.getItem("language");
+  // const language = localStorage.getItem("language");
   const [isMounted, setIsMounted] = useState(false);
 
   // const swiper = new Swiper(".swiper", {
@@ -40,6 +42,12 @@ const HeroSection = (props) => {
   //   },
   //   // ...
   // });
+   useEffect(() => {
+    // This code only runs on the client after mounting
+    const storedLanguage = sessionStorage.getItem("language");
+    setLanguage(storedLanguage || "en"); // Fallback to "en" if empty
+  }, []);
+
 
   const swiperRef = useRef();
   const sliderRef = useRef();

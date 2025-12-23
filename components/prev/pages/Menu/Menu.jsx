@@ -87,7 +87,7 @@ const Menu = (props) => {
           },
           {
             top: `${
-              props?.pathname == "/" || props?.pathname.includes("/properties/")
+              props?.pathname == "/" || props?.pathname?.includes("/properties/")
                 ? "72px"
                 : "88px"
             }`,
@@ -140,6 +140,7 @@ const Menu = (props) => {
       }
     }
   }, [isDropdownMenuOpen]);
+  
 
   return (
     <div

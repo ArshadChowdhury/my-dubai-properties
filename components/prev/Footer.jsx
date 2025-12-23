@@ -31,44 +31,83 @@ const Footer = ({ footerBg, home, homeData }) => {
     });
   };
 
+  // const uiElements = [
+  //   {
+  //     id: homeDatas?.whyUs,
+  //     title: "Why Us",
+  //     items: [homeDatas?.aboutUs, homeDatas?.contactUs],
+  //   },
+  //   {
+  //     id: homeDatas?.developers,
+  //     title: homeDatas?.developers,
+  //     items: [
+  //       homeDatas?.emaar,
+  //       homeDatas?.damac,
+  //       homeDatas?.nakheel,
+  //       homeDatas?.meraas,
+  //     ],
+  //   },
+  //   {
+  //     id: homeDatas?.propertiesForSale,
+  //     title: homeDatas?.propertiesForSale,
+  //     items: [
+  //       homeDatas?.villa,
+  //       homeDatas?.appartment,
+  //       homeDatas?.hotel,
+  //       homeDatas?.readyVilla,
+  //     ],
+  //   },
+  //   {
+  //     id: homeDatas?.featuredProjects,
+  //     title: homeDatas?.featuredProjects,
+  //     items: [
+  //       homeDatas?.featuredProject1,
+  //       homeDatas?.featuredProject2,
+  //       homeDatas?.featuredProject3,
+  //       homeDatas?.featuredProject4,
+  //       homeDatas?.featuredProject5,
+  //     ],
+  //   },
+  // ];
+
   const uiElements = [
-    {
-      id: homeDatas?.whyUs,
-      title: "Why Us",
-      items: [homeDatas?.aboutUs, homeDatas?.contactUs],
-    },
-    {
-      id: homeDatas?.developers,
-      title: homeDatas?.developers,
-      items: [
-        homeDatas?.emaar,
-        homeDatas?.damac,
-        homeDatas?.nakheel,
-        homeDatas?.meraas,
-      ],
-    },
-    {
-      id: homeDatas?.propertiesForSale,
-      title: homeDatas?.propertiesForSale,
-      items: [
-        homeDatas?.villa,
-        homeDatas?.appartment,
-        homeDatas?.hotel,
-        homeDatas?.readyVilla,
-      ],
-    },
-    {
-      id: homeDatas?.featuredProjects,
-      title: homeDatas?.featuredProjects,
-      items: [
-        homeDatas?.featuredProject1,
-        homeDatas?.featuredProject2,
-        homeDatas?.featuredProject3,
-        homeDatas?.featuredProject4,
-        homeDatas?.featuredProject5,
-      ],
-    },
-  ];
+  {
+    id: "why-us",
+    title: "About Us", // Professional override
+    items: [homeDatas?.aboutUs || "About Our Heritage", homeDatas?.contactUs || "Private Consultation"],
+  },
+  {
+    id: "developers",
+    title: homeDatas?.developers || "Tier-1 Developers",
+    items: [
+      homeDatas?.emaar,
+      homeDatas?.damac,
+      homeDatas?.nakheel,
+      homeDatas?.meraas,
+    ],
+  },
+  {
+    id: "properties",
+    title: homeDatas?.propertiesForSale || "Curated Portfolios",
+    items: [
+      homeDatas?.villa,
+      homeDatas?.appartment,
+      homeDatas?.hotel,
+      homeDatas?.readyVilla,
+    ],
+  },
+  {
+    id: "featured",
+    title: homeDatas?.featuredProjects || "Featured Masterpieces",
+    items: [
+      homeDatas?.featuredProject1,
+      homeDatas?.featuredProject2,
+      homeDatas?.featuredProject3,
+      homeDatas?.featuredProject4,
+      homeDatas?.featuredProject5,
+    ],
+  },
+];
 
   return (
     <footer className="mb-14">

@@ -9,12 +9,14 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "./prev/services/apiFunctions";
 import { useStateValue } from "./prev/states/StateProvider";
+import { homeData } from "./prev/pages/HomePage/partials/LatestProperty";
 import { usePathname } from "next/navigation";
 
 const OtherNecessaryComponents = () => {
   const [mobileView, setMobileView] = useState(false);
   const [{ lang }] = useStateValue();
   const pathname = usePathname();
+  
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   // const getAllDevelopers = async () => {
@@ -56,7 +58,6 @@ const OtherNecessaryComponents = () => {
 
   const {
     isLoading: isLoadingHomeContent,
-    data: homeData,
     isError: isErrorHomeContent,
     refetch: homeDataRefetch,
   } = useQuery({
@@ -79,6 +80,7 @@ const OtherNecessaryComponents = () => {
     filterRefetch();
     const isMobileView = window.matchMedia("(max-width: 767px)").matches;
     setMobileView(isMobileView);
+    
   }, [lang]);
 
   if (isLoadingHomeContent || isLoadingFilterData) {

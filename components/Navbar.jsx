@@ -7,12 +7,13 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Skeleton from "./prev/Skeleton/Skeleton";
 import logo from "@/public/images/global/logo.png";
 import { useStateValue } from "@/components/prev/states/StateProvider";
+import Menu from "./prev/pages/Menu/Menu";
 
 const Navbar = (props) => {
   const { filterListData, homeData } = props;
   const [{ lang, isDropdownMenuOpen }, dispatch] = useStateValue();
   const [isMobileView, setIsMobileView] = useState(false);
-  const [dropDown, setDropDown] = useState(true);
+  const [dropDown, setDropDown] = useState(false);
   const [navPoint, setNavPoint] = useState(false);
   const buttonRef = useRef();
 
@@ -44,6 +45,9 @@ const Navbar = (props) => {
     } else {
       setDropDown((prev) => !prev);
       dispatch({ type: "setDropdownOpen", item: dropDown });
+      console.log(dropDown);
+      
+
     }
   };
 
@@ -69,7 +73,13 @@ const Navbar = (props) => {
     };
   }, [isDropdownMenuOpen, buttonRef]);
 
-  const langList = filterListData?.langList;
+  const langList = [{
+    lang : "English",
+    value : "en"
+  }, {
+    lang : "Arabic",
+    value : "ar"
+  }]
 
   return (
     <section className={props.className}>
@@ -109,6 +119,7 @@ const Navbar = (props) => {
             </Link>
           </div>
         </div>
+        <Menu />
         <div
           className={`${
             props.type === "home"

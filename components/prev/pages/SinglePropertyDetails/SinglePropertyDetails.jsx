@@ -8,7 +8,7 @@ import Highlights from "./partials/Highlights";
 import Nearby from "./partials/Nearby";
 import PaymentPlan from "./partials/PaymentPlan";
 import PhotoGallery from "./partials/PhotoGallery";
-import PropertyVideo from "./partials/PropertyVideo";
+// import PropertyVideo from "./partials/PropertyVideo";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "../../services/apiFunctions";
@@ -194,7 +194,7 @@ const SinglePropertyDetails = () => {
           paymentPlan={singlePropertyDetails?.paymentPlan}
         />
         <PhotoGallery singleProperty={singleProperty} />
-        <PropertyVideo url={singlePropertyDetails?.videos[0]?.path} />
+        {/* <PropertyVideo url={singlePropertyDetails?.videos[0]?.path} /> */}
         <Amenities singleProperty={singleProperty} />
         <Nearby singleProperty={singleProperty} />
         <Downloads singleProperty={singleProperty} />

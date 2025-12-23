@@ -85,7 +85,7 @@ const LatestPropertyDown = (props) => {
               route={
                 "properties/ready?developmentTypes=6519855e79fcdc27efbf85cd"
               }
-              title={props?.homeData?.lang?.slider?.buttonExplore}
+              title={props?.homeData?.lang?.slider?.buttonExplore || "Ready Properties"}
             />
           </div>
         </div>
@@ -93,7 +93,7 @@ const LatestPropertyDown = (props) => {
         <div className="block my-20 md:my-0 relative overflow-hidden md:left-[260px]">
           <div
             className={`${
-              isMobileView ? "lmb-flex" : "l-flex"
+              isMobileView ? "lmb-flex" : "flex"
             } my-5 px-1 scrollbar-hide py-8 transition-all duration-500 gap-2`}
             ref={cardBoxRef}
             style={{

@@ -7,8 +7,58 @@ import { useStateValue } from "@/components/prev/states/StateProvider";
 import Link from "next/link";
 import BtnSearch2 from "@/components/prev/BtnSearch2";
 
-const Filter = ({ filterLists, homeData, modalRef }) => {
-  const filterTexts = homeData?.lang?.filterHomepage;
+export const filterLists = {
+  propertyAreas: [
+    { id: 1, name: "Dubai Marina", value: "dubai-marina" },
+    { id: 2, name: "Downtown Dubai", value: "downtown-dubai" },
+    { id: 3, name: "Palm Jumeirah", value: "palm-jumeirah" },
+    { id: 4, name: "Business Bay", value: "business-bay" },
+    { id: 5, name: "Jumeirah Village Circle", value: "jvc" },
+  ],
+  developers: [
+    { id: 1, name: "Emaar Properties", value: "emaar" },
+    { id: 2, name: "DAMAC Properties", value: "damac" },
+    { id: 3, name: "Nakheel", value: "nakheel" },
+    { id: 4, name: "Sobha Realty", value: "sobha" },
+    { id: 5, name: "Dubai Properties", value: "dubai-properties" },
+  ],
+  propertyTypes: [
+    { id: 1, name: "Apartment", value: "apartment" },
+    { id: 2, name: "Villa", value: "villa" },
+    { id: 3, name: "Townhouse", value: "townhouse" },
+    { id: 4, name: "Penthouse", value: "penthouse" },
+  ],
+  completions: [
+    { id: 1, name: "Off-Plan", value: "off-plan" },
+    { id: 2, name: "Ready to Move", value: "ready" },
+    { id: 3, name: "Under Construction", value: "under-construction" },
+  ],
+  developmentTypes: [
+    { id: 1, name: "Residential", value: "residential" },
+    { id: 2, name: "Commercial", value: "commercial" },
+    { id: 3, name: "Mixed Use", value: "mixed-use" },
+  ]
+};
+
+export const filterTexts = {
+  textBoxPropertyArea: "Select Area",
+  textBoxDubaiDeveloper: "Select Developer",
+  textBoxPropertyType: "Property Type",
+  textBoxCompletion: "Completion Status",
+  textBoxDevelopmentType: "Development Type",
+  buttonSearch: "Search Properties"
+};
+
+// Default empty values for state initialization
+export const initialFilterValues = {
+  propertyAreas: "",
+  developers: "",
+  propertyTypes: "",
+  completions: "",
+  developmentTypes: ""
+};
+
+const Filter = ({ homeData, modalRef }) => {
   // const [animate, setAnimate] = useState(false);
   const [{ filterValues, filterOpen }] = useStateValue();
 

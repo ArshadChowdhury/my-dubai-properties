@@ -29,7 +29,7 @@ const Payment = (props) => {
         </div>
         <div className="w-full md:w-1/2 px-5 md:mt-20">
           <p className="text-white text-[16.5px] font-montserrat font-extralight -mt-[15px]">
-            Home Data Text Payment
+           Payment Methods
           </p>
           <div className="w-full mt-10">
             <div className="w-full flex mt-10">
