@@ -2,15 +2,24 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "www.offplan-dubai.com",
-      "cloud.offplan-dubai.com",
-      "propertyseeker.s3.me-central-1.amazonaws.com",
-    ],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "www.offplan-dubai.com",
+        protocol: 'https',
+        hostname: 'www.offplan-dubai.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cloud.offplan-dubai.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'propertyseeker.s3.me-central-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
       },
     ],
   },
