@@ -20,6 +20,7 @@ import FilterModal from "./partials/filterModal";
 import VerticalLine from "../../VerticalLine";
 import ContactUsModal from "../ArrangeMeeting/partials/ContactUsModal";
 import LoadingState from "@/components/LoadingState";
+// import { allPlaces as propertiesData } from "../HomePage/partials/LatestProperty";
 
 export default function ViewProperty(props) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -45,41 +46,43 @@ export default function ViewProperty(props) {
   const fetchMoreData = async () => {
     setPage((page) => page + 1);
     return async () => {
-      const data = await instance
-        .get(`/${lang}/properties`, {
-          timeout: 5000,
-          params: filterParams,
-        })
-        .then((data) => data.data.data.properties);
-      return data;
+      const data = await instance.get(`/dubai-properties`, {
+        timeout: 5000,
+        params: {
+          ...filters,
+          page: page,
+        },
+      }).then((data) => data.data);
+      return data;;
     };
   };
 
   const getAllHomeContent = async () => {
     const data = await instance
-      .get(`/${lang}/get-home`, {
+      .get(`/dubai-properties`, {
         timeout: 5000,
       })
-      .then((data) => data?.data?.data);
+      .then((data) => data);
     return data;
   };
 
   const getAllProperties = async () => {
+
     const data = await instance
-      .get(`/${lang}/properties`, {
+      .get("/dubai-properties", {
         timeout: 5000,
         params: filterParams,
       })
-      .then((data) => data.data.data.properties);
+      .then((data) => data.data);
     return data;
   };
 
   const getAllFilter = async () => {
     const data = await instance
-      .get(`/${lang}/data/filter-list`, {
+      .get(`/dubai-properties`, {
         timeout: 5000,
       })
-      .then((data) => data.data.data);
+      .then((data) => data.data);
     return data;
   };
   const {
@@ -98,11 +101,12 @@ export default function ViewProperty(props) {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [`property-list ${pathname}`],
+    queryKey: [`property-list ${page}`],
     queryFn: getAllProperties,
-    enabled: !!filterParams.developmentTypeId,
+    // enabled: !!filterParams.developmentTypeId,
     refetchOnWindowFocus: false,
   });
+
 
   const {
     isLoading: isLoadingHomeContent,
@@ -114,22 +118,22 @@ export default function ViewProperty(props) {
     refetchOnWindowFocus: false,
   });
 
-  useEffect(() => {
-    refetch();
-    homeDataRefetch();
-    filterListRefetch();
-    return () => {
-      dispatch({ type: "setFilterValues", item: false });
-    };
-  }, [
-    propertyAreaId,
-    developmentTypeId,
-    propertyTypeId,
-    developerId,
-    completion,
-    lang,
-    page,
-  ]);
+  // useEffect(() => {
+  //   refetch();
+  //   homeDataRefetch();
+  //   filterListRefetch();
+  //   return () => {
+  //     dispatch({ type: "setFilterValues", item: false });
+  //   };
+  // }, [
+  //   propertyAreaId,
+  //   developmentTypeId,
+  //   propertyTypeId,
+  //   developerId,
+  //   completion,
+  //   lang,
+  //   page,
+  // ]);
 
   useEffect(() => {
     setPage(1);
@@ -197,7 +201,7 @@ export default function ViewProperty(props) {
           <div className="w-full -top-[60px] md:top-0 flex flex-col md:flex-row justify-between px-2 pt-3 pb-1 sticky z-50 bg-gradient-to-r from-[#001120] via-[#00182E] to-[#001120]">
             <HeadingBox heading={heading} />
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <div className="md:hidden">
                 <FilterSearchInput
                   homeData={homeData}
@@ -212,7 +216,7 @@ export default function ViewProperty(props) {
                   filterParams={filterParams}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {viewType === "grid" ? (

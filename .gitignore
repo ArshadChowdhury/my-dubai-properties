@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+.pnpm-store/
+
 # next.js
 /.next/
 /out/

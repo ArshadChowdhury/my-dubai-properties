@@ -149,7 +149,7 @@ const FilterSelect = (props) => {
         onClick={handleOnClick}
       >
         {selectedValue ===
-        (allItemsArray[0].areaName || allItemsArray[0].name) ? (
+        (allItemsArray[0].areaName || allItemsArray[0].propertyName) ? (
           <span className="truncate">{selectedValue}</span>
         ) : (
           <span className="text-[#F1BF3F] truncate">{selectedValue}</span>

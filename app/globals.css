@@ -70,3 +70,20 @@
     @apply !z-10 !top-14;
   }
 }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 5)); } /* Adjust 250px to your card width */
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  width: max-content; /* Critical: allows cards to sit side-by-side infinitely */
+  animation: scroll 30s linear infinite;
+}
+
+/* Ensure mobile view doesn't wrap */
+.mb-flex {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
